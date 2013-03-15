@@ -4,10 +4,9 @@ I.E. modded and localized versions of some stuff I like.
 
 **Powerarrow Darker** copied from romockee_
 .. image:: http://ompldr.org/vaHF5dg/q1Z83WG.png
-.. _romockee: https://github.com/romockee/powerarrow-dark
-__ romockee_
 
 **Multicolor** copied from TIP_
 .. image:: http://i.imgur.com/vBMn8C8.jpg
+
 .. _TIP: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
-__ TIP_
+.. _romockee: https://github.com/romockee/powerarrow-dark
