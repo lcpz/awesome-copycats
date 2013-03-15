@@ -2,13 +2,11 @@ Copycat themes for Awesome WM 3.5
 ---------
 I.E. modded and localized versions of some stuff I like.
 
-
-**Powerarrow Darker** copied from romockee_
+**Powerarrow Darker** copycatted from romockee_
 
 .. image:: http://ompldr.org/vaHF5dg/q1Z83WG.png
 
-
-**Multicolor** copied from tip_
+**Multicolor** copycatted from tip_
 
 .. image:: http://i.imgur.com/vBMn8C8.jpg
 
