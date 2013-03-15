@@ -4,7 +4,7 @@ I.E. modded and localized versions of some stuff I like.
 
 **Powerarrow Darker** copycatted from romockee_
 
-.. image:: http://ompldr.org/vaHF5dg/q1Z83WG.png
+.. image:: http://i.imgur.com/inRoOrg.png
 
 **Multicolor** copycatted from tip_
 
