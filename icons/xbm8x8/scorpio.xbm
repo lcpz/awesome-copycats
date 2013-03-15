@@ -1,0 +1,4 @@
+#define scorpio_width 8
+#define scorpio_height 8
+static unsigned char scorpio_bits[] = {
+ 0x42, 0x81, 0xDB, 0x3C, 0xDB, 0x5A, 0x99, 0x30 };

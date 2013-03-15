@@ -1,0 +1,4 @@
+#define net_wired_width 8
+#define net_wired_height 8
+static unsigned char net_wired_bits[] = {
+ 0x00, 0x1C, 0x1C, 0x7F, 0x7F, 0x7F, 0x55, 0x7F };

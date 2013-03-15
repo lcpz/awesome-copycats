@@ -1,0 +1,4 @@
+#define diskette_width 8
+#define diskette_height 8
+static unsigned char diskette_bits[] = {
+ 0xFF, 0x81, 0x81, 0x81, 0xBD, 0xB5, 0xB5, 0xFE };

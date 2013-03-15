@@ -1,0 +1,4 @@
+#define bat_low_01_width 8
+#define bat_low_01_height 8
+static unsigned char bat_low_01_bits[] = {
+ 0x18, 0x7E, 0x42, 0x42, 0x42, 0x5A, 0x42, 0x7E };

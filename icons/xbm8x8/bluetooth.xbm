@@ -1,0 +1,4 @@
+#define bluetooth_width 8
+#define bluetooth_height 8
+static unsigned char bluetooth_bits[] = {
+ 0x18, 0x2A, 0x6C, 0x38, 0x38, 0x6C, 0x2A, 0x18 };

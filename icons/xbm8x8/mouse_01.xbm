@@ -1,0 +1,4 @@
+#define mouse_01_width 8
+#define mouse_01_height 8
+static unsigned char mouse_01_bits[] = {
+ 0xEE, 0xEE, 0xEE, 0x82, 0xFE, 0xFE, 0xFE, 0x7C };

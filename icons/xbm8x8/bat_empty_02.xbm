@@ -1,0 +1,4 @@
+#define bat_empty_02_width 8
+#define bat_empty_02_height 8
+static unsigned char bat_empty_02_bits[] = {
+ 0x00, 0x7F, 0x41, 0xC1, 0xC1, 0x41, 0x7F, 0x00 };
