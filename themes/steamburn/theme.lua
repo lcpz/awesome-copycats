@@ -57,4 +57,6 @@ theme.tasklist_floating                     = ""
 theme.tasklist_maximized_horizontal         = ""
 theme.tasklist_maximized_vertical           = "" 
 
+theme.widget_mail_notify                    = themes_dir .. "/icons/mail_notify.png"
+
 return theme
