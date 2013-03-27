@@ -3,7 +3,7 @@
 --    Steamburn Awesome WM 3.5.+ config    --
 --        github.com/copycat-killer        --
 --                                          -
---[[                                     ]--
+--[[                                     ]]--
 
 
 -- Required Libraries
@@ -19,7 +19,7 @@ vicious         = require("vicious")
 scratch         = require("scratch")
 
 
--- Autostart function
+-- Run once function
 
 function run_once(cmd)
   findme = cmd
@@ -30,6 +30,7 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
  end
 
+-- autostart applications
 run_once("urxvtd")
 run_once("unclutter -idle 10")
 
@@ -334,13 +335,16 @@ mygmail:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.uti
 -- Mpd widget
 mpdwidget = wibox.widget.textbox()
 mpdwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-
+curr_track = nil
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function(widget, args)
-	-- play
 	if (args["{state}"] == "Play") then
+    if( args["{Title}"] ~= curr_track )
+    then
+        curr_track = args["{Title}"]
+        run_once("mpdinfo")
+    end
 		return gray .. args["{Title}"] .. coldef .. white .. " " .. args["{Artist}"] .. coldef
-	-- pause
 	elseif (args["{state}"] == "Pause") then
 		return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
 	else
@@ -934,4 +938,3 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
