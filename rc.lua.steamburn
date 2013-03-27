@@ -1,9 +1,9 @@
---[[                                      ]]--
+--[[                                     ]]--
+--                                         -
+--    Steamburn Awesome WM 3.5.+ config    --
+--        github.com/copycat-killer        --
 --                                          -
---    Steamburn Awesome WM 3.5.+ config     --
---        github.com/copycat-killer         --
---                                          -
---[[                                      ]]--
+--[[                                     ]--
 
 
 -- Required Libraries
@@ -28,7 +28,7 @@ function run_once(cmd)
      findme = cmd:sub(0, firstspace-1)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
- end 
+ end
 
 run_once("urxvtd")
 run_once("unclutter -idle 10")
@@ -114,7 +114,6 @@ if beautiful.wallpaper then
     end
 end
 
-                
 -- Tags
 
 tags = {
@@ -124,7 +123,7 @@ tags = {
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
-                                          
+
 -- Menu
 myaccessories = {
    { "archives", "7zFM" },
@@ -340,10 +339,10 @@ vicious.register(mpdwidget, vicious.widgets.mpd,
 function(widget, args)
 	-- play
 	if (args["{state}"] == "Play") then
-		return gray .. args["{Title}"] .. coldef .. white .. " " .. args["{Artist}"] .. coldef 
+		return gray .. args["{Title}"] .. coldef .. white .. " " .. args["{Artist}"] .. coldef
 	-- pause
 	elseif (args["{state}"] == "Pause") then
-		return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef 
+		return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
 	else
 		return ""
 	end
@@ -382,13 +381,13 @@ function (widget, args)
     fg = beautiful.fg_urgent,
     bg = beautiful.bg_urgent })
   end
-  return gray .. "Hdd " .. coldef .. white .. args["{/home used_p}"] .. coldef 
+  return gray .. "Hdd " .. coldef .. white .. args["{/home used_p}"] .. coldef
 end, 600)
 
 local infos = nil
 
 function remove_info()
-    if infos ~= nil then 
+    if infos ~= nil then
         naughty.destroy(infos)
         infos = nil
     end
@@ -446,7 +445,7 @@ vicious.register(batwidget, vicious.widgets.bat,
 function (widget, args)
   -- plugged
   if (batstate() == 'Cable plugged') then
-    baticon:set_image(beautiful.widget_ac)     
+    baticon:set_image(beautiful.widget_ac)
     return ''
     -- critical
   elseif (args[2] <= 5 and batstate() == 'Discharging') then
@@ -483,9 +482,9 @@ end, 1, 'BAT0')
 volicon = wibox.widget.imagebox()
 volicon:set_image(beautiful.widget_vol)
 volumewidget = wibox.widget.textbox()
-vicious.register(volumewidget, vicious.widgets.volume,  
+vicious.register(volumewidget, vicious.widgets.volume,
 function (widget, args)
-  if (args[2] ~= "♩" ) then 
+  if (args[2] ~= "♩" ) then
      return gray .. "Vol " .. coldef .. white .. args[1] .. " " .. coldef
   else
      return gray .. "Vol " .. coldef .. white .. "mute " .. coldef
@@ -504,12 +503,11 @@ weatherwidget = wibox.widget.textbox()
 vicious.register(weatherwidget, vicious.widgets.weather,
     function (widget, args)
         if args["{tempf}"] == "N/A" then
-            return "No Info"
+            return gray .. "No " .. coldef .. white .. "Info " .. coldef
         else
-            -- work in progress
-            -- ☀☂☔☃ ⛆⛇⛈ 🌂 
-            if( args["{sky}"] == "N/A" ) then args["{sky}"] = "☼"
-            elseif( string.find(args["{sky}"], "Cloudy") ~= nil ) then args["{sky}"] = "<span font=\"Terminus 11\" rise=\"-1620\">⛅</span>"
+            -- work in progress - ☂☔☃ ⛆⛇⛈ 🌂
+            if( args["{sky}"] == "N/A" or string.find(args["{sky}"], "Clear") ~= nil ) then args["{sky}"] = "<span font=\"Symbola 10\" rise=\"-1535\">☼</span>"
+            elseif( string.find(args["{sky}"], "Cloudy") ~= nil ) then args["{sky}"] = "<span font=\"Symbola 11\" rise=\"-1620\">☁</span>"
             end
             return gray .. args["{sky}"] .. coldef .. " " .. white .. args["{tempc}"] .. " " .. coldef
         end
@@ -572,7 +570,7 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
-    
+
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
 
@@ -591,8 +589,8 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the upper wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 }) 
-        
+    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 })
+
     -- Widgets that are aligned to the upper left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(spr)
@@ -610,7 +608,7 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(mygmail)
     right_layout:add(spr)
-    right_layout:add(cpuwidget)    
+    right_layout:add(cpuwidget)
     right_layout:add(spr)
     right_layout:add(memwidget)
     right_layout:add(spr)
@@ -633,7 +631,7 @@ for s = 1, screen.count() do
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
     layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)    
+    layout:set_right(right_layout)
     mywibox[s]:set_widget(layout)
 
 end
@@ -699,7 +697,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-     
+
     awful.key({ "Control",        }, "<",     function () show_calendar() end),
     awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)     end),
@@ -720,7 +718,7 @@ globalkeys = awful.util.table.join(
     awful.key({ "Control" }, "u", function () os.execute("amixer set Master playback unmute", false ) end),
     awful.key({ altkey, "Control" }, "m", function () os.execute("amixer set Master playback 100%", false ) end),
 
-    -- Music control    
+    -- Music control
     awful.key({ altkey, "Control" }, "Up",      function () awful.util.spawn( "mpc toggle", false ) end),
     awful.key({ altkey, "Control" }, "Down",    function () awful.util.spawn( "mpc stop", false ) end ),
     awful.key({ altkey, "Control" }, "Left",    function () awful.util.spawn( "mpc prev", false ) end ),
@@ -733,7 +731,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),
     awful.key({ modkey, 	     }, "t", 	    function () awful.util.spawn( "thunderbird", false ) end),
     awful.key({ modkey,        }, "d", 	    function () awful.util.spawn( "spacefm", false ) end),
-    
+
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
 
@@ -827,7 +825,7 @@ awful.rules.rules = {
 	                  size_hints_honor = false
                      }
     },
-   
+
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
 
@@ -851,7 +849,7 @@ awful.rules.rules = {
           properties = { tag = tags[1][3] } },
 
     { rule = { class = "Dia" },
-          properties = { tag = tags[1][4], 
+          properties = { tag = tags[1][4],
           floating = true } },
 
     { rule = { class = "Gimp" },
