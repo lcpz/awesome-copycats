@@ -1,4 +1,9 @@
--- luke's multicolor
+--[[                                     ]]--
+--                                         -
+--   Multicolor Awesome WM 3.5.+ config    --
+--       github.com/copycat-killer         --
+--                                         -
+--[[                                     ]]--
 
 
 theme = {}

@@ -1,4 +1,10 @@
--- multicolor
+--[[                                     ]]--
+--                                         -
+--   Multicolor Awesome WM 3.5.+ config    --
+--       github.com/copycat-killer         --
+--                                         -
+--[[                                     ]]--
+
 
 -- {{{ Required Libraries
 
@@ -214,7 +220,6 @@ today_color = theme.fg_focus or "#00FF00"
 calendar_width = 21
 
 local calendar = nil
-local todo = nil
 local offset = 0
 
 local data = nil
@@ -285,7 +290,6 @@ end
 function hide()
    if calendar ~= nil then
       naughty.destroy(calendar)
-      naughty.destroy(todo)
       calendar = nil
       offset = 0
    end
@@ -311,7 +315,7 @@ mytextclock:connect_signal("mouse::leave", hide)
 mytextclock:buttons(util.table.join( awful.button({ }, 1, function() show(-1) end),
                                      awful.button({ }, 3, function() show(1) end)))
 
--- Vicious weather widget
+-- Weather widget
 weathericon = wibox.widget.imagebox()
 weathericon:set_image(theme.confdir .. "/widgets/dish.png")
 weatherwidget = wibox.widget.textbox()
@@ -323,7 +327,7 @@ vicious.register(weatherwidget, vicious.widgets.weather,
             -- Italian localization
             -- work in progress
             if( args["{sky}"] == "N/A" ) then args["{sky}"] = "sereno"
-            elseif( args["{sky}"] == "Sereno" ) then args["{sky}"] = "sereno"
+            elseif( args["{sky}"] == "Clear" ) then args["{sky}"] = "sereno"
             elseif( args["{sky}"] == "Cloudy" ) then args["{sky}"] = "nuvoloso"
             elseif( args["{sky}"] == "Mostly Cloudy" ) then args["{sky}"] = "molto nuvoloso"
             end

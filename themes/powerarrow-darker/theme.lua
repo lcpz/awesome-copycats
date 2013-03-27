@@ -1,6 +1,10 @@
-     --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
---{{  Awesome Powerarrow-dark theme by Rom Ockee - luke's mod    }}---
-     --- --- --- --- --- --- --- --- --- --- --- --- --- --- ---
+--[[                                        ]]--
+--                                            -
+--  Powearrow Darker Awesome WM 3.5.+ theme   --
+--        github.com/copycat-killer           --
+--                                            -
+--[[                                        ]]--
+
 
 theme = {}
 
