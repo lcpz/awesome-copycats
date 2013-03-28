@@ -324,7 +324,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
       bg = beautiful.bg_urgent })
       notify_shown = true
     end
-    return gray .. "Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
+    return gray .. " Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
   else
     notify_shown = false
     return ''

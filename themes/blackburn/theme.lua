@@ -9,7 +9,7 @@
 
 theme = {}
 
-themes_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/steamburn"
+themes_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/blackburn"
 theme.wallpaper                             = themes_dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
