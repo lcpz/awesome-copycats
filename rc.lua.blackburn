@@ -552,7 +552,7 @@ vicious.register(weatherwidget, vicious.widgets.weather,
             end
             return " " .. white .. args["{tempc}"] .. " " .. coldef
         end
-    end, 600, "LIRN" )
+    end, 600, "ICAO-CODE-GOES-HERE" )
 
 -- attached notification
 local timer = timer
@@ -652,7 +652,8 @@ function add_weather_notification(widget, id)
     vicious.force({ weatherwidget } )
 end
 
-add_weather_notification(weathericon, 725051)
+-- the second argument must be your Yahoo Weather city id
+add_weather_notification(weathericon, 123456)
 
 -- Separators
 spr = wibox.widget.textbox(' ')

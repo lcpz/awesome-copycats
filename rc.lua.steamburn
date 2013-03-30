@@ -513,7 +513,7 @@ vicious.register(weatherwidget, vicious.widgets.weather,
             end
             return gray .. args["{sky}"] .. coldef .. " " .. white .. args["{tempc}"] .. " " .. coldef
         end
-    end, 1800, "LIRN" )
+    end, 1800, "ICAO-CODE-GOES-HERE" )
 
 -- Separators
 spr = wibox.widget.textbox(' ')

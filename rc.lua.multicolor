@@ -334,7 +334,7 @@ vicious.register(weatherwidget, vicious.widgets.weather,
             end
             return "" .. lightpurple .. args["{sky}"] .. " @ " .. args["{tempc}"] .. "°C" .. coldef .. ""
         end
-    end, 1800, "LIRN" )
+    end, 1800, "ICAO-CODE-GOES-HERE" )
 
 -- /home fs widget
 fshicon = wibox.widget.imagebox()
