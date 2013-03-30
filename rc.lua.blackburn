@@ -228,7 +228,7 @@ local function create_calendar()
    local first_day = os.time({ day = 1, month = cal_month, year = cal_year})
    local first_day_in_week =
       os.date("%w", first_day)
-   local result = "do lu ma me gi ve sa\n"
+   local result = "do lu ma me gi ve sa\n" -- days of the week
    for i = 1, first_day_in_week do
       result = result .. "   "
    end
@@ -276,7 +276,7 @@ function show(inc_offset)
    inc_offset = inc_offset or 0
 
    local save_offset = offset
-   hide()
+   remove_calendar()
    offset = save_offset + inc_offset
 
    local char_width = char_width or calculate_char_width()
@@ -288,7 +288,7 @@ function show(inc_offset)
 end
 
 function add_calendar(t_out)
-   hide()
+   remove_calendar()
    local char_width = char_width or calculate_char_width()
    local header, cal_text = create_calendar()
    calendar = naughty.notify({ title = header,
