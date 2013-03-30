@@ -45,5 +45,5 @@ Gallery
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 
-:Version: 0.6
+**Version** 0.7
 
