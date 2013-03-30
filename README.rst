@@ -5,6 +5,7 @@ I.E. heavy mods of some stuff I like.
 Beware! They're more awesome than they appear, it's just they're shy.
 
 Notable features:
+
 - Autohide widgets (*tell me only when you have to*)
 - Autostart functionality
 - Fast mpd and volume shortcuts (believe me, nobody showed this before anywhere)
@@ -18,7 +19,7 @@ Notable features:
 - Colorful (and nice) icons
 
 They're scattered all over the themes, but you can get them all *only* in Blackburn.
-
+---------
 **Blackburn** the wannabe definitive theme
 
 .. image:: http://i.imgur.com/Cz1ne3J.jpg
