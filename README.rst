@@ -19,7 +19,7 @@ Notable features:
 - Colorful (and nice) icons
 
 They're scattered all over the themes, but you can get them all *only* in Blackburn.
----------
+
 **Blackburn** the wannabe definitive theme
 
 .. image:: http://i.imgur.com/Cz1ne3J.jpg
