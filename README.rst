@@ -3,9 +3,13 @@ Copycat themes for Awesome WM 3.5
 I.E. modded and localized versions of some stuff I like.
 Beware! They're more awesome than they appear.
 
+**Blackburn** the wannabe definitive theme
+
+.. image:: http://i.imgur.com/Cz1ne3J.jpg
+
 **Steamburn** copycatted from ok100_
 
-.. image:: http://i.imgur.com/AvMiFTq.jpg 
+.. image:: http://i.imgur.com/esHcVzj.jpg
 
 **Powerarrow Darker** copycatted from romockee_
 

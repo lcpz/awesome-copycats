@@ -70,6 +70,7 @@ end
 
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
+scriptdir = confdir .. "/script/"
 themes = confdir .. "/themes"
 active_theme = themes .. "/steamburn"
 
@@ -285,13 +286,13 @@ function show(inc_offset)
                             })
 end
 
-function show_calendar()
+function add_calendar(t_out)
    hide()
    local char_width = char_width or calculate_char_width()
    local header, cal_text = create_calendar()
    calendar = naughty.notify({ title = header,
                                text = cal_text,
-                               timeout = 5,
+                               timeout = t_out,
                             })
 end
 
@@ -342,7 +343,7 @@ function(widget, args)
     if( args["{Title}"] ~= curr_track )
     then
         curr_track = args["{Title}"]
-        run_once("mpdinfo")
+        run_once(scriptdir .. "mpdinfo")
     end
 		return gray .. args["{Title}"] .. coldef .. white .. " " .. args["{Artist}"] .. coldef
 	elseif (args["{state}"] == "Pause") then
@@ -403,7 +404,7 @@ function add_info()
 		mouse = mouse,
 		screen = screen
 	  }
-    local cal = awful.util.pread("dfs")
+    local cal = awful.util.pread(scriptdir .. "dfs")
     cal = string.gsub(cal, "          ^%s*(.-)%s*$", "%1")
     infos = naughty.notify({
         text = string.format('<span font_desc="%s">%s</span>', "Tamsyn", cal),
@@ -412,10 +413,7 @@ function add_info()
         margin = 10,
         height = 210,
         width = 680,
-        border_color = '#94928f',
-        border_width = 1,
-        opacity = 0.94,
-		  screen	= capi.mouse.screen
+        screen	= capi.mouse.screen
     })
 end
 
@@ -651,6 +649,7 @@ root.buttons(awful.util.table.join(
 
 -- Key bindings
 globalkeys = awful.util.table.join(
+
     -- Capture a screenshot
     awful.key({ altkey }, "p", function() awful.util.spawn("screenshot",false) end),
 
@@ -661,11 +660,9 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Up",    function () awful.client.moveresize(  0, -1,   0,   0) end),
     awful.key({ altkey }, "Left",  function () awful.client.moveresize(-1,   0,   0,   0) end),
     awful.key({ altkey }, "Right", function () awful.client.moveresize( 1,   0,   0,   0) end),
-
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-
     awful.key({ modkey,           }, "k",
         function ()
             awful.client.focus.byidx( 1)
@@ -701,9 +698,6 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-
-    awful.key({ "Control",        }, "<",     function () show_calendar() end),
-    awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)     end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)     end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)       end),
@@ -712,24 +706,58 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)          end),
     awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1)  end),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1)  end),
-
     awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
+    -- Dropdown terminal
+    awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
+
+    -- Widgets popups
+    awful.key({ altkey,           }, "c",     function () add_calendar(7) end),
+
     -- Volume control
-    awful.key({ "Control" }, "Up", function () os.execute("amixer set Master playback 1%+", false ) end),
-    awful.key({ "Control" }, "Down", function () os.execute("amixer set Master playback 1%-", false ) end),
-    awful.key({ "Control" }, "m", function () os.execute("amixer set Master playback mute", false ) end),
-    awful.key({ "Control" }, "u", function () os.execute("amixer set Master playback unmute", false ) end),
-    awful.key({ altkey, "Control" }, "m", function () os.execute("amixer set Master playback 100%", false ) end),
+    awful.key({ "Control" }, "Up", function ()
+                                       awful.util.spawn("amixer set Master playback 1%+", false )
+                                       vicious.force({ volumewidget })
+                                   end),
+    awful.key({ "Control" }, "Down", function ()
+                                       awful.util.spawn("amixer set Master playback 1%-", false )
+                                       vicious.force({ volumewidget })
+                                     end),
+    awful.key({ "Control" }, "m", function ()
+                                       awful.util.spawn("amixer set Master playback mute", false )
+                                       vicious.force({ volumewidget })
+                                     end),
+    awful.key({ "Control" }, "u", function () 
+                                      awful.util.spawn("amixer set Master playback unmute", false )
+                                       vicious.force({ volumewidget })
+                                  end),
+    awful.key({ altkey, "Control" }, "m", function () 
+                                              awful.util.spawn("amixer set Master playback 100%", false )
+                                              vicious.force({ volumewidget })
+                                          end),
 
     -- Music control
-    awful.key({ altkey, "Control" }, "Up",      function () awful.util.spawn( "mpc toggle", false ) end),
-    awful.key({ altkey, "Control" }, "Down",    function () awful.util.spawn( "mpc stop", false ) end ),
-    awful.key({ altkey, "Control" }, "Left",    function () awful.util.spawn( "mpc prev", false ) end ),
-    awful.key({ altkey, "Control" }, "Right",   function () awful.util.spawn( "mpc next", false ) end ),
+    awful.key({ altkey, "Control" }, "Up", function () 
+                                              awful.util.spawn( "mpc toggle", false ) 
+                                              vicious.force({ mpdwidget } )
+                                           end),
+    awful.key({ altkey, "Control" }, "Down", function () 
+                                                awful.util.spawn( "mpc stop", false ) 
+                                                vicious.force({ mpdwidget } )
+                                             end ),
+    awful.key({ altkey, "Control" }, "Left", function ()
+                                                awful.util.spawn( "mpc prev", false )
+                                                vicious.force({ mpdwidget } )
+                                             end ),
+    awful.key({ altkey, "Control" }, "Right", function () 
+                                                awful.util.spawn( "mpc next", false )
+                                                vicious.force({ mpdwidget } )
+                                              end ),
 
-    -- Other stuff
+    -- Copy to clipboard
     awful.key({ modkey,        }, "c",      function () os.execute("xsel -p -o | xsel -i -b") end),
+
+    -- User programs
     awful.key({ modkey,        }, "q",      function () awful.util.spawn( "dwb", false ) end),
     awful.key({ modkey,        }, "a",      function () awful.util.spawn( "midori", false ) end),
     awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),

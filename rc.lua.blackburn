@@ -1,12 +1,13 @@
----[[                                          ]]--
---                                               -
---    Powearrow Darker Awesome WM 3.5.+ config   --
---           github.com/copycat-killer           --
---                                               -
---[[                                           ]]--
+--[[                                     ]]--
+--
+--                                         -
+--    Blackburn Awesome WM 3.5.+ config    --
+--        github.com/copycat-killer        --
+--                                          -
+--[[                                     ]]--
 
 
--- {{{ Required Libraries
+-- Required Libraries
 
 gears 	        = require("gears")
 awful           = require("awful")
@@ -18,9 +19,7 @@ naughty         = require("naughty")
 vicious         = require("vicious")
 scratch         = require("scratch")
 
--- }}}
-
--- {{{ Autostart
+-- Run once function
 
 function run_once(cmd)
   findme = cmd
@@ -29,20 +28,20 @@ function run_once(cmd)
      findme = cmd:sub(0, firstspace-1)
   end
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
- end 
+end
 
+-- autostart applications
 run_once("urxvtd")
 run_once("unclutter -idle 10")
+run_once("compton")
 
--- }}}
 
--- {{{ Localization
+-- Localization
 
 os.setlocale(os.getenv("LANG"))
 
--- }}}
 
--- {{{ Error Handling
+-- Error Handling
 
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -67,17 +66,16 @@ do
     end)
 end
 
--- }}}
 
--- {{{ Variable Definitions
+-- Variable Definitions
 
--- Useful Paths
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
+scriptdir = confdir .. "/script/"
 themes = confdir .. "/themes"
-active_theme = themes .. "/powerarrow-darker"
+active_theme = themes .. "/blackburn"
+weather_icons = active_theme .. "/icons/weather/"
 
--- Themes define colours, icons, and wallpapers
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "urxvtc"
@@ -89,18 +87,12 @@ browser2 = "midori"
 mail = terminal .. " -e mutt "
 chat = terminal .. " -e irssi "
 tasks = terminal .. " -e htop "
-iptraf = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
+wifi = terminal .. " -e sudo wifi-menu "
 musicplr = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
--- Default modkey.
--- Usually, Mod4 is the key with a logo between Control and Alt.
--- If you do not like this or do not have such a key,
--- I suggest you to remap Mod4 to another key using xmodmap or other tools.
--- However, you can use another modifier like Mod1, but it may interact with others.
 modkey = "Mod4"
 altkey = "Mod1"
 
--- Table of layouts to cover with awful.layout.inc, order matters.
 layouts =
 {
     awful.layout.suit.floating,             -- 1
@@ -117,9 +109,8 @@ layouts =
     --awful.layout.suit.magnifier           -- 12
 }
 
--- }}}
 
--- {{{ Wallpaper
+-- Wallpaper
 
 if beautiful.wallpaper then
     for s = 1, screen.count() do
@@ -127,22 +118,17 @@ if beautiful.wallpaper then
     end
 end
 
--- }}}
-                
--- {{{ Tags
+-- Tags
 
--- Define a tag table which hold all screen tags.
 tags = {
-       names = { "1", "2", "3", "4", "5"},
-       layout = { layouts[1], layouts[4], layouts[3], layouts[1], layouts[7] }
+       names = { "web", "term", "docs", "media", "down"},
+       layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[7] }
        }
 for s = 1, screen.count() do
--- Each screen has its own tag table.
    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
--- }}}
-                                          
--- {{{ Menu
+
+-- Menu
 myaccessories = {
    { "archives", "7zFM" },
    { "file manager", "spacefm" },
@@ -161,7 +147,6 @@ mygames = {
 }
 mygraphics = {
     { "gimp" , "gimp" },
-    { "inkscape", "inkscape" },
     { "dia", "dia" },
     { "image viewer" , "viewnior" }
 }
@@ -186,21 +171,21 @@ mymainmenu = awful.menu({ items = {
             })
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
                                      menu = mymainmenu })
--- }}}
 
--- {{{ Wibox
+
+-- Wibox
 
 -- Colours
 coldef  = "</span>"
-colwhi  = "<span color='#b2b2b2'>"
+white  = "<span color='#d7d7d7'>"
+gray = "<span color='#9e9c9a'>"
 red = "<span color='#e54c62'>"
 
--- Textclock widget
-clockicon = wibox.widget.imagebox()
-clockicon:set_image(beautiful.widget_clock)
-mytextclock = awful.widget.textclock("<span font=\"Terminus 12\"><span font=\"Terminus 9\" color=\"#DDDDFF\"> %a %d %b  %H:%M</span></span>")
 
--- Calendar attached to the textclock
+-- Textclock widget
+mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
+
+-- attached calendar
 local os = os
 local string = string
 local table = table
@@ -279,7 +264,7 @@ local function calculate_char_width()
    return beautiful.get_font_height(theme.font) * 0.555
 end
 
-function hide()
+function remove_calendar()
    if calendar ~= nil then
       naughty.destroy(calendar)
       calendar = nil
@@ -302,142 +287,141 @@ function show(inc_offset)
                             })
 end
 
+function add_calendar(t_out)
+   hide()
+   local char_width = char_width or calculate_char_width()
+   local header, cal_text = create_calendar()
+   calendar = naughty.notify({ title = header,
+                               text = cal_text,
+                               timeout = t_out,
+                            })
+end
+
 mytextclock:connect_signal("mouse::enter", function() show(0) end)
-mytextclock:connect_signal("mouse::leave", hide)
+mytextclock:connect_signal("mouse::leave", remove_calendar)
 mytextclock:buttons(util.table.join( awful.button({ }, 1, function() show(-1) end),
                                      awful.button({ }, 3, function() show(1) end)))
 
--- Mail widget
+-- GMail widget
 mygmail = wibox.widget.textbox()
 notify_shown = false
-gmail_t = awful.tooltip({ objects = { mygmail },})
-mygmailimg = wibox.widget.imagebox(beautiful.widget_mail)
 vicious.register(mygmail, vicious.widgets.gmail,
-function (widget, args)
+ function (widget, args)
   notify_title = "Hai un nuovo messaggio"
   notify_text = '"' .. args["{subject}"] .. '"'
-  gmail_t:set_text(args["{subject}"])
-  gmail_t:add_to_object(mygmailimg)
-  if (args["{count}"] > 0) then
+  if (args["{count}"] > 0 ) then
     if (notify_shown == false) then
-      if (args["{count}"] > 1) then 
-          notify_title = "Hai " .. args["{count}"] .. " nuovi messaggi"
+      if (args["{count}"] == 1) then
+          notify_title = "Hai un nuovo messaggio"
+          notify_text = '"' .. args["{subject}"] .. '"'
+      else
+          notify_title = "Hai " .. noti .. " nuovi messaggi"
           notify_text = 'Ultimo: "' .. args["{subject}"] .. '"'
       end
       naughty.notify({ title = notify_title, text = notify_text,
-      timeout = 7,
-      position = "top_left",
-      icon = beautiful.widget_mail_notify,
-      fg = beautiful.fg_urgent,
-      bg = beautiful.bg_urgent })
+          timeout = 7,
+          position = "top_left",
+          icon = beautiful.widget_mail_notify,
+          fg = beautiful.taglist_fg_focus,
+          bg = beautiful.bg_normal })
       notify_shown = true
     end
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{count}"] .. ' </span></span>'
+    return gray .. " Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
   else
     notify_shown = false
-    return ""
+    return ''
   end
 end, 60)
 mygmail:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail, false) end)))
 
--- Music widget
+-- Mpd widget
 mpdwidget = wibox.widget.textbox()
-mpdicon = wibox.widget.imagebox()
-mpdicon:set_image(beautiful.widget_music)
-mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-
+mpdwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
+curr_track = nil
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function(widget, args)
-	-- play
 	if (args["{state}"] == "Play") then
-    mpdicon:set_image(beautiful.widget_music_on)
-		return "<span background='#313131' font='Terminus 13' rise='2000'> <span font='Terminus 9'>" .. red .. args["{Title}"] .. coldef .. colwhi .. " - " .. coldef .. colwhi  .. args["{Artist}"] .. coldef .. " </span></span>"
-	-- pause
+    if( args["{Title}"] ~= curr_track )
+    then
+        curr_track = args["{Title}"]
+        run_once(scriptdir .. "mpdinfo")
+    end
+		return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
 	elseif (args["{state}"] == "Pause") then
-    mpdicon:set_image(beautiful.widget_music)
-		return "<span background='#313131' font='Terminus 13' rise='2000'> <span font='Terminus 9'>" .. colwhi .. "mpd in pausa" .. coldef .. " </span></span>"
+		return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
 	else
-    mpdicon:set_image(beautiful.widget_music)
-		return ""
+    curr_track = nil
+		return ''
 	end
 end, 1)
 
 -- MEM widget
-memicon = wibox.widget.imagebox()
-memicon:set_image(beautiful.widget_mem)
 memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, ' $2MB ', 13)
+vicious.register(memwidget, vicious.widgets.mem, gray .. "Mem " .. coldef .. white .. "$2 " .. coldef, 13) -- in Megabytes
 
 -- CPU widget
-cpuicon = wibox.widget.imagebox()
-cpuicon:set_image(beautiful.widget_cpu)
 cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">$1% </span></span>', 3)
-cpuicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(tasks, false) end)))
+vicious.register(cpuwidget, vicious.widgets.cpu, gray .. "Cpu " .. coldef .. white .. "$1 " .. coldef, 3)
+cpuwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(tasks, false) end)))
 
 -- Temp widget
-tempicon = wibox.widget.imagebox()
-tempicon:set_image(beautiful.widget_temp)
-tempicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(terminal .. " -e sudo powertop ", false) end)))
 tempwidget = wibox.widget.textbox()
-vicious.register(tempwidget, vicious.widgets.thermal, '<span font="Terminus 12"> <span font="Terminus 9">$1°C </span></span>', 9, {"coretemp.0", "core"} )
+vicious.register(tempwidget, vicious.widgets.thermal, gray .. "Temp " .. coldef .. white .. "$1 " .. coldef, 9, {"coretemp.0", "core"} )
 
 -- /home fs widget
-fshicon = wibox.widget.imagebox()
-fshicon:set_image(beautiful.widget_hdd)
 fshwidget = wibox.widget.textbox()
+too_much = false
 vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
-  if args["{/home used_p}"] >= 95 and args["{/home used_p}"] < 99 then
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{/home used_p}"] .. '% </span></span>' 
-  elseif args["{/home used_p}"] >= 99 and args["{/home used_p}"] <= 100 then
-    naughty.notify({ title = "Attenzione", text = "Partizione /home esaurita!\nFa' un po' di spazio.",
-    timeout = 10,
-    position = "top_right",
-    fg = beautiful.fg_urgent,
-    bg = beautiful.bg_urgent })
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{/home used_p}"] .. '% </span></span>' 
+  if ( args["{/home used_p}"] >= 90 ) then
+      if ( args["{/home used_p}"] >= 99 and too_much == false ) then
+        naughty.notify({ title = "Attenzione", text = "Partizione /home esaurita!\nFa' un po' di spazio.",
+        timeout = 7,
+        position = "top_right",
+        fg = beautiful.fg_urgent,
+        bg = beautiful.bg_urgent })
+        too_much = true
+      end
+      return gray .. " Hdd " .. coldef .. white .. args["{/home used_p}"] .. coldef .. " "
   else
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{/home used_p}"] .. '% </span></span>' 
+    return ""
   end
 end, 600)
 
-
+-- hhd status notification
 local infos = nil
 
 function remove_info()
-    if infos ~= nil then 
+    if infos ~= nil then
         naughty.destroy(infos)
         infos = nil
     end
 end
 
-function add_info()
+function add_info(t_out)
     remove_info()
     local capi = {
 		mouse = mouse,
 		screen = screen
 	  }
-    local cal = awful.util.pread("dfs")
+    local cal = awful.util.pread(scriptdir .. "dfs")
     cal = string.gsub(cal, "          ^%s*(.-)%s*$", "%1")
     infos = naughty.notify({
-        text = string.format('<span font_desc="%s">%s</span>', "Terminus", cal),
-      	timeout = 0,
+        text = cal,
+      	timeout = t_out,
         position = "top_right",
         margin = 10,
-        height = 170,
-        width = 585,
-        screen	= capi.mouse.screen
+        height = 210,
+        width = 680,
+		  screen	= capi.mouse.screen
     })
 end
 
-fshicon:connect_signal('mouse::enter', function () add_info() end)
-fshicon:connect_signal('mouse::leave', function () remove_info() end)
+fshwidget:connect_signal('mouse::enter', function () add_info(0) end)
+fshwidget:connect_signal('mouse::leave', function () remove_info() end)
 
 -- Battery widget
-baticon = wibox.widget.imagebox()
-baticon:set_image(beautiful.widget_battery)
-
+batwidget = wibox.widget.textbox()
 function batstate()
 
   local file = io.open("/sys/class/power_supply/BAT0/status", "r")
@@ -455,22 +439,18 @@ function batstate()
     return "Fully charged"
   end
 end
-
-batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat,
 function (widget, args)
   -- plugged
   if (batstate() == 'Cable plugged') then
-    baticon:set_image(beautiful.widget_ac)     
-    return '<span font="Terminus 12"> <span font="Terminus 9">AC </span></span>'
+    return ''
     -- critical
   elseif (args[2] <= 5 and batstate() == 'Discharging') then
-    baticon:set_image(beautiful.widget_battery_empty)
     naughty.notify({
       text = "sto per spegnermi...",
       title = "Carica quasi esaurita!",
       position = "top_right",
-      timeout = 1,
+      timeout = 0,
       fg="#000000",
       bg="#ffffff",
       screen = 1,
@@ -478,57 +458,209 @@ function (widget, args)
     })
     -- low
   elseif (args[2] <= 10 and batstate() == 'Discharging') then
-    baticon:set_image(beautiful.widget_battery_low)
     naughty.notify({
       text = "attacca il cavo!",
       title = "Carica bassa",
       position = "top_right",
-      timeout = 1,
+      timeout = 0,
       fg="#ffffff",
       bg="#262729",
       screen = 1,
       ontop = true,
     })
-   else baticon:set_image(beautiful.widget_battery)
   end
-    return '<span font="Terminus 12"> <span font="Terminus 9">' .. args[2] .. '% </span></span>'
+  return gray .. "Bat " .. coldef .. white .. args[2] .. " " .. coldef
 end, 1, 'BAT0')
 
 -- Volume widget
-volicon = wibox.widget.imagebox()
-volicon:set_image(beautiful.widget_vol)
 volumewidget = wibox.widget.textbox()
-vicious.register(volumewidget, vicious.widgets.volume,  
+vicious.register(volumewidget, vicious.widgets.volume,
 function (widget, args)
-  if (args[2] ~= "♩" ) then 
-      if (args[1] == 0) then volicon:set_image(beautiful.widget_vol_no)
-      elseif (args[1] <= 50) then  volicon:set_image(beautiful.widget_vol_low)
-      else volicon:set_image(beautiful.widget_vol)
-      end
-  else volicon:set_image(beautiful.widget_vol_mute) 
+  if (args[2] ~= "♩" ) then
+     return gray .. "Vol " .. coldef .. white .. args[1] .. " " .. coldef
+  else
+     return gray .. "Vol " .. coldef .. white .. "mute " .. coldef
   end
-  return '<span font="Terminus 12"> <span font="Terminus 9">' .. args[1] .. '% </span></span>'
 end, 1, "Master")
 
--- Net widget
+-- Net checker widget
+no_net_shown = true
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9" color="#7AC82E">${wlan0 down_kb}</span> <span font="Terminus 7" color="#EEDDDD">↓↑</span> <span font="Terminus 9" color="#46A8C3">${wlan0 up_kb} </span></span>', 3)
-neticon = wibox.widget.imagebox()
-neticon:set_image(beautiful.widget_net)
-netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
+vicious.register(netwidget, vicious.widgets.net, 
+function (widget, args)
+    if args["{wlan0 carrier}"] == 0 then
+       if no_net_shown == true then
+         naughty.notify({ title = "wlan0", text = "No carrier",
+         timeout = 7,
+         position = "top_left",
+         icon = beautiful.widget_no_net_notify,
+         fg = "#ff5e5e",
+         bg = beautiful.bg_normal })
+         no_net_shown = false
+       end
+       return gray .. " Net " .. coldef .. red .. "Off " .. coldef
+    else
+       no_net_shown = true
+       return ''
+    end
+end, 10)
+netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
+
+-- Weather widget
+weathericon = wibox.widget.imagebox()
+weathericon:set_image(beautiful.widget_weather_0)
+weatherwidget = wibox.widget.textbox()
+sky = ""
+vicious.register(weatherwidget, vicious.widgets.weather,
+    function (widget, args)
+        if args["{tempf}"] == "N/A" or args["{sky}"] == "N/A" 
+        then
+            weathericon:set_image(beautiful.widget_weather_na)
+            sky = "na"
+            return ' '
+        else
+            -- very long work in progress
+            if os.date("%H") >= "6" and os.date("%H") <= "18"
+            then
+                if args["{sky}"] == "Cloudy" then
+                    weathericon:set_image(beautiful.widget_weather_28)
+                    sky = "28"
+                elseif args["{sky}"] == "Partly Cloudy" then
+                    weathericon:set_image(beautiful.widget_weather_30)
+                    sky = "30"
+                elseif args["{sky}"] == "Mostly Cloudy" then
+                    weathericon:set_image(beautiful.widget_weather_26)
+                   sky = "26"
+                else 
+                    weathericon:set_image(beautiful_widget_weather_na)
+                    sky = "na"
+                end
+            else
+                if args["{sky}"] == "Cloudy" then
+                    weathericon:set_image(beautiful.widget_weather_27)
+                    sky = "27"
+                elseif args["{sky}"] == "Partly Cloudy" then
+                    weathericon:set_image(beautiful.widget_weather_29)
+                    sky = "29"
+                elseif args["{sky}"] == "Mostly Cloudy" then
+                    weathericon:set_image(beautiful.widget_weather_26)
+                    sky = "26"
+                else 
+                    weathericon:set_image(beautiful_widget_weather_na)
+                    sky = "na"
+                end
+            end
+            return " " .. white .. args["{tempc}"] .. " " .. coldef
+        end
+    end, 600, "LIRN" )
+
+-- attached notification
+local timer = timer
+local io = require("io")
+local debug = require("debug")
+local string = string
+local print = print
+local script_path = scriptdir .. 'weather'
+local script_cmd = script_path .. ' --id='
+local tmpfile = '/tmp/.awesome.weather'
+local weather_data = ""
+local notification = nil
+local pattern = '%a.+'
+local city_id = nil
+
+function execute(cmd, output, callback)
+    -- Executes command line, writes its output to temporary file,
+    -- and runs the callback with output as an argument.
+    local cmdline = cmd .. " &> " .. output .. " & "
+    io.popen(cmdline):close()
+
+    local execute_timer = timer({ timeout = 7 })
+    execute_timer:connect_signal("timeout", function()
+        execute_timer:stop()
+        local f = io.open(output)
+        callback(f:read("*all"))
+        f:close()
+    end)
+    execute_timer:start()
+end
+
+function fetch_weather()
+    execute(script_cmd .. city_id, tmpfile, function(text)
+        old_weather_data = weather_data
+        weather_data = string.gsub(text, "[\n]$", "")
+        
+        -- Italian localization (work in progress)
+        -- can be used as a stub for other localizations
+        weather_data = string.gsub(weather_data, "Now", "Ora")
+        weather_data = string.gsub(weather_data, "Sun", "Dom")
+        weather_data = string.gsub(weather_data, "Mon", "Lun")
+        weather_data = string.gsub(weather_data, "Tue", "Mar")
+        weather_data = string.gsub(weather_data, "Wed", "Mer")
+        weather_data = string.gsub(weather_data, "Thu", "Gio")
+        weather_data = string.gsub(weather_data, "Fri", "Ven")
+        weather_data = string.gsub(weather_data, "Sat", "Sab")
+        weather_data = string.gsub(weather_data, "Sat", "Sab")
+        weather_data = string.gsub(weather_data, "Partly", "Parzialmente")
+        weather_data = string.gsub(weather_data, "Mostly", "Molto")
+        weather_data = string.gsub(weather_data, "Cloudy", "Nuvoloso")
+        weather_data = string.gsub(weather_data, "Showers", "Piogge")
+        weather_data = string.gsub(weather_data, "Rain", "Piogge")
+        weather_data = string.gsub(weather_data, "AM", "In Mattinata")
+        weather_data = string.gsub(weather_data, "PM", "Nel Pomeriggio")
+        weather_data = string.gsub(weather_data, "Wind", "Vento")
+        weather_data = string.gsub(weather_data, "Few", "Sporadiche")
+        weather_data = string.gsub(weather_data, "Light", "Leggere")
+
+        if notification ~= nil and old_weather_data ~= weather_data then
+            add_weather(0)
+        end
+    end)
+end
+
+function remove_weather()
+    if notification ~= nil then
+        naughty.destroy(notification)
+        notification = nil
+    end
+end
+
+function add_weather(t_out)
+    remove_weather()
+    notification = naughty.notify({
+        text = weather_data,
+        icon = weather_icons .. sky .. ".png" ,
+        timeout = t_out, hover_timeout = 0.5
+    })
+end
+
+function add_weather_notification(widget, id)
+    city_id = id
+    fetch_weather()
+    update_timer = timer({ timeout = 600 })
+    update_timer:connect_signal("timeout", function()
+        fetch_weather()
+    end)
+    update_timer:start()
+    fetch_weather()
+
+    widget:connect_signal("mouse::enter", function()
+        add_weather(0)
+    end)
+    widget:connect_signal("mouse::leave", function()
+        remove_weather()
+    end)
+    vicious.force({ weatherwidget } )
+end
+
+add_weather_notification(weathericon, 725051)
 
 -- Separators
 spr = wibox.widget.textbox(' ')
-arrl = wibox.widget.imagebox()
-arrl:set_image(beautiful.arrl)
-arrl_dl = wibox.widget.imagebox()
-arrl_dl:set_image(beautiful.arrl_dl)
-arrl_ld = wibox.widget.imagebox()
-arrl_ld:set_image(beautiful.arrl_ld)
+leftbr = wibox.widget.textbox(white .. ' [' .. coldef)
+rightbr = wibox.widget.textbox(white .. '] ' .. coldef)
 
--- }}}
 
--- {{{ Layout
+-- Layout
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -579,7 +711,7 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
-    
+
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
 
@@ -598,74 +730,61 @@ for s = 1, screen.count() do
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
     -- Create the upper wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 }) 
-        
+    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 })
+
     -- Widgets that are aligned to the upper left
     local left_layout = wibox.layout.fixed.horizontal()
     left_layout:add(spr)
     left_layout:add(mytaglist[s])
+    left_layout:add(leftbr)
+    left_layout:add(mylayoutbox[s])
+    left_layout:add(rightbr)
     left_layout:add(mypromptbox[s])
-    left_layout:add(spr)
 
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
-    right_layout:add(arrl)
-    right_layout:add(arrl_ld)
-    right_layout:add(mpdicon)
     right_layout:add(mpdwidget)
-    right_layout:add(arrl_dl)
-    right_layout:add(volicon)
-    right_layout:add(volumewidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(mygmailimg)
+    right_layout:add(spr)
     right_layout:add(mygmail)
-    right_layout:add(arrl_dl)
-    right_layout:add(memicon)
+    right_layout:add(spr)
+    --right_layout:add(cpuwidget)
+    --right_layout:add(spr)
+    right_layout:add(weathericon)
+    right_layout:add(weatherwidget)
+    right_layout:add(spr)
     right_layout:add(memwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(cpuicon)
-    right_layout:add(cpuwidget)    
-    right_layout:add(arrl_dl)
-    right_layout:add(tempicon)
+    right_layout:add(spr)
     right_layout:add(tempwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(fshicon)
     right_layout:add(fshwidget)
-    right_layout:add(arrl_dl)     
-    right_layout:add(baticon)
     right_layout:add(batwidget)
-    right_layout:add(arrl_ld)
-    right_layout:add(neticon)
     right_layout:add(netwidget)
-    right_layout:add(arrl_dl)
+    right_layout:add(spr)
+    right_layout:add(volumewidget)
+    right_layout:add(spr)
     right_layout:add(mytextclock)
     right_layout:add(spr)
-    right_layout:add(arrl_ld)
-    right_layout:add(mylayoutbox[s])
 
     -- Now bring it all together (with the tasklist in the middle)
     local layout = wibox.layout.align.horizontal()
     layout:set_left(left_layout)
     layout:set_middle(mytasklist[s])
-    layout:set_right(right_layout)    
+    layout:set_right(right_layout)
     mywibox[s]:set_widget(layout)
 
 end
 
--- }}}
-
--- {{{ Mouse Bindings
+-- Mouse Bindings
 
 root.buttons(awful.util.table.join(
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 
--- }}}
 
--- {{{ Key bindings
+-- Key bindings
 globalkeys = awful.util.table.join(
 
     -- Capture a screenshot
@@ -731,6 +850,8 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",     function () add_calendar(7) end),
+    awful.key({ altkey,           }, "h",     function () add_info(7) end),
+    awful.key({ altkey,           }, "w",     function () add_weather(5) end),
 
     -- Volume control
     awful.key({ "Control" }, "Up", function ()
@@ -781,10 +902,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),
     awful.key({ modkey, 	     }, "t", 	    function () awful.util.spawn( "thunderbird", false ) end),
     awful.key({ modkey,        }, "d", 	    function () awful.util.spawn( "spacefm", false ) end),
-    
+
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
-
     awful.key({ modkey }, "x",
               function ()
                   awful.prompt.run({ prompt = "Run Lua code: " },
@@ -861,9 +981,8 @@ clientbuttons = awful.util.table.join(
 -- Set keys
 root.keys(globalkeys)
 
--- }}}
 
--- {{{ Rules
+-- Rules
 
 awful.rules.rules = {
      -- All clients will match this rule.
@@ -873,15 +992,19 @@ awful.rules.rules = {
                       focus = true,
                       keys = clientkeys,
                       buttons = clientbuttons,
-	                  size_hints_honor = false
+	                    size_hints_honor = false
                      }
     },
-   
+    
+    { rule = { class = "URxvt" },
+      properties = {opacity = 0.95} },
+
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
 
     { rule = { class = "Dwb" },
           properties = { tag = tags[1][1],
+                     floating=true,
           			     maximized_vertical=true,
           			     maximized_horizontal=true } },
 
@@ -900,16 +1023,12 @@ awful.rules.rules = {
           properties = { tag = tags[1][3] } },
 
     { rule = { class = "Dia" },
-          properties = { tag = tags[1][4], 
+          properties = { tag = tags[1][4],
           floating = true } },
 
     { rule = { class = "Gimp" },
           properties = { tag = tags[1][4],
-          floating = true } },
-
-    { rule = { class = "Inkscape" },
-          properties = { tag = tags[1][4],
-          floating = true } },
+                         floating=true } }, 
 
     { rule = { class = "Transmission-gtk" },
           properties = { tag = tags[1][5] } },
@@ -918,9 +1037,8 @@ awful.rules.rules = {
           properties = { tag = tags[1][5] } },
 }
 
--- }}}
 
--- {{{ Signals
+-- Signals
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
@@ -986,5 +1104,3 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
-
--- }}}

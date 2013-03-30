@@ -7,7 +7,7 @@
 
 
 theme = {}
-theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/lukes"
+theme.confdir = os.getenv("HOME") .. "/.config/awesome/themes/multicolor"
 
 theme.font = "Terminus 8"
 --theme.taglist_font =
@@ -50,6 +50,7 @@ theme.menu_bg_focus  = "#050505dd"
 theme.menu_submenu_icon  = theme.confdir .. "/submenu.png"
 
 theme.widget_temp       = theme.confdir .. "/widgets/temp.png"
+theme.widget_uptime      = theme.confdir .. "/widgets/ac.png"
 theme.widget_cpu        = theme.confdir .. "/widgets/cpu.png"
 theme.widget_mem        = theme.confdir .. "/widgets/mem.png"
 theme.widget_fs         = theme.confdir .. "/widgets/fs.png"
