@@ -74,7 +74,6 @@ confdir = home .. "/.config/awesome"
 scriptdir = confdir .. "/script/"
 themes = confdir .. "/themes"
 active_theme = themes .. "/blackburn"
-weather_icons = active_theme .. "/icons/weather/"
 
 beautiful.init(active_theme .. "/theme.lua")
 
@@ -147,6 +146,7 @@ mygames = {
 }
 mygraphics = {
     { "gimp" , "gimp" },
+    { "nathive" , "nathive" },
     { "dia", "dia" },
     { "image viewer" , "viewnior" }
 }
@@ -287,7 +287,7 @@ function show(inc_offset)
                             })
 end
 
-function add_calendar(t_out)
+function show_calendar(t_out)
    remove_calendar()
    local char_width = char_width or calculate_char_width()
    local header, cal_text = create_calendar()
@@ -355,14 +355,9 @@ function(widget, args)
 	end
 end, 1)
 
--- MEM widget
+-- Mem widget
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, gray .. "Mem " .. coldef .. white .. "$2 " .. coldef, 13) -- in Megabytes
-
--- CPU widget
-cpuwidget = wibox.widget.textbox()
-vicious.register(cpuwidget, vicious.widgets.cpu, gray .. "Cpu " .. coldef .. white .. "$1 " .. coldef, 3)
-cpuwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(tasks, false) end)))
 
 -- Temp widget
 tempwidget = wibox.widget.textbox()
@@ -398,7 +393,7 @@ function remove_info()
     end
 end
 
-function add_info(t_out)
+function show_info(t_out)
     remove_info()
     local capi = {
 		mouse = mouse,
@@ -417,7 +412,7 @@ function add_info(t_out)
     })
 end
 
-fshwidget:connect_signal('mouse::enter', function () add_info(0) end)
+fshwidget:connect_signal('mouse::enter', function () show_info(0) end)
 fshwidget:connect_signal('mouse::leave', function () remove_info() end)
 
 -- Battery widget
@@ -507,153 +502,8 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
-weathericon = wibox.widget.imagebox()
-weathericon:set_image(beautiful.widget_weather_0)
-weatherwidget = wibox.widget.textbox()
-sky = ""
-vicious.register(weatherwidget, vicious.widgets.weather,
-    function (widget, args)
-        if args["{tempf}"] == "N/A" or args["{sky}"] == "N/A" 
-        then
-            weathericon:set_image(beautiful.widget_weather_na)
-            sky = "na"
-            return ' '
-        else
-            -- very long work in progress
-            if os.date("%H") >= "6" and os.date("%H") <= "18"
-            then
-                if args["{sky}"] == "Cloudy" then
-                    weathericon:set_image(beautiful.widget_weather_28)
-                    sky = "28"
-                elseif args["{sky}"] == "Partly Cloudy" then
-                    weathericon:set_image(beautiful.widget_weather_30)
-                    sky = "30"
-                elseif args["{sky}"] == "Mostly Cloudy" then
-                    weathericon:set_image(beautiful.widget_weather_26)
-                   sky = "26"
-                else 
-                    weathericon:set_image(beautiful_widget_weather_na)
-                    sky = "na"
-                end
-            else
-                if args["{sky}"] == "Cloudy" then
-                    weathericon:set_image(beautiful.widget_weather_27)
-                    sky = "27"
-                elseif args["{sky}"] == "Partly Cloudy" then
-                    weathericon:set_image(beautiful.widget_weather_29)
-                    sky = "29"
-                elseif args["{sky}"] == "Mostly Cloudy" then
-                    weathericon:set_image(beautiful.widget_weather_26)
-                    sky = "26"
-                else 
-                    weathericon:set_image(beautiful_widget_weather_na)
-                    sky = "na"
-                end
-            end
-            return " " .. white .. args["{tempc}"] .. " " .. coldef
-        end
-    end, 600, "ICAO-CODE-GOES-HERE" )
-
--- attached notification
-local timer = timer
-local io = require("io")
-local debug = require("debug")
-local string = string
-local print = print
-local script_path = scriptdir .. 'weather'
-local script_cmd = script_path .. ' --id='
-local tmpfile = '/tmp/.awesome.weather'
-local weather_data = ""
-local notification = nil
-local pattern = '%a.+'
-local city_id = nil
-
-function execute(cmd, output, callback)
-    -- Executes command line, writes its output to temporary file,
-    -- and runs the callback with output as an argument.
-    local cmdline = cmd .. " &> " .. output .. " & "
-    io.popen(cmdline):close()
-
-    local execute_timer = timer({ timeout = 7 })
-    execute_timer:connect_signal("timeout", function()
-        execute_timer:stop()
-        local f = io.open(output)
-        callback(f:read("*all"))
-        f:close()
-    end)
-    execute_timer:start()
-end
-
-function fetch_weather()
-    execute(script_cmd .. city_id, tmpfile, function(text)
-        old_weather_data = weather_data
-        weather_data = string.gsub(text, "[\n]$", "")
-        
-        -- Italian localization (work in progress)
-        -- can be used as a stub for other localizations
-        weather_data = string.gsub(weather_data, "Now", "Ora")
-        weather_data = string.gsub(weather_data, "Sun", "Dom")
-        weather_data = string.gsub(weather_data, "Mon", "Lun")
-        weather_data = string.gsub(weather_data, "Tue", "Mar")
-        weather_data = string.gsub(weather_data, "Wed", "Mer")
-        weather_data = string.gsub(weather_data, "Thu", "Gio")
-        weather_data = string.gsub(weather_data, "Fri", "Ven")
-        weather_data = string.gsub(weather_data, "Sat", "Sab")
-        weather_data = string.gsub(weather_data, "Sat", "Sab")
-        weather_data = string.gsub(weather_data, "Partly", "Parzialmente")
-        weather_data = string.gsub(weather_data, "Mostly", "Molto")
-        weather_data = string.gsub(weather_data, "Cloudy", "Nuvoloso")
-        weather_data = string.gsub(weather_data, "Showers", "Piogge")
-        weather_data = string.gsub(weather_data, "Rain", "Piogge")
-        weather_data = string.gsub(weather_data, "AM", "In Mattinata")
-        weather_data = string.gsub(weather_data, "PM", "Nel Pomeriggio")
-        weather_data = string.gsub(weather_data, "Wind", "Vento")
-        weather_data = string.gsub(weather_data, "Few", "Sporadiche")
-        weather_data = string.gsub(weather_data, "Light", "Leggere")
-
-        if notification ~= nil and old_weather_data ~= weather_data then
-            add_weather(0)
-        end
-    end)
-end
-
-function remove_weather()
-    if notification ~= nil then
-        naughty.destroy(notification)
-        notification = nil
-    end
-end
-
-function add_weather(t_out)
-    remove_weather()
-    notification = naughty.notify({
-        text = weather_data,
-        icon = weather_icons .. sky .. ".png" ,
-        timeout = t_out, hover_timeout = 0.5
-    })
-end
-
-function add_weather_notification(widget, id)
-    city_id = id
-    fetch_weather()
-    update_timer = timer({ timeout = 600 })
-    update_timer:connect_signal("timeout", function()
-        fetch_weather()
-    end)
-    update_timer:start()
-    fetch_weather()
-
-    widget:connect_signal("mouse::enter", function()
-        add_weather(0)
-    end)
-    widget:connect_signal("mouse::leave", function()
-        remove_weather()
-    end)
-    vicious.force({ weatherwidget } )
-end
-
--- the second argument must be your Yahoo Weather city id
-add_weather_notification(weathericon, 123456)
+require("perceptive")
+perceptive.register(1234567) -- replace with your city WOEID code
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -750,10 +600,8 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(mygmail)
     right_layout:add(spr)
-    --right_layout:add(cpuwidget)
-    --right_layout:add(spr)
-    right_layout:add(weathericon)
-    right_layout:add(weatherwidget)
+    right_layout:add(perceptive.icon)
+    right_layout:add(perceptive.widget)
     right_layout:add(spr)
     right_layout:add(memwidget)
     right_layout:add(spr)
@@ -850,9 +698,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",     function () add_calendar(7) end),
-    awful.key({ altkey,           }, "h",     function () add_info(7) end),
-    awful.key({ altkey,           }, "w",     function () add_weather(5) end),
+    awful.key({ altkey,           }, "c",     function () show_calendar(7) end),
+    awful.key({ altkey,           }, "h",     function () show_info(7) end),
+    awful.key({ altkey,           }, "w",     function () perceptive.show_weather(5) end),
 
     -- Volume control
     awful.key({ "Control" }, "Up", function ()
@@ -1028,8 +876,10 @@ awful.rules.rules = {
           floating = true } },
 
     { rule = { class = "Gimp" },
-          properties = { tag = tags[1][4],
-                         floating=true } }, 
+          properties = { tag = tags[1][4] } }, 
+
+    { rule = { class = "Native" },
+          properties = { tag = tags[1][4] } }, 
 
     { rule = { class = "Transmission-gtk" },
           properties = { tag = tags[1][5] } },
