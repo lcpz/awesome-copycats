@@ -395,7 +395,7 @@ vicious.register(uptimewidget, vicious.widgets.uptime, brown .. "$2.$3" .. colde
 
 -- Gmail widget
 mygmail = wibox.widget.textbox()
-gmail_t = awful.tooltip({ objects = { mygmail },})
+gmail_t = awful.tooltip({ objects = { mygmail }})
 mygmailimg = wibox.widget.imagebox(beautiful.widget_gmail)
 vicious.register(mygmail, vicious.widgets.gmail,
                 function (widget, args)

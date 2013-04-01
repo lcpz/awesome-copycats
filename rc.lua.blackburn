@@ -18,7 +18,6 @@ naughty         = require("naughty")
 vicious         = require("vicious")
 scratch         = require("scratch")
 
-
 -- Run once function
 
 function run_once(cmd)
@@ -314,9 +313,12 @@ mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calenda
 
 -- GMail widget
 mygmail = wibox.widget.textbox()
+gmail_t = awful.tooltip({ objects = { mygmail },})
 notify_shown = false
 vicious.register(mygmail, vicious.widgets.gmail,
  function (widget, args)
+  gmail_t:set_text(args["{subject}"])
+  gmail_t:add_to_object(mygmail)
   notify_title = "Hai un nuovo messaggio"
   notify_text = '"' .. args["{subject}"] .. '"'
   if (args["{count}"] > 0 ) then
@@ -522,9 +524,8 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
--- clone it from https://github.com/copycat-killer/perceptive.git
 require("perceptive")
-perceptive.register(123456) -- fake code, enter your city one
+perceptive.register(123456) -- see https://github.com/copycat-killer/perceptive
 
 -- Separators
 spr = wibox.widget.textbox(' ')
