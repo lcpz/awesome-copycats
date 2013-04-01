@@ -1,9 +1,8 @@
 --[[                                     ]]--
---
 --                                         -
 --    Blackburn Awesome WM 3.5.+ config    --
 --        github.com/copycat-killer        --
---                                          -
+--                                         -
 --[[                                     ]]--
 
 
@@ -18,6 +17,7 @@ beautiful       = require("beautiful")
 naughty         = require("naughty")
 vicious         = require("vicious")
 scratch         = require("scratch")
+
 
 -- Run once function
 
@@ -179,7 +179,6 @@ mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
 gray = "<span color='#9e9c9a'>"
-red = "<span color='#e54c62'>"
 
 
 -- Textclock widget
@@ -193,7 +192,7 @@ local util = awful.util
 
 char_width = nil
 text_color = theme.fg_normal or "#FFFFFF"
-today_color = theme.tasklist_fg_focus or "#FF7100"
+today_color = "#FF7100"
 calendar_width = 21
 
 local calendar = nil
@@ -225,10 +224,21 @@ local function create_calendar()
 
    local last_day = os.date("%d", os.time({ day = 1, year = cal_year,
                                             month = cal_month + 1}) - 86400)
+
    local first_day = os.time({ day = 1, month = cal_month, year = cal_year})
-   local first_day_in_week =
-      os.date("%w", first_day)
+   local first_day_in_week = os.date("%w", first_day)
+
    local result = "do lu ma me gi ve sa\n" -- days of the week
+   
+   -- Italian localization
+   -- can be a stub for your own localization
+   if os.setlocale():find("it_IT") == nil
+   then 
+       result = "su mo tu we th fr sa\n" 
+   else
+       result = "do lu ma me gi ve sa\n" 
+   end
+
    for i = 1, first_day_in_week do
       result = result .. "   "
    end
@@ -272,7 +282,7 @@ function remove_calendar()
    end
 end
 
-function show(inc_offset)
+function add_calendar(inc_offset)
    inc_offset = inc_offset or 0
 
    local save_offset = offset
@@ -297,10 +307,10 @@ function show_calendar(t_out)
                             })
 end
 
-mytextclock:connect_signal("mouse::enter", function() show(0) end)
+mytextclock:connect_signal("mouse::enter", function() add_calendar(0) end)
 mytextclock:connect_signal("mouse::leave", remove_calendar)
-mytextclock:buttons(util.table.join( awful.button({ }, 1, function() show(-1) end),
-                                     awful.button({ }, 3, function() show(1) end)))
+mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calendar(-1) end),
+                                     awful.button({ }, 3, function() add_calendar(1) end)))
 
 -- GMail widget
 mygmail = wibox.widget.textbox()
@@ -399,10 +409,20 @@ function show_info(t_out)
 		mouse = mouse,
 		screen = screen
 	  }
-    local cal = awful.util.pread(scriptdir .. "dfs")
-    cal = string.gsub(cal, "          ^%s*(.-)%s*$", "%1")
+    local hdd = awful.util.pread(scriptdir .. "dfs")
+    hdd = string.gsub(hdd, "          ^%s*(.-)%s*$", "%1")
+    
+    -- Italian localization
+    -- can be a stub for your own localization
+    if os.setlocale():find("it_IT") ~= nil
+    then
+        hdd = string.gsub(hdd, "Used ", "Usato")
+        hdd = string.gsub(hdd, "Free  ", "Libero")
+        hdd = string.gsub(hdd, "Total ", "Totale")
+    end
+        
     infos = naughty.notify({
-        text = cal,
+        text = hdd,
       	timeout = t_out,
         position = "top_right",
         margin = 10,
@@ -441,7 +461,7 @@ function (widget, args)
     return ''
     -- critical
   elseif (args[2] <= 5 and batstate() == 'Discharging') then
-    naughty.notify({
+    naughty.notify{
       text = "sto per spegnermi...",
       title = "Carica quasi esaurita!",
       position = "top_right",
@@ -450,7 +470,7 @@ function (widget, args)
       bg="#ffffff",
       screen = 1,
       ontop = true,
-    })
+    }
     -- low
   elseif (args[2] <= 10 and batstate() == 'Discharging') then
     naughty.notify({
@@ -493,7 +513,7 @@ function (widget, args)
          bg = beautiful.bg_normal })
          no_net_shown = false
        end
-       return gray .. " Net " .. coldef .. red .. "Off " .. coldef
+       return gray .. " Net " .. coldef .. "<span color='#e54c62'>Off " .. coldef
     else
        no_net_shown = true
        return ''
@@ -503,7 +523,7 @@ netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.u
 
 -- Weather widget
 require("perceptive")
-perceptive.register(1234567) -- replace with your city WOEID code
+perceptive.register(123456) -- fake code, enter your city one
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -602,10 +622,10 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(perceptive.icon)
     right_layout:add(perceptive.widget)
-    right_layout:add(spr)
-    right_layout:add(memwidget)
-    right_layout:add(spr)
-    right_layout:add(tempwidget)
+    --right_layout:add(spr)
+    --right_layout:add(memwidget)
+    --right_layout:add(spr)
+    --right_layout:add(tempwidget)
     right_layout:add(fshwidget)
     right_layout:add(batwidget)
     right_layout:add(netwidget)

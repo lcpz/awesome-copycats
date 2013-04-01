@@ -1,0 +1,388 @@
+#!/bin/bash
+#
+#   Adapted from Eridan's "fs" (cleanup, enhancements and switch to bash/Linux)
+#   JM,  10/12/2004
+#
+# -------------------------------------------------------------------------
+#   Decoding options
+# -------------------------------------------------------------------------
+USAGE="--> Usage: $0 [-h(elp)] | [-n(arrow mode)] | [-w(eb output)]"
+
+NARROW_MODE=0
+WEB_OUTPUT=0
+
+while [ $# -gt 0 ]; do
+case "$1" in
+"-h" )
+echo $USAGE
+exit
+;;
+"-d" )
+DEBUG=1
+;;
+"-n" )
+NARROW_MODE=1
+;;
+"-w" )
+WEB_OUTPUT=1
+;;
+* )
+echo $USAGE
+exit
+;;
+esac
+shift
+done
+
+# -------------------------------------------------------------------------
+#   Preparations
+# -------------------------------------------------------------------------
+SYSTEM=`uname -s`
+PATTERN="/"
+
+case "$SYSTEM" in
+"Linux" )
+DF_COMMAND="/bin/df -k"
+SORT_COMMAND="/usr/bin/sort -k6"
+AWK_COMMAND="/bin/awk"
+;;
+* )
+DF_COMMAND="/bin/df -k"
+SORT_COMMAND="/usr/bin/sort -k6"
+AWK_COMMAND="/opt/local/bin/gawk"
+;;
+esac
+
+if [ ! -x ${AWK_COMMAND} ]; then
+echo "### ${AWK_COMMAND} not present; install it! ###"
+echo "    On Mac OS X: install MacPorts and perform:"
+echo "    sudo port install gawk"
+fi
+
+# -------------------------------------------------------------------------
+#   Grabbing "df" result
+# -------------------------------------------------------------------------
+DF_RESULT=`$DF_COMMAND`
+if [ ! -z $DEBUG ]; then
+echo "--> DF_RESULT:"
+echo "$DF_RESULT"
+echo ""
+fi
+
+# -------------------------------------------------------------------------
+#   Preprocessing "df" result, to join split logical lines
+# -------------------------------------------------------------------------
+PREPROCESSING_RESULT=` \
+										 echo "$DF_RESULT" | $AWK_COMMAND -v PATTERN=$PATTERN \
+										 '
+										 NF == 1 {
+											 printf ("%s", $0)
+										 }
+
+NF == 5 {
+	printf ("%s\n", $0)
+}
+
+NF > 6  {
+}
+
+NF == 6 {
+	printf ("%s\n", $0)
+}'
+`
+if [ ! -z $DEBUG ]; then
+echo "--> PREPROCESSING_RESULT:"
+echo "$PREPROCESSING_RESULT"
+echo ""
+fi
+
+SORTED_FILE_SYSTEMS_INFO=`echo "$PREPROCESSING_RESULT" | $SORT_COMMAND`
+
+if [ ! -z $DEBUG ]; then
+echo "--> SORTED_FILE_SYSTEMS_INFO:"
+echo "$SORTED_FILE_SYSTEMS_INFO"
+echo ""
+fi
+
+# -------------------------------------------------------------------------
+#   Computing mount point max length
+# -------------------------------------------------------------------------
+MOUNT_POINT_MAX_LENGTH=` \
+											 echo $SORTED_FILE_SYSTEMS_INFO | $AWK_COMMAND -v PATTERN=$PATTERN \
+											 '
+											 BEGIN       {
+												 mount_point_length_max = 15;
+											 }
+
+END     {
+	printf ("%d", mount_point_length_max);
+}
+
+$0 ~ PATTERN    {
+#       printf ("$6 = %s\n", $6);
+
+	mount_point = $6;
+#       printf ("mount_point = %s\n", mount_point);
+
+	mount_point_length = length (mount_point);
+#       printf ("mount_point_length = %d\n", mount_point_length);
+
+	if (mount_point_length > mount_point_length_max)
+		mount_point_length_max = mount_point_length;
+}'
+`
+if [ ! -z $DEBUG ]; then
+echo "MOUNT_POINT_MAX_LENGTH:      $MOUNT_POINT_MAX_LENGTH"
+fi
+
+# -------------------------------------------------------------------------
+#   Computing mount point data max size
+# -------------------------------------------------------------------------
+MOUNT_POINT_MAX_SIZE=` \
+										 echo "$SORTED_FILE_SYSTEMS_INFO" | $AWK_COMMAND -v PATTERN=$PATTERN \
+										 '
+										 BEGIN       {
+											 mount_point_size_max = 0;
+										 }
+
+END     {
+	printf ("%d", mount_point_size_max);
+}
+
+$0 ~ PATTERN    {
+#       df -k shows k_bytes!
+#       printf ("$2 = %s\n", $2);
+
+	mount_point_size = $2 * 1024;
+#       printf ("mount_point_size = %d\n", mount_point_size);
+
+	if (mount_point_size > mount_point_size_max)
+		mount_point_size_max = mount_point_size;
+}'
+`
+if [ ! -z $DEBUG ]; then
+echo "MOUNT_POINT_MAX_SIZE:      $MOUNT_POINT_MAX_SIZE"
+fi
+
+# -------------------------------------------------------------------------
+#   Let's go!
+# -------------------------------------------------------------------------
+echo "$SORTED_FILE_SYSTEMS_INFO" | $AWK_COMMAND -v DEBUG=$DEBUG -v PATTERN=$PATTERN -v NARROW_MODE=$NARROW_MODE -v LEFT_COLUMN=$MOUNT_POINT_MAX_LENGTH -v MAX_SIZE=$MOUNT_POINT_MAX_SIZE -v SCALE=$SCALE -v WEB_OUTPUT=$WEB_OUTPUT \
+			 '
+#   {printf ("$0 = %s\n", $0);}
+#   {printf ("$1 = %s\n", $1);}
+#   {printf ("PATTERN = %s\n", PATTERN);}
+#   {printf ("LEFT_COLUMN = %s\n", LEFT_COLUMN);}
+
+			 BEGIN       {
+				 k_bytes = 1024.0;
+				 m_bytes = 1024.0 * k_bytes;
+				 g_bytes = 1024.0 * m_bytes;
+				 t_bytes = 1024.0 * g_bytes;
+
+				 if (WEB_OUTPUT)
+				 {
+					 all_stars = "**************************************************";
+					 current_date = strftime ("%d-%m-%Y @ %H:%M:%S", localtime (systime ()));
+					 free_threshold = 10; # %
+
+						 printf ("<!-- DEBUT CONTENU -->\n");
+
+					 printf ( \
+							 "<A NAME=\"top\"></A>\n" \
+							 "<P ALIGN=CENTER><SPAN CLASS=\"titleblue\">%s</SPAN><SPAN CLASS=\"textbold\">  --  STATUS OF <SPAN CLASS=\"titlered\">ALCOR</SPAN> FILE SYSTEMS</SPAN></P><BR>\n",
+							 current_date )
+
+						 printf ("<TABLE WIDTH=\"100%%\" BORDER=1>\n");
+
+					 printf ( \
+							 "<TR>\n" \
+							 "<TD ALIGN=LEFT><STRONG>Mount point</STRONG></TD>\n" \
+							 "<TD ALIGN=CENTER><STRONG>%% Usato&nbsp;(<SPAN CLASS=\"titleblue\">*</SPAN>)" \
+							 "&nbsp;-&nbsp;%% Free&nbsp;(<SPAN CLASS=\"titlegreen\">*</SPAN>)</STRONG></TD>\n" \
+							 "<TD ALIGN=CENTER><STRONG>%% Usato</STRONG></TD>\n" \
+							 "<TD ALIGN=CENTER><STRONG>Spazio libero</STRONG></TD>\n" \
+							 "<TD ALIGN=CENTER><STRONG>Spazio totale</STRONG></TD>\n" \
+							 "</TR>\n" );
+				 }
+				 else
+				 {
+					 narrow_margin = "       ";
+#           printf ("%-*s", LEFT_COLUMN + 2, "Mount point");
+						 if (NARROW_MODE)
+							 printf ("\n%s", narrow_margin);
+						 else
+							 printf ("%-*s", LEFT_COLUMN + 2, "");
+					 print "                                                     Used    Free     Total ";
+					 if (! NARROW_MODE)
+						 print "";
+				 }
+			 }
+
+END     {
+	if (WEB_OUTPUT)
+	{
+		printf ("</TABLE>\n");
+
+		printf ("<!-- FIN CONTENU -->\n");
+	}
+	else
+	{
+		if (NARROW_MODE)
+			printf ("%s", narrow_margin);
+		else
+			printf ("%-*s", LEFT_COLUMN + 2, "");
+		print "|----|----|----|----|----|----|----|----|----|----|"
+			if (NARROW_MODE)
+				printf ("\n%s", narrow_margin);
+			else
+				printf ("%-*s", LEFT_COLUMN + 2, "");
+		print "0   10   20   30   40   50   60   70   80   90  100";
+		print "";
+	}
+}
+
+$0 ~ PATTERN    {
+
+	if (index ($0, "members") == 0 && index ($0, "Download") == 0 && index ($0, "admin") == 0)
+	{
+#       df -k shows k_bytes!
+
+		total_size = $2 * k_bytes;
+		free_size = $4 * k_bytes;
+		percentage_occupied = substr($5, 0, 3);
+		mount_point = $6;
+
+		percentage_free = int (100 - percentage_occupied);
+
+#       reduction_factor: 2
+		stars_number = int (percentage_occupied / 2);
+
+		if (WEB_OUTPUT)
+		{
+			posGroup = index (mount_point, "scratch");
+			if (posGroup == 0)
+				posGroup = index (mount_point, "u1");
+			if (posGroup == 0)
+				posGroup = index (mount_point, "u2");
+			if (posGroup == 0)
+				posGroup = index (mount_point, "u4");
+			if (posGroup == 0)
+				posGroup = index (mount_point, "u5");
+
+			printf ("<TR>\n");
+
+			if (posGroup > 0 || percentage_free < free_threshold)
+			{
+				if (percentage_free < free_threshold)
+				{
+					class = "titlered";
+					if (posGroup == 0)
+						posGroup = 1;   # to display the whole mount_point in this color anyway
+				}
+				else if ((index (mount_point, "scratch") != 0) || (index (mount_point, "u1") != 0) || (index (mount_point, "u2") != 0))
+				{
+					class = "titleorange";
+					posGroup = 1;   # to display the whole mount_point in this color
+				}
+				else if ((index (mount_point, "u4") != 0) || (index (mount_point, "u5") != 0))
+				{
+					class = "titlebrown";
+					posGroup = 1;   # to display the whole mount_point in this color
+				}
+
+				printf ( \
+						"<TD ALIGN=LEFT>%s<SPAN CLASS=\"%s\">%s</SPAN></TD>\n",
+						substr (mount_point, 1, posGroup - 1),
+						class,
+						substr (mount_point, posGroup) );
+			}
+			else
+			{
+				printf ("<TD ALIGN=LEFT>%s</TD>\n", mount_point);
+			}
+
+			printf ( \
+					"<TD ALIGN=CENTER><SPAN CLASS=\"titleblue\">%s</SPAN><SPAN CLASS=\"titlegreen\">%s</SPAN></TD>\n",
+					substr (all_stars, 1, stars_number), substr (all_stars, stars_number + 1, 49) );
+
+			if (percentage_free < free_threshold)
+			{
+				color_beginning = "<SPAN CLASS=\"titlered\">";
+				color_end = "</SPAN>"
+			}
+			else
+			{
+				color_beginning = "";
+				color_end = ""
+			}
+
+			if (total_size > 1 * t_bytes)
+				printf ( \
+						"<TD ALIGN=RIGHT>%s%3d%%%s</TD><TD ALIGN=RIGHT>%5.1f Tb</TD><TD ALIGN=RIGHT>%5.1f Tb</TD>\n", \
+						color_beginning, percentage_occupied, color_end, free_size / t_bytes, total_size / t_bytes \
+						);
+			else if (total_size > 1 * g_bytes)
+				printf ( \
+						"<TD ALIGN=RIGHT>%s%3d%%%s</TD><TD ALIGN=RIGHT>%5.1f Gb</TD><TD ALIGN=RIGHT>%5.1f Gb</TD>\n", \
+						color_beginning, percentage_occupied, color_end, free_size / g_bytes, total_size / g_bytes \
+						);
+			else if (total_size > 1 * m_byptes)
+				printf ( \
+						"<TD ALIGN=RIGHT>%s%3d%%%s</TD><TD ALIGN=RIGHT>%5.1f Mb</TD><TD ALIGN=RIGHT>%5.1f Mb</TD>\n", \
+						color_beginning, percentage_occupied, color_end, free_size / m_bytes, total_size / m_bytes \
+						);
+			else
+				printf ( \
+						"<TD ALIGN=RIGHT>%s%3d%%%s</TD><TD ALIGN=RIGHT>%5.1f Kb</TD><TD ALIGN=RIGHT>%5.1f Kb</TD>\n", \
+						color_beginning, percentage_occupied, color_end, free_size / k_bytes, total_size / k_bytes \
+						);
+
+			printf ("</TR>\n");
+		}
+
+		else
+		{
+#           printf ("percentage_occupied = %d\n", percentage_occupied);
+#           printf ("percentage_free = %d\n", percentage_free);
+
+			printf ("%-*s", LEFT_COLUMN + 2, mount_point);
+			if (NARROW_MODE)
+				printf ("\n%s", narrow_margin);
+
+#           printf ("stars_number = %d\n", stars_number);
+
+			printf ("|");
+			for (i = 1; i <= stars_number; i++)
+			{
+				printf ("%s", "*");
+			}
+			for (i = stars_number + 1; i <= 49; i++)
+			{
+				printf ("%s", "-");
+			}
+
+
+			if (total_size > 1 * t_bytes)
+				printf ( \
+						"| %3d%%    %5.1f    %5.1f Tb\n", \
+						percentage_occupied, free_size / t_bytes, total_size / t_bytes \
+						);
+			else if (total_size > 1 * g_bytes)
+				printf ( \
+						"| %3d%%    %5.1f    %5.1f Gb\n", \
+						percentage_occupied, free_size / g_bytes, total_size / g_bytes \
+						);
+			else if (total_size > 1 * m_byptes)
+				printf ( \
+						"| %3d%%    %5.1f    %5.1f Mb\n", \
+						percentage_occupied, free_size / m_bytes, total_size / m_bytes \
+						);
+			else
+				printf ( \
+						"| %3d%%    %5.1f    %5.1f Kb\n", \
+						percentage_occupied, free_size / k_bytes, total_size / k_bytes \
+						);
+		}
+	}   # if
+}'
