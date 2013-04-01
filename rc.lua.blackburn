@@ -522,6 +522,7 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
+-- clone it from https://github.com/copycat-killer/perceptive.git
 require("perceptive")
 perceptive.register(123456) -- fake code, enter your city one
 
