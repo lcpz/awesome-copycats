@@ -74,6 +74,7 @@ end
 -- Useful Paths
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
+scriptdir = confdir .. "/scripts/"
 themes = confdir .. "/themes"
 active_theme = themes .. "/powerarrow-darker"
 
@@ -418,7 +419,7 @@ function add_info()
 		mouse = mouse,
 		screen = screen
 	  }
-    local cal = awful.util.pread("dfs")
+    local cal = awful.util.pread(scriptdir .. "dfs")
     cal = string.gsub(cal, "          ^%s*(.-)%s*$", "%1")
     infos = naughty.notify({
         text = string.format('<span font_desc="%s">%s</span>', "Terminus", cal),

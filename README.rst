@@ -1,7 +1,7 @@
 ===== 
 Awesome WM Copycats
 ===== 
-A collection of heavy modded themes 
+A collection of heavy modded themes for Awesome WM 3.5+ 
 ---------
 
 Beware! They're more awesome than they appear, it's just they're shy.
@@ -10,14 +10,14 @@ Notable features:
 
 - Autohide widgets (*tell me only when you have to*)
 - Autostart functionality
-- Fast mpd and volume shortcuts (first time you see this trick on Awesome)
+- Fast mpd and volume shortcuts (first time you see this trick in Awesome)
 - Other fancy shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving clients
 - Quake style dropdown terminal
-- Calendar with current day hightlighted plus the possibility to switch months back and forward with just a click 
+- Calendar with current day hightlighted and previous/next month switch with just a click 
 - Elegant notifications for new mails, current song, hdd critical state, low battery
 - Yahoo Wheather integration 
-- A net carrier checker, when you're offline it warns you and lets you start wifi-menu
-- Full localization potential (just easily edit about 20 lines)
+- A net carrier status notifier
+- Full localization potential (just easily edit about 5 lines - look for 'stub' keywords)
 - Colorful autoupdating icons
 
 They're scattered all over the set, but you can get them all *only* in Blackburn.

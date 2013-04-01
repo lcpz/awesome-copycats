@@ -73,7 +73,7 @@ end
 -- Useful Paths
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
-scriptdir = confdir .. "/script/"
+scriptdir = confdir .. "/scripts/"
 themes = confdir .. "/themes"
 active_theme = themes .. "/multicolor"
 
