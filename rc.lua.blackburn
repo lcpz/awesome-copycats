@@ -8,15 +8,15 @@
 
 -- Required Libraries
 
-gears 	        = require("gears")
-awful           = require("awful")
-awful.rules     = require("awful.rules")
-awful.autofocus = require("awful.autofocus")
-wibox           = require("wibox")
-beautiful       = require("beautiful")
-naughty         = require("naughty")
-vicious         = require("vicious")
-scratch         = require("scratch")
+local gears 	        = require("gears")
+local awful           = require("awful")
+awful.rules           = require("awful.rules")
+awful.autofocus       = require("awful.autofocus")
+local wibox           = require("wibox")
+local beautiful       = require("beautiful")
+local naughty         = require("naughty")
+local vicious         = require("vicious")
+local scratch         = require("scratch")
 
 
 -- Run once function
@@ -53,7 +53,7 @@ end
 
 -- Handle runtime errors after startup
 do
-    in_error = false
+    local in_error = false
     awesome.connect_signal("debug::error", function (err)
         -- Make sure we don't go into an endless error loop
         if in_error then return end
@@ -62,7 +62,7 @@ do
         naughty.notify({ preset = naughty.config.presets.critical,
                          title = "Oops, an error happened!",
                          text = err })
-        in_error = false
+        local in_error = false
     end)
 end
 
@@ -595,26 +595,24 @@ mytasklist.buttons = awful.util.table.join(
                                           end))
 
 for s = 1, screen.count() do
-
     -- Create a promptbox for each screen
     mypromptbox[s] = awful.widget.prompt()
-
+    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     mylayoutbox[s] = awful.widget.layoutbox(s)
     mylayoutbox[s]:buttons(awful.util.table.join(
-                            awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
-                            awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
-                            awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
-                            awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
-
+                           awful.button({ }, 1, function () awful.layout.inc(layouts, 1) end),
+                           awful.button({ }, 3, function () awful.layout.inc(layouts, -1) end),
+                           awful.button({ }, 4, function () awful.layout.inc(layouts, 1) end),
+                           awful.button({ }, 5, function () awful.layout.inc(layouts, -1) end)))
     -- Create a taglist widget
     mytaglist[s] = awful.widget.taglist(s, awful.widget.taglist.filter.all, mytaglist.buttons)
 
     -- Create a tasklist widget
     mytasklist[s] = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, mytasklist.buttons)
 
-    -- Create the upper wibox
-    mywibox[s] = awful.wibox({ position = "top", screen = s, height = 18 })
+    -- Create the wibox
+    mywibox[s] = awful.wibox({ position = "top", screen = s })
 
     -- Widgets that are aligned to the upper left
     local left_layout = wibox.layout.fixed.horizontal()
@@ -649,6 +647,7 @@ for s = 1, screen.count() do
     layout:set_left(left_layout)
     layout:set_middle(mytasklist[s])
     layout:set_right(right_layout)
+
     mywibox[s]:set_widget(layout)
 
 end
@@ -811,42 +810,39 @@ clientkeys = awful.util.table.join(
             c.maximized_vertical   = not c.maximized_vertical
         end)
 )
-
--- Compute the maximum number of digit we need, limited to 9
-keynumber = 0
-for s = 1, screen.count() do
-   keynumber = math.min(9, math.max(#tags[s], keynumber));
-end
-
 -- Bind all key numbers to tags.
 -- Be careful: we use keycodes to make it works on any keyboard layout.
 -- This should map on the top row of your keyboard, usually 1 to 9.
-for i = 1, keynumber do
+for i = 1, 9 do
     globalkeys = awful.util.table.join(globalkeys,
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
-                        screen = mouse.screen
-                        if tags[screen][i] then
-                            awful.tag.viewonly(tags[screen][i])
+                        local screen = mouse.screen
+                        local tag = awful.tag.gettags(screen)[i]
+                        if tags then
+                            awful.tag.viewonly(tags)
                         end
                   end),
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()
-                      screen = mouse.screen
-                      if tags[screen][i] then
-                          awful.tag.viewtoggle(tags[screen][i])
-                      end
+                        local screen = mouse.screen
+                        local tag = awful.tag.gettags(screen)[i]
+                        if tags then
+                            awful.tag.viewtoggle(tags)
+                        end
                   end),
         awful.key({ modkey, "Shift" }, "#" .. i + 9,
                   function ()
-                      if client.focus and tags[client.focus.screen][i] then
-                          awful.client.movetotag(tags[client.focus.screen][i])
+                      local tag = awful.tag.gettags(client.focus.screen)[i]
+                      if client.focus and tag then
+                          awful.client.movetotag(tag)
                       end
                   end),
         awful.key({ modkey, "Control", "Shift" }, "#" .. i + 9,
                   function ()
-                      if client.focus and tags[client.focus.screen][i] then
-                          awful.client.toggletag(tags[client.focus.screen][i])
+                      local tag = awful.tag.gettags(client.focus.screen)[i]
+                      if client.focus and tag then
+                          awful.client.movetotag(tag)
                       end
                   end))
 end
@@ -867,7 +863,7 @@ awful.rules.rules = {
      { rule = { },
        properties = { border_width = beautiful.border_width,
                       border_color = beautiful.border_normal,
-                      focus = true,
+                      focus = awful.client.focus.filter,
                       keys = clientkeys,
                       buttons = clientbuttons,
 	                    size_hints_honor = false
@@ -941,22 +937,8 @@ client.connect_signal("manage", function (c, startup)
 
     local titlebars_enabled = false
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
-        -- Widgets that are aligned to the left
-        local left_layout = wibox.layout.fixed.horizontal()
-        left_layout:add(awful.titlebar.widget.iconwidget(c))
-
-        -- Widgets that are aligned to the right
-        local right_layout = wibox.layout.fixed.horizontal()
-        right_layout:add(awful.titlebar.widget.floatingbutton(c))
-        right_layout:add(awful.titlebar.widget.maximizedbutton(c))
-        right_layout:add(awful.titlebar.widget.stickybutton(c))
-        right_layout:add(awful.titlebar.widget.ontopbutton(c))
-        right_layout:add(awful.titlebar.widget.closebutton(c))
-        right_layout:add(awful.titlebar.widget.closebutton(c))
-
-        -- The title goes in the middle
-        local title = awful.titlebar.widget.titlewidget(c)
-        title:buttons(awful.util.table.join(
+        -- buttons for the titlebar
+        local buttons = awful.util.table.join(
                 awful.button({ }, 1, function()
                     client.focus = c
                     c:raise()
@@ -967,13 +949,33 @@ client.connect_signal("manage", function (c, startup)
                     c:raise()
                     awful.mouse.client.resize(c)
                 end)
-                ))
+                )
+
+        -- Widgets that are aligned to the left
+        local left_layout = wibox.layout.fixed.horizontal()
+        left_layout:add(awful.titlebar.widget.iconwidget(c))
+        left_layout:buttons(buttons)
+
+        -- Widgets that are aligned to the right
+        local right_layout = wibox.layout.fixed.horizontal()
+        right_layout:add(awful.titlebar.widget.floatingbutton(c))
+        right_layout:add(awful.titlebar.widget.maximizedbutton(c))
+        right_layout:add(awful.titlebar.widget.stickybutton(c))
+        right_layout:add(awful.titlebar.widget.ontopbutton(c))
+        right_layout:add(awful.titlebar.widget.closebutton(c))
+
+        -- The title goes in the middle
+        local middle_layout = wibox.layout.flex.horizontal()
+        local title = awful.titlebar.widget.titlewidget(c)
+        title:set_align("center")
+        middle_layout:add(title)
+        middle_layout:buttons(buttons)
 
         -- Now bring it all together
         local layout = wibox.layout.align.horizontal()
         layout:set_left(left_layout)
         layout:set_right(right_layout)
-        layout:set_middle(title)
+        layout:set_middle(middle_layout)
 
         awful.titlebar(c):set_widget(layout)
     end
