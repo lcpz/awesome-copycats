@@ -67,13 +67,14 @@ do
 end
 
 
--- Variable Definitions
+-- Global variables
 
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
 scriptdir = confdir .. "/scripts/"
 themes = confdir .. "/themes"
 active_theme = themes .. "/blackburn"
+language = string.gsub(os.getenv("LANG"), ".utf8", "")
 
 beautiful.init(active_theme .. "/theme.lua")
 
@@ -145,7 +146,6 @@ mygames = {
     { "Super NES", "zsnes" },
 }
 mygraphics = {
-    { "gimp" , "gimp" },
     { "nathive" , "nathive" },
     { "dia", "dia" },
     { "image viewer" , "viewnior" }
@@ -232,7 +232,7 @@ local function create_calendar()
    
    -- Italian localization
    -- can be a stub for your own localization
-   if os.setlocale():find("it_IT") == nil
+   if language:find("it_IT") == nil
    then 
        result = "su mo tu we th fr sa\n" 
    else
@@ -313,6 +313,8 @@ mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calenda
                                      awful.button({ }, 3, function() add_calendar(1) end)))
 
 -- GMail widget
+-- you need  a .netrc file in your home directory filled with this:
+-- machine mail.google.com login YOUR_MAIL password YOUR_PASS
 mygmail = wibox.widget.textbox()
 gmail_t = awful.tooltip({ objects = { mygmail },})
 notify_shown = false
@@ -320,23 +322,39 @@ vicious.register(mygmail, vicious.widgets.gmail,
  function (widget, args)
   gmail_t:set_text(args["{subject}"])
   gmail_t:add_to_object(mygmail)
-  notify_title = "Hai un nuovo messaggio"
-  notify_text = '"' .. args["{subject}"] .. '"'
+  notify_title = ""
+  notify_text = ""
   if (args["{count}"] > 0 ) then
     if (notify_shown == false) then
+      -- Italian localization
+      -- can be a stub for your own localization
       if (args["{count}"] == 1) then
-          notify_title = "Hai un nuovo messaggio"
+          if language:find("it_IT") ~= nil
+          then
+              notify_title = "Hai un nuovo messaggio"
+          else
+              notify_title = "You got a new mail"
+          end
           notify_text = '"' .. args["{subject}"] .. '"'
       else
-          notify_title = "Hai " .. args["{count}"] .. " nuovi messaggi"
-          notify_text = 'Ultimo: "' .. args["{subject}"] .. '"'
+          if language:find("it_IT") ~= nil
+          then
+                notify_title = "Hai " .. args["{count}"] .. " nuovi messaggi"
+                notify_text = 'Ultimo: "' .. args["{subject}"] .. '"'
+          else
+                notify_title = "You got " .. args["{count}"] .. " new mails"
+                notify_text = 'Last one: "' .. args["{subject}"] .. '"'
+          end
       end
-      naughty.notify({ title = notify_title, text = notify_text,
+      naughty.notify({ 
+          title = notify_title,
+          text = notify_text,
           timeout = 7,
           position = "top_left",
           icon = beautiful.widget_mail_notify,
           fg = beautiful.taglist_fg_focus,
-          bg = beautiful.bg_normal })
+          bg = beautiful.bg_normal
+      })
       notify_shown = true
     end
     return gray .. " Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
@@ -409,7 +427,7 @@ function show_info(t_out)
     
     -- Italian localization
     -- can be a stub for your own localization
-    if os.setlocale():find("it_IT") ~= nil
+    if language:find("it_IT") ~= nil
     then
         hdd = string.gsub(hdd, "Used ", "Usato")
         hdd = string.gsub(hdd, "Free  ", "Libero")
@@ -518,7 +536,7 @@ netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.u
 
 -- Weather widget
 require("perceptive")
-perceptive.register(725051)
+perceptive.register(123456) -- https://github.com/copycat-killer/perceptive
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -885,9 +903,6 @@ awful.rules.rules = {
     { rule = { class = "Dia" },
           properties = { tag = tags[1][4],
           floating = true } },
-
-    { rule = { class = "Gimp" },
-          properties = { tag = tags[1][4] } }, 
 
     { rule = { class = "Native" },
           properties = { tag = tags[1][4] } }, 
