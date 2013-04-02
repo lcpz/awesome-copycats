@@ -324,6 +324,9 @@ function (widget, args)
       if (args["{count}"] > 1) then 
           notify_title = "Hai " .. args["{count}"] .. " nuovi messaggi"
           notify_text = 'Ultimo: "' .. args["{subject}"] .. '"'
+      else
+          notify_title = "Hai un nuovo messaggio"
+          notify_text = args["{subject}"]
       end
       naughty.notify({ title = notify_title, text = notify_text,
       timeout = 7,

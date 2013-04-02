@@ -18,6 +18,7 @@ naughty         = require("naughty")
 vicious         = require("vicious")
 scratch         = require("scratch")
 
+
 -- Run once function
 
 function run_once(cmd)
@@ -327,7 +328,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
           notify_title = "Hai un nuovo messaggio"
           notify_text = '"' .. args["{subject}"] .. '"'
       else
-          notify_title = "Hai " .. noti .. " nuovi messaggi"
+          notify_title = "Hai " .. args["{count}"] .. " nuovi messaggi"
           notify_text = 'Ultimo: "' .. args["{subject}"] .. '"'
       end
       naughty.notify({ title = notify_title, text = notify_text,
@@ -366,14 +367,6 @@ function(widget, args)
 		return ''
 	end
 end, 1)
-
--- Mem widget
-memwidget = wibox.widget.textbox()
-vicious.register(memwidget, vicious.widgets.mem, gray .. "Mem " .. coldef .. white .. "$2 " .. coldef, 13) -- in Megabytes
-
--- Temp widget
-tempwidget = wibox.widget.textbox()
-vicious.register(tempwidget, vicious.widgets.thermal, gray .. "Temp " .. coldef .. white .. "$1 " .. coldef, 9, {"coretemp.0", "core"} )
 
 -- /home fs widget
 fshwidget = wibox.widget.textbox()
@@ -525,7 +518,7 @@ netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.u
 
 -- Weather widget
 require("perceptive")
-perceptive.register(123456) -- see https://github.com/copycat-killer/perceptive
+perceptive.register(725051)
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -624,10 +617,6 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(perceptive.icon)
     right_layout:add(perceptive.widget)
-    --right_layout:add(spr)
-    --right_layout:add(memwidget)
-    --right_layout:add(spr)
-    --right_layout:add(tempwidget)
     right_layout:add(fshwidget)
     right_layout:add(batwidget)
     right_layout:add(netwidget)
