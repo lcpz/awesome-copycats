@@ -39,7 +39,7 @@ Gallery
 
 **Blackburn** the wannabe definitive configuration, born from the best of previous ones
 
-.. image:: http://i.imgur.com/Cz1ne3J.jpg
+.. image:: http://i.imgur.com/3FiWfsQ.jpg 
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
