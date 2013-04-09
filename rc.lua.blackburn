@@ -17,6 +17,7 @@ local beautiful       = require("beautiful")
 local naughty         = require("naughty")
 local vicious         = require("vicious")
 local scratch         = require("scratch")
+local perceptive      = require("perceptive")
 
 
 -- Run once function
@@ -81,7 +82,7 @@ beautiful.init(active_theme .. "/theme.lua")
 terminal = "urxvtc"
 editor = os.getenv("EDITOR")
 editor_cmd = terminal .. " -e " .. editor
-gui_editor = "geany -ps"
+gui_editor = "medit"
 browser = "dwb"
 mail = terminal .. " -e mutt "
 chat = terminal .. " -e irssi "
@@ -99,13 +100,6 @@ layouts =
     awful.layout.suit.tile.left,            -- 3
     awful.layout.suit.tile.bottom,          -- 4
     awful.layout.suit.tile.top,             -- 5
-    awful.layout.suit.fair,                 -- 6
-    awful.layout.suit.fair.horizontal,      -- 7
-    awful.layout.suit.spiral,               -- 8
-    awful.layout.suit.spiral.dwindle,       -- 9
-    awful.layout.suit.max,                  -- 10
-    --awful.layout.suit.max.fullscreen,     -- 11
-    --awful.layout.suit.magnifier           -- 12
 }
 
 
@@ -121,7 +115,7 @@ end
 
 tags = {
        names = { "web", "term", "docs", "media", "down"},
-       layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[7] }
+       layout = { layouts[1], layouts[3], layouts[2], layouts[4], layouts[5] }
        }
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
@@ -130,14 +124,12 @@ end
 -- Menu
 myaccessories = {
    { "archives", "7zFM" },
-   { "file manager", "spacefm" },
    { "editor", gui_editor },
 }
 myinternet = {
     { "browser", browser },
     { "irc client" , chat },
     { "torrent" , "rtorrent" },
-    { "torrtux" , terminal .. " -e torrtux " },
     { "torrent search" , "torrent-search" }
 }
 mygames = {
@@ -227,14 +219,14 @@ local function create_calendar()
    local first_day_in_week = os.date("%w", first_day)
 
    local result = "do lu ma me gi ve sa\n" -- days of the week
-   
+
    -- Italian localization
    -- can be a stub for your own localization
    if language:find("it_IT") == nil
-   then 
-       result = "su mo tu we th fr sa\n" 
+   then
+       result = "su mo tu we th fr sa\n"
    else
-       result = "do lu ma me gi ve sa\n" 
+       result = "do lu ma me gi ve sa\n"
    end
 
    for i = 1, first_day_in_week do
@@ -344,7 +336,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
                 notify_text = 'Last one: "' .. args["{subject}"] .. '"'
           end
       end
-      naughty.notify({ 
+      naughty.notify({
           title = notify_title,
           text = notify_text,
           timeout = 7,
@@ -422,7 +414,7 @@ function show_info(t_out)
 	  }
     local hdd = awful.util.pread(scriptdir .. "dfs")
     hdd = string.gsub(hdd, "          ^%s*(.-)%s*$", "%1")
-    
+
     -- Italian localization
     -- can be a stub for your own localization
     if language:find("it_IT") ~= nil
@@ -431,7 +423,7 @@ function show_info(t_out)
         hdd = string.gsub(hdd, "Free  ", "Libero")
         hdd = string.gsub(hdd, "Total ", "Totale")
     end
-        
+
     infos = naughty.notify({
         text = hdd,
       	timeout = t_out,
@@ -512,7 +504,7 @@ end, 1, "Master")
 -- Net checker widget
 no_net_shown = true
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, 
+vicious.register(netwidget, vicious.widgets.net,
 function (widget, args)
     if args["{wlan0 carrier}"] == 0 then
        if no_net_shown == true then
@@ -533,7 +525,6 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
-require("perceptive")
 perceptive.register(123456) -- https//github.com/copycat-killer/perceptive
 
 -- Separators
@@ -689,7 +680,7 @@ globalkeys = awful.util.table.join(
 
     -- Show/Hide Wibox
     awful.key({ modkey }, "b", function ()
-    mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
+        mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible
     end),
 
     -- Layout manipulation
@@ -741,29 +732,30 @@ globalkeys = awful.util.table.join(
                                        awful.util.spawn("amixer set Master playback mute", false )
                                        vicious.force({ volumewidget })
                                      end),
-    awful.key({ "Control" }, "u", function () 
+    awful.key({ "Control" }, "u", function ()
                                       awful.util.spawn("amixer set Master playback unmute", false )
-                                       vicious.force({ volumewidget })
+                                      vicious.force({ volumewidget })
                                   end),
-    awful.key({ altkey, "Control" }, "m", function () 
-                                              awful.util.spawn("amixer set Master playback 100%", false )
-                                              vicious.force({ volumewidget })
-                                          end),
+    awful.key({ altkey, "Control" }, "m",
+                                  function ()
+                                      awful.util.spawn("amixer set Master playback 100%", false )
+                                      vicious.force({ volumewidget })
+                                  end),
 
     -- Music control
-    awful.key({ altkey, "Control" }, "Up", function () 
-                                              awful.util.spawn( "mpc toggle", false ) 
+    awful.key({ altkey, "Control" }, "Up", function ()
+                                              awful.util.spawn( "mpc toggle", false )
                                               vicious.force({ mpdwidget } )
                                            end),
-    awful.key({ altkey, "Control" }, "Down", function () 
-                                                awful.util.spawn( "mpc stop", false ) 
+    awful.key({ altkey, "Control" }, "Down", function ()
+                                                awful.util.spawn( "mpc stop", false )
                                                 vicious.force({ mpdwidget } )
                                              end ),
     awful.key({ altkey, "Control" }, "Left", function ()
                                                 awful.util.spawn( "mpc prev", false )
                                                 vicious.force({ mpdwidget } )
                                              end ),
-    awful.key({ altkey, "Control" }, "Right", function () 
+    awful.key({ altkey, "Control" }, "Right", function ()
                                                 awful.util.spawn( "mpc next", false )
                                                 vicious.force({ mpdwidget } )
                                               end ),
@@ -774,7 +766,6 @@ globalkeys = awful.util.table.join(
     -- User programs
     awful.key({ modkey,        }, "q",      function () awful.util.spawn( "dwb", false ) end),
     awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),
-    awful.key({ modkey,        }, "d", 	    function () awful.util.spawn( "spacefm", false ) end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
@@ -865,7 +856,7 @@ awful.rules.rules = {
 	                    size_hints_honor = false
                      }
     },
-    
+
     { rule = { class = "URxvt" },
       properties = {opacity = 0.95} },
 
@@ -878,7 +869,7 @@ awful.rules.rules = {
           			     maximized_vertical=true,
           			     maximized_horizontal=true } },
 
-    { rule = { class = "Geany" },
+    { rule = { class = "Medit" },
           properties = { tag = tags[1][2] } },
 
 	  { rule = { class = "Zathura" },
@@ -888,8 +879,8 @@ awful.rules.rules = {
           properties = { tag = tags[1][4],
           floating = true } },
 
-    { rule = { class = "Native" },
-          properties = { tag = tags[1][4] } }, 
+    { rule = { class = "Nathive" },
+          properties = { tag = tags[1][4] } },
 
     { rule = { class = "Transmission-gtk" },
           properties = { tag = tags[1][5] } },
