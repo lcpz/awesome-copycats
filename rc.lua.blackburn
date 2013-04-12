@@ -876,19 +876,27 @@ awful.rules.rules = {
           properties = { tag = tags[1][4],
                          floating = true } },
 
-    -- these gimp rules are set for a 13666x768 screen
+    -- these gimp rules are set for a 1366x768 screen
     { rule = { class = "Gimp" },
-          properties = { tag = tags[1][4],
-                         maximized_vertical = true} },
+          properties = { tag = tags[1][4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
-          properties = { x = 161, width = 1003 } },
+          properties = { x = 161, width = 1003,
+                         maximized_vertical = true } },
 
     { rule = { class = "Gimp", role = "gimp-toolbox" },
-          properties = { x = 0 } },
+          properties = { x = 0, maximized_vertical = true } },
 
     { rule = { class = "Gimp", role = "gimp-dock" },
-          properties = { x = 1164 } },
+          properties = { x = 1164, maximized_vertical = true } },
+
+    { rule = { class = "Gimp", role = "gimp-image-new" },
+          properties = { x = 480, y = 240} },
+
+    { rule = { class = "Gimp", role = "gimp-file-export" },
+          properties = { maximized_vertical = true,
+                         maximized_horizontal = true,
+                         width = 1366 } },
 
     { rule = { class = "Transmission-gtk" },
           properties = { tag = tags[1][5] } },
