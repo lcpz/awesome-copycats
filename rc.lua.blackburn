@@ -8,7 +8,7 @@
 
 -- Required Libraries
 
-local gears 	        = require("gears")
+local gears           = require("gears")
 local awful           = require("awful")
 awful.rules           = require("awful.rules")
 awful.autofocus       = require("awful.autofocus")
@@ -115,7 +115,7 @@ end
 
 tags = {
        names = { "web", "term", "docs", "media", "down"},
-       layout = { layouts[1], layouts[3], layouts[2], layouts[4], layouts[5] }
+       layout = { layouts[1], layouts[3], layouts[2], layouts[1], layouts[5] }
        }
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
@@ -124,6 +124,8 @@ end
 -- Menu
 myaccessories = {
    { "archives", "7zFM" },
+   { "charmap", "gucharmap" },
+   { "fontsel", "gtk2fontsel"},
    { "editor", gui_editor },
 }
 myinternet = {
@@ -132,12 +134,8 @@ myinternet = {
     { "torrent" , "rtorrent" },
     { "torrent search" , "torrent-search" }
 }
-mygames = {
-    { "NES", "fceux" },
-    { "Super NES", "zsnes" },
-}
 mygraphics = {
-    { "nathive" , "nathive" },
+    { "gimp" , "gimp" },
     { "dia", "dia" },
 }
 myoffice = {
@@ -154,7 +152,6 @@ mymainmenu = awful.menu({ items = {
 				    { "accessories" , myaccessories },
 				    { "graphics" , mygraphics },
 				    { "internet" , myinternet },
-				    { "games" , mygames },
 				    { "office" , myoffice },
 				    { "system" , mysystem },
             }
@@ -865,9 +862,9 @@ awful.rules.rules = {
 
     { rule = { class = "Dwb" },
           properties = { tag = tags[1][1],
-                     floating=true,
-          			     maximized_vertical=true,
-          			     maximized_horizontal=true } },
+                         floating = true,
+          			         maximized_vertical = true,
+          			         maximized_horizontal = true } },
 
     { rule = { class = "Medit" },
           properties = { tag = tags[1][2] } },
@@ -877,10 +874,21 @@ awful.rules.rules = {
 
     { rule = { class = "Dia" },
           properties = { tag = tags[1][4],
-          floating = true } },
+                         floating = true } },
 
-    { rule = { class = "Nathive" },
-          properties = { tag = tags[1][4] } },
+    -- these gimp rules are set for a 13666x768 screen
+    { rule = { class = "Gimp" },
+          properties = { tag = tags[1][4],
+                         maximized_vertical = true} },
+
+    { rule = { class = "Gimp", role = "gimp-image-window" },
+          properties = { x = 161, width = 1003 } },
+
+    { rule = { class = "Gimp", role = "gimp-toolbox" },
+          properties = { x = 0 } },
+
+    { rule = { class = "Gimp", role = "gimp-dock" },
+          properties = { x = 1164 } },
 
     { rule = { class = "Transmission-gtk" },
           properties = { tag = tags[1][5] } },
