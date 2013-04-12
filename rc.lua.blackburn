@@ -82,7 +82,7 @@ beautiful.init(active_theme .. "/theme.lua")
 terminal = "urxvtc"
 editor = os.getenv("EDITOR")
 editor_cmd = terminal .. " -e " .. editor
-gui_editor = "medit"
+gui_editor = "gvim"
 browser = "dwb"
 mail = terminal .. " -e mutt "
 chat = terminal .. " -e irssi "
@@ -866,7 +866,7 @@ awful.rules.rules = {
           			         maximized_vertical = true,
           			         maximized_horizontal = true } },
 
-    { rule = { class = "Medit" },
+    { rule = { class = "Gvim" },
           properties = { tag = tags[1][2] } },
 
 	  { rule = { class = "Zathura" },
@@ -878,20 +878,24 @@ awful.rules.rules = {
 
     -- these gimp rules are set for a 1366x768 screen
     { rule = { class = "Gimp" },
-          properties = { tag = tags[1][4] } },
+          properties = { tag = tags[1][4],
+                         floating = false } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
-          properties = { x = 161, width = 1003,
+          properties = { x = 138, width = 1024,
                          maximized_vertical = true } },
 
     { rule = { class = "Gimp", role = "gimp-toolbox" },
           properties = { x = 0, maximized_vertical = true } },
 
     { rule = { class = "Gimp", role = "gimp-dock" },
-          properties = { x = 1164, maximized_vertical = true } },
+          properties = { x = 1165, maximized_vertical = true } },
 
     { rule = { class = "Gimp", role = "gimp-image-new" },
           properties = { x = 480, y = 240} },
+
+    { rule = { class = "Gimp", role = "gimp-toolbox-color-dialog" },
+          properties = { x = 138, y = 350} },
 
     { rule = { class = "Gimp", role = "gimp-file-export" },
           properties = { maximized_vertical = true,
