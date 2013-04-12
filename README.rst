@@ -15,7 +15,7 @@ Notable features:
 - Quake style dropdown terminal
 - Calendar with current day hightlighted and previous/next month switch with just a click 
 - Elegant notifications for new mails, current song, hdd critical state, low battery
-- Yahoo Wheather integration 
+- Yahoo Weather integration 
 - A net carrier status notifier
 - Full localization potential (just easily edit about 5 lines - look for 'stub' keywords)
 - Colorful autoupdating icons
