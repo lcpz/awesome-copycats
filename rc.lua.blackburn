@@ -125,7 +125,6 @@ end
 myaccessories = {
    { "archives", "7zFM" },
    { "charmap", "gucharmap" },
-   { "fontsel", "gtk2fontsel"},
    { "editor", gui_editor },
 }
 myinternet = {
@@ -841,6 +840,7 @@ root.keys(globalkeys)
 
 
 -- Rules
+-- dwb and gimp rules are set for a 1366x768 laptop
 
 awful.rules.rules = {
      -- All clients will match this rule.
@@ -862,9 +862,9 @@ awful.rules.rules = {
 
     { rule = { class = "Dwb" },
           properties = { tag = tags[1][1],
-                         floating = true,
-          			         maximized_vertical = true,
-          			         maximized_horizontal = true } },
+                         x = 0, y = 20,
+          			         width = 1364, 
+          			         height = 748 } },
 
     { rule = { class = "Gvim" },
           properties = { tag = tags[1][2] } },
@@ -876,7 +876,6 @@ awful.rules.rules = {
           properties = { tag = tags[1][4],
                          floating = true } },
 
-    -- these gimp rules are set for a 1366x768 screen
     { rule = { class = "Gimp" },
           properties = { tag = tags[1][4],
                          floating = false } },
