@@ -114,7 +114,7 @@ end
 -- Tags
 
 tags = {
-       names = { "web", "term", "docs", "media", "down"},
+       names = { "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" },
        layout = { layouts[1], layouts[3], layouts[2], layouts[1], layouts[5] }
        }
 for s = 1, screen.count() do

@@ -1,9 +1,9 @@
 --[[                                        ]]--
-----                                          -
-----    Blackburn Awesome WM 3.5.+ theme      --
-----       github.com/copycat-killer          --
-----                                          -
-----[[                                      ]]--
+--                                            -
+--    Blackburn Awesome WM 3.5.+ theme        --
+--       github.com/copycat-killer            --
+--                                            -
+--[[                                        ]]--
 
 
 theme = {}
@@ -12,6 +12,7 @@ themes_dir                                  = os.getenv("HOME") .. "/.config/awe
 theme.wallpaper                             = themes_dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
+theme.taglist_font                          = "Termsyn 10"
 theme.fg_normal                             = "#AAAAAA"
 theme.fg_focus                              = "#D79D38"
 theme.fg_urgent                             = "#CC9393"
