@@ -280,6 +280,7 @@ function add_calendar(inc_offset)
    calendar = naughty.notify({ title = header,
                                text = cal_text,
                                timeout = 0, hover_timeout = 0.5,
+                               bg = "#060606"
                             })
 end
 
@@ -290,6 +291,7 @@ function show_calendar(t_out)
    calendar = naughty.notify({ title = header,
                                text = cal_text,
                                timeout = t_out,
+                               bg = "#060606"
                             })
 end
 
@@ -339,7 +341,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
           position = "top_left",
           icon = beautiful.widget_mail_notify,
           fg = beautiful.taglist_fg_focus,
-          bg = beautiful.bg_normal
+          bg = "#060606"
       })
       notify_shown = true
     end
@@ -435,7 +437,8 @@ function show_info(t_out)
         margin = 10,
         height = 210,
         width = 680,
-		  screen	= capi.mouse.screen
+        bg = "#060606",
+		    screen = capi.mouse.screen
     })
 end
 
