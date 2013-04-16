@@ -47,6 +47,8 @@ if [[ -n $cover ]]; then
         convert "$cover" -thumbnail $COVER_RESIZE -gravity center -background "$COVER_BACKGROUND" -extent $COVER_RESIZE "$TEMP_PATH"
         cover="$TEMP_PATH"
    fi
+else
+   rm $TEMP_PATH
 fi
 
 exit 0
