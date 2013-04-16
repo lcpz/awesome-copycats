@@ -19,6 +19,8 @@ Notable features:
 - A net carrier status notifier
 - Full localization potential (just easily edit about 5 lines - look for 'stub' keywords)
 - Colorful autoupdating icons
+- Symbolic tag names
+- PNG taskbar
 
 They're scattered all over the set, but you can get them all *only* in Blackburn.
 
