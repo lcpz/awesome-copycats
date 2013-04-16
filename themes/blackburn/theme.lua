@@ -9,29 +9,30 @@
 theme = {}
 
 themes_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/blackburn"
+themes_bg_normal                            = "png:" .. themes_dir .. "/taskbar/bg_normal.png"
+themes_bg_focus                             = "png:" .. themes_dir .. "/taskbar/bg_focus.png"
+
 theme.wallpaper                             = themes_dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
 theme.taglist_font                          = "Termsyn 10"
 theme.fg_normal                             = "#AAAAAA"
 theme.fg_focus                              = "#D79D38"
+theme.bg_normal                             = themes_bg_normal
+theme.bg_focus                              = "#060606"
 theme.fg_urgent                             = "#CC9393"
-theme.bg_normal                             = "#000000"
-theme.bg_focus                              = "#000000"
-theme.bg_urgent                             = "#2A1f1E"
+theme.bg_urgent                             = "#2A1F1E"
 theme.border_width                          = "1"
-theme.border_normal                         = "#101010"
-theme.border_focus                          = "#606060"
+theme.border_normal                         = "#0E0E0E"
+theme.border_focus                          = "#404040"
 theme.border_marked                         = "#CC9393"
 theme.titlebar_bg_focus                     = "#FFFFFF"
 theme.titlebar_bg_normal                    = "#FFFFFF"
 theme.taglist_fg_focus                      = "#F6784F"
-theme.tasklist_bg_focus                     = "#000000"
+theme.taglist_bg_focus                      = themes_bg_focus
 theme.tasklist_fg_focus                     = "#F6784F"
+theme.tasklist_bg_focus                     = themes_bg_normal
 theme.textbox_widget_margin_top             = 1
-theme.notify_fg                             = theme.fg_normal
-theme.notify_bg                             = theme.bg_normal
-theme.notify_border                         = theme.border_focus
 theme.awful_widget_height                   = 14
 theme.awful_widget_margin_top               = 2
 theme.mouse_finder_color                    = "#CC9393"
@@ -54,6 +55,7 @@ theme.layout_max                            = themes_dir .. "/icons/max.png"
 theme.layout_fullscreen                     = themes_dir .. "/icons/fullscreen.png"
 theme.layout_magnifier                      = themes_dir .. "/icons/magnifier.png"
 theme.layout_floating                       = themes_dir .. "/icons/floating.png"
+
 theme.tasklist_floating                     = ""
 theme.tasklist_maximized_horizontal         = ""
 theme.tasklist_maximized_vertical           = "" 

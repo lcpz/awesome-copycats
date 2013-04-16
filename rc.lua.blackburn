@@ -97,8 +97,8 @@ layouts =
 {
     awful.layout.suit.floating,             -- 1
     awful.layout.suit.tile,                 -- 2
-    awful.layout.suit.tile.left,            -- 3
-    awful.layout.suit.tile.bottom,          -- 4
+    awful.layout.suit.fair,                 -- 3
+    awful.layout.suit.tile.left,            -- 4
     awful.layout.suit.tile.top,             -- 5
 }
 
@@ -361,7 +361,15 @@ function(widget, args)
     if( args["{Title}"] ~= curr_track )
     then
         curr_track = args["{Title}"]
-        run_once(scriptdir .. "mpdinfo")
+        os.execute(scriptdir .. "mpdinfo")
+        old_id = naughty.notify({
+            title = "Now playing",
+            text = args["{Artist}"] .. " (" .. args["{Album}"] .. ")\n" .. args["{Title}"],
+            icon = "/tmp/mpdnotify_cover.png",
+            bg = "#060606",
+            timeout = 5,
+            replaces_id = old_id
+        }).id
     end
 		return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
 	elseif (args["{state}"] == "Pause") then
@@ -861,10 +869,7 @@ awful.rules.rules = {
       properties = { floating = true } },
 
     { rule = { class = "Dwb" },
-          properties = { tag = tags[1][1],
-                         x = 0, y = 20,
-          			         width = 1364, 
-          			         height = 748 } },
+          properties = { tag = tags[1][1] } },
 
     { rule = { class = "Gvim" },
           properties = { tag = tags[1][2] } },
