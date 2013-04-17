@@ -509,16 +509,19 @@ netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.u
 
 -- Weather widget
 weatherwidget = wibox.widget.textbox()
+sky_toshow = ""
 vicious.register(weatherwidget, vicious.widgets.weather,
     function (widget, args)
         if args["{tempf}"] == "N/A" then
             return gray .. "No " .. coldef .. white .. "Info " .. coldef
         else
             -- work in progress - ☂☔☃ ⛆⛇⛈ 🌂
-            if( args["{sky}"] == "N/A" or string.find(args["{sky}"], "Clear") ~= nil ) then args["{sky}"] = "<span font=\"Symbola 10\" rise=\"-1535\">☼</span>"
-            elseif( string.find(args["{sky}"], "Cloudy") ~= nil ) then args["{sky}"] = "<span font=\"Symbola 11\" rise=\"-1620\">☁</span>"
+            if( args["{sky}"] == "N/A" or string.find(args["{sky}"], "Clear") ~= nil ) then sky_toshow = "<span font=\"Symbola 10\" rise=\"-1535\">☼</span>"
+            elseif( string.find(args["{sky}"], "Cloudy") ~= nil ) then sky_toshow = "<span font=\"Symbola 11\" rise=\"-1620\">☁</span>"
             end
-            return gray .. args["{sky}"] .. coldef .. " " .. white .. args["{tempc}"] .. " " .. coldef
+            if sky_toshow ~= "" then return gray .. sky_toshow .. coldef .. " " .. white .. args["{tempc}"] .. " " .. coldef
+            else return gray .. args["{sky}"] .. coldef .. " " .. white .. args["{tempc}"] .. " " .. coldef
+            end
         end
     end, 1800, "ICAO-CODE-GOES-HERE" )
 
