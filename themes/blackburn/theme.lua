@@ -16,8 +16,8 @@ theme.wallpaper                             = themes_dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
 theme.taglist_font                          = "Termsyn 10"
-theme.fg_normal                             = "#AAAAAA"
-theme.fg_focus                              = "#D79D38"
+theme.fg_normal                             = "#D7D7D7"
+theme.fg_focus                              = "#F6784F"
 theme.bg_normal                             = themes_bg_normal
 theme.bg_focus                              = "#060606"
 theme.fg_urgent                             = "#CC9393"

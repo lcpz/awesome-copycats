@@ -343,7 +343,14 @@ function(widget, args)
     if( args["{Title}"] ~= curr_track )
     then
         curr_track = args["{Title}"]
-        run_once(scriptdir .. "mpdinfo")
+        os.execute(scriptdir .. "mpdinfo")
+        old_id = naughty.notify({
+            title = "Now playing",
+            text = args["{Artist}"] .. " (" .. args["{Album}"] .. ")\n" .. args["{Title}"],
+            icon = "/tmp/mpdnotify_cover.png",
+            timeout = 5,
+            replaces_id = old_id
+        }).id
     end
 		return gray .. args["{Title}"] .. coldef .. white .. " " .. args["{Artist}"] .. coldef
 	elseif (args["{state}"] == "Pause") then

@@ -33,7 +33,7 @@ end
 
 -- autostart applications
 run_once("urxvtd")
-run_once("unclutter -idle 10")
+run_once("unclutter")
 run_once("compton")
 
 
@@ -345,7 +345,9 @@ vicious.register(mygmail, vicious.widgets.gmail,
       })
       notify_shown = true
     end
-    return gray .. " Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
+    if perceptive.icon == perceptive.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
+    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 1'> </span>"  .. coldef
+    end
   else
     notify_shown = false
     return ''
@@ -520,7 +522,7 @@ function (widget, args)
          position = "top_left",
          icon = beautiful.widget_no_net_notify,
          fg = "#ff5e5e",
-         bg = beautiful.bg_normal })
+         bg = "#060606" })
          no_net_shown = false
        end
        return gray .. " Net " .. coldef .. "<span color='#e54c62'>Off " .. coldef

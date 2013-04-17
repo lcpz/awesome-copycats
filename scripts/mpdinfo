@@ -2,10 +2,12 @@
 
 # A simple notify script for now-playing songs on mpd. This script uses
 # notify-send and mpc to get the current song information.
+# ImageMagick is also needed for the cover.
 
 # Configuration-------------------------------------------------------
 
 # The music directory that contains the music and cover files
+# Change according to your configuration
 MUSIC_DIR="$HOME/Musica"
 
 # The default cover to use (optional)
