@@ -155,13 +155,12 @@ mymainmenu = awful.menu({ items = {
 				    { "system" , mysystem },
             }
             })
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+mylauncher = awful.widget.launcher({ menu = mymainmenu })
 
 
 -- Wibox
 
--- Colours
+-- ColourS
 coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
 gray = "<span color='#9e9c9a'>"
@@ -538,8 +537,8 @@ perceptive.register(123456) -- https//github.com/copycat-killer/perceptive
 
 -- Separators
 spr = wibox.widget.textbox(' ')
-leftbr = wibox.widget.textbox(white .. ' [' .. coldef)
-rightbr = wibox.widget.textbox(white .. '] ' .. coldef)
+leftbr = wibox.widget.textbox(white .. '<span rise="1000"> [</span>' .. coldef)
+rightbr = wibox.widget.textbox(white .. '<span rise="1000">] </span>' .. coldef)
 
 
 -- Layout
@@ -853,7 +852,6 @@ root.keys(globalkeys)
 
 
 -- Rules
--- dwb and gimp rules are set for a 1366x768 laptop
 
 awful.rules.rules = {
      -- All clients will match this rule.
@@ -891,25 +889,8 @@ awful.rules.rules = {
                          floating = false } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
-          properties = { x = 138, width = 1024,
+          properties = { maximized_horizontal = true,
                          maximized_vertical = true } },
-
-    { rule = { class = "Gimp", role = "gimp-toolbox" },
-          properties = { x = 0, maximized_vertical = true } },
-
-    { rule = { class = "Gimp", role = "gimp-dock" },
-          properties = { x = 1165, maximized_vertical = true } },
-
-    { rule = { class = "Gimp", role = "gimp-image-new" },
-          properties = { x = 480, y = 240} },
-
-    { rule = { class = "Gimp", role = "gimp-toolbox-color-dialog" },
-          properties = { x = 138, y = 350} },
-
-    { rule = { class = "Gimp", role = "gimp-file-export" },
-          properties = { maximized_vertical = true,
-                         maximized_horizontal = true,
-                         width = 1366 } },
 
     { rule = { class = "Transmission-gtk" },
           properties = { tag = tags[1][5] } },
