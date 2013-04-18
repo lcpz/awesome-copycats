@@ -25,7 +25,7 @@ theme.bg_urgent                             = "#2A1F1E"
 theme.border_width                          = "1"
 theme.border_normal                         = "#0E0E0E"
 theme.border_focus                          = "#404040"
-theme.border_marked                         = "#CC9393"
+
 theme.titlebar_bg_focus                     = "#FFFFFF"
 theme.titlebar_bg_normal                    = "#FFFFFF"
 theme.taglist_fg_focus                      = "#F6784F"
