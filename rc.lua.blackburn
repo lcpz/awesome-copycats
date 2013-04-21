@@ -537,8 +537,8 @@ perceptive.register(123456) -- https//github.com/copycat-killer/perceptive
 
 -- Separators
 spr = wibox.widget.textbox(' ')
-leftbr = wibox.widget.textbox(white .. '<span rise="1000"> [</span>' .. coldef)
-rightbr = wibox.widget.textbox(white .. '<span rise="1000">] </span>' .. coldef)
+leftbr = wibox.widget.textbox(white .. ' [' .. coldef)
+rightbr = wibox.widget.textbox(white .. '] ' .. coldef)
 
 
 -- Layout
