@@ -49,9 +49,10 @@ Notes
 
 Fonts are terminus (multicolor, powerarrow-darker) and tamsyn (steamburn, blackburn).
 
-Blackburn also uses a modded termsyn you can find in my dots_.
+Blackburn uses a modded termsyn you can find in my dots_, and perceptive_.
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
-.. _dots: https://github.com/copycat-killer/dots/tree/master/.fonts 
+.. _dots: https://github.com/copycat-killer/dots/tree/master/.fonts
+.. _perceptive: https://github.com/copycat-killer/perceptive
