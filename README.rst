@@ -43,6 +43,15 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/540.png
 
+Notes
+--------
+**Do not** use without reading and modifying according to your needs and system specs.
+
+Fonts are terminus (multicolor, powerarrow-darker) and tamsyn (*burn).
+
+Blackburn also uses a modded termsyn you can find in my dots_.
+
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
+.. _dots: https://github.com/copycat-killer/dots/tree/master/.fonts 
