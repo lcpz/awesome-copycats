@@ -47,7 +47,7 @@ Notes
 --------
 **Do not** use without reading and modifying according to your needs and system specs.
 
-Fonts are terminus (multicolor, powerarrow-darker) and tamsyn (*burn).
+Fonts are terminus (multicolor, powerarrow-darker) and tamsyn (steamburn, blackburn).
 
 Blackburn also uses a modded termsyn you can find in my dots_.
 
