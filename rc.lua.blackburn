@@ -17,7 +17,7 @@ local beautiful       = require("beautiful")
 local naughty         = require("naughty")
 local vicious         = require("vicious")
 local scratch         = require("scratch")
-local perceptive      = require("perceptive")
+local yawn            = require("yawn")
 
 
 -- Run once function
@@ -344,7 +344,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
       })
       notify_shown = true
     end
-    if perceptive.icon == perceptive.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
+    if yawn.icon == yawn.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
     else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 1'> </span>"  .. coldef
     end
   else
@@ -533,7 +533,7 @@ end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
-perceptive.register(123456) -- https//github.com/copycat-killer/perceptive
+yawn.register(123456) -- https//github.com/copycat-killer/yawn
 
 -- Separators
 spr = wibox.widget.textbox(' ')
@@ -628,8 +628,8 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(mygmail)
     right_layout:add(spr)
-    right_layout:add(perceptive.icon)
-    right_layout:add(perceptive.widget)
+    right_layout:add(yawn.icon)
+    right_layout:add(yawn.widget)
     right_layout:add(fshwidget)
     right_layout:add(batwidget)
     right_layout:add(netwidget)
@@ -725,7 +725,7 @@ globalkeys = awful.util.table.join(
     -- Widgets popups
     awful.key({ altkey,           }, "c",     function () show_calendar(7) end),
     awful.key({ altkey,           }, "h",     function () show_info(7) end),
-    awful.key({ altkey,           }, "w",     function () perceptive.show_weather(5) end),
+    awful.key({ altkey,           }, "w",     function () yawn.show_weather(5) end),
 
     -- Volume control
     awful.key({ "Control" }, "Up", function ()
