@@ -125,6 +125,7 @@ end
 myaccessories = {
    { "archives", "7zFM" },
    { "charmap", "gucharmap" },
+   { "gbdfed", "gbdfed" },
    { "editor", gui_editor },
 }
 myinternet = {
