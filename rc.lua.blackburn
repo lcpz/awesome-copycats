@@ -346,7 +346,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
       notify_shown = true
     end
     if yawn.icon == yawn.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
-    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 1'> </span>"  .. coldef
+    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 4'> </span>"  .. coldef
     end
   else
     notify_shown = false
