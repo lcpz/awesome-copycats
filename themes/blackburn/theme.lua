@@ -29,7 +29,7 @@ theme.border_focus                          = "#404040"
 theme.titlebar_bg_focus                     = "#FFFFFF"
 theme.titlebar_bg_normal                    = "#FFFFFF"
 theme.taglist_fg_focus                      = "#F6784F"
-theme.taglist_bg_focus                      = themes_bg_focus
+theme.taglist_bg_focus                      = themes_bg_normal
 theme.tasklist_fg_focus                     = "#F6784F"
 theme.tasklist_bg_focus                     = themes_bg_normal
 theme.textbox_widget_margin_top             = 1
@@ -42,6 +42,8 @@ theme.menu_width                            = "140"
 theme.menu_submenu_icon                     = themes_dir .. "/icons/submenu.png"
 theme.taglist_squares_sel                   = themes_dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                 = themes_dir .. "/icons/square_unsel.png"
+theme.arrl_lr_pre                           = themes_dir .. "/icons/arrl_lr_pre.png"
+theme.arrl_lr_post                          = themes_dir .. "/icons/arrl_lr_post.png"
 
 theme.layout_tile                           = themes_dir .. "/icons/tile.png"
 theme.layout_tileleft                       = themes_dir .. "/icons/tileleft.png"

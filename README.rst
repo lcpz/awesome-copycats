@@ -41,7 +41,7 @@ Gallery
 
 **Blackburn** the wannabe definitive configuration, born from the best of previous ones
 
-.. image:: http://dotshare.it/public/images/uploads/540.png
+.. image:: http://dotshare.it/public/images/uploads/553.png 
 
 Notes
 --------

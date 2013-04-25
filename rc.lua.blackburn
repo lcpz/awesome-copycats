@@ -161,7 +161,7 @@ mylauncher = awful.widget.launcher({ menu = mymainmenu })
 
 -- Wibox
 
--- ColourS
+-- Colours
 coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
 gray = "<span color='#9e9c9a'>"
@@ -375,9 +375,13 @@ function(widget, args)
             replaces_id = old_id
         }).id
     end
-		return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
+    if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
+    else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 4'> </span>"  .. coldef
+    end
 	elseif (args["{state}"] == "Pause") then
-		return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
+    if yawn.icon == yawn.sky_na then return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
+    else return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 4'> </span>" .. coldef
+    end
 	else
     curr_track = nil
 		return ''
@@ -511,6 +515,7 @@ function (widget, args)
 end, 1, "Master")
 
 -- Net checker widget
+--[[
 no_net_shown = true
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
@@ -532,15 +537,18 @@ function (widget, args)
     end
 end, 10)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
+]]
 
 -- Weather widget
 yawn.register(123456) -- https//github.com/copycat-killer/yawn
 
 -- Separators
 spr = wibox.widget.textbox(' ')
-leftbr = wibox.widget.textbox(white .. ' [' .. coldef)
-rightbr = wibox.widget.textbox(white .. '] ' .. coldef)
-
+first = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
+arrl_pre = wibox.widget.imagebox()
+arrl_pre:set_image(beautiful.arrl_lr_pre)
+arrl_post = wibox.widget.imagebox()
+arrl_post:set_image(beautiful.arrl_lr_post)
 
 -- Layout
 
@@ -614,26 +622,26 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the upper left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(spr)
+    left_layout:add(first)
     left_layout:add(mytaglist[s])
-    left_layout:add(leftbr)
+    left_layout:add(arrl_pre)
     left_layout:add(mylayoutbox[s])
-    left_layout:add(rightbr)
+    left_layout:add(arrl_post)
     left_layout:add(mypromptbox[s])
+    left_layout:add(first)
 
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
-    right_layout:add(spr)
+    right_layout:add(first)
     right_layout:add(mpdwidget)
-    right_layout:add(spr)
     right_layout:add(mygmail)
     right_layout:add(spr)
     right_layout:add(yawn.icon)
     right_layout:add(yawn.widget)
     right_layout:add(fshwidget)
     right_layout:add(batwidget)
-    right_layout:add(netwidget)
+    --right_layout:add(netwidget)
     right_layout:add(spr)
     right_layout:add(volumewidget)
     right_layout:add(spr)
@@ -867,7 +875,7 @@ awful.rules.rules = {
     },
 
     { rule = { class = "URxvt" },
-      properties = {opacity = 0.95} },
+      properties = { opacity = 0.95 } },
 
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
@@ -885,9 +893,8 @@ awful.rules.rules = {
           properties = { tag = tags[1][4],
                          floating = true } },
 
-    { rule = { class = "Gimp" },
-          properties = { tag = tags[1][4],
-                         floating = false } },
+	  { rule = { class = "Gimp" },
+     	  properties = { tag = tags[1][4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized_horizontal = true,
