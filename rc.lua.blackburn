@@ -337,7 +337,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
       notify_shown = true
     end
     if yawn.icon == yawn.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
-    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 4'> </span>"  .. coldef
+    else return gray .. " <span font='Termsyn 3'> </span>Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 5'> </span>"  .. coldef
     end
   else
     notify_shown = false
@@ -367,11 +367,11 @@ function(widget, args)
         }).id
     end
     if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
-    else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 4'> </span>"  .. coldef
+    else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 5'> </span>"  .. coldef
     end
 	elseif (args["{state}"] == "Pause") then
     if yawn.icon == yawn.sky_na then return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
-    else return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 4'> </span>" .. coldef
+    else return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 5'> </span>" .. coldef
     end
 	else
     curr_track = nil
