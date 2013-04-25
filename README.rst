@@ -51,7 +51,7 @@ Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackb
 
 Blackburn uses a modded Termsyn (for symbolic tag names) you can find in my dots_, and yawn_.
 
-Steamburn and Blackburn have X colours schemes too. Check here_.
+Steamburn and Blackburn have X colorschemes too. Check here_.
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
