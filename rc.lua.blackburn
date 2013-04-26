@@ -157,6 +157,12 @@ coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
 gray = "<span color='#9e9c9a'>"
 
+-- Vicious caching
+vicious.cache(vicious.widgets.gmail)
+vicious.cache(vicious.widgets.mpd)
+vicious.cache(vicious.widgets.fs)
+vicious.cache(vicious.widgets.bat)
+vicious.cache(vicious.widgets.volume)
 
 -- Textclock widget
 mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
@@ -292,8 +298,6 @@ mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calenda
                                      awful.button({ }, 3, function() add_calendar(1) end)))
 
 -- GMail widget
--- you need  a .netrc file in your home directory filled with this:
--- machine mail.google.com login YOUR_MAIL password YOUR_PASS
 mygmail = wibox.widget.textbox()
 gmail_t = awful.tooltip({ objects = { mygmail },})
 notify_shown = false
@@ -540,6 +544,7 @@ arrl_pre = wibox.widget.imagebox()
 arrl_pre:set_image(beautiful.arrl_lr_pre)
 arrl_post = wibox.widget.imagebox()
 arrl_post:set_image(beautiful.arrl_lr_post)
+
 
 -- Layout
 
