@@ -301,12 +301,14 @@ mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calenda
 mygmail = wibox.widget.textbox()
 gmail_t = awful.tooltip({ objects = { mygmail },})
 notify_shown = false
+mailcount = 0
 vicious.register(mygmail, vicious.widgets.gmail,
  function (widget, args)
   gmail_t:set_text(args["{subject}"])
   gmail_t:add_to_object(mygmail)
   notify_title = ""
   notify_text = ""
+  mailcount = args["{count}"] 
   if (args["{count}"] > 0 ) then
     if (notify_shown == false) then
       -- Italian localization
@@ -341,7 +343,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
       notify_shown = true
     end
     if yawn.icon == yawn.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
-    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. " " .. coldef
+    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. "<span font='Tamsyn 5'> </span>" .. coldef
     end
   else
     notify_shown = false
@@ -356,9 +358,9 @@ mpdwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.u
 curr_track = nil
 vicious.register(mpdwidget, vicious.widgets.mpd,
 function(widget, args)
-	if (args["{state}"] == "Play") then
-    if( args["{Title}"] ~= curr_track )
-    then
+	if args["{state}"] == "Play" then
+    if args["{Title}"] ~= curr_track
+     then
         curr_track = args["{Title}"]
         os.execute(scriptdir .. "mpdinfo")
         old_id = naughty.notify({
@@ -370,11 +372,13 @@ function(widget, args)
             replaces_id = old_id
         }).id
     end
-    if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
+   if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
+    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 5'> </span>" .. coldef
     else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " "  .. coldef
     end
-	elseif (args["{state}"] == "Pause") then
+	 elseif args["{state}"] == "Pause" then
     if yawn.icon == yawn.sky_na then return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
+    elseif mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsun 5'> </span>" .. coldef
     else return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     end
 	else
