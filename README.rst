@@ -49,13 +49,13 @@ Notes
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn).
 
-Blackburn uses a modded Termsyn (for symbolic tag names) you can find in my dots_, and yawn_.
+Blackburn uses Icons_ and Yawn_.
 
 Steamburn and Blackburn have X colorschemes too. Check here_.
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
-.. _dots: https://github.com/copycat-killer/dots/tree/master/.fonts
-.. _yawn: https://github.com/copycat-killer/yawn
+.. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
+.. _Yawn: https://github.com/copycat-killer/yawn
 .. _here: https://github.com/copycat-killer/dots/tree/master/.colors

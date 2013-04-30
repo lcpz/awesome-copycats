@@ -15,7 +15,7 @@ themes_bg_focus                             = "png:" .. themes_dir .. "/taskbar/
 theme.wallpaper                             = themes_dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
-theme.taglist_font                          = "Termsyn 10"
+theme.taglist_font                          = "Icons 10"
 theme.fg_normal                             = "#D7D7D7"
 theme.fg_focus                              = "#F6784F"
 theme.bg_normal                             = themes_bg_normal
