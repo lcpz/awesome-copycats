@@ -732,7 +732,10 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",     function () show_calendar(7) end),
-    awful.key({ altkey,           }, "h",     function () show_info(7) end),
+    awful.key({ altkey,           }, "h",     function ()
+                                                vicious.force({ fshwidget })
+                                                show_info(7)
+                                              end),
     awful.key({ altkey,           }, "w",     function () yawn.show_weather(5) end),
 
     -- Volume control
@@ -777,11 +780,11 @@ globalkeys = awful.util.table.join(
                                               end ),
 
     -- Copy to clipboard
-    awful.key({ modkey,        }, "c",      function () os.execute("xsel -p -o | xsel -i -b") end),
+    awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
 
     -- User programs
-    awful.key({ modkey,        }, "q",      function () awful.util.spawn( "dwb", false ) end),
-    awful.key({ modkey,        }, "s",      function () awful.util.spawn(gui_editor) end),
+    awful.key({ modkey }, "q", function () awful.util.spawn( "dwb", false ) end),
+    awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
