@@ -19,7 +19,6 @@ local vicious         = require("vicious")
 local scratch         = require("scratch")
 local yawn            = require("yawn")
 
-
 -- Run once function
 
 function run_once(cmd)
@@ -128,7 +127,7 @@ myaccessories = {
    { "text editor", gui_editor },
 }
 myinternet = {
-    { "torrent" , "rtorrent" },
+    { "torrent" , "transmission-gtk" },
     { "torrent search" , "torrent-search" }
 }
 myoffice = {
@@ -308,7 +307,7 @@ vicious.register(mygmail, vicious.widgets.gmail,
   gmail_t:add_to_object(mygmail)
   notify_title = ""
   notify_text = ""
-  mailcount = args["{count}"] 
+  mailcount = args["{count}"]
   if (args["{count}"] > 0 ) then
     if (notify_shown == false) then
       -- Italian localization
@@ -378,7 +377,7 @@ function(widget, args)
     end
 	 elseif args["{state}"] == "Pause" then
     if yawn.icon == yawn.sky_na then return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
-    elseif mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsun 5'> </span>" .. coldef
+    elseif mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 5'> </span>" .. coldef
     else return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     end
 	else
@@ -886,9 +885,6 @@ awful.rules.rules = {
 
     { rule = { class = "Dwb" },
           properties = { tag = tags[1][1] } },
-
-    { rule = { class = "Gvim" },
-          properties = { tag = tags[1][2] } },
 
 	  { rule = { class = "Zathura" },
      	  properties = { tag = tags[1][3] } },
