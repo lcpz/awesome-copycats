@@ -45,13 +45,15 @@ Gallery
 
 Notes
 --------
-**Do not** use without reading and modifying according to your needs and system specs.
+**Do not** use without reading and modifying according to your preferences and system specs.
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn).
 
 Blackburn uses Icons_ and Yawn_.
 
 Steamburn and Blackburn have X colorschemes too. Check here_.
+
+Quake style dropdown terminal is in *every* configuration. Toggle shortcut: **Mod4 + z**.  
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
