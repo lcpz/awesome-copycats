@@ -889,13 +889,6 @@ awful.rules.rules = {
     { rule = { class = "Dwb" },
           properties = { tag = tags[1][1] } },
 
-	  { rule = { class = "Zathura" },
-     	  properties = { tag = tags[1][3] } },
-
-    { rule = { class = "Dia" },
-          properties = { tag = tags[1][4],
-                         floating = true } },
-
 	  { rule = { class = "Gimp" },
      	  properties = { tag = tags[1][4] } },
 
