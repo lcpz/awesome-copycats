@@ -739,15 +739,15 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey,           }, "w",     function () yawn.show_weather(5) end),
 
     -- Volume control
-    awful.key({ "Control" }, "Up", function ()
+    awful.key({ modkey }, "Up", function ()
                                        awful.util.spawn("amixer set Master playback 1%+", false )
                                        vicious.force({ volumewidget })
                                    end),
-    awful.key({ "Control" }, "Down", function ()
+    awful.key({ modkey }, "Down", function ()
                                        awful.util.spawn("amixer set Master playback 1%-", false )
                                        vicious.force({ volumewidget })
                                      end),
-    awful.key({ "Control" }, "m", function ()
+    awful.key({ modkey }, "m", function ()
                                        awful.util.spawn("amixer set Master playback mute", false )
                                        vicious.force({ volumewidget })
                                      end),
@@ -755,7 +755,7 @@ globalkeys = awful.util.table.join(
                                       awful.util.spawn("amixer set Master playback unmute", false )
                                       vicious.force({ volumewidget })
                                   end),
-    awful.key({ altkey, "Control" }, "m",
+    awful.key({ altkey, modkey }, "m",
                                   function ()
                                       awful.util.spawn("amixer set Master playback 100%", false )
                                       vicious.force({ volumewidget })
