@@ -748,14 +748,10 @@ globalkeys = awful.util.table.join(
                                        vicious.force({ volumewidget })
                                      end),
     awful.key({ "Control" }, "m", function ()
-                                       awful.util.spawn("amixer set Master playback mute", false )
+                                       awful.util.spawn("amixer set Master playback toggle", false )
                                        vicious.force({ volumewidget })
                                      end),
-    awful.key({ "Control" }, "u", function ()
-                                      awful.util.spawn("amixer set Master playback unmute", false )
-                                      vicious.force({ volumewidget })
-                                  end),
-    awful.key({ altkey, "Control" }, "m",
+    awful.key({ modkey, "Control" }, "m",
                                   function ()
                                       awful.util.spawn("amixer set Master playback 100%", false )
                                       vicious.force({ volumewidget })
