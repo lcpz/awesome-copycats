@@ -53,8 +53,6 @@ Blackburn uses Icons_ and Yawn_.
 
 Steamburn and Blackburn have X colorschemes too. Check here_.
 
-Quake style dropdown terminal is in *every* configuration. Toggle shortcut: **Mod4 + z**.  
-
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
