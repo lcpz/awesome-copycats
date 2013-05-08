@@ -372,12 +372,12 @@ function(widget, args)
         }).id
     end
    if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
-    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 5'> </span>" .. coldef
+    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 6'> </span>" .. coldef
     else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " "  .. coldef
     end
 	 elseif args["{state}"] == "Pause" then
     if yawn.icon == yawn.sky_na then return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
-    elseif mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 5'> </span>" .. coldef
+    elseif mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 6'> </span>" .. coldef
     else return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     end
 	else
@@ -673,12 +673,12 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "p", function() awful.util.spawn("screenshot",false) end),
 
     -- Move clients
-    awful.key({ altkey }, "Next",  function () awful.client.moveresize( 1,  1, -2, -2) end),
-    awful.key({ altkey }, "Prior", function () awful.client.moveresize(-1, -1,  2,  2) end),
-    awful.key({ altkey }, "Down",  function () awful.client.moveresize(  0,  1,   0,   0) end),
-    awful.key({ altkey }, "Up",    function () awful.client.moveresize(  0, -1,   0,   0) end),
-    awful.key({ altkey }, "Left",  function () awful.client.moveresize(-1,   0,   0,   0) end),
-    awful.key({ altkey }, "Right", function () awful.client.moveresize( 1,   0,   0,   0) end),
+    --awful.key({ altkey }, "Next",  function () awful.client.moveresize( 1,  1, -2, -2) end),
+    --awful.key({ altkey }, "Prior", function () awful.client.moveresize(-1, -1,  2,  2) end),
+    --awful.key({ altkey }, "Down",  function () awful.client.moveresize(  0,  1,   0,   0) end),
+    --awful.key({ altkey }, "Up",    function () awful.client.moveresize(  0, -1,   0,   0) end),
+    --awful.key({ altkey }, "Left",  function () awful.client.moveresize(-1,   0,   0,   0) end),
+    --awful.key({ altkey }, "Right", function () awful.client.moveresize( 1,   0,   0,   0) end),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
