@@ -341,8 +341,8 @@ vicious.register(mygmail, vicious.widgets.gmail,
       })
       notify_shown = true
     end
-    if yawn.icon == yawn.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. coldef
-    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. coldef .. " "
+    if yawn.icon == yawn.sky_na then return gray .. " Mail " .. coldef .. white .. args["{count}"]  .. " " .. coldef
+    else return gray .. " Mail " .. coldef .. white .. args["{count}"] .. coldef .. " <span font='Tamsyn 5'> </span><span font='Tamsyn 3'> </span>"
     end
   else
     notify_shown = false
@@ -371,13 +371,12 @@ function(widget, args)
             replaces_id = old_id
         }).id
     end
-   if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef
-    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 6'> </span>" .. coldef
-    else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " "  .. coldef
+   if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " " .. coldef
+    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 8'> </span> " .. coldef
+    else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef .. "<span font='Tamsyn 8'> <span font='Tamsyn 2'> </span></span>" 
     end
 	 elseif args["{state}"] == "Pause" then
-    if yawn.icon == yawn.sky_na then return gray .. "mpd " .. coldef .. white .. "in pausa" .. coldef
-    elseif mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 6'> </span>" .. coldef
+    if mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 6'> </span> " .. coldef
     else return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     end
 	else
@@ -635,7 +634,6 @@ for s = 1, screen.count() do
     right_layout:add(first)
     right_layout:add(mpdwidget)
     right_layout:add(mygmail)
-    right_layout:add(spr)
     right_layout:add(yawn.icon)
     right_layout:add(yawn.widget)
     right_layout:add(fshwidget)
