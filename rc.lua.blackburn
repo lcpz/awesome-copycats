@@ -156,13 +156,6 @@ coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
 gray = "<span color='#9e9c9a'>"
 
--- Vicious caching
-vicious.cache(vicious.widgets.gmail)
-vicious.cache(vicious.widgets.mpd)
-vicious.cache(vicious.widgets.fs)
-vicious.cache(vicious.widgets.bat)
-vicious.cache(vicious.widgets.volume)
-
 -- Textclock widget
 mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
 
@@ -372,7 +365,7 @@ function(widget, args)
         }).id
     end
    if yawn.icon == yawn.sky_na then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " " .. coldef
-    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 8'> </span> " .. coldef
+    elseif mailcount == 0 then return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. "<span font='Tamsyn 10'>  <span font ='Tamsyn 2'> </span></span>" .. coldef
     else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef .. "<span font='Tamsyn 8'> <span font='Tamsyn 2'> </span></span>" 
     end
 	 elseif args["{state}"] == "Pause" then
@@ -739,19 +732,19 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey,           }, "w",     function () yawn.show_weather(5) end),
 
     -- Volume control
-    awful.key({ "Control" }, "Up", function ()
+    awful.key({ altkey }, "Up", function ()
                                        awful.util.spawn("amixer set Master playback 1%+", false )
                                        vicious.force({ volumewidget })
                                    end),
-    awful.key({ "Control" }, "Down", function ()
+    awful.key({ altkey }, "Down", function ()
                                        awful.util.spawn("amixer set Master playback 1%-", false )
                                        vicious.force({ volumewidget })
                                      end),
-    awful.key({ "Control" }, "m", function ()
+    awful.key({ altkey }, "m", function ()
                                        awful.util.spawn("amixer set Master playback toggle", false )
                                        vicious.force({ volumewidget })
                                      end),
-    awful.key({ modkey, "Control" }, "m",
+    awful.key({ altkey, "Control" }, "m",
                                   function ()
                                       awful.util.spawn("amixer set Master playback 100%", false )
                                       vicious.force({ volumewidget })
