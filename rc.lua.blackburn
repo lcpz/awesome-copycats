@@ -449,6 +449,7 @@ fshwidget:connect_signal('mouse::enter', function () show_info(0) end)
 fshwidget:connect_signal('mouse::leave', function () remove_info() end)
 
 -- Battery widget
+--[[
 batwidget = wibox.widget.textbox()
 function batstate()
 
@@ -499,6 +500,7 @@ function (widget, args)
   end
   return gray .. "Bat " .. coldef .. white .. args[2] .. " " .. coldef
 end, 1, 'BAT0')
+]]
 
 -- Volume widget
 volumewidget = wibox.widget.textbox()
@@ -637,7 +639,7 @@ for s = 1, screen.count() do
     right_layout:add(yawn.icon)
     right_layout:add(yawn.widget)
     right_layout:add(fshwidget)
-    right_layout:add(batwidget)
+    --right_layout:add(batwidget)
     --right_layout:add(netwidget)
     right_layout:add(spr)
     right_layout:add(volumewidget)
@@ -875,7 +877,7 @@ awful.rules.rules = {
     },
 
     { rule = { class = "URxvt" },
-      properties = { opacity = 0.95 } },
+      properties = { opacity = 0.95 } }, 
 
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
