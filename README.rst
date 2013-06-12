@@ -49,7 +49,7 @@ Notes
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn).
 
-Blackburn uses Icons_ and Yawn_: **if you're running Ubuntu**, be sure to have Bitmaps_ enabled.
+Blackburn uses Icons_ and Yawn_: **if you're running Ubuntu**, be sure to have <a href="https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts">bitmapped fonts</a> enabled.
 
 Steamburn and Blackburn have X colorschemes too. Check here_.
 
