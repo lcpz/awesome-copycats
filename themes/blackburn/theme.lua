@@ -9,7 +9,7 @@
 theme = {}
 
 themes_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/blackburn"
-themes_bg_normal                            = "png:" .. themes_dir .. "/taskbar/bg_normal.png"
+themes_bg_normal                            = "png:" .. themes_dir .. "/taskbar/bg_normal2.png"
 themes_bg_focus                             = "png:" .. themes_dir .. "/taskbar/bg_focus.png"
 
 theme.wallpaper                             = themes_dir .. "/wall.png"
