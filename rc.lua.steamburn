@@ -180,8 +180,6 @@ white  = "<span color='#cdcdcd'>"
 gray = "<span color='#94928f'>"
 
 -- Textclock widget
-clockicon = wibox.widget.imagebox()
-clockicon:set_image(beautiful.widget_clock)
 mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
 
 -- Calendar attached to the textclock
@@ -361,28 +359,18 @@ function(widget, args)
 end, 1)
 
 -- MEM widget
-memicon = wibox.widget.imagebox()
-memicon:set_image(beautiful.widget_mem)
 memwidget = wibox.widget.textbox()
 vicious.register(memwidget, vicious.widgets.mem, gray .. "Mem " .. coldef .. white .. "$2 " .. coldef, 13) -- in Megabytes
 
 -- CPU widget
-cpuicon = wibox.widget.imagebox()
-cpuicon:set_image(beautiful.widget_cpu)
 cpuwidget = wibox.widget.textbox()
 vicious.register(cpuwidget, vicious.widgets.cpu, gray .. "Cpu " .. coldef .. white .. "$1 " .. coldef, 3)
-cpuicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(tasks, false) end)))
 
 -- Temp widget
-tempicon = wibox.widget.imagebox()
-tempicon:set_image(beautiful.widget_temp)
-tempicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(terminal .. " -e sudo powertop ", false) end)))
 tempwidget = wibox.widget.textbox()
 vicious.register(tempwidget, vicious.widgets.thermal, gray .. "Temp " .. coldef .. white .. "$1 " .. coldef, 9, {"coretemp.0", "core"} )
 
 -- /home fs widget
-fshicon = wibox.widget.imagebox()
-fshicon:set_image(beautiful.widget_hdd)
 fshwidget = wibox.widget.textbox()
 vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
@@ -428,9 +416,6 @@ fshwidget:connect_signal('mouse::enter', function () add_info() end)
 fshwidget:connect_signal('mouse::leave', function () remove_info() end)
 
 -- Battery widget
-baticon = wibox.widget.imagebox()
-baticon:set_image(beautiful.widget_battery)
-
 function batstate()
 
   local file = io.open("/sys/class/power_supply/BAT0/status", "r")
@@ -454,11 +439,9 @@ vicious.register(batwidget, vicious.widgets.bat,
 function (widget, args)
   -- plugged
   if (batstate() == 'Cable plugged') then
-    baticon:set_image(beautiful.widget_ac)
     return ''
     -- critical
   elseif (args[2] <= 5 and batstate() == 'Discharging') then
-    baticon:set_image(beautiful.widget_battery_empty)
     naughty.notify({
       text = "sto per spegnermi...",
       title = "Carica quasi esaurita!",
@@ -471,7 +454,6 @@ function (widget, args)
     })
     -- low
   elseif (args[2] <= 10 and batstate() == 'Discharging') then
-    baticon:set_image(beautiful.widget_battery_low)
     naughty.notify({
       text = "attacca il cavo!",
       title = "Carica bassa",
@@ -482,14 +464,11 @@ function (widget, args)
       screen = 1,
       ontop = true,
     })
-   else baticon:set_image(beautiful.widget_battery)
   end
   return gray .. "Bat " .. coldef .. white .. args[2] .. " " .. coldef
 end, 1, 'BAT0')
 
 -- Volume widget
-volicon = wibox.widget.imagebox()
-volicon:set_image(beautiful.widget_vol)
 volumewidget = wibox.widget.textbox()
 vicious.register(volumewidget, vicious.widgets.volume,
 function (widget, args)
@@ -503,8 +482,6 @@ end, 1, "Master")
 -- Net widget
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net, gray .. "Net " .. coldef .. white .. "${wlan0 down_kb} " .. "<span font=\"Terminus 8\">↓↑ </span>" .. "${wlan0 up_kb} " .. coldef, 3)
-neticon = wibox.widget.imagebox()
-neticon:set_image(beautiful.widget_net)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
