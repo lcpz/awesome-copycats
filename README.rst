@@ -45,7 +45,7 @@ Gallery
 
 **Dremora** a Blackburn variation
 
-.. image:: http://postimg.org/image/b3xzywwyr/full/ 
+.. image:: http://s21.postimg.org/nvc65f6qt/20130706171441.png
 
 Notes
 --------
