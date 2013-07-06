@@ -43,17 +43,21 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/553.png 
 
+**Dremora** a Blackburn variation
+
+.. image:: http://postimg.org/image/b3xzywwyr/full/ 
+
 Notes
 --------
 **Do not** use without reading and modifying according to your preferences and system specs.
 
-Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn).
+Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn, Dremora).
 
-Blackburn uses Icons_ and Yawn_: **if you're running Ubuntu**, be sure to have bitmaps_ enabled.
+Blackburn and Dremora use Icons_ and Yawn_: **if you're running Ubuntu**, be sure to have bitmaps_ enabled.
 
-Steamburn and Blackburn have X colorschemes too. Check here_.
+Steamburn, Blackburn and Dremora have X colorschemes too. Check here_.
 
-**Have any suggestions?** did you see some great stuff and you want me to port it into Awesome? Feel free to email me, it might just be the next copycat!
+**Have any suggestions?** Did you see some great stuff and you want me to port it into Awesome? Feel free to email me, it might just be the next copycat!
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
