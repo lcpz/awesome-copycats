@@ -62,7 +62,6 @@ Steamburn, Blackburn and Dremora have X colorschemes too. Check here_.
 License
 --------
 .. |license| image:: http://i.creativecommons.org/l/by-nc-sa/3.0/88x31.png
-             :align: center
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
