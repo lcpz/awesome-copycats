@@ -516,7 +516,7 @@ function (widget, args)
          position = "top_left",
          icon = beautiful.widget_no_net_notify,
          fg = "#ff5e5e",
-         bg = "#060606" })
+         bg = "#121212" })
          no_net_shown = false
        end
        return gray .. " Net " .. coldef .. "<span color='#e54c62'>Off " .. coldef
