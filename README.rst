@@ -59,6 +59,10 @@ Steamburn, Blackburn and Dremora have X colorschemes too. Check here_.
 
 **Have any suggestions?** Did you see some great stuff and you want me to port it into Awesome? Feel free to email me, it might just be the next copycat!
 
+Author
+--------
+Luke Bonham <dadasignificanulla [at] gmail [dot] com>
+
 License
 --------
 BY-NC-SA_
