@@ -59,8 +59,9 @@ Steamburn, Blackburn and Dremora have X colorschemes too. Check here_.
 
 **Have any suggestions?** Did you see some great stuff and you want me to port it into Awesome? Feel free to email me, it might just be the next copycat!
 
-
-*This work is licensed under CC BY-NC-SA_*
+License
+--------
+BY-NC-SA_
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
