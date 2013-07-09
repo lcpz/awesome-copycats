@@ -225,7 +225,7 @@ local function create_calendar()
       if cal_month == now.month and cal_year == now.year and day == now.day then
          this_month = true
          result = result ..
-            string.format('<span weight="bold" foreground = "%s">%s</span>',
+            string.format('<span underline="single" weight="bold" foreground = "%s">%s</span>',
                           today_color, day_str)
       else
          result = result .. day_str
