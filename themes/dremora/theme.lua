@@ -1,9 +1,9 @@
---[[                                   ]]--
---                                       -
---    Dremora Awesome WM 3.5.+ theme     --
---       github.com/copycat-killer       --
---                                       -
---[[                                   ]]--
+--[[                                  ]]--
+--                                      -
+--    Dremora Awesome WM 3.5.+ theme    --
+--      github.com/copycat-killer       --
+--                                      -
+--[[                                  ]]--
 
 
 theme = {}

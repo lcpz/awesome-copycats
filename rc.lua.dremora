@@ -83,6 +83,7 @@ editor = os.getenv("EDITOR")
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "gvim"
 browser = "dwb"
+graphics = "gimp"
 mail = terminal .. " -e mutt "
 wifi = terminal .. " -e sudo wifi-menu "
 musicplr = terminal .. " -g 130x34-320+16 -e ncmpcpp "
@@ -151,6 +152,9 @@ mylauncher = awful.widget.launcher({ menu = mymainmenu })
 
 -- Wibox
 
+-- awful.util
+local util = awful.util
+
 -- Colours
 coldef  = "</span>"
 white  = "<span color='#d7d7d7'>"
@@ -160,136 +164,54 @@ gray = "<span color='#9e9c9a'>"
 mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
 
 -- attached calendar
-local os = os
-local string = string
-local table = table
-local util = awful.util
-
-char_width = nil
-text_color = "#D0D0D0"
-today_color = red_c
-calendar_width = 21
-
 local calendar = nil
 local offset = 0
-
-local data = nil
-
-local function pop_spaces(s1, s2, maxsize)
-   local sps = ""
-   for i = 1, maxsize - string.len(s1) - string.len(s2) do
-      sps = sps .. " "
-   end
-   return s1 .. sps .. s2
-end
-
-local function create_calendar()
-   offset = offset or 0
-
-   local now = os.date("*t")
-   local cal_month = now.month + offset
-   local cal_year = now.year
-   if cal_month > 12 then
-      cal_month = (cal_month % 12)
-      cal_year = cal_year + 1
-   elseif cal_month < 1 then
-      cal_month = (cal_month + 12)
-      cal_year = cal_year - 1
-   end
-
-   local last_day = os.date("%d", os.time({ day = 1, year = cal_year,
-                                            month = cal_month + 1}) - 86400)
-
-   local first_day = os.time({ day = 1, month = cal_month, year = cal_year})
-   local first_day_in_week = os.date("%w", first_day)
-
-   local result = "do lu ma me gi ve sa\n" -- days of the week
-
-   -- Italian localization
-   -- can be a stub for your own localization
-   if language:find("it_IT") == nil
-   then
-       result = "su mo tu we th fr sa\n"
-   else
-       result = "do lu ma me gi ve sa\n"
-   end
-
-   for i = 1, first_day_in_week do
-      result = result .. "   "
-   end
-
-   local this_month = false
-   for day = 1, last_day do
-      local last_in_week = (day + first_day_in_week) % 7 == 0
-      local day_str = pop_spaces("", day, 2) .. (last_in_week and "" or " ")
-      if cal_month == now.month and cal_year == now.year and day == now.day then
-         this_month = true
-         result = result ..
-            string.format('<span underline="single" weight="bold" foreground = "%s">%s</span>',
-                          today_color, day_str)
-      else
-         result = result .. day_str
-      end
-      if last_in_week and day ~= last_day then
-         result = result .. "\n"
-      end
-   end
-
-   local header
-   if this_month then
-      header = os.date("%a, %d %b %Y")
-   else
-      header = os.date("%B %Y", first_day)
-   end
-   return header, string.format('<span font="%s" foreground="%s">%s</span>',
-                                theme.font, text_color, result)
-end
-
-local function calculate_char_width()
-   return beautiful.get_font_height(theme.font) * 0.555
-end
 
 function remove_calendar()
    if calendar ~= nil then
       naughty.destroy(calendar)
       calendar = nil
-      offset = 0
    end
 end
 
-function add_calendar(inc_offset)
-   inc_offset = inc_offset or 0
-
-   local save_offset = offset
+function show_calendar(inc_offset, t_out)
    remove_calendar()
-   offset = save_offset + inc_offset
+   local c_text
 
-   local char_width = char_width or calculate_char_width()
-   local header, cal_text = create_calendar()
-   calendar = naughty.notify({ title = header,
-                               text = cal_text,
-                               timeout = 0, hover_timeout = 0.5,
+   if inc_offset == 0 or offset ~= 0 then
+       local f = io.popen('/usr/bin/cal | sed -r -e "s/(^| )(`date +\\"%d\\"`)($| )/\\1<b><span foreground=\\"#121212\\" background=\\"#D7D7D7\\">\\2<\\/span><\\/b>\\3/"',"r")
+       c_text = "<tt><span weight='bold' font='Tamsyn 12'>" .. f:read() .. "</span>\n\n<span font='Tamsyn 12'>" .. f:read() .. "\n" .. f:read("*all") .. "</span></tt>"
+       f:close()
+       offset = 0
+   else
+       local month = os.date('%m')
+       local year = os.date('%Y')
+       offset = offset + inc_offset 
+       if month == '12' and inc_offset == 1 then
+           month = 1
+           year = year + 1
+       elseif month == '1' and inc_offset == -1 then
+           month = 12
+           year = year - 1
+       else month = month + offset
+       end
+                        
+       f = io.popen('/usr/bin/cal ' .. month .. ' ' .. year ,"r")
+       c_text = "<tt><span weight='bold' font='Tamsyn 12'>" .. f:read() .. "</span>\n\n<span font='Tamsyn 12'>" .. f:read() .. "\n" .. f:read("*all") .. "</span></tt>"
+       f:close()
+   end
+
+   calendar = naughty.notify({ text = c_text,
                                fg = "#D0D0D0",
-                               bg = "#121212"
+                               bg = "#121212",
+                               timeout = t_out 
                             })
 end
 
-function show_calendar(t_out)
-   remove_calendar()
-   local char_width = char_width or calculate_char_width()
-   local header, cal_text = create_calendar()
-   calendar = naughty.notify({ title = header,
-                               text = cal_text,
-                               timeout = t_out,
-                               fg = "#D0D0D0",
-                               bg = "#121212"
-                            })
-end
-
-mytextclock:connect_signal("mouse::enter", function() add_calendar(0) end)
-mytextclock:connect_signal("mouse::leave", remove_calendar)
-mytextclock:buttons(util.table.join( awful.button({ }, 1, function() add_calendar(-1) end),
-                                     awful.button({ }, 3, function() add_calendar(1) end)))
+mytextclock:connect_signal("mouse::enter", function() show_calendar(0, 0) end)
+mytextclock:connect_signal("mouse::leave", function() remove_calendar() end)
+mytextclock:buttons(util.table.join( awful.button({ }, 1, function() show_calendar(-1, 0) end),
+                                     awful.button({ }, 3, function() show_calendar(1, 0) end)))
 
 -- GMail widget
 mygmail = wibox.widget.textbox()
@@ -717,7 +639,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",     function () show_calendar(7) end),
+    awful.key({ altkey,           }, "c",     function () show_calendar(0, 7) end),
     awful.key({ altkey,           }, "h",     function ()
                                                 vicious.force({ fshwidget })
                                                 show_info(7)
@@ -765,8 +687,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
 
     -- User programs
-    awful.key({ modkey }, "q", function () awful.util.spawn( "dwb", false ) end),
+    awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
     awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
+    awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
 
     -- Prompt
     awful.key({ modkey }, "r", function () mypromptbox[mouse.screen]:run() end),
