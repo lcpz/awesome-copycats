@@ -164,6 +164,7 @@ gray = "<span color='#9e9c9a'>"
 mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
 
 -- attached calendar
+local tonumber = tonumber
 local calendar = nil
 local offset = 0
 
@@ -178,24 +179,26 @@ function show_calendar(inc_offset, t_out)
    remove_calendar()
    local c_text
 
-   if inc_offset == 0 or offset ~= 0 then
+   if inc_offset == 0 then
        local f = io.popen('/usr/bin/cal | sed -r -e "s/(^| )(`date +\\"%d\\"`)($| )/\\1<b><span foreground=\\"#121212\\" background=\\"#D7D7D7\\">\\2<\\/span><\\/b>\\3/"',"r")
        c_text = "<tt><span weight='bold' font='Tamsyn 12'>" .. f:read() .. "</span>\n\n<span font='Tamsyn 12'>" .. f:read() .. "\n" .. f:read("*all") .. "</span></tt>"
        f:close()
        offset = 0
    else
-       local month = os.date('%m')
-       local year = os.date('%Y')
+       local month = tonumber(os.date('%m'))
+       local year = tonumber(os.date('%Y'))
+
        offset = offset + inc_offset 
-       if month == '12' and inc_offset == 1 then
-           month = 1
-           year = year + 1
-       elseif month == '1' and inc_offset == -1 then
+       month = month + offset
+
+       if month > 12 then
            month = 12
-           year = year - 1
-       else month = month + offset
+           offset = 12 - tonumber(os.date('%m')) 
+       elseif month < 1 then
+           month = 1
+           offset = 1 - tonumber(os.date('%m'))
        end
-                        
+                       
        f = io.popen('/usr/bin/cal ' .. month .. ' ' .. year ,"r")
        c_text = "<tt><span weight='bold' font='Tamsyn 12'>" .. f:read() .. "</span>\n\n<span font='Tamsyn 12'>" .. f:read() .. "\n" .. f:read("*all") .. "</span></tt>"
        f:close()
