@@ -57,7 +57,7 @@ Blackburn and Dremora use Icons_ and Yawn_: **if you're running Ubuntu**, be sur
 
 Steamburn, Blackburn and Dremora have X colorschemes too. Check here_.
 
-**Have any suggestions?** Did you see some great stuff and you want me to port it into Awesome? Feel free to email me, it might just be the next copycat!
+**Have any suggestions?** Did you see some great stuff and you want me to put my claws on it? Feel free to email me, it might just be the next copycat!
 
 Author
 --------
