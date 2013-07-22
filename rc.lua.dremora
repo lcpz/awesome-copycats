@@ -113,7 +113,7 @@ end
 
 tags = {
        names = { "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" },
-       layout = { layouts[1], layouts[3], layouts[2], layouts[1], layouts[5] }
+       layout = { layouts[1], layouts[2], layouts[3], layouts[4], layouts[5] }
        }
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
@@ -157,8 +157,8 @@ local util = awful.util
 
 -- Colours
 coldef  = "</span>"
-white  = "<span color='#d7d7d7'>"
-gray = "<span color='#9e9c9a'>"
+white  = "<span color='#dddcff'>"
+gray = "<span color='#747474'>"
 
 -- Textclock widget
 mytextclock = awful.widget.textclock(white .. "%H:%M"  .. coldef)
@@ -385,7 +385,7 @@ end
 vicious.register(batwidget, vicious.widgets.bat,
 function (widget, args)
   -- plugged
-  if (batstate() == 'Cable plugged') then
+  if (batstate() == 'Cable plugged' or batstate() == 'Unknown') then
     return ''
     -- critical
   elseif (args[2] <= 5 and batstate() == 'Discharging') then
@@ -827,7 +827,7 @@ client.connect_signal("manage", function (c, startup)
     if not startup then
         -- Set the windows at the slave,
         -- i.e. put it at the end of others instead of setting it master.
-        -- awful.client.setslave(c)
+        awful.client.setslave(c)
 
         -- Put windows in a smart way, only if they does not set an initial position.
         if not c.size_hints.user_position and not c.size_hints.program_position then
@@ -836,7 +836,7 @@ client.connect_signal("manage", function (c, startup)
         end
     end
 
-    local titlebars_enabled = false
+    local titlebars_enabled = true
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
         -- buttons for the titlebar
         local buttons = awful.util.table.join(
@@ -854,7 +854,7 @@ client.connect_signal("manage", function (c, startup)
 
         -- Widgets that are aligned to the left
         local left_layout = wibox.layout.fixed.horizontal()
-        left_layout:add(awful.titlebar.widget.iconwidget(c))
+        --left_layout:add(awful.titlebar.widget.iconwidget(c))
         left_layout:buttons(buttons)
 
         -- Widgets that are aligned to the right
@@ -878,7 +878,7 @@ client.connect_signal("manage", function (c, startup)
         layout:set_right(right_layout)
         layout:set_middle(middle_layout)
 
-        awful.titlebar(c):set_widget(layout)
+        awful.titlebar(c,{size=18}):set_widget(layout)
     end
 end)
 

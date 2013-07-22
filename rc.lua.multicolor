@@ -449,7 +449,7 @@ batwidget = wibox.widget.textbox()
 vicious.register(batwidget, vicious.widgets.bat,
      function (widget, args)
           -- plugged
-          if (batstate() == 'Cable plugged') then return "AC "
+          if (batstate() == 'Cable plugged' or batstate() == 'Unknown') then return "AC "
           -- critical
           elseif (args[2] <= 5 and batstate() == 'Discharging') then
                naughty.notify({

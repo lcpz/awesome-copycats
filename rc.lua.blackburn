@@ -463,7 +463,7 @@ end
 vicious.register(batwidget, vicious.widgets.bat,
 function (widget, args)
   -- plugged
-  if (batstate() == 'Cable plugged') then
+  if (batstate() == 'Cable plugged' or batstate() == 'Unknown') then
     return ''
     -- critical
   elseif (args[2] <= 5 and batstate() == 'Discharging') then

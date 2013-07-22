@@ -67,6 +67,10 @@ License
 --------
 BY-NC-SA_
 
+I liked! You liked? Then link your buddies here so they can like too!
+
+Let us spread some style, in order to make Awesome appearance awesome too.
+
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
