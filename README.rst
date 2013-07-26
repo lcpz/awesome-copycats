@@ -58,7 +58,7 @@ Notes
 --------
 **Do not** use without reading and modifying according to your preferences and system specs.
 
-Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn, Dremora).
+Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
 
 Blackburn and Dremora use Icons_ and Yawn_: **if you're running Debian/Ubuntu**, be sure to have bitmaps enabled (1_ 2_).
 
