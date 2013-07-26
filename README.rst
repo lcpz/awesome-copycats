@@ -13,39 +13,46 @@ Notable features:
 - Fast mpd and volume shortcuts (first time you see this trick in Awesome)
 - Other fancy shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving clients
 - Quake style dropdown terminal
-- Calendar with current day highlighted and previous/next month switch with just a click 
-- Elegant notifications for new mails, current song, hdd critical state, low battery
+- Calendar with current day highlighted and previous/next month switch with a click 
+- Elegant notifications for new mails, current song, volume level, hdd critical state, low battery
 - Yahoo Weather integration 
-- A net carrier status notifier 
-- Full localization potential (just easily edit about 5 lines - look for 'stub' keywords)
+- Net carrier status notifier 
+- Full localization potential (just easily edit a few lines - look for 'stub' keywords)
 - Colorful autoupdating icons
 - Symbolic tag names
+- TXT layouts
 - PNG taskbar
+- No borders when there's only one visible client
+- Powerful volume bar
 
-They're scattered all over the set, but you can get them all *only* in Blackburn.
+They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
 
 Gallery
 --------
 
-**Multicolor** copycatted from tip_
+**Multicolor** copycatted from tip_ because I liked so much I wanted to do a version of mine
 
 .. image:: http://i.imgur.com/vBMn8C8.jpg
 
-**Powerarrow Darker** copycatted from romockee_
+**Powerarrow Darker** copycatted from romockee_ because his one was stuck at v3.4
 
 .. image:: http://i.imgur.com/inRoOrg.png
 
-**Steamburn** copycatted from ok100_
+**Steamburn** copycatted from ok100_ because it was so cool, but it was dwm
 
 .. image:: http://i.imgur.com/esHcVzj.jpg
 
-**Blackburn** the wannabe definitive configuration, born from the best of previous ones
+**Blackburn** 
 
 .. image:: http://dotshare.it/public/images/uploads/553.png 
 
-**Dremora** a Blackburn variation
+**Dremora** 
 
 .. image:: http://dotshare.it/public/images/uploads/589.png
+
+**Rainbow** 
+
+.. image:: http://i.imgur.com/Ae7hAsK.png
 
 Notes
 --------
@@ -53,9 +60,9 @@ Notes
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (Steamburn, Blackburn, Dremora).
 
-Blackburn and Dremora use Icons_ and Yawn_: **if you're running Ubuntu**, be sure to have bitmaps_ enabled.
+Blackburn and Dremora use Icons_ and Yawn_: **if you're running Debian/Ubuntu**, be sure to have bitmaps enabled (1_ 2_).
 
-Steamburn, Blackburn and Dremora have X colorschemes too. Check here_.
+Except Multicolor and Powerarrow Darker, every theme has an X colorscheme. Check here_.
 
 **Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
 
@@ -65,18 +72,18 @@ Luke Bonham <dadasignificanulla [at] gmail [dot] com>
 
 License
 --------
-BY-NC-SA_
+If you like this work, you are free to use it as defined in BY-NC-SA_. 
 
-I liked! You liked? Then link your buddies here so they can like too!
+I only ask you to not remove my signatures, or to add a link to this repository if you make your own versions.  
 
-Let us spread some style, in order to make Awesome appearance awesome too.
+Let us spread some style, in order to make Awesome appearance awesome too!
 
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Yawn: https://github.com/copycat-killer/yawn
-.. _bitmaps: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
+.. _1: http://weiwu.sdf.org/100921.html
+.. _2: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
 .. _here: https://github.com/copycat-killer/dots/tree/master/.colors
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
-
