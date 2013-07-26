@@ -30,15 +30,15 @@ They're scattered all over the set, so try each theme and choose the one you enj
 Gallery
 --------
 
-**Multicolor** copycatted from tip_ because I liked so much I wanted to do a version of mine
+**Multicolor**  copycatted from tip_ because I liked so much I wanted to do a version of mine
 
 .. image:: http://i.imgur.com/vBMn8C8.jpg
 
-**Powerarrow Darker** copycatted from romockee_ because his one was stuck at v3.4
+**Powerarrow Darker**  copycatted from romockee_ because his one was stuck at v3.4
 
 .. image:: http://i.imgur.com/inRoOrg.png
 
-**Steamburn** copycatted from ok100_ because it was so cool, but it was dwm
+**Steamburn**  copycatted from ok100_ because it was so cool, but it was dwm
 
 .. image:: http://i.imgur.com/esHcVzj.jpg
 
