@@ -60,9 +60,9 @@ Notes
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
 
-Blackburn and Dremora use Icons_ and Yawn_: **if you're running Debian/Ubuntu**, be sure to have bitmaps enabled (1_ 2_).
+Blackburn and Dremora use Icons_: **if you're running Debian/Ubuntu**, be sure to have bitmaps enabled (1_ 2_).
 
-Except Multicolor and Powerarrow Darker, every theme has an X colorscheme. Check here_.
+Except Multicolor and Powerarrow Darker, every theme has a colorscheme_ and uses Yawn_.
 
 **Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
 
@@ -85,5 +85,5 @@ Let us spread some style, in order to make Awesome appearance awesome too!
 .. _Yawn: https://github.com/copycat-killer/yawn
 .. _1: http://weiwu.sdf.org/100921.html
 .. _2: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
-.. _here: https://github.com/copycat-killer/dots/tree/master/.colors
+.. _colorscheme: https://github.com/copycat-killer/dots/tree/master/.colors
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
