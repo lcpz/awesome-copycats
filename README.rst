@@ -1,7 +1,7 @@
 ===== 
 Awesome WM Copycats
 ===== 
-A collection of heavy modded themes for Awesome WM 3.5+ 
+A collection of power themes for Awesome WM 3.5+ 
 ---------
 
 Beware! They're more awesome than they appear, it's just they're shy.
