@@ -42,6 +42,7 @@ theme.taglist_squares_sel                   = themes_dir .. "/icons/square_sel.p
 theme.taglist_squares_unsel                 = themes_dir .. "/icons/square_unsel.png"
 
 theme.layout_tile                           = themes_dir .. "/icons/tile.png"
+theme.layout_tilegaps                       = themes_dir .. "/icons/tilegaps.png"
 theme.layout_tileleft                       = themes_dir .. "/icons/tileleft.png"
 theme.layout_tilebottom                     = themes_dir .. "/icons/tilebottom.png"
 theme.layout_tiletop                        = themes_dir .. "/icons/tiletop.png"

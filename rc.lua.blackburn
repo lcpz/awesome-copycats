@@ -18,6 +18,7 @@ local naughty         = require("naughty")
 local vicious         = require("vicious")
 local scratch         = require("scratch")
 local yawn            = require("yawn")
+local layouts         = require("layouts")
 
 -- Run once function
 
@@ -97,6 +98,7 @@ layouts =
     awful.layout.suit.fair,                 -- 3
     awful.layout.suit.tile.left,            -- 4
     awful.layout.suit.tile.top,             -- 5
+    layouts.tilegaps,                       -- 6
 }
 
 

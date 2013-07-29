@@ -1,3 +1,3 @@
-require("layouts.tile")
+require("layouts.tilegaps")
 
 module("layouts")

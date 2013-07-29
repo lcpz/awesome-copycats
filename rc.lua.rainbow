@@ -103,7 +103,7 @@ layouts =
     awful.layout.suit.fair,                 -- 3
     awful.layout.suit.tile.bottom,          -- 4
     awful.layout.suit.fair.horizontal,      -- 5
-    layouts.tile,                           -- 6
+    layouts.tilegaps,                       -- 6
 }
 
 -- }}}
@@ -556,7 +556,7 @@ function (widget, args)
          bg = "#242424" })
          no_net_shown = false
        end
-       return gray .. " Net " .. coldef .. "<span color='#e54c62'>Off " .. coldef
+       return gray .. " Net " .. coldef .. "<span color='#eb8f8f'>Off " .. coldef
     else
        no_net_shown = true
        return ''
@@ -919,13 +919,18 @@ awful.rules.rules = {
           properties = { opacity = 0.99 } }, 
           
     { rule = { class = "MPlayer" },
-      properties = { floating = true } },
+          properties = { floating = true } },
 
     { rule = { class = "Dwb" },
+          properties = { tag = tags[1][1],
+                         maximized_horizontal = true,
+                         maximized_vertical = true } },
+
+    { rule = { instance = "plugin-container" },
           properties = { tag = tags[1][1] } },
 
 	  { rule = { class = "Gimp" },
-     	  properties = { tag = tags[1][4] } },
+     	    properties = { tag = tags[1][4] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized_horizontal = true,

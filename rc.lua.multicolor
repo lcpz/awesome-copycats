@@ -17,6 +17,7 @@ beautiful       = require("beautiful")
 naughty         = require("naughty")
 vicious         = require("vicious")
 scratch         = require("scratch")
+layouts         = require("layouts")
 
 -- }}}
 
@@ -112,6 +113,7 @@ layouts =
     awful.layout.suit.max,                  -- 10
     --awful.layout.suit.max.fullscreen,     -- 11
     --awful.layout.suit.magnifier           -- 12
+    layouts.tilegaps,                       -- 13
 }
 
 -- }}}

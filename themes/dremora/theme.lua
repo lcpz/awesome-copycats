@@ -36,6 +36,7 @@ theme.arrl_lr_pre                           = themes_dir .. "/icons/arrl_lr_pre.
 theme.arrl_lr_post                          = themes_dir .. "/icons/arrl_lr_post.png"
 
 theme.layout_tile                           = themes_dir .. "/icons/tile.png"
+theme.layout_tilegaps                       = themes_dir .. "/icons/tilegaps.png"
 theme.layout_tileleft                       = themes_dir .. "/icons/tileleft.png"
 theme.layout_tilebottom                     = themes_dir .. "/icons/tilebottom.png"
 theme.layout_tiletop                        = themes_dir .. "/icons/tiletop.png"

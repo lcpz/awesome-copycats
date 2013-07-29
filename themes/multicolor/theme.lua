@@ -69,6 +69,7 @@ theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical = "" 
 
 theme.layout_tile       = theme.confdir .. "/layouts/tile.png"
+theme.layout_tilegaps   = theme.confdir .. "/layouts/tilegaps.png"
 theme.layout_tileleft   = theme.confdir .. "/layouts/tileleft.png"
 theme.layout_tilebottom = theme.confdir .. "/layouts/tilebottom.png"
 theme.layout_tiletop    = theme.confdir .. "/layouts/tiletop.png"
