@@ -11,7 +11,6 @@ local ipairs = ipairs
 local math = math
 local tag = require("awful.tag")
 
---- Tiled layouts module for awful
 module("layouts.tilegaps")
 
 local function tile_group(cls, wa, orientation, fact, group)

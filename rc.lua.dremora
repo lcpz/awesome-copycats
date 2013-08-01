@@ -179,11 +179,17 @@ end
 
 function show_calendar(inc_offset, t_out)
    remove_calendar()
-   local c_text
+
+   local f, c_text
+   local today = tonumber(os.date('%d'))
 
    if inc_offset == 0 then
-       local f = io.popen('/usr/bin/cal | sed -r -e "s/(^| )(`date +\\"%d\\"`)($| )/\\1<b><span foreground=\\"#121212\\" background=\\"#D7D7D7\\">\\2<\\/span><\\/b>\\3/"',"r")
-       c_text = "<tt><span weight='bold' font='Tamsyn 12'>" .. f:read() .. "</span>\n\n<span font='Tamsyn 12'>" .. f:read() .. "\n" .. f:read("*all") .. "</span></tt>"
+       if today < 10 then
+           f = io.popen('/usr/bin/cal | sed -r -e "s/(^| )( ' .. today .. ')($| )/\\1<b><span foreground=\\"#242424\\" background=\\"#D4D4D4\\">\\2<\\/span><\\/b>\\3/"',"r")
+       else
+           f = io.popen('/usr/bin/cal | sed -r -e "s/(^| )(' .. today .. ')($| )/\\1<b><span foreground=\\"#242424\\" background=\\"#D4D4D4\\">\\2<\\/span><\\/b>\\3/"',"r")
+       end
+       c_text = "<tt><span font='Tamsyn 12'><b>" .. f:read() .. "</b>\n\n" .. f:read() .. "\n" .. f:read("*all") .. "</span></tt>"
        f:close()
        offset = 0
    else

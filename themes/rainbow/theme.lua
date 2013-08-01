@@ -12,7 +12,6 @@ themes_dir                                  = os.getenv("HOME") .. "/.config/awe
 theme.wallpaper                             = themes_dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
---theme.font                                  = "Ohsnapu 12"
 theme.fg_normal                             = "#9E9E9E"
 theme.fg_focus                              = "#EBEBFF"
 theme.bg_normal                             = "#242424"
@@ -33,7 +32,6 @@ theme.taglist_squares_sel                   = themes_dir .. "/icons/square_sel.p
 theme.taglist_squares_unsel                 = themes_dir .. "/icons/square_unsel.png"
 theme.widget_mail_notify                    = themes_dir .. "/icons/mail_notify.png"
 theme.widget_no_net_notify                  = themes_dir .. "/icons/no_net_notify.png"
-theme.vol_mute                              = themes_dir .. "/icons/vol_mute.png"
 
 theme.layout_txt_tile                       = "[t]" 
 theme.layout_txt_tilegaps                   = "[t2]" 
