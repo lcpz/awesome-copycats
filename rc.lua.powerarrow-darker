@@ -83,7 +83,7 @@ active_theme = themes .. "/powerarrow-darker"
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "urxvtc"
-editor = os.getenv("EDITOR")
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "geany -ps"
 browser = "dwb"

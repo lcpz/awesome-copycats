@@ -82,7 +82,7 @@ active_theme = themes .. "/multicolor"
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "xterm"
-editor = os.getenv("EDITOR")
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "geany -ps"
 browser = "dwb"

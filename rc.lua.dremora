@@ -80,7 +80,7 @@ red_c = "#E36352"
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "urxvtc"
-editor = os.getenv("EDITOR")
+editor = os.getenv("EDITOR") or "vim"
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "gvim"
 browser = "dwb"
