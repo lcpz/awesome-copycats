@@ -26,8 +26,6 @@ theme.border_width                          = "1"
 theme.border_normal                         = "#0E0E0E"
 theme.border_focus                          = "#404040"
 
-theme.titlebar_bg_focus                     = "#FFFFFF"
-theme.titlebar_bg_normal                    = "#FFFFFF"
 theme.taglist_fg_focus                      = "#F6784F"
 theme.taglist_bg_focus                      = themes_bg_normal
 theme.tasklist_fg_focus                     = "#F6784F"
@@ -35,7 +33,6 @@ theme.tasklist_bg_focus                     = themes_bg_normal
 theme.textbox_widget_margin_top             = 1
 theme.awful_widget_height                   = 14
 theme.awful_widget_margin_top               = 2
-theme.mouse_finder_color                    = "#CC9393"
 theme.menu_height                           = "16"
 theme.menu_width                            = "140"
 

@@ -55,6 +55,10 @@ Gallery
 
 .. image:: http://i.imgur.com/Ae7hAsK.png
 
+**Holo** suggested by amouly_
+
+.. image:: http://dotshare.it/public/images/uploads/621.png
+
 Notes
 --------
 **Do not** use without reading and modifying according to your preferences and system specs.
@@ -82,6 +86,7 @@ Let us spread some style, in order to make Awesome appearance awesome too!
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
+.. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1218158#p1218158
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Yawn: https://github.com/copycat-killer/yawn
 .. _1: http://weiwu.sdf.org/100921.html

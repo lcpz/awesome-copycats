@@ -24,8 +24,6 @@ theme.fg_focus  = "#ff8c00"
 theme.fg_urgent = "#af1d18"
 theme.fg_minimize   = "#ffffff"
 
-theme.mouse_finder_color = "#afa72e"
-
 theme.fg_black      = "#424242"
 theme.fg_red        = "#ce5666"
 theme.fg_green      = "#80a673"
