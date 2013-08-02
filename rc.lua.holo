@@ -756,13 +756,13 @@ for s = 1, screen.count() do
     left_layout:add(mytaglist[s])
     left_layout:add(spr_small)
     left_layout:add(mylayoutbox[s])
-    left_layout:add(mygmail)
-    left_layout:add(fshwidget)
-    left_layout:add(batwidget)
 
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
+    right_layout:add(mygmail)
+    right_layout:add(fshwidget)
+    right_layout:add(batwidget)
     right_layout:add(spr_right)
     right_layout:add(prev_icon)
     right_layout:add(next_icon)
@@ -1050,7 +1050,7 @@ awful.rules.rules = {
     },
 
     { rule = { class = "URxvt" },
-      properties = { opacity = 0.95 } }, 
+      properties = { opacity = 0.99 } }, 
 
     { rule = { class = "MPlayer" },
       properties = { floating = true } },
