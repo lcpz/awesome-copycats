@@ -86,7 +86,7 @@ Let us spread some style, in order to make Awesome appearance awesome too!
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
-.. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1218158#p1218158
+.. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Yawn: https://github.com/copycat-killer/yawn
 .. _1: http://weiwu.sdf.org/100921.html
