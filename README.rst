@@ -69,6 +69,20 @@ Blackburn and Dremora use Icons_: **if you're running Debian/Ubuntu**, be sure t
 
 Except Multicolor and Powerarrow Darker, every theme has a colorscheme_ and uses Yawn_.
 
+Blackburn and Holo use png topbars, supported screen width sizes are:
+
+    1024
+    1152
+    1280
+    1366
+    1440
+    1600
+    1680
+    1920
+    2560
+
+if your screen don't match one of these widths, then you have to create a proper topbar, and put it into ``themes/*chosentheme*/icons/topbar``.
+
 **Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
 
 Author

@@ -6,7 +6,7 @@
 --[[                                     ]]--
 
 
--- Required Libraries
+-- {{{ Required Libraries
 
 local gears           = require("gears")
 local awful           = require("awful")
@@ -20,7 +20,9 @@ local scratch         = require("scratch")
 local yawn            = require("yawn")
 local layouts         = require("layouts")
 
--- Run once function
+-- }}}
+
+-- {{{ Autostart applications
 
 function run_once(cmd)
   findme = cmd
@@ -31,18 +33,19 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
 end
 
--- autostart applications
 run_once("urxvtd")
 run_once("unclutter -idle 10")
 run_once("compton")
 
+-- }}}
 
--- Localization
+-- {{{ Localization
 
 os.setlocale(os.getenv("LANG"))
 
+-- }}}
 
--- Error Handling
+-- {{{ Error Handling
 
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -67,8 +70,9 @@ do
     end)
 end
 
+-- }}}
 
--- Global variables
+-- {{{ Global variables
 
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
@@ -101,8 +105,9 @@ layouts =
     layouts.tilegaps,                       -- 6
 }
 
+-- }}}
 
--- Wallpaper
+-- {{{ Wallpaper
 
 if beautiful.wallpaper then
     for s = 1, screen.count() do
@@ -110,7 +115,9 @@ if beautiful.wallpaper then
     end
 end
 
--- Tags
+-- }}}
+
+-- {{{ Tags
 
 tags = {
        names = { "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" },
@@ -120,7 +127,9 @@ for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
 
--- Menu
+-- }}}
+
+-- {{{ Menu
 myaccessories = {
    { "archives", "7zFM" },
    { "charmap", "gucharmap" },
@@ -150,8 +159,9 @@ mymainmenu = awful.menu({ items = {
             })
 mylauncher = awful.widget.launcher({ menu = mymainmenu })
 
+-- }}}
 
--- Wibox
+-- {{{ Wibox
 
 -- Colours
 coldef  = "</span>"
@@ -371,8 +381,8 @@ function(widget, args)
     else return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. coldef .. "<span font='Tamsyn 8'> <span font='Tamsyn 2'> </span></span>" 
     end
 	 elseif args["{state}"] == "Pause" then
-    if mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "in pausa<span font='Tamsyn 6'> </span> " .. coldef
-    else return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
+    if mailcount == 0 then return gray .. "mpd " .. coldef .. white .. "paused<span font='Tamsyn 6'> </span> " .. coldef
+    else return gray .. "mpd " .. coldef .. white .. "paused " .. coldef
     end
 	else
     curr_track = nil
@@ -540,8 +550,9 @@ arrl_pre:set_image(beautiful.arrl_lr_pre)
 arrl_post = wibox.widget.imagebox()
 arrl_post:set_image(beautiful.arrl_lr_post)
 
+-- }}}
 
--- Layout
+-- {{{ Layout
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -646,9 +657,14 @@ for s = 1, screen.count() do
 
     mywibox[s]:set_widget(layout)
 
+    -- Set proper backgrounds, instead of beautiful.bg_normal
+    beautiful.screen_width = screen[1].workarea.width .. ".png"
+    mywibox[s]:set_bg(beautiful.topbar_path .. beautiful.screen_width)
 end
 
--- Mouse Bindings
+-- }}}
+
+-- {{{ Mouse Bindings
 
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -656,8 +672,9 @@ root.buttons(awful.util.table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 
+-- }}}
 
--- Key bindings
+-- {{{ Key bindings
 globalkeys = awful.util.table.join(
 
     -- Capture a screenshot
@@ -852,8 +869,9 @@ clientbuttons = awful.util.table.join(
 -- Set keys
 root.keys(globalkeys)
 
+-- }}}
 
--- Rules
+-- {{{ Rules
 
 awful.rules.rules = {
      -- All clients will match this rule.
@@ -890,8 +908,9 @@ awful.rules.rules = {
           properties = { tag = tags[1][5] } },
 }
 
+-- }}}
 
--- Signals
+-- {{{ Signals
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
@@ -963,3 +982,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- }}}
