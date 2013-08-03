@@ -12,12 +12,13 @@ theme.icon_dir                              = os.getenv("HOME") .. "/.config/awe
 
 theme.wallpaper                             = os.getenv("HOME") .. "/.config/awesome/themes/holo/wall.png"
 
+theme.topbar_path                           = "png:" .. theme.icon_dir .. "/topbar/"
+
 theme.font                                  = "Tamsyn 10"
 theme.taglist_font                          = "Tamsyn 8"
 theme.fg_normal                             = "#FFFFFF"
 theme.fg_focus                              = "#0099CC"
 theme.bg_normal                             = "#242424"
-theme.bg_normal_png                         = "png:" .. theme.icon_dir .. "/bg_normal.png"
 theme.fg_urgent                             = "#CC9393"
 theme.bg_urgent                             = "#2A1F1E"
 theme.border_width                          = "1"

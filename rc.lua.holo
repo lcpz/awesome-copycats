@@ -815,7 +815,7 @@ for s = 1, screen.count() do
     mybottomwibox[s]:set_widget(bottom_layout)
 
     -- Set proper backgrounds, instead of beautiful.bg_normal
-    mywibox[s]:set_bg(beautiful.bg_normal_png)
+    mywibox[s]:set_bg(beautiful.topbar_path .. screen[1].workarea.width .. ".png")
     mybottomwibox[s]:set_bg("#242424")
 end
 
