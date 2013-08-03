@@ -84,7 +84,7 @@ language = string.gsub(os.getenv("LANG"), ".utf8", "")
 beautiful.init(active_theme .. "/theme.lua")
 
 terminal = "urxvtc"
-editor = os.getenv("EDITOR") or "vim"
+editor = os.getenv("EDITOR")
 editor_cmd = terminal .. " -e " .. editor
 gui_editor = "gvim"
 browser = "dwb"
@@ -186,7 +186,7 @@ clockwidget:set_widget(mytextclock)
 clockwidget:set_bgimage(beautiful.widget_bg)
 
 -- Calendar widget
-mytextcalendar = awful.widget.textclock(white .. space .. "%d %B<span font='Tamsyn 5'> </span>" .. coldef)
+mytextcalendar = awful.widget.textclock(white .. space .. "%A %d %B<span font='Tamsyn 5'> </span>" .. coldef)
 calendar_icon = wibox.widget.imagebox()
 calendar_icon:set_image(beautiful.calendar)
 calendarwidget = wibox.widget.background()

@@ -33,7 +33,6 @@ theme.widget_mail_notify                    = themes_dir .. "/icons/mail_notify.
 theme.widget_no_net_notify                  = themes_dir .. "/icons/no_net_notify.png"
 
 theme.layout_txt_tile                       = "[t]" 
-theme.layout_txt_tilegaps                   = "[t2]" 
 theme.layout_txt_tileleft                   = "[l]"
 theme.layout_txt_tilebottom                 = "[b]"
 theme.layout_txt_tiletop                    = "[tt]"
@@ -45,6 +44,10 @@ theme.layout_txt_max                        = "[m]"
 theme.layout_txt_fullscreen                 = "[F]"
 theme.layout_txt_magnifier                  = "[M]"
 theme.layout_txt_floating                   = "[*]"
+
+theme.layout_txt_tilegaps                   = "[tg]" 
+theme.layout_txt_fairvgaps                  = "[fvg]"
+theme.layout_txt_spiralgaps                 = "[sg]"
 
 theme.tasklist_floating                     = ""
 theme.tasklist_maximized_horizontal         = ""

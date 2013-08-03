@@ -103,7 +103,9 @@ layouts =
     awful.layout.suit.fair,                 -- 3
     awful.layout.suit.tile.bottom,          -- 4
     awful.layout.suit.fair.horizontal,      -- 5
-    layouts.tilegaps,                       -- 6
+    layouts.tilegaps,                       -- 6 
+    layouts.fairgaps,                       -- 7
+    layouts.spiralgaps,                     -- 8
 }
 
 -- }}}
