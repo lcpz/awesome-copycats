@@ -135,6 +135,7 @@ end
 
 -- {{{ Menu
 
+-- my current menu
 myaccessories = {
    { "archives", "7zFM" },
    { "charmap", "gucharmap" },
@@ -163,6 +164,9 @@ mymainmenu = awful.menu({ items = {
             }
             })
 mylauncher = awful.widget.launcher({ menu = mymainmenu })
+
+-- if you prefer freedesktop, uncomment the following line
+require("freedesktop/freedesktop")
 
 -- }}}
 

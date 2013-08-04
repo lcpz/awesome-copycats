@@ -129,35 +129,11 @@ end
 
 -- }}}
 
--- {{{ Menu
-myaccessories = {
-   { "archives", "7zFM" },
-   { "charmap", "gucharmap" },
-   { "gbdfed", "gbdfed" },
-   { "gimp", "gimp" },
-   { "text editor", gui_editor },
-}
-myinternet = {
-    { "torrent" , "transmission-gtk" },
-    { "torrent search" , "torrent-search" }
-}
-myoffice = {
-    { "writer" , "lowriter" },
-    { "impress" , "loimpress" },
-}
-mysystem = {
-    { "appearance" , "lxappearance" },
-    { "cleaning" , "bleachbit" },
-    { "powertop" , terminal .. " -e sudo powertop " },
-}
-mymainmenu = awful.menu({ items = {
-				    { "accessories" , myaccessories },
-				    { "internet" , myinternet },
-				    { "office" , myoffice },
-				    { "system" , mysystem },
-            }
-            })
-mylauncher = awful.widget.launcher({ menu = mymainmenu })
+-- {{{ Freedesktop Menu
+
+require("freedesktop/freedesktop")
+
+-- }}}
 
 -- }}}
 

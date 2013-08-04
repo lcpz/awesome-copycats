@@ -139,52 +139,13 @@ for s = 1, screen.count() do
 -- Each screen has its own tag table.
    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
+
 -- }}}
                                           
--- {{{ Menu
-myaccessories = {
-   { "archives", "7zFM" },
-   { "file manager", "spacefm" },
-   { "editor", gui_editor },
-}
-myinternet = {
-    { "browser", browser },
-    { "irc client" , chat },
-    { "torrent" , "rtorrent" },
-    { "torrtux" , terminal .. " -e torrtux " },
-    { "torrent search" , "torrent-search" }
-}
-mygames = {
-    { "NES", "fceux" },
-    { "Super NES", "zsnes" },
-}
-mygraphics = {
-    { "gimp" , "gimp" },
-    { "inkscape", "inkscape" },
-    { "dia", "dia" },
-    { "image viewer" , "viewnior" }
-}
-myoffice = {
-    { "writer" , "lowriter" },
-    { "impress" , "loimpress" }
-}
-mysystem = {
-    { "appearance" , "lxappearance" },
-    { "cleaning" , "bleachbit" },
-    { "powertop" , terminal .. " -e sudo powertop " },
-    { "task manager" , tasks }
-}
-mymainmenu = awful.menu({ items = {
-				    { "accessories" , myaccessories },
-				    { "graphics" , mygraphics },
-				    { "internet" , myinternet },
-				    { "games" , mygames },
-				    { "office" , myoffice },
-				    { "system" , mysystem },
-            }
-            })
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- {{{ Freedesktop Menu
+
+require("freedesktop/freedesktop")
+
 -- }}}
 
 -- {{{ Wibox
@@ -694,6 +655,7 @@ end
 -- {{{ Mouse Bindings
 
 root.buttons(awful.util.table.join(
+    awful.button({ }, 3, function () mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -701,6 +663,7 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
+
 globalkeys = awful.util.table.join(
 
     -- Capture a screenshot

@@ -6,7 +6,7 @@
 --[[                                     ]]--
 
 
--- Required Libraries
+-- {{{ Required Libraries
 
 gears 	        = require("gears")
 awful           = require("awful")
@@ -19,8 +19,9 @@ vicious         = require("vicious")
 scratch         = require("scratch")
 layouts         = require("layouts") 
 
+-- }}}
 
--- Run once function
+-- {{{ Autostart applications 
 
 function run_once(cmd)
   findme = cmd
@@ -31,17 +32,18 @@ function run_once(cmd)
   awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
  end
 
--- autostart applications
 run_once("urxvtd")
 run_once("unclutter -idle 10")
 
+-- }}}
 
--- Localization
+-- {{{ Localization
 
 os.setlocale(os.getenv("LANG"))
 
+-- }}}
 
--- Error Handling
+-- {{{ Error Handling
 
 -- Check if awesome encountered an error during startup and fell back to
 -- another config (This code will only ever execute for the fallback config)
@@ -66,8 +68,9 @@ do
     end)
 end
 
+-- }}}
 
--- Variable Definitions
+-- {{{ Variable Definitions
 
 home = os.getenv("HOME")
 confdir = home .. "/.config/awesome"
@@ -109,8 +112,9 @@ layouts =
     layouts.tilegaps,                       -- 13
 }
 
+-- }}}
 
--- Wallpaper
+-- {{{ Wallpaper
 
 if beautiful.wallpaper then
     for s = 1, screen.count() do
@@ -118,7 +122,9 @@ if beautiful.wallpaper then
     end
 end
 
--- Tags
+-- }}}
+
+-- {{{ Tags
 
 tags = {
        names = { "web", "term", "docs", "media", "down"},
@@ -128,53 +134,15 @@ for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
 
--- Menu
-myaccessories = {
-   { "archives", "7zFM" },
-   { "file manager", "spacefm" },
-   { "editor", gui_editor },
-}
-myinternet = {
-    { "browser", browser },
-    { "irc client" , chat },
-    { "torrent" , "rtorrent" },
-    { "torrtux" , terminal .. " -e torrtux " },
-    { "torrent search" , "torrent-search" }
-}
-mygames = {
-    { "NES", "fceux" },
-    { "Super NES", "zsnes" },
-}
-mygraphics = {
-    { "gimp" , "gimp" },
-    { "inkscape", "inkscape" },
-    { "dia", "dia" },
-    { "image viewer" , "viewnior" }
-}
-myoffice = {
-    { "writer" , "lowriter" },
-    { "impress" , "loimpress" },
-}
-mysystem = {
-    { "appearance" , "lxappearance" },
-    { "cleaning" , "bleachbit" },
-    { "powertop" , terminal .. " -e sudo powertop " },
-    { "task manager" , tasks }
-}
-mymainmenu = awful.menu({ items = {
-				    { "accessories" , myaccessories },
-				    { "graphics" , mygraphics },
-				    { "internet" , myinternet },
-				    { "games" , mygames },
-				    { "office" , myoffice },
-				    { "system" , mysystem },
-            }
-            })
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
-                                     menu = mymainmenu })
+-- }}}
 
+-- {{{ Freedesktop menu
 
--- Wibox
+require("freedesktop/freedesktop")
+
+-- }}}
+
+-- {{{ Wibox
 
 -- Colours
 coldef  = "</span>"
@@ -509,8 +477,9 @@ spr = wibox.widget.textbox(' ')
 leftbr = wibox.widget.textbox(' [')
 rightbr = wibox.widget.textbox('] ')
 
+-- }}}
 
--- Layout
+-- {{{ Layout
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -627,7 +596,9 @@ for s = 1, screen.count() do
 
 end
 
--- Mouse Bindings
+-- }}}
+
+-- {{{ Mouse Bindings
 
 root.buttons(awful.util.table.join(
     awful.button({ }, 3, function () mymainmenu:toggle() end),
@@ -635,8 +606,10 @@ root.buttons(awful.util.table.join(
     awful.button({ }, 5, awful.tag.viewprev)
 ))
 
+-- }}}
 
--- Key bindings
+-- {{{ Key bindings
+
 globalkeys = awful.util.table.join(
 
     -- Capture a screenshot
@@ -828,8 +801,9 @@ clientbuttons = awful.util.table.join(
 -- Set keys
 root.keys(globalkeys)
 
+-- }}}
 
--- Rules
+-- {{{ Rules
 
 awful.rules.rules = {
      -- All clients will match this rule.
@@ -951,3 +925,5 @@ end)
 
 client.connect_signal("focus", function(c) c.border_color = beautiful.border_focus end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
+
+-- }}}

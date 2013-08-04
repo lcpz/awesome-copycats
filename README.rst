@@ -25,6 +25,7 @@ Notable features:
 - No borders when there's only one visible client
 - Powerful volume bar
 - Custom layouts
+- Freedesktop menu
 
 They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
 
@@ -82,6 +83,8 @@ Blackburn and Holo use png topbars, supported screen width sizes are:
     2560
 
 if your screen don't match one of these widths, then you have to create a proper topbar, and put it into ``themes/*chosentheme*/icons/topbar``.
+
+Freedesktop menu in use is just an example: feel free to modify ``freedesktop/freedesktop.lua``.
 
 **Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
 
