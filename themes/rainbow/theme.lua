@@ -1,7 +1,7 @@
 --[[                                  ]]--
 --                                      -
---   Rainbow Awesome WM 3.5.+ theme     --
---     github.com/copycat-killer        --
+--    Rainbow Awesome WM 3.5.+ theme    --
+--      github.com/copycat-killer       --
 --                                      -
 --[[                                  ]]--
 

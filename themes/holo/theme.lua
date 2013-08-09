@@ -1,9 +1,9 @@
---[[                                 j]]--
---                                     -
---     Holo Awesome WM 3.5.+ theme     --
---      github.com/copycat-killer      --
---                                     -
---[[                                 ]]--
+--[[                               ]]--
+--                                   -
+--    Holo Awesome WM 3.5.+ theme    --
+--     github.com/copycat-killer     --
+--                                   -
+--[[                               ]]--
 
 
 theme = {}

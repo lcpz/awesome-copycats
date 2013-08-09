@@ -1,9 +1,9 @@
---[[                                        ]]--
---                                            -
---  Powearrow Darker Awesome WM 3.5.+ theme   --
---        github.com/copycat-killer           --
---                                            -
---[[                                        ]]--
+--[[                                         ]]--
+--                                             -
+--   Powearrow Darker Awesome WM 3.5.+ theme   --
+--         github.com/copycat-killer           --
+--                                             -
+--[[                                         ]]--
 
 
 theme = {}
