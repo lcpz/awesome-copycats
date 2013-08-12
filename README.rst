@@ -86,6 +86,8 @@ if your screen don't match one of these widths, then you have to create a proper
 
 Freedesktop menu in use is just an example: feel free to modify ``freedesktop/freedesktop.lua``.
 
+If you happen to get an error involving ``/home fs widget``, that's probably because you didn't properly set *$HOME* in your profile or something. Try replacing every occurrence with just ``/``, or some other argument defined in vicious readme_, section ``vicious.widgets.fs``.
+
 **Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
 
 Author
@@ -109,4 +111,5 @@ Let us spread some style, in order to make Awesome appearance awesome too!
 .. _1: http://weiwu.sdf.org/100921.html
 .. _2: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
 .. _colorscheme: https://github.com/copycat-killer/dots/tree/master/.colors
+.. _readme: http://git.sysphere.org/vicious/tree/README 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/

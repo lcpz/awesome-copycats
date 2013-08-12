@@ -299,7 +299,7 @@ vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
   if ( args["{/home used_p}"] >= 90 ) then
       if ( args["{/home used_p}"] >= 99 and too_much == false ) then
-        naughty.notify({ title = "Attenzione", text = "Partizione /home esaurita!\nFa' un po' di spazio.",
+        naughty.notify({ title = "warning", text = "/home partition ran out!\nmake some room",
         timeout = 7,
         position = "top_right",
         fg = beautiful.fg_urgent,
