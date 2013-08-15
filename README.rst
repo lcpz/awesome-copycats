@@ -68,9 +68,11 @@ Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
 
 Blackburn and Dremora use Icons_: **if you're running Debian/Ubuntu**, be sure to have bitmaps enabled (1_ 2_).
 
+If you have any ``surface.lua`` problem, be sure to have ``lua`` and ``lua-lgi`` up to date.
+
 Except Multicolor and Powerarrow Darker, every theme has a colorscheme_ and uses Yawn_.
 
-Blackburn and Holo use png topbars, supported screen width sizes are:
+Blackburn and Holo use png topbars, supported screen widths are:
 
     1024
     1152
@@ -82,11 +84,11 @@ Blackburn and Holo use png topbars, supported screen width sizes are:
     1920
     2560
 
-if your screen don't match one of these widths, then you have to create a proper topbar, and put it into ``themes/*chosentheme*/icons/topbar``.
+if your screen is unsupported, you have to create a proper topbar, and put it into ``themes/$THEME/icons/topbar``. Feel free to send me your custom sized bar, I'll add it.
 
 Freedesktop menu in use is just an example: feel free to modify ``freedesktop/freedesktop.lua``.
 
-If you happen to get an error involving ``/home fs widget``, that's probably because you didn't properly set *$HOME* in your profile or something. Try replacing every occurrence with just ``/``, or some other argument defined in vicious readme_, section ``vicious.widgets.fs``.
+If you happen to get an error involving ``/home fs widget``, replace every occurrence of ``/home`` with ``/``, or some other argument defined in vicious readme_, section ``vicious.widgets.fs``.
 
 **Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
 
