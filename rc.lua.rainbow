@@ -318,15 +318,15 @@ function(widget, args)
     end
     return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " " .. coldef
   elseif args["{state}"] == "Pause" then
-      -- Italian localization
-      -- can be a stub for your own localization
+    -- Italian localization
+    -- can be a stub for your own localization
     if language:find("it_IT") ~= nil
     then
         return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     else
         return gray .. "mpd " .. coldef .. white .. "paused " .. coldef
     end
-	else
+  else
     curr_track = nil
 		return ''
 	end
