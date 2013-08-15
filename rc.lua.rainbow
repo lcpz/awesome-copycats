@@ -324,8 +324,7 @@ function(widget, args)
     else
         return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     end
-    then
-	else
+    else
     curr_track = nil
 		return ''
 	end
