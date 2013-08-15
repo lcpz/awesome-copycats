@@ -34,7 +34,7 @@ function run_once(cmd)
 end
 
 run_once("urxvtd")
-run_once("unclutter -idle 10")
+run_once("unclutter -noevents")
 run_once("compton")
 
 -- }}}
@@ -140,6 +140,7 @@ myaccessories = {
    { "archives", "7zFM" },
    { "charmap", "gucharmap" },
    { "gbdfed", "gbdfed" },
+   { "fontsel", "gtk2fontsel" },
    { "gimp", "gimp" },
    { "text editor", gui_editor },
 }
@@ -317,14 +318,14 @@ function(widget, args)
     end
     return gray .. args["{Artist}"] .. coldef .. white .. " " .. args["{Title}"] .. " " .. coldef
   elseif args["{state}"] == "Pause" then
-    -- Italian localization
-    -- can be a stub for your own localization
-    if language:find("it_IT") ~= nil then
+      -- Italian localization
+      -- can be a stub for your own localization
+    if language:find("it_IT") ~= nil
+    then
         return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
     else
-        return gray .. "mpd " .. coldef .. white .. "in pausa " .. coldef
+        return gray .. "mpd " .. coldef .. white .. "paused " .. coldef
     end
-    then
 	else
     curr_track = nil
 		return ''
@@ -338,7 +339,7 @@ vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
   if ( args["{/home used_p}"] >= 90 ) then
       if ( args["{/home used_p}"] >= 99 and too_much == false ) then
-        naughty.notify({ title = "warning", text = "/home partition ran out!\nmake some room",
+        naughty.notify({ title = "Attenzione", text = "Partizione /home esaurita!\nFa' un po' di spazio.",
         timeout = 7,
         position = "top_right",
         fg = beautiful.fg_urgent,
@@ -728,9 +729,9 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "p", function() awful.util.spawn("screenshot",false) end),
 
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ altkey, "Control" }, "j",   awful.tag.viewprev       ),
+    awful.key({ altkey, "Shift"   }, "j",   awful.tag.viewprev       ),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ altkey, "Control" }, "k",  awful.tag.viewnext       ),
+    awful.key({ altkey, "Shift"   }, "k",  awful.tag.viewnext       ),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
     awful.key({ modkey,           }, "k",
         function ()

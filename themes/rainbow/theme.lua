@@ -8,8 +8,8 @@
 
 theme = {}
 
-themes_dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/rainbow"
-theme.wallpaper                             = themes_dir .. "/wall.png"
+theme.dir                                  = os.getenv("HOME") .. "/.config/awesome/themes/rainbow"
+theme.wallpaper                             = theme.dir .. "/wall.png"
 
 theme.font                                  = "Tamsyn 10"
 theme.fg_normal                             = "#9E9E9E"
@@ -26,11 +26,11 @@ theme.taglist_bg_focus                      = "#3D3D3D"
 theme.menu_height                           = "16"
 theme.menu_width                            = "140"
 
-theme.menu_submenu_icon                     = themes_dir .. "/icons/submenu.png"
-theme.taglist_squares_sel                   = themes_dir .. "/icons/square_sel.png"
-theme.taglist_squares_unsel                 = themes_dir .. "/icons/square_unsel.png"
-theme.widget_mail_notify                    = themes_dir .. "/icons/mail_notify.png"
-theme.widget_no_net_notify                  = themes_dir .. "/icons/no_net_notify.png"
+theme.menu_submenu_icon                     = theme.dir .. "/icons/submenu.png"
+theme.taglist_squares_sel                   = theme.dir .. "/icons/square_sel2.png"
+theme.taglist_squares_unsel                 = theme.dir .. "/icons/square_unsel.png"
+theme.widget_mail_notify                    = theme.dir .. "/icons/mail_notify.png"
+theme.widget_no_net_notify                  = theme.dir .. "/icons/no_net_notify.png"
 
 theme.layout_txt_tile                       = "[t]" 
 theme.layout_txt_tileleft                   = "[l]"
