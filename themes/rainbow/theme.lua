@@ -32,8 +32,6 @@ theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
 theme.widget_mail_notify            = theme.dir .. "/icons/mail_notify.png"
 theme.widget_no_net_notify          = theme.dir .. "/icons/no_net_notify.png"
 
-theme.useless_gap_width             = 5
-
 theme.layout_txt_tile               = "[t]"
 theme.layout_txt_tileleft           = "[l]"
 theme.layout_txt_tilebottom         = "[b]"
@@ -46,13 +44,6 @@ theme.layout_txt_max                = "[m]"
 theme.layout_txt_fullscreen         = "[F]"
 theme.layout_txt_magnifier          = "[M]"
 theme.layout_txt_floating           = "[*]"
-
-theme.layout_txt_tilegaps           = "[tg]"
-theme.layout_txt_fixed              = "[fx]"
-theme.layout_txt_fixed_alt          = "[fx2]"
-theme.layout_txt_fairvgaps          = "[fvg]"
-theme.layout_txt_spiralgaps         = "[sg]"
-theme.layout_txt_termfair           = "[tf]"
 
 theme.tasklist_floating             = ""
 theme.tasklist_maximized_horizontal = ""
