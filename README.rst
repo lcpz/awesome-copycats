@@ -26,6 +26,7 @@ Notable features:
 - Powerful volume bar
 - Custom layouts
 - Freedesktop menu
+- By direction client focus (like in bspwm)
 
 They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
 

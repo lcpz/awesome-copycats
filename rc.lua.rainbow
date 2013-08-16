@@ -8,17 +8,17 @@
 
 -- {{{ Required Libraries
 
-local gears           = require("gears")
-local awful           = require("awful")
-awful.rules           = require("awful.rules")
-awful.autofocus       = require("awful.autofocus")
-local wibox           = require("wibox")
-local beautiful       = require("beautiful")
-local naughty         = require("naughty")
-local vicious         = require("vicious")
-local scratch         = require("scratch")
-local yawn            = require("yawn")
-local layouts         = require("layouts")
+local gears     = require("gears")
+local awful     = require("awful")
+awful.rules     = require("awful.rules")
+awful.autofocus = require("awful.autofocus")
+local wibox     = require("wibox")
+local beautiful = require("beautiful")
+local naughty   = require("naughty")
+local vicious   = require("vicious")
+local scratch   = require("scratch")
+local yawn      = require("yawn")
+local layouts   = require("layouts")
 
 -- }}}
 
@@ -101,11 +101,10 @@ layouts =
     awful.layout.suit.floating,             -- 1
     awful.layout.suit.tile,                 -- 2
     awful.layout.suit.fair,                 -- 3
-    awful.layout.suit.tile.bottom,          -- 4
-    awful.layout.suit.fair.horizontal,      -- 5
-    layouts.tilegaps,                       -- 6
-    layouts.fairgaps,                       -- 7
-    layouts.spiralgaps,                     -- 8
+    awful.layout.suit.fair.horizontal,      -- 4
+    layouts.tilegaps,                       -- 5
+    layouts.fairgaps,                       -- 6
+    layouts.spiralgaps,                     -- 7
 }
 
 -- }}}
@@ -129,7 +128,6 @@ tags = {
 for s = 1, screen.count() do
    tags[s] = awful.tag(tags.names, s, tags.layout)
 end
-
 
 -- }}}
 
@@ -730,21 +728,46 @@ globalkeys = awful.util.table.join(
     -- Take a screenshot
     awful.key({ altkey }, "p", function() awful.util.spawn("screenshot",false) end),
 
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev       ),
-    awful.key({ altkey, "Shift"   }, "j",   awful.tag.viewprev       ),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext       ),
-    awful.key({ altkey, "Shift"   }, "k",  awful.tag.viewnext       ),
-    awful.key({ modkey,           }, "Escape", awful.tag.history.restore),
-    awful.key({ modkey,           }, "k",
+    -- Tag browsing
+    awful.key({ modkey }, "Left",   awful.tag.viewprev       ),
+    awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
+    awful.key({ modkey }, "Escape", awful.tag.history.restore),
+
+    -- Default client focus
+    awful.key({ altkey }, "k",
         function ()
             awful.client.focus.byidx( 1)
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "j",
+    awful.key({ altkey }, "j",
         function ()
             awful.client.focus.byidx(-1)
             if client.focus then client.focus:raise() end
         end),
+   
+    -- By direction client focus
+    awful.key({ modkey }, "j",
+        function()
+            awful.client.focus.bydirection("down")
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey }, "k",
+        function()
+            awful.client.focus.bydirection("up")
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey }, "h",
+        function()
+            awful.client.focus.bydirection("left")
+            if client.focus then client.focus:raise() end
+        end),
+    awful.key({ modkey }, "l",
+        function()
+            awful.client.focus.bydirection("right")
+            if client.focus then client.focus:raise() end
+        end),
+
+    -- Show Menu
     awful.key({ modkey,           }, "w", function () mymainmenu:show({keygrabber=true}) end),
 
     -- Show/Hide Wibox
@@ -765,18 +788,20 @@ globalkeys = awful.util.table.join(
                 client.focus:raise()
             end
         end),
+    awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)     end),
+    awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)     end),
+    awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)       end),
+    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)       end),
+    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)          end),
+    awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)          end),
+    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1)  end),
+    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1)  end),
+    awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)     end),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)     end),
-    awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)       end), awful.key({ modkey, "Shift"   }, "l",     function () awful.tag.incnmaster(-1)       end), awful.key({ modkey, "Control" }, "h",     function () awful.tag.incncol( 1)          end),
-    awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1)          end),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc(layouts,  1)  end),
-    awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(layouts, -1)  end),
-    awful.key({ modkey, "Control" }, "n", awful.client.restore),
 
     -- Dropdown terminal
     awful.key({ modkey,	          }, "z",     function () scratch.drop(terminal) end),
