@@ -596,6 +596,7 @@ small_spr = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
 -- Create a wibox for each screen and add it
 mywibox = {}
 mypromptbox = {}
+mylayoutbox = {}
 txtlayoutbox = {}
 mytaglist = {}
 mytaglist.buttons = awful.util.table.join(
@@ -644,7 +645,8 @@ mytasklist.buttons = awful.util.table.join(
 -- Writes a string representation of the current layout in a textbox widget
 function updatelayoutbox(layout, s)
     local screen = s or 1
-    layout:set_text(beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(screen))])
+    local txt_l = beautiful["layout_txt_" .. awful.layout.getname(awful.layout.get(screen))] or "" 
+    layout:set_text(txt_l)
 end
 
 for s = 1, screen.count() do
