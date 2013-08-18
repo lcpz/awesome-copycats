@@ -26,6 +26,16 @@ theme.taglist_bg_focus              = "#3D3D3D"
 theme.menu_height                   = "16"
 theme.menu_width                    = "140"
 
+theme.ocol                          = "<span color='" .. theme.fg_normal .. "'>"
+theme.ccol                          = "</span>"
+theme.tasklist_sticky               = theme.ocol .. " [S]" .. theme.ccol
+theme.tasklist_ontop                = theme.ocol .. " [T]" .. theme.ccol
+theme.tasklist_floating             = theme.ocol .. " [F]" .. theme.ccol
+theme.tasklist_maximized_horizontal = theme.ocol .. "[M] " .. theme.ccol
+theme.tasklist_maximized_vertical   = ""
+theme.tasklist_disable_icon         = true
+
+theme.awesome_icon                  = theme.dir .. "/icons/awesome_icon.png"
 theme.menu_submenu_icon             = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel2.png"
 theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
@@ -45,8 +55,13 @@ theme.layout_txt_fullscreen         = "[F]"
 theme.layout_txt_magnifier          = "[M]"
 theme.layout_txt_floating           = "[*]"
 
-theme.tasklist_floating             = ""
-theme.tasklist_maximized_horizontal = ""
-theme.tasklist_maximized_vertical   = ""
+theme.layout_txt_tilegaps           = "[tg]"
+theme.layout_txt_tileleftgaps       = "[tlg]"
+theme.layout_txt_tilebottomgaps     = "[tbg]"
+theme.layout_txt_tiletopgaps        = "[ttg]"
+theme.layout_txt_fairhgaps          = "[fhg]"
+theme.layout_txt_fairvgaps          = "[fvg]"
+theme.layout_txt_spiralgaps         = "[spg]"
+theme.layout_txt_dwindlegaps        = "[dwg]"
 
 return theme

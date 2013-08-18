@@ -71,17 +71,17 @@ function new(arg)
     end
 
     local menu = {
-        { "Accessories", programs["Utility"], utils.lookup_icon({ icon = 'applications-accessories.png' }) },
-        { "Development", programs["Development"], utils.lookup_icon({ icon = 'applications-development.png' }) },
-        { "Education", programs["Education"], utils.lookup_icon({ icon = 'applications-science.png' }) },
-        { "Games", programs["Game"], utils.lookup_icon({ icon = 'applications-games.png' }) },
-        { "Graphics", programs["Graphics"], utils.lookup_icon({ icon = 'applications-graphics.png' }) },
-        { "Internet", programs["Network"], utils.lookup_icon({ icon = 'applications-internet.png' }) },
-        { "Multimedia", programs["AudioVideo"], utils.lookup_icon({ icon = 'applications-multimedia.png' }) },
-        { "Office", programs["Office"], utils.lookup_icon({ icon = 'applications-office.png' }) },
-        { "Other", programs["Other"], utils.lookup_icon({ icon = 'applications-other.png' }) },
-        { "Settings", programs["Settings"], utils.lookup_icon({ icon = 'preferences-desktop.png' }) },
-        { "System Tools", programs["System"], utils.lookup_icon({ icon = 'applications-system.png' }) },
+        { "Accessories", programs["Utility"], utils.lookup_icon({ icon = 'applications-accessories' }) },
+        { "Development", programs["Development"], utils.lookup_icon({ icon = 'applications-development' }) },
+        { "Education", programs["Education"], utils.lookup_icon({ icon = 'applications-science' }) },
+        { "Games", programs["Game"], utils.lookup_icon({ icon = 'applications-games' }) },
+        { "Graphics", programs["Graphics"], utils.lookup_icon({ icon = 'applications-graphics' }) },
+        { "Internet", programs["Network"], utils.lookup_icon({ icon = 'applications-internet' }) },
+        { "Multimedia", programs["AudioVideo"], utils.lookup_icon({ icon = 'applications-multimedia' }) },
+        { "Office", programs["Office"], utils.lookup_icon({ icon = 'applications-office' }) },
+        { "Other", programs["Other"], utils.lookup_icon({ icon = 'applications-other' }) },
+        { "Settings", programs["Settings"], utils.lookup_icon({ icon = 'preferences-desktop' }) },
+        { "System Tools", programs["System"], utils.lookup_icon({ icon = 'applications-system' }) },
     }
 
     -- Removing empty entries from menu

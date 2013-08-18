@@ -1,4 +1,3 @@
-local wibox = wibox
 local widget = widget
 local screen = screen
 local image = image
