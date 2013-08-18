@@ -8,8 +8,8 @@ local awful = require("awful")
 local beautiful = require("beautiful")
 
 require('freedesktop.utils')
-require('freedesktop.menu')
 require('freedesktop.desktop')
+require('freedesktop.menu')
 -- require("debian.menu")
 
 freedesktop.utils.terminal = terminal 

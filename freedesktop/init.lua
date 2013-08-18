@@ -1,5 +1,5 @@
 require("freedesktop.utils")
-require("freedesktop.desktop")
 require("freedesktop.menu")
+require("freedesktop.desktop")
 
 module("freedesktop")

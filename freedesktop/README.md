@@ -1,5 +1,5 @@
 This is [awesome-freedesktop](https://github.com/terceiro/awesome-freedesktop),
-adapted to work @version 3.5+ with [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
+simply adapted to work within [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 License
 =======
