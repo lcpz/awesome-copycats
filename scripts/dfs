@@ -42,14 +42,14 @@ PATTERN="/"
 
 case "$SYSTEM" in
 "Linux" )
-DF_COMMAND="/bin/df -k"
-SORT_COMMAND="/usr/bin/sort -k6"
-AWK_COMMAND="/bin/awk"
+DF_COMMAND="/usr/bin/env df -k"
+SORT_COMMAND="/usr/bin/env sort -k6"
+AWK_COMMAND="/usr/bin/env awk"
 ;;
 * )
 DF_COMMAND="/bin/df -k"
 SORT_COMMAND="/usr/bin/sort -k6"
-AWK_COMMAND="/opt/local/bin/gawk"
+AWK_COMMAND="/usr/bin/env gawk"
 ;;
 esac
 
