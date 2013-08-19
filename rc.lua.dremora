@@ -8,21 +8,20 @@
 
 -- {{{ Required Libraries
 
-local gears           = require("gears")
-local awful           = require("awful")
-awful.rules           = require("awful.rules")
-awful.autofocus       = require("awful.autofocus")
-local wibox           = require("wibox")
-local beautiful       = require("beautiful")
-local naughty         = require("naughty")
-local vicious         = require("vicious")
-local scratch         = require("scratch")
-local yawn            = require("yawn")
-local layouts         = require("layouts")
+local gears     = require("gears")
+local awful     = require("awful")
+awful.rules     = require("awful.rules")
+awful.autofocus = require("awful.autofocus")
+local wibox     = require("wibox")
+local beautiful = require("beautiful")
+local naughty   = require("naughty")
+local vicious   = require("vicious")
+local scratch   = require("scratch")
+local yawn      = require("yawn")
 
 -- }}}
 
--- {{{ Autostart programs 
+-- {{{ Autostart applications 
 
 function run_once(cmd)
   findme = cmd
@@ -104,7 +103,6 @@ layouts =
     awful.layout.suit.fair,                 -- 3
     awful.layout.suit.tile.left,            -- 4
     awful.layout.suit.tile.top,             -- 5
-    layouts.tilegaps,                       -- 6
 }
 
 -- }}}

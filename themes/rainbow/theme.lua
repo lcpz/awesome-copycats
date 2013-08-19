@@ -20,7 +20,7 @@ theme.fg_urgent                     = "#000000"
 theme.bg_urgent                     = "#FFFFFF"
 theme.border_width                  = "1"
 theme.border_normal                 = "#242424"
-theme.border_focus                  = "#999999"
+theme.border_focus                  = "#EBEBFF"
 theme.taglist_fg_focus              = "#EBEBFF"
 theme.taglist_bg_focus              = "#3D3D3D"
 theme.menu_height                   = "16"
@@ -28,9 +28,9 @@ theme.menu_width                    = "140"
 
 theme.ocol                          = "<span color='" .. theme.fg_normal .. "'>"
 theme.ccol                          = "</span>"
-theme.tasklist_sticky               = theme.ocol .. " [S]" .. theme.ccol
-theme.tasklist_ontop                = theme.ocol .. " [T]" .. theme.ccol
-theme.tasklist_floating             = theme.ocol .. " [F]" .. theme.ccol
+theme.tasklist_sticky               = theme.ocol .. "[S]" .. theme.ccol
+theme.tasklist_ontop                = theme.ocol .. "[T]" .. theme.ccol
+theme.tasklist_floating             = theme.ocol .. "[F]" .. theme.ccol
 theme.tasklist_maximized_horizontal = theme.ocol .. "[M] " .. theme.ccol
 theme.tasklist_maximized_vertical   = ""
 theme.tasklist_disable_icon         = true
@@ -55,13 +55,16 @@ theme.layout_txt_fullscreen         = "[F]"
 theme.layout_txt_magnifier          = "[M]"
 theme.layout_txt_floating           = "[*]"
 
-theme.layout_txt_tilegaps           = "[tg]"
-theme.layout_txt_tileleftgaps       = "[tlg]"
-theme.layout_txt_tilebottomgaps     = "[tbg]"
-theme.layout_txt_tiletopgaps        = "[ttg]"
-theme.layout_txt_fairhgaps          = "[fhg]"
-theme.layout_txt_fairvgaps          = "[fvg]"
-theme.layout_txt_spiralgaps         = "[spg]"
-theme.layout_txt_dwindlegaps        = "[dwg]"
+-- vain related
+theme.border_focus_highprio         = "#FF0000"
+theme.border_normal_highprio        = "#A03333"
+theme.border_focus_lowprio          = "#3333FF"
+theme.border_normal_lowprio         = "#333366"
+theme.useless_gap_width             = "6"
+theme.layout_txt_uselesstile        = "[ut]"
+theme.layout_txt_uselessfairv       = "[ufv]"
+theme.layout_txt_uselessfairh       = "[ufh]"
+theme.layout_txt_termfair           = "[termfair]"
+theme.layout_txt_uselessdwindle     = "[ud]"
 
 return theme

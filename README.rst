@@ -24,7 +24,6 @@ Notable features:
 - PNG taskbar
 - No borders when there's only one visible client
 - Powerful volume bar
-- Custom layouts
 - Freedesktop menu
 - By direction client focus (like in bspwm)
 
@@ -69,8 +68,6 @@ Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
 
 Blackburn and Dremora use Icons_: **if you're running Debian/Ubuntu**, be sure to have bitmaps enabled (1_ 2_).
 
-If you have any ``surface.lua`` problem, be sure to have ``lua`` and ``lua-lgi`` up to date.
-
 Except Multicolor and Powerarrow Darker, every theme has a colorscheme_ and uses Yawn_.
 
 Blackburn and Holo use png topbars, supported screen widths are:
@@ -85,13 +82,18 @@ Blackburn and Holo use png topbars, supported screen widths are:
     1920
     2560
 
-if your screen is unsupported, you have to create a proper topbar, and put it into ``themes/$THEME/icons/topbar``. Feel free to send me your custom sized bar, I'll add it.
+if your screen is unsupported, you have to create a proper topbar and put it into ``themes/$THEME/icons/topbar``. You can send me your custom sized bar, I'll add it.
 
 Freedesktop menu in use is just an example: feel free to modify ``freedesktop/freedesktop.lua``.
 
 If you happen to get an error involving ``/home fs widget``, replace every occurrence of ``/home`` with ``/``, or some other argument defined in vicious readme_, section ``vicious.widgets.fs``.
 
-**Have any suggestions?** Did you see some great stuff and you want me to put my paws on it? Feel free to email me, it might just be the next copycat!
+Instead, if you happen to get any ``surface.lua`` problem, be sure to have ``lua`` and ``lua-lgi`` up to date.
+
+Also be sure to set your music dir in ``scripts/mpdinfo``, and to have ``imagemagick`` and ``notify-send`` installed.
+
+
+**Have any suggestions?** Did you see some great stuff and you'd like me to put my paws on it? Then tell me! It might just be the next copycat.
 
 Author
 --------

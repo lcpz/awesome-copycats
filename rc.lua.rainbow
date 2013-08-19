@@ -18,7 +18,6 @@ local naughty   = require("naughty")
 local vicious   = require("vicious")
 local scratch   = require("scratch")
 local yawn      = require("yawn")
-local layouts   = require("layouts")
 
 -- }}}
 
@@ -102,9 +101,6 @@ layouts =
     awful.layout.suit.tile,                 -- 2
     awful.layout.suit.fair,                 -- 3
     awful.layout.suit.fair.horizontal,      -- 4
-    layouts.tilegaps,                       -- 5
-    layouts.fairgaps,                       -- 6
-    layouts.spiralgaps,                     -- 7
 }
 
 -- }}}
