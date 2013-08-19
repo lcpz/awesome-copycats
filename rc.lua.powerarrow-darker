@@ -718,20 +718,20 @@ globalkeys = awful.util.table.join(
                                           end),
 
     -- Music control
-    awful.key({ altkey, "Control" }, "Up", function () 
-                                              awful.util.spawn( "mpc toggle", false ) 
+    awful.key({ altkey, "Control" }, "Up", function ()
+                                              awful.util.spawn_with_shell( "mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle", false )
                                               vicious.force({ mpdwidget } )
                                            end),
-    awful.key({ altkey, "Control" }, "Down", function () 
-                                                awful.util.spawn( "mpc stop", false ) 
+    awful.key({ altkey, "Control" }, "Down", function ()
+                                                awful.util.spawn_with_shell( "mpc stop || ncmpcpp stop || ncmpc stop || pms stop", false )
                                                 vicious.force({ mpdwidget } )
                                              end ),
     awful.key({ altkey, "Control" }, "Left", function ()
-                                                awful.util.spawn( "mpc prev", false )
+                                                awful.util.spawn_with_shell( "mpc prev || ncmpcpp prev || ncmpc prev || pms prev", false )
                                                 vicious.force({ mpdwidget } )
                                              end ),
-    awful.key({ altkey, "Control" }, "Right", function () 
-                                                awful.util.spawn( "mpc next", false )
+    awful.key({ altkey, "Control" }, "Right", function ()
+                                                awful.util.spawn_with_shell( "mpc next || ncmpcpp next || ncmpc next || pms next", false )
                                                 vicious.force({ mpdwidget } )
                                               end ),
 
