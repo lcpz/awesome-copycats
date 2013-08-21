@@ -17,15 +17,17 @@ Notable features:
 - Elegant notifications for new mails, current song, volume level, hdd critical state, low battery
 - Yahoo Weather integration 
 - Net carrier status notifier 
-- Full localization potential (just easily edit a few lines - look for 'stub' keywords)
 - Colorful autoupdating icons
 - Symbolic tag names
-- TXT tag layouts
+- TXT layouts names (instead of icons)
 - PNG taskbar
+- Custom layouts
 - No borders when there's only one visible client
 - Powerful volume bar
 - Freedesktop menu
 - By direction client focus (like in bspwm)
+- Nice client border (i.e. colors change along with process status)
+- Modularization
 
 They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
 
@@ -99,7 +101,7 @@ Also be sure to set your music dir in ``scripts/mpdinfo``, and to have ``imagema
 
 Author
 --------
-Luke Bonham <dadasignificanulla [at] gmail [dot] com>
+Luke Bonham <dada [at] archlinux [dot] info>
 
 License
 --------
