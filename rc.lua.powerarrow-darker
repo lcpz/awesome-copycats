@@ -353,17 +353,19 @@ fshicon:set_image(beautiful.widget_hdd)
 fshwidget = wibox.widget.textbox()
 vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
-  if args["{/home used_p}"] >= 95 and args["{/home used_p}"] < 99 then
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{/home used_p}"] .. '% </span></span>' 
-  elseif args["{/home used_p}"] >= 99 and args["{/home used_p}"] <= 100 then
-    naughty.notify({ title = "warning", text = "/home partition ran out!\nmake some room",
+  -- used percent of /home if it is on a separate partition, else fallback to /
+  used_percent = args["{/home used_p}"] or args["{/ used_p}"]
+  if used_percent >= 95 and used_percent < 99 then
+    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. used_percent .. '% </span></span>' 
+  elseif used_percent >= 99 and used_percent <= 100 then
+    naughty.notify({ title = "warning", text = "hdd ran out!\nmake some room",
     timeout = 10,
     position = "top_right",
     fg = beautiful.fg_urgent,
     bg = beautiful.bg_urgent })
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{/home used_p}"] .. '% </span></span>' 
+    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. used_percent .. '% </span></span>' 
   else
-    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. args["{/home used_p}"] .. '% </span></span>' 
+    return '<span background="#313131" font="Terminus 13" rise="2000"> <span font="Terminus 9">' .. used_percent .. '% </span></span>' 
   end
 end, 600)
 

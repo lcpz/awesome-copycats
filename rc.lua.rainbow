@@ -331,8 +331,10 @@ fshwidget = wibox.widget.textbox()
 too_much = false
 vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
-  if ( args["{/home used_p}"] >= 90 ) then
-      if ( args["{/home used_p}"] >= 99 and too_much == false ) then
+  -- used percent of /home if it is on a separate partition, else fallback to /
+  used_percent = args["{/home used_p}"] or args["{/ used_p}"]
+  if ( used_percent >= 90 ) then
+      if ( used_percent >= 99 and too_much == false ) then
         naughty.notify({ title = "Attenzione", text = "Partizione /home esaurita!\nFa' un po' di spazio.",
         timeout = 7,
         position = "top_right",
@@ -340,7 +342,7 @@ function (widget, args)
         bg = beautiful.bg_urgent })
         too_much = true
       end
-      return gray .. " Hdd " .. coldef .. white .. args["{/home used_p}"] .. coldef .. " "
+      return gray .. " Hdd " .. coldef .. white .. used_percent .. coldef .. " "
   else
     return ""
   end

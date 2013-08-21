@@ -340,14 +340,16 @@ vicious.register(tempwidget, vicious.widgets.thermal, gray .. "Temp " .. coldef 
 fshwidget = wibox.widget.textbox()
 vicious.register(fshwidget, vicious.widgets.fs,
 function (widget, args)
-  if ( args["{/home used_p}"] >= 99 ) then
-    naughty.notify({ title = "warning", text = "/home partition ran out!\nmake some room",
+  -- used percent of /home if it is on a separate partition, else fallback to /
+  used_percent = args["{/home used_p}"] or args["{/ used_p}"]
+  if ( used_percent >= 99 ) then
+    naughty.notify({ title = "warning", text = "hdd ran out!\nmake some room",
     timeout = 10,
     position = "top_right",
     fg = beautiful.fg_urgent,
     bg = beautiful.bg_urgent })
   end
-  return gray .. "Hdd " .. coldef .. white .. args["{/home used_p}"] .. coldef
+  return gray .. "Hdd " .. coldef .. white .. used_percent .. coldef
 end, 600)
 
 local infos = nil
