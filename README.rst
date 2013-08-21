@@ -66,7 +66,7 @@ Notes
 --------
 **Do not** use without reading and modifying according to your preferences and system specs.
 
-Vicious_ is required.
+Widgets are from vicious_ repository.
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
 
@@ -115,7 +115,7 @@ Let us spread some style, in order to make Awesome appearance awesome too!
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
-.. _Vicious: http://git.sysphere.org/vicious/about/
+.. _vicious: http://git.sysphere.org/vicious/about/
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Yawn: https://github.com/copycat-killer/yawn
 .. _1: http://weiwu.sdf.org/100921.html
