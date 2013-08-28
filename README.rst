@@ -12,7 +12,7 @@ Power themes for Awesome WM 3.5+
 :Status: **Temporarily suspended**
 :Reason: I'm focusing my work on vain_, which will play a big role in version 2.0
 
-Descrition
+Description
 ==========
 
 A set of power themes with the aim of making Awesome_ appearance awesome too!
