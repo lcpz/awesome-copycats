@@ -39,7 +39,7 @@ theme.awesome_icon                  = theme.dir .. "/icons/awesome_icon.png"
 theme.menu_submenu_icon             = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel2.png"
 theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
-theme.widget_mail_notify            = theme.dir .. "/icons/mail_notify.png"
+theme.vain_mail_notify              = theme.dir .. "/icons/mail_notify.png"
 theme.widget_no_net_notify          = theme.dir .. "/icons/no_net_notify.png"
 
 theme.layout_txt_tile               = "[t]"

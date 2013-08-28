@@ -1,12 +1,24 @@
-===== 
+===================
 Awesome WM Copycats
-===== 
-A collection of power themes for Awesome WM 3.5+ 
----------
+=================== 
 
-Beware! They're more awesome than they appear, it's just they're shy.
+--------------------------------
+Power themes for Awesome WM 3.5+ 
+--------------------------------
 
-Notable features:
+:Author: Luke Bonham <dada [at] archlinux [dot] info>
+:License: BY-NC-SA_
+:Version: 1.6.5
+:Status: **Temporarily suspended**
+:Reason: I'm focusing my work on vain_, which will play a big role in version 2.0
+
+Descrition
+==========
+
+A set of power themes with the aim of making Awesome_ appearance awesome too!
+
+Notable features
+================
 
 - Autohide widgets (*tell me only when you have to*)
 - Autostart functionality
@@ -27,7 +39,6 @@ Notable features:
 - Freedesktop menu
 - By direction client focus (like in bspwm)
 - Nice client border (i.e. colors change along with process status)
-- Modularization
 
 They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
 
@@ -64,9 +75,10 @@ Gallery
 
 Notes
 --------
+
 **Do not** use without reading and modifying according to your preferences and system specs.
 
-Widgets are from vicious_ repository.
+Widgets are provided by vicious_.
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
 
@@ -99,18 +111,8 @@ Also be sure to set your music dir in ``scripts/mpdinfo``, and to have ``imagema
 
 **Have any suggestions?** Did you see some great stuff and you'd like me to put my paws on it? Then tell me! It might just be the next copycat.
 
-Author
---------
-Luke Bonham <dada [at] archlinux [dot] info>
-
-License
---------
-If you like this work, you are free to use it as defined in BY-NC-SA_. 
-
-I only ask you to not remove my signatures, or to add a link to this repository if you make your own versions.  
-
-Let us spread some style, in order to make Awesome appearance awesome too!
-
+.. _Awesome: http://awesome.naquadah.org/
+.. _vain: https://github.com/copycat-killer/vain
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
