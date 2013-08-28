@@ -6,7 +6,7 @@ Awesome WM Copycats
 Power themes for Awesome WM 3.5+ 
 --------------------------------
 
-:Author Luke Bonham <dada [at] archlinux [dot] info>
+:Author: Luke Bonham <dada [at] archlinux [dot] info>
 :License: BY-NC-SA_
 :Version: 1.6.5
 :Status: **Temporarily suspended**
