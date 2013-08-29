@@ -37,7 +37,7 @@ Notable features
 - No borders when there's only one visible client
 - Powerful volume bar
 - Freedesktop menu
-- By direction client focus (like in bspwm)
+- Vi-like client focus (hjkl)
 - Nice client border (i.e. colors change along with process status)
 
 They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
