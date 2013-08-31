@@ -15,12 +15,12 @@ Power themes for Awesome WM 3.5+
 Description
 ==========
 
-A set of power themes with the aim of making Awesome_ appearance awesome too!
+A set of themes with the aim of making Awesome_ appearance awesome too!
 
 Notable features
 ================
 
-- Autohide widgets (*tell me only when you have to*)
+- Shadow widgets (*tell me only when you have to*)
 - Autostart functionality
 - Fast mpd and volume shortcuts (first time you see this trick in Awesome)
 - Other fancy shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving clients
@@ -31,19 +31,19 @@ Notable features
 - Net carrier status notifier 
 - Colorful autoupdating icons
 - Symbolic tag names
-- TXT layouts names (instead of icons)
+- TXT layoutbox option 
 - PNG taskbar
 - Custom layouts
 - No borders when there's only one visible client
 - Powerful volume bar
 - Freedesktop menu
-- Vi-like client focus (hjkl)
-- Nice client border (i.e. colors change along with process status)
+- Vi-like client focus
+- Nice client border (colors change along with process status)
 
 They're scattered all over the set, so try each theme and choose the one you enjoy the most. 
 
 Gallery
---------
+=======
 
 **Multicolor** copycatted from tip_ [liked so much --> compulsory personal version]
 
@@ -74,7 +74,7 @@ Gallery
 .. image:: http://dotshare.it/public/images/uploads/621.png
 
 Notes
---------
+=====
 
 **Do not** use without reading and modifying according to your preferences and system specs.
 
@@ -107,9 +107,6 @@ If you happen to get an error involving ``/home fs widget``, replace every occur
 Instead, if you happen to get any ``surface.lua`` problem, be sure to have ``lua`` and ``lua-lgi`` up to date.
 
 Also be sure to set your music dir in ``scripts/mpdinfo``, and to have ``imagemagick`` and ``notify-send`` installed.
-
-
-**Have any suggestions?** Did you see some great stuff and you'd like me to put my paws on it? Then tell me! It might just be the next copycat.
 
 .. _Awesome: http://awesome.naquadah.org/
 .. _vain: https://github.com/copycat-killer/vain

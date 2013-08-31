@@ -21,8 +21,8 @@ theme.bg_urgent                     = "#FFFFFF"
 theme.border_width                  = "1"
 theme.border_normal                 = "#242424"
 theme.border_focus                  = "#EBEBFF"
-theme.taglist_fg_focus              = "#EBEBFF"
-theme.taglist_bg_focus              = "#3D3D3D"
+theme.taglist_fg_focus              = "#EDEFFF"
+theme.taglist_bg_focus              = "#242424"
 theme.menu_height                   = "16"
 theme.menu_width                    = "140"
 
@@ -37,10 +37,10 @@ theme.tasklist_disable_icon         = true
 
 theme.awesome_icon                  = theme.dir .. "/icons/awesome_icon.png"
 theme.menu_submenu_icon             = theme.dir .. "/icons/submenu.png"
-theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel2.png"
+theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
-theme.vain_mail_notify              = theme.dir .. "/icons/mail_notify.png"
 theme.widget_no_net_notify          = theme.dir .. "/icons/no_net_notify.png"
+theme.vol_bg                        = theme.dir .. "/icons/vol_bg.png"
 
 theme.layout_txt_tile               = "[t]"
 theme.layout_txt_tileleft           = "[l]"

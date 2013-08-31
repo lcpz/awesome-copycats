@@ -32,8 +32,8 @@ theme.tasklist_bg_focus                     = "png:" .. theme.icon_dir .. "/bg_f
 theme.textbox_widget_margin_top             = 1
 theme.awful_widget_height                   = 14
 theme.awful_widget_margin_top               = 2
-theme.menu_height                           = "16"
-theme.menu_width                            = "140"
+theme.menu_height                           = "20"
+theme.menu_width                            = "400"
 
 theme.widget_bg                             = theme.icon_dir .. "/bg_focus_noline.png"
 theme.awesome_icon                          = theme.icon_dir .. "/awesome_icon.png"

@@ -518,6 +518,7 @@ function alsawidget:notify ()
 		preset.title = alsawidget.channel .. " - Muted"
 	else
 		preset.title = alsawidget.channel .. " - " .. alsawidget._current_level .. "%"
+
 	end
 
   local int = math.modf (alsawidget._current_level / 100 * alsawidget.notifications.bar_size)

@@ -597,7 +597,7 @@ no_net_shown = true
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
 function (widget, args)
-    if args["{wlan0 carrier}"] == 0 then
+    if args["{wlp3s0 carrier}"] == 0 then
        if no_net_shown == true then
          naughty.notify({ title = "wlan0", text = "No carrier",
          timeout = 7,
@@ -616,7 +616,7 @@ function (widget, args)
          netup_icon:set_image(beautiful.net_up)
          no_net_shown = true
        end
-       return white .. "<span font='Tamsyn 2'> </span>" .. args["{wlan0 down_kb}"] .. " - " .. args["{wlan0 up_kb}"] .. "<span font='Tamsyn 2'> </span>" .. coldef
+       return white .. "<span font='Tamsyn 2'> </span>" .. args["{wlp3s0 down_kb}"] .. " - " .. args["{wlp3s0 up_kb}"] .. "<span font='Tamsyn 2'> </span>" .. coldef
     end
 end, 3)
 networkwidget = wibox.widget.background()
