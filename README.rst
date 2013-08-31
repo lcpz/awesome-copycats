@@ -78,6 +78,8 @@ Notes
 
 **Do not** use without reading and modifying according to your preferences and system specs.
 
+If you happen to get any problem (startup, ``surface.lua``, ...), **be sure** to have ``lua`` and ``lua-lgi`` up to date.
+
 Widgets are provided by vicious_.
 
 Fonts are Terminus (Multicolor, Powerarrow Darker) and Tamsyn (other ones).
@@ -103,8 +105,6 @@ if your screen is unsupported, you have to create a proper topbar and put it int
 Freedesktop menu in use is just an example: feel free to modify ``freedesktop/freedesktop.lua``.
 
 If you happen to get an error involving ``/home fs widget``, replace every occurrence of ``/home`` with ``/``, or some other argument defined in vicious readme_, section ``vicious.widgets.fs``.
-
-Instead, if you happen to get any ``surface.lua`` problem, be sure to have ``lua`` and ``lua-lgi`` up to date.
 
 Also be sure to set your music dir in ``scripts/mpdinfo``, and to have ``imagemagick`` and ``notify-send`` installed.
 

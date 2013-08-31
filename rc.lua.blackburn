@@ -495,9 +495,9 @@ no_net_shown = true
 netwidget = wibox.widget.textbox()
 vicious.register(netwidget, vicious.widgets.net,
 function (widget, args)
-    if args["{wlan0 carrier}"] == 0 then
+    if args["{wlp3s0 carrier}"] == 0 then
        if no_net_shown == true then
-         naughty.notify({ title = "wlan0", text = "No carrier",
+         naughty.notify({ title = "wlp3s0", text = "No carrier",
          timeout = 7,
          position = "top_left",
          icon = beautiful.widget_no_net_notify,

@@ -447,7 +447,7 @@ end, 1, "Master")
 
 -- Net widget
 netwidget = wibox.widget.textbox()
-vicious.register(netwidget, vicious.widgets.net, gray .. "Net " .. coldef .. white .. "${wlan0 down_kb} " .. "<span font=\"Terminus 8\">↓↑ </span>" .. "${wlan0 up_kb} " .. coldef, 3)
+vicious.register(netwidget, vicious.widgets.net, gray .. "Net " .. coldef .. white .. "${wlp3s0 down_kb} " .. "<span font=\"Terminus 8\">↓↑ </span>" .. "${wlp3s0 up_kb} " .. coldef, 3)
 netwidget:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(wifi) end)))
 
 -- Weather widget
