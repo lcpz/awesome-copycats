@@ -34,5 +34,5 @@ table.insert(menu_items, { "awesome", myawesomemenu, beautiful.awesome_icon })
 table.insert(menu_items, { "open terminal", terminal, freedesktop.utils.lookup_icon({icon = 'terminal'}) })
 -- table.insert(menu_items, { "Debian", debian.menu.Debian_menu.Debian, freedesktop.utils.lookup_icon({ icon = 'debian-logo' }) })
 
-mymainmenu = awful.menu.new({ items = menu_items, theme = { width = 150 } }) 
+mymainmenu = awful.menu.new({ items = menu_items, theme = { width = 150 } })
 mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })

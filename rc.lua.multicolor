@@ -184,8 +184,6 @@ calendar_width = 21
 local calendar = nil
 local offset = 0
 
-local data = nil
-
 local function pop_spaces(s1, s2, maxsize)
    local sps = ""
    for i = 1, maxsize - string.len(s1) - string.len(s2) do

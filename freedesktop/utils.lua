@@ -158,7 +158,7 @@ function load_mime_types()
                 for w in line:gmatch('[^%s]+') do
                     table.insert(parsed, w)
                 end
-                if #parsed > 1 then 
+                if #parsed > 1 then
                     for i = 2, #parsed do
                         mime_types[parsed[i]] = parsed[1]:gsub('/', '-')
                     end

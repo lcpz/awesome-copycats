@@ -1,4 +1,4 @@
-This is [awesome-freedesktop](https://github.com/terceiro/awesome-freedesktop), 
+This is [awesome-freedesktop](https://github.com/terceiro/awesome-freedesktop),
 adapted to work within [awesome-copycats](https://github.com/copycat-killer/awesome-copycats).
 
 License

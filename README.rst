@@ -9,8 +9,7 @@ Power themes for Awesome WM 3.5+
 :Author: Luke Bonham <dada [at] archlinux [dot] info>
 :License: BY-NC-SA_
 :Version: 1.6.5
-:Status: **Temporarily suspended**
-:Reason: I'm focusing my work on vain_, which will play a big role in version 2.0
+:Status: **resuming shortly**, this time powered by lain_
 
 Description
 ==========
@@ -109,7 +108,7 @@ If you happen to get an error involving ``/home fs widget``, replace every occur
 Also be sure to set your music dir in ``scripts/mpdinfo``, and to have ``imagemagick`` and ``notify-send`` installed.
 
 .. _Awesome: http://awesome.naquadah.org/
-.. _vain: https://github.com/copycat-killer/vain
+.. _lain: https://github.com/copycat-killer/vain
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
