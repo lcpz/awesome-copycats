@@ -7,8 +7,9 @@ Power themes for Awesome WM 3.5+
 --------------------------------
 
 :Author: Luke Bonham <dada [at] archlinux [dot] info>
-:License: BY-NC-SA_
 :Version: 2.0-git
+:License: BY-NC-SA_
+:Source: https://github.com/copycat-killer/awesome-copycats
 
 Description
 ==========
@@ -42,17 +43,17 @@ Notable features
 Gallery
 =======
 
-**Multicolor** copycatted from tip_ 
+**Multicolor** copycatted from tip_
 
-.. image:: http://i.imgur.com/vBMn8C8.jpg
+.. image:: http://dotshare.it/public/images/uploads/650.png
 
 **Powerarrow Darker** copycatted from romockee_ [port from v3.4]
 
-.. image:: http://s22.postimg.org/xhjc4p8mn/20130913174810.png
+.. image:: http://dotshare.it/public/images/uploads/649.png
 
 **Steamburn** copycatted from ok100_ [port from dwm]
 
-.. image:: http://s16.postimg.org/cdbf9h79f/20130913000339.png
+.. image:: http://dotshare.it/public/images/uploads/648.png
 
 **Blackburn**
 
@@ -64,7 +65,7 @@ Gallery
 
 **Rainbow**
 
-.. image:: http://s24.postimg.org/cwbbhb78j/w_DECBp_P.png
+.. image:: http://dotshare.it/public/images/uploads/606.png
 
 **Holo** suggested by amouly_
 
@@ -72,6 +73,25 @@ Gallery
 
 Installation
 ============
+
+::
+    git clone https://github.com/copycat-killer/awesome-copycats.git
+    mv -u awesome-copycats ~/.config/awesome
+    cd ~/.config/awesome/lain
+    git submodule init
+    git submodule update
+
+But first you may want to do this: ::
+
+    cp -ar ~/.config/awesome ~/.config/awesome.save
+
+Usage
+=====
+
+::
+    cd ~/.config/awesome
+    cp rc.lua rc.lua.save
+    cp rc.lua.mytheme rc.lua
 
 Notes
 =====
