@@ -82,7 +82,7 @@ Using git: ::
     git submodule init
     git submodule update
 
-Otherwise download this two archives (1 and 2), extract the first, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
+Otherwise download this two archives (1_ and 2_), extract the first one, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
 
 Usage
 =====
@@ -90,12 +90,14 @@ Usage
 Switch a theme this way: ::
 
     cd ~/.config/awesome
-    cp rc.lua.mytheme rc.lua
+    cp rc.lua.theme rc.lua
 
 then edit your ``rc.lua`` to suit your preferences and system configuration.
 
 Notes
 =====
+
+Be sure to have Lua 5.2+, Lua-lgi, and latest version of Awesome.
 
 Complements are provided by lain_: be sure to meet its dependencies.
 
@@ -111,6 +113,8 @@ Blackburn and Dremora use Icons_, be sure to have bitmaps enabled if running und
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
+.. _1: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
+.. _2: https://github.com/copycat-killer/lain/archive/master.zip
 .. _lain: https://github.com/copycat-killer/vain
 .. _Terminus: http://terminus-font.sourceforge.net/
 .. _Tamsyn: http://www.fial.com/~scott/tamsyn-font/
