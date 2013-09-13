@@ -1,10 +1,9 @@
---[[                                  ]]--
---                                      -
---    Rainbow Awesome WM 3.5.+ theme    --
---      github.com/copycat-killer       --
---                                      -
---[[                                  ]]--
-
+--[[
+                                   
+     Rainbow Awesome WM config 2.0 
+     github.com/copycat-killer     
+                                   
+--]]
 
 theme                               = {}
 

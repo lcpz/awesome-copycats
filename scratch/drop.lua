@@ -36,7 +36,6 @@ local capi = {
 -- Scratchdrop: drop-down applications manager for the awesome window manager
 local drop = {} -- module scratch.drop
 
-
 local dropdown = {}
 
 -- Create a new window for the drop-down application when it doesn't

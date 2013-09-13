@@ -2,14 +2,12 @@
 -- Modify according to your preferences
 
 -- If you are a Debian user, you can also uncomment the two lines that insert
--- the Debian menu together with the rest of the items.
+-- the Debian menu together with the rest of the items (11 and 33).
 
-local awful = require("awful")
+local awful     = require("awful")
 local beautiful = require("beautiful")
 
-require('freedesktop.utils')
-require('freedesktop.desktop')
-require('freedesktop.menu')
+require('freedesktop')
 -- require("debian.menu")
 
 freedesktop.utils.terminal   = terminal -- defined in rc.lua, otherwise define it here (default: "xterm")
