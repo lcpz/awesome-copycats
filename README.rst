@@ -99,7 +99,7 @@ Notes
 
 Be sure to have Lua 5.2+, Lua-lgi, and latest version of Awesome.
 
-Complements are provided by lain_: be sure to meet its dependencies.
+Complements are provided by lain_: be sure to meet its dependencies_.
 
 Fonts are Terminus_ (Multicolor, Powerarrow Darker) and Tamsyn_ (other ones).
 
@@ -115,7 +115,8 @@ Blackburn and Dremora use Icons_, be sure to have bitmaps enabled if running und
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
 .. _1: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
 .. _2: https://github.com/copycat-killer/lain/archive/master.zip
-.. _lain: https://github.com/copycat-killer/vain
+.. _lain: https://github.com/copycat-killer/lain
+.. _dependencies: https://github.com/copycat-killer/lain/wiki
 .. _Terminus: http://terminus-font.sourceforge.net/
 .. _Tamsyn: http://www.fial.com/~scott/tamsyn-font/
 .. _colorscheme: https://github.com/copycat-killer/dots/tree/master/.colors
