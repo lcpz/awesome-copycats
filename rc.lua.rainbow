@@ -190,11 +190,12 @@ fshome = lain.widgets.fs({
 })
 
 -- ALSA volume bar
-myvolumebar = lain.widgets.alsabar()
-volmargin = wibox.layout.margin(myvolumebar.widget, 5, 8, 80)
+volume = lain.widgets.alsabar()
+volmargin = wibox.layout.margin(volume.bar, 5, 8, 80)
 volmargin:set_top(7)
 volmargin:set_bottom(7)
-volumewidget = wibox.widget.background(volmargin, beautiful.vol_bg)
+volumewidget = wibox.widget.background(volmargin)
+volumewidget:set_bgimage(beautiful.vol_bg)
 
 -- Weather
 yawn = lain.widgets.yawn(123456,
@@ -435,22 +436,22 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Up",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "+")
-            myvolumebar.notify()
+            volume.notify()
         end),
     awful.key({ altkey }, "Down",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "-")
-            myvolumebar.notify()
+            volume.notify()
         end),
     awful.key({ altkey }, "m",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " playback toggle")
-            myvolumebar.notify()
+            volume.notify()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " playback 100%")
-            myvolumebar.notify()
+            volume.notify()
         end),
 
     -- MPD control
