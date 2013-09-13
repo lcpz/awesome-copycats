@@ -74,31 +74,30 @@ Gallery
 Installation
 ============
 
-::
+Using git: ::
+
     git clone https://github.com/copycat-killer/awesome-copycats.git
     mv -u awesome-copycats ~/.config/awesome
     cd ~/.config/awesome/lain
     git submodule init
     git submodule update
 
-But first you may want to do this: ::
-
-    cp -ar ~/.config/awesome ~/.config/awesome.save
+Otherwise download this two archives (1 and 2), extract the first, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
 
 Usage
 =====
 
-::
+Switch a theme this way: ::
+
     cd ~/.config/awesome
-    cp rc.lua rc.lua.save
     cp rc.lua.mytheme rc.lua
+
+then edit your ``rc.lua`` to suit your preferences and system configuration.
 
 Notes
 =====
 
-**Do not use** without setting your preferences and system specs first.
-
-Complements are provided by lain_.
+Complements are provided by lain_: be sure to meet its dependencies.
 
 Fonts are Terminus_ (Multicolor, Powerarrow Darker) and Tamsyn_ (other ones).
 
