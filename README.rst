@@ -62,7 +62,7 @@ Gallery
 
 **Dremora**
 
-.. image:: http://dotshare.it/public/images/uploads/589.png
+.. image:: http://dotshare.it/public/images/uploads/652.png
 
 **Rainbow**
 
@@ -70,7 +70,7 @@ Gallery
 
 **Holo** suggested by amouly_
 
-.. image:: http://dotshare.it/public/images/uploads/621.png
+.. image:: http://dotshare.it/public/images/uploads/651.png
 
 Installation
 ============
