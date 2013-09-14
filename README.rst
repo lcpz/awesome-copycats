@@ -39,6 +39,7 @@ Notable features
 - Vi-like client focus
 - Nice client border (colors change along with process status)
 - Non-empty tag browsing
+- Dynamic tag renaming
 
 Gallery
 =======
