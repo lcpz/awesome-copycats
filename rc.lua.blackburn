@@ -188,7 +188,6 @@ batwidget = lain.widgets.bat({
     end
 })
 
-
 -- ALSA volume
 volumewidget = lain.widgets.alsa({
     settings = function()
@@ -318,6 +317,9 @@ for s = 1, screen.count() do
     layout:set_right(right_layout)
 
     mywibox[s]:set_widget(layout)
+
+    -- Set proper background, instead of beautiful.bg_normal
+    mywibox[s]:set_bg(beautiful.topbar_path .. screen[1].workarea.width .. ".png")
 end
 -- }}}
 
