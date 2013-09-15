@@ -58,12 +58,8 @@ run_once("compton")
 -- localization
 os.setlocale(os.getenv("LANG"))
 
--- home path
-homedir = os.getenv("HOME") .. "/.config/awesome/"
-
 -- beautiful init
-confdir = homedir .. "themes/rainbow/"
-beautiful.init(confdir .. "theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/rainbow/theme.lua")
 
 -- common
 modkey     = "Mod4"
@@ -618,7 +614,7 @@ end)
 client.connect_signal("focus",
     function(c)
         if c.maximized_horizontal == true and c.maximized_vertical == true then
-            c.border_width = "0"
+            c.border_width = 0
             c.border_color = beautiful.border_normal
         else
             c.border_width = beautiful.border_width

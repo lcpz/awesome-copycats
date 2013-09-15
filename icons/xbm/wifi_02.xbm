@@ -1,4 +1,0 @@
-#define wifi_02_width 8
-#define wifi_02_height 8
-static unsigned char wifi_02_bits[] = {
- 0x40, 0x90, 0xA4, 0xA9, 0xA9, 0xA4, 0x90, 0x40 };

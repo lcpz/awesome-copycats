@@ -1,8 +1,0 @@
-HOW TO CHANGE COLOR OF ICONS AND RESIZE THEM
-
-Dependencies: imagemagick
-
-for x in *.xbm; do convert -transparent white -fill "#FFFFFF" -opaque "#000000" -bordercolor transparent -border 8x8 -gravity center -crop 15x15+0+0 "${x}" "${x%.*}.png"; done
-
--border 8x8 real size we want
--crop 16x16 size of the panel we want to fit

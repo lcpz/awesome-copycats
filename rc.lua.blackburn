@@ -61,8 +61,7 @@ os.setlocale(os.getenv("LANG"))
 homedir = os.getenv("HOME") .. "/.config/awesome/"
 
 -- beautiful init
-confdir = homedir .. "themes/blackburn/"
-beautiful.init(confdir .. "theme.lua")
+beautiful.init(awful.util.getdir("config") .. "/themes/blackburn/theme.lua")
 
 -- common
 modkey     = "Mod4"
@@ -319,7 +318,8 @@ for s = 1, screen.count() do
     mywibox[s]:set_widget(layout)
 
     -- Set proper background, instead of beautiful.bg_normal
-    mywibox[s]:set_bg(beautiful.topbar_path .. screen[1].workarea.width .. ".png")
+    mywibox[s]:set_bg(beautiful.topbar_path .. p.workarea.width .. ".png")
+    naughty.notify({text=p.workarea.width,timeout=10})
 end
 -- }}}
 
@@ -619,7 +619,7 @@ end)
 client.connect_signal("focus",
     function(c)
         if c.maximized_horizontal == true and c.maximized_vertical == true then
-            c.border_width = "0"
+            c.border_width = 0
             c.border_color = beautiful.border_normal
         else
             c.border_width = beautiful.border_width
