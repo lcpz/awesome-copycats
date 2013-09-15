@@ -202,23 +202,23 @@ function () awful.util.spawn_with_shell(musicplr) end)))
 prev_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     awful.util.spawn_with_shell("mpc prev || ncmpcpp prev || ncmpc prev || pms prev")
-    mpdwidget.notify()
+    mpdwidget.update()
 end)))
 next_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     awful.util.spawn_with_shell("mpc next || ncmpcpp next || ncmpc next || pms next")
-    mpdwidget.notify()
+    mpdwidget.update()
 end)))
 stop_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     play_pause_icon:set_image(beautiful.play)
     awful.util.spawn_with_shell("mpc stop || ncmpcpp stop || ncmpc stop || pms stop")
-    mpdwidget.notify()
+    mpdwidget.update()
 end)))
 play_pause_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     awful.util.spawn_with_shell("mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle")
-    mpdwidget.notify()
+    mpdwidget.update()
 end)))
 
 -- Battery
