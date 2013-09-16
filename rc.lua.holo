@@ -172,13 +172,12 @@ play_pause_icon:set_image(beautiful.play)
 mpdwidget = lain.widgets.mpd({
     settings = function ()
         if mpd_now.state == "play" then
-            mpd_now.artist = mpd_now.artist:gsub('&quot;', '"'):upper()
-            mpd_now.title = mpd_now.title:gsub('&quot;', '"'):upper()
             widget:set_markup(markup.font("Tamsyn 4", " ")
-                              .. markup.font("Tamsyn 8", mpd_now.artist ..
-                                             " - " ..
-                                             mpd_now.title)
-                              .. markup.font("Tamsyn 10", " "))
+                              .. markup.font("Tamsyn 8", 
+                              mpd_now.artist:upper():gsub("&", "&amp;")
+                              .. " - " ..
+                              mpd_now.title:upper():gsub("&", "&amp;")
+                              .. markup.font("Tamsyn 10", " ")))
             play_pause_icon:set_image(beautiful.pause)
         elseif mpd_now.state == "pause" then
             widget:set_markup(markup.font("Tamsyn 4", " ") ..
@@ -186,7 +185,7 @@ mpdwidget = lain.widgets.mpd({
                               markup.font("Tamsyn 10", " "))
             play_pause_icon:set_image(beautiful.play)
         else
-            widget:set_text("")
+            widget:set_markup("")
             play_pause_icon:set_image(beautiful.play)
         end
     end
