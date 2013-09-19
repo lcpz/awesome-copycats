@@ -41,6 +41,7 @@ Notable features
 - Non-empty tag browsing
 - Tag renaming
 - Dynamic useless gaps
+- Dynamic tagging
 
 Gallery
 =======
