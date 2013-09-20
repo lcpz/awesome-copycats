@@ -74,6 +74,10 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/651.png
 
+**Copland** inspired by foozer_
+
+.. image:: http://dotshare.it/public/images/uploads/655.png 
+
 Installation
 ============
 
@@ -116,6 +120,7 @@ Blackburn and Dremora use Icons_, be sure to have bitmaps enabled if running und
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
+.. _foozer: http://dotshare.it/dots/499/
 .. _1: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
 .. _2: https://github.com/copycat-killer/lain/archive/master.zip
 .. _lain: https://github.com/copycat-killer/lain
