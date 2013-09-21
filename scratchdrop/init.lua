@@ -7,9 +7,9 @@
 --   * http://sam.zoy.org/wtfpl/COPYING
 -------------------------------------------------------------------
 -- To use this module add:
---   local scratch = require("scratch")
+--   local scratchdrop = require("scratchdrop")
 -- to the top of your rc.lua, and call it from a keybinding:
---   scratch.drop(prog, vert, horiz, width, height, sticky, screen)
+--   scratchdrop(prog, vert, horiz, width, height, sticky, screen)
 --
 -- Parameters:
 --   prog   - Program to run; "urxvt", "gmrun", "thunderbird"
@@ -34,7 +34,7 @@ local capi = {
 }
 
 -- Scratchdrop: drop-down applications manager for the awesome window manager
-local drop = {} -- module scratch.drop
+local scratchdrop = {} -- module scratch.drop
 
 local dropdown = {}
 
@@ -130,4 +130,4 @@ function toggle(prog, vert, horiz, width, height, sticky, screen)
     end
 end
 
-return setmetatable(drop, { __call = function(_, ...) return toggle(...) end })
+return setmetatable(scratchdrop, { __call = function(_, ...) return toggle(...) end })

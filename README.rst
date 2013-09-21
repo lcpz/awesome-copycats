@@ -20,10 +20,10 @@ Notable features
 ================
 
 - Shadow widgets (*tell me only when you have to*)
-- Autostart functionality
+- Autostart applications
 - Fast mpd and volume shortcuts (first time you see this trick in Awesome)
-- Other shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving clients
-- Quake style dropdown terminal
+- Other shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
+- Quake drop-down terminal
 - Calendar with current day highlighted and months switch with a click
 - Elegant notifications for new mails, current song, volume level, hdd critical state, low battery
 - Yahoo! Weather integration
@@ -98,7 +98,7 @@ Switch a theme this way: ::
     cd ~/.config/awesome
     cp rc.lua.theme rc.lua
 
-then edit your ``rc.lua`` to suit your preferences and system configuration.
+then customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
 
 Notes
 =====
