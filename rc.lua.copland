@@ -134,7 +134,7 @@ mailwidget = lain.widgets.imap({
         count = ""
 
         if mailcount > 0 then
-            mail = "Arch "
+            mail = "<span font='Tamsyn 5'> </span>Mail "
             count = mailcount .. " "
         end
 
