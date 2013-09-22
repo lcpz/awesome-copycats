@@ -113,6 +113,10 @@ Every theme has a colorscheme_.
 
 Blackburn and Dremora use Icons_, be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
 
+Freedesktop requires `/etc/mime.types`, so be sure to have mime-types support installed.
+
+Freedesktop, eminent and scratchdrop are third-party softwares: rely on their creators if they cause you issues.
+
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
 .. _Awesome: http://awesome.naquadah.org/
 .. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
