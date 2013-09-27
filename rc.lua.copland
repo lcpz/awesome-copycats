@@ -674,11 +674,6 @@ client.connect_signal("manage", function (c, startup)
                 end)
                 )
 
-        -- Widgets that are aligned to the left
-        local left_layout = wibox.layout.fixed.horizontal()
-        --left_layout:add(awful.titlebar.widget.iconwidget(c))
-        left_layout:buttons(buttons)
-
         -- Widgets that are aligned to the right
         local right_layout = wibox.layout.fixed.horizontal()
         right_layout:add(awful.titlebar.widget.floatingbutton(c))
@@ -696,7 +691,6 @@ client.connect_signal("manage", function (c, startup)
 
         -- Now bring it all together
         local layout = wibox.layout.align.horizontal()
-        layout:set_left(left_layout)
         layout:set_right(right_layout)
         layout:set_middle(middle_layout)
 

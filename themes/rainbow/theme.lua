@@ -10,7 +10,7 @@ theme                               = {}
 theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/rainbow"
 theme.wallpaper                     = theme.dir .. "/wall.png"
 
-theme.font                          = "Tamsyn 10"
+theme.font                          = "Tamsyn 10.5"
 theme.fg_normal                     = "#9E9E9E"
 theme.fg_focus                      = "#EBEBFF"
 theme.bg_normal                     = "#242424"

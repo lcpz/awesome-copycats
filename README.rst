@@ -37,7 +37,7 @@ Notable features
 - Powerful volume bar
 - Freedesktop menu
 - Vi-like client focus
-- Nice client border (colors change along with process status)
+- Nice client border (colors change along with processes status)
 - Non-empty tag browsing
 - Dynamic useless gaps
 - Dynamic tagging
@@ -49,7 +49,7 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow Darker** copycatted from romockee_ [port from v3.4]
+**Powerarrow Darker** copycatted from romockee_ 
 
 .. image:: http://dotshare.it/public/images/uploads/649.png
 

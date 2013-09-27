@@ -10,7 +10,7 @@ theme                                           = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/copland"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
 
-theme.font                                      = "Tamsyn 10"
+theme.font                                      = "Tamsyn 10.5"
 theme.fg_normal                                 = "#BBBBBB"
 theme.fg_focus                                  = "#78A4FF"
 theme.bg_normal                                 = "#111111"
