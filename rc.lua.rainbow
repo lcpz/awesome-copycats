@@ -176,9 +176,9 @@ fshome = lain.widgets.fs({
         hdd = ""
         p   = ""
 
-        if used >= 90 then
+        if fs_now.used >= 90 then
             hdd = " Hdd "
-            p   = used .. " "
+            p   = fs_now.used .. " "
         end
 
         widget:set_markup(markup(gray, hdd) .. markup(white, p))

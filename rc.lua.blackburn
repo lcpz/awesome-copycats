@@ -165,7 +165,7 @@ fshome = lain.widgets.fs({
 
         if used >= 90 then
             fs_header = " Hdd "
-            fs_p      = used
+            fs_p      = fs_now.used
         end
 
         widget:set_markup(markup(gray, fs_header) .. fs_p)
