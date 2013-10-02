@@ -215,12 +215,12 @@ diskmargin:set_bottom(6)
 fshomeupd = lain.widgets.fs({
     partition = "/home",
     settings  = function()
-        if used < 90 then
+        if fs_now.used < 90 then
             diskbar:set_color(beautiful.fg_normal)
         else
             diskbar:set_color("#EB8F8F")
         end
-        diskbar:set_value(used / 100)
+        diskbar:set_value(fs_now.used / 100)
     end
 })
 diskwidget = wibox.widget.background(diskmargin)
