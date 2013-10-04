@@ -23,7 +23,7 @@ theme.border_focus                              = "#93B6FF"
 theme.taglist_fg_focus                          = "#FFFFEF"
 theme.taglist_bg_focus                          = "#111111"
 theme.titlebar_bg_normal                        = "#191919"
-theme.titlebar_bg_focus                         = "#222222"
+theme.titlebar_bg_focus                         = "#262626"
 theme.menu_height                               = "16"
 theme.menu_width                                = "150"
 
@@ -89,6 +89,7 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 
 -- lain related
 theme.useless_gap_width                         = 10
+theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
 theme.layout_termfair                           = theme.dir .. "/icons/termfair.png"
 theme.layout_uselessfair                        = theme.dir .. "/icons/fairv.png"
 theme.layout_uselessfairh                       = theme.dir .. "/icons/fairh.png"
