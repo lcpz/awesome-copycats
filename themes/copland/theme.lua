@@ -24,7 +24,7 @@ theme.taglist_fg_focus                          = "#FFFFEF"
 theme.taglist_bg_focus                          = "#111111"
 theme.titlebar_bg_normal                        = "#191919"
 theme.titlebar_bg_focus                         = "#262626"
-theme.menu_height                               = "16"
+theme.menu_height                               = "15"
 theme.menu_width                                = "150"
 
 theme.tasklist_sticky                           = ""
