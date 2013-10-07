@@ -200,8 +200,7 @@ fswidgetbg = wibox.widget.background(fswidget, "#313131")
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
     settings = function()
-        if bat_now.perc == "N/A" then
-            bat_now.perc = "AC"
+        if bat_now.ac == "online" then
             baticon:set_image(beautiful.widget_ac)
         elseif tonumber(bat_now.perc) <= 5 then
             baticon:set_image(beautiful.widget_battery_empty)
