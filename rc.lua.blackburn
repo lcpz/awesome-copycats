@@ -163,7 +163,7 @@ fshome = lain.widgets.fs({
         fs_header = ""
         fs_p      = ""
 
-        if used >= 90 then
+        if fs_now.used >= 90 then
             fs_header = " Hdd "
             fs_p      = fs_now.used
         end

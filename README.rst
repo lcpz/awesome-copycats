@@ -49,7 +49,7 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow Darker** copycatted from romockee_ 
+**Powerarrow Darker** copycatted from romockee_ [port from v3.4]
 
 .. image:: http://dotshare.it/public/images/uploads/649.png
 
