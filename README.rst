@@ -12,16 +12,16 @@ Power themes for Awesome WM 3.5+
 :Source: https://github.com/copycat-killer/awesome-copycats
 
 Description
-==========
+===========
 
 A set of themes with the aim of making Awesome_ appearance awesome too!
 
 Notable features
 ================
 
-- Auto-hide widgets (*tell me only when you have to*)
+- Autohide widgets (*tell me only when you have to*)
 - Autostart applications
-- Fast mpd and volume shortcuts (first time you see this trick in Awesome)
+- Fast MPD and volume shortcuts (first time you see this trick in Awesome)
 - Other shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
 - Quake drop-down terminal
 - Calendar with current day highlighted and months switch with a click
@@ -111,9 +111,9 @@ Fonts are Terminus_ (Multicolor, Powerarrow Darker) and Tamsyn_ (other ones).
 
 Every theme has a colorscheme_.
 
-Blackburn and Dremora use Icons_, be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
+Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
 
-Freedesktop uses ``/etc/mime.types``, so be sure to have mime-types support installed.
+Freedesktop uses ``/etc/mime.types``, so be sure to have MIME support installed.
 
 Eminent, freedesktop and scratchdrop are third-party softwares: **rely on their creators if they cause you issues**.
 
