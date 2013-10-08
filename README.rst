@@ -19,7 +19,7 @@ A set of themes with the aim of making Awesome_ appearance awesome too!
 Notable features
 ================
 
-- Shadow widgets (*tell me only when you have to*)
+- Auto-hide widgets (*tell me only when you have to*)
 - Autostart applications
 - Fast mpd and volume shortcuts (first time you see this trick in Awesome)
 - Other shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
@@ -45,15 +45,15 @@ Notable features
 Gallery
 =======
 
-**Multicolor**
+**Multicolor** inspired by tip_
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow Darker** copycatted from romockee_ [custom port from v3.4]
+**Powerarrow Darker** copycatted from romockee_ [custom porting from v3.4]
 
 .. image:: http://dotshare.it/public/images/uploads/649.png
 
-**Steamburn** copycatted from ok100_ [port from dwm]
+**Steamburn** copycatted from ok100_ [porting from dwm]
 
 .. image:: http://dotshare.it/public/images/uploads/648.png
 
@@ -75,7 +75,7 @@ Gallery
 
 **Copland** inspired by foozer_
 
-.. image:: http://dotshare.it/public/images/uploads/655.png 
+.. image:: http://dotshare.it/public/images/uploads/655.png
 
 Installation
 ============
@@ -119,7 +119,7 @@ Eminent, freedesktop and scratchdrop are third-party softwares: **rely on their 
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
 .. _Awesome: http://awesome.naquadah.org/
-.. _tip: http://theimmortalphoenix.deviantart.com/art/Full-Color-Awesome-340997258
+.. _tip: https://bbs.archlinux.org/profile.php?id=51327
 .. _romockee: https://github.com/romockee/powerarrow-dark
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
