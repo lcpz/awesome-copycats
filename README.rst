@@ -84,7 +84,7 @@ Using git: ::
 
     git clone https://github.com/copycat-killer/awesome-copycats.git
     mv -u awesome-copycats ~/.config/awesome
-    cd ~/.config/awesome/lain
+    cd ~/.config/awesome
     git submodule init
     git submodule update
 
