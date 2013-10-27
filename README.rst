@@ -69,7 +69,7 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/606.png
 
-**Holo** suggested by amouly_
+**Holo** requested by amouly_
 
 .. image:: http://dotshare.it/public/images/uploads/651.png
 
@@ -103,7 +103,7 @@ then customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
 Notes
 =====
 
-Be sure to have Lua 5.2+, Lua-lgi, and latest version of Awesome.
+Be sure to have the latest versions of Lua, Lua-lgi, and Awesome.
 
 Complements are provided by lain_: be sure to meet its dependencies_.
 
@@ -116,6 +116,8 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 Freedesktop uses ``/etc/mime.types``, so be sure to have MIME support installed.
 
 Eminent, freedesktop and scratchdrop are third-party softwares: **rely on their creators if they cause you issues**.
+
+Feel free to email me if you have any request.
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
 .. _Awesome: http://awesome.naquadah.org/
