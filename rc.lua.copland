@@ -141,7 +141,7 @@ mailwidget = lain.widgets.imap({
             count = mailcount .. " "
         end
 
-        widget:set_markup(markup(gray, mail) .. count)
+        widget:set_markup(markup(blue, mail) .. count)
     end
 })
 ]]
