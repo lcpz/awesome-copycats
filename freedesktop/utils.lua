@@ -176,7 +176,7 @@ function parse_desktop_file(arg)
         local group = nil
 
         for line in io.lines(file) do
-            group = line:match("^%[([^%[%]%c]+)%]") or group
+            group = line:match("^%[([^%[%]%c]+)%]*(.-)%s*$") or group
             if group then
                 result[group] = check_nil(result[group], {})
 
@@ -185,7 +185,6 @@ function parse_desktop_file(arg)
                 end
             end
         end
-
         return result
     end
 
