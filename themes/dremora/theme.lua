@@ -7,7 +7,7 @@
 
 theme                               = {}
 
-theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/dremora"
+theme.dir                           = awful.util.getdir("config") .. "/themes/dremora"
 theme.wallpaper                     = theme.dir .. "/wall.png"
 
 theme.font                          = "Tamsyn 10.5"

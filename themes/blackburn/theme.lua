@@ -7,7 +7,7 @@
 
 theme                               = {}
 
-theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/blackburn"
+theme.dir                           = awful.util.getdir("config") .. "/themes/blackburn"
 theme.wallpaper                     = theme.dir .. "/wall.png"
 theme.topbar_path                   = "png:" .. theme.dir .. "/icons/topbar/"
 

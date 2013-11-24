@@ -58,10 +58,10 @@ run_once("compton")
 os.setlocale(os.getenv("LANG"))
 
 -- home path
-homedir = os.getenv("HOME") .. "/.config/awesome/"
+homedir = awful.util.getdir("config")
 
 -- beautiful init
-beautiful.init(awful.util.getdir("config") .. "/themes/blackburn/theme.lua")
+beautiful.init(homedir .. "/themes/blackburn/theme.lua")
 
 -- common
 modkey     = "Mod4"
