@@ -57,7 +57,7 @@ run_once("unclutter")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(awful.util.getdir("config") .. "/themes/multicolor/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lua")
 
 -- common
 modkey     = "Mod4"

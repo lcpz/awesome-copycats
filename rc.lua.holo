@@ -58,7 +58,7 @@ run_once("compton")
 --os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(awful.util.getdir("config") .. "/themes/holo/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/holo/theme.lua")
 
 -- common
 modkey     = "Mod4"

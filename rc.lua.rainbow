@@ -58,7 +58,7 @@ run_once("compton")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(awful.util.getdir("config") .. "/themes/rainbow/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/rainbow/theme.lua")
 
 -- common
 modkey     = "Mod4"
