@@ -61,7 +61,7 @@ os.setlocale(os.getenv("LANG"))
 homedir = os.getenv("HOME") .. "/.config/awesome/"
 
 -- beautiful init
-beautiful.init(awful.util.getdir("config") .. "/themes/blackburn/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/blackburn/theme.lua")
 
 -- common
 modkey     = "Mod4"

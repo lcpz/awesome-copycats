@@ -59,7 +59,7 @@ run_once("compton")
 os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
-beautiful.init(awful.util.getdir("config") .. "/themes/copland/theme.lua")
+beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/copland/theme.lua")
 
 -- common
 modkey     = "Mod4"
