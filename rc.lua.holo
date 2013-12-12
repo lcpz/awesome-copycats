@@ -386,6 +386,7 @@ for s = 1, screen.count() do
     left_layout:add(mytaglist[s])
     left_layout:add(spr_small)
     left_layout:add(mylayoutbox[s])
+    left_layout:add(mypromptbox[s])
 
     -- Widgets that are aligned to the upper right
     local right_layout = wibox.layout.fixed.horizontal()
