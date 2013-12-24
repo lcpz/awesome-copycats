@@ -80,7 +80,7 @@ Gallery
 Installation
 ============
 
-Using git: ::
+Using git you can have the full master branch: ::
 
     git clone https://github.com/copycat-killer/awesome-copycats.git
     mv -u awesome-copycats ~/.config/awesome
@@ -88,7 +88,9 @@ Using git: ::
     git submodule init
     git submodule update
 
-Otherwise download this two archives (1_ and 2_), extract the first one, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
+This may take some time.
+
+Otherwise, download the latest two masters of ``awesome-copycats`` and ``lain`` (1_ and 2_), extract the first one, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
 
 Usage
 =====
