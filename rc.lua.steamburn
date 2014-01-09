@@ -1,6 +1,6 @@
 --[[
                                      
-     Steamburn Awesome WM config 2.0 
+     Steamburn Awesome WM config 3.0 
      github.com/copycat-killer       
                                      
 --]]
@@ -73,13 +73,17 @@ browser2   = "iron"
 gui_editor = "gvim"
 graphics   = "gimp"
 
+-- lain
+lain.layout.termfair.nmaster = 3
+lain.layout.termfair.ncol    = 1
+
 local layouts = {
     awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral.dwindle,
+    lain.layout.uselessfair.horizontal,
+    lain.layout.uselesstile,
+    lain.layout.uselessfair,
+    lain.layout.termfair,
+    lain.layout.uselesspiral.dwindle
 }
 -- }}}
 
@@ -115,9 +119,8 @@ mytextclock = awful.widget.textclock(" %H:%M ")
 -- Calendar
 lain.widgets.calendar:attach(mytextclock)
 
---[[ Mail IMAP check
--- commented because it needs to be set before use
-mailwidget = lain.widgets.imap({
+-- Mail IMAP check
+aimailwidget = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -127,14 +130,13 @@ mailwidget = lain.widgets.imap({
         count = ""
 
         if mailcount > 0 then
-            mail = "Arch "
+            mail = "Mail "
             count = mailcount .. " "
         end
 
         widget:set_markup(markup(gray, mail) .. count)
     end
 })
-]]
 
 -- MPD
 mpdwidget = lain.widgets.mpd({
@@ -166,6 +168,11 @@ memwidget = lain.widgets.mem({
     settings = function()
         widget:set_markup(markup(gray, " Mem ") .. mem_now.used .. " ")
     end
+})
+
+-- /home fs
+fshomeupd = lain.widgets.fs({
+    partition = "/home"
 })
 
 -- Battery
@@ -424,6 +431,7 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
+    awful.key({ altkey,           }, "h",      function () fshomeupd.show(7) end),
     awful.key({ altkey,           }, "w",      function () yawn.show(7) end),
 
     -- ALSA volume control
