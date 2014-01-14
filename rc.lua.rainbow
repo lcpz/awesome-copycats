@@ -185,7 +185,7 @@ fshome = lain.widgets.fs({
 })
 
 -- ALSA volume bar
-volume = lain.widgets.alsabar()
+volume = lain.widgets.alsabar({ ticks = true })
 volmargin = wibox.layout.margin(volume.bar, 5, 8, 80)
 volmargin:set_top(7)
 volmargin:set_bottom(7)

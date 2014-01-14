@@ -231,7 +231,7 @@ diskwidget:set_bgimage(beautiful.widget_bg)
 
 -- ALSA volume bar
 volicon = wibox.widget.imagebox(beautiful.vol)
-volume = lain.widgets.alsabar({width = 55, ticks_size = 6,
+volume = lain.widgets.alsabar({width = 55, ticks = true, ticks_size = 6,
 settings = function()
     if volume_now.status == "off" then
         volicon:set_image(beautiful.vol_mute)
