@@ -117,7 +117,7 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 
 Freedesktop uses ``/etc/mime.types``, so be sure to have MIME support installed.
 
-Eminent, freedesktop and scratchdrop are third-party softwares: **rely on their creators if they cause you issues**.
+Eminent, freedesktop and scratchdrop are third-party softwares: **either disable them or rely on their creators if they cause you** delays_ **or issues**.
 
 Feel free to email me if you have any request.
 
@@ -138,3 +138,4 @@ Feel free to email me if you have any request.
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
+.. _delays: https://github.com/copycat-killer/awesome-copycats/issues/24#issuecomment-33289499
