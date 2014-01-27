@@ -193,7 +193,7 @@ batupd = lain.widgets.bat({
                 baticon:set_image(beautiful.bat_low)
             else
                 batbar:set_color("#EB8F8F")
-                baticon:set_image(beautiful.bat_no)
+                baticon:set_image(beautiful.bat_empty)
 
             end
 
