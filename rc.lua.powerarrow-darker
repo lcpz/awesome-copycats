@@ -109,7 +109,6 @@ require("freedesktop/freedesktop")
 
 -- {{{ Wibox
 markup = lain.util.markup
-red    = "#EA6F81"
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
@@ -157,7 +156,7 @@ mpdwidget = lain.widgets.mpd({
             mpdicon:set_image(beautiful.widget_music)
         end
 
-        widget:set_markup(markup(red, artist) .. title)
+        widget:set_markup(markup("#EA6F81", artist) .. title)
     end
 })
 mpdwidgetbg = wibox.widget.background(mpdwidget, "#313131")
