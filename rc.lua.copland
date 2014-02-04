@@ -190,6 +190,7 @@ batupd = lain.widgets.bat({
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat)
             elseif bat_perc > 15 then
+                batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat_low)
             else
                 batbar:set_color("#EB8F8F")
