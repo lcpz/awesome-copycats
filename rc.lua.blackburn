@@ -57,9 +57,6 @@ run_once("compton")
 -- localization
 os.setlocale(os.getenv("LANG"))
 
--- home path
-homedir = os.getenv("HOME") .. "/.config/awesome/"
-
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/blackburn/theme.lua")
 
