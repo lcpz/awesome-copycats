@@ -160,38 +160,12 @@ end
 -- @param requested_icon_sizes A list of icon sizes (optional). If this list is given, it will be used as a priority list for icon sizes when looking up for icons. If you want large icons, for example, you can put '128x128' as the first item in the list.
 -- @return A table with file entries.
 function parse_desktop_file(arg)
-
-    local function check_nil(f, v) 
-        -- Almost the same as 
-        -- return f and f or v
-        -- but it will return false if f = false
-        if f == nil then return v else return f end
-    end
-
-    --- Parses .desktop file considering groups.
-    -- @param file Path to file
-    -- @return A table with group enries. Each group entry is table with file entries.
-    local function parse_file(file)
-        local result = {}
-        local group = nil
-
-        for line in io.lines(file) do
-            group = line:match("^%[([^%[%]%c]+)%]*(.-)%s*$") or group
-            if group then
-                result[group] = check_nil(result[group], {})
-
-                for key, value in line:gmatch("(%w+)=(.+)") do
-                    result[group][key] = value
-                end
-            end
+    local program = { show = true, file = arg.file }
+    for line in io.lines(arg.file) do
+        for key, value in line:gmatch("(%w+)=(.+)") do
+            program[key] = value
         end
-        return result
     end
-
-    -- Using only 'Desktop Entry' group.
-    local program = parse_file(arg.file)['Desktop Entry']
-    program.show = check_nil(program.show, true)
-    program.file = arg.file
 
     -- Don't show the program if NoDisplay is true
     -- Only show the program if there is not OnlyShowIn attribute
