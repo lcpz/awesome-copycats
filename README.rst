@@ -100,9 +100,9 @@ Switch a theme this way: ::
     cd ~/.config/awesome
     cp rc.lua.theme rc.lua
 
-then customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
-
 Alternatively, you can use `switch-theme.sh`_, which will also update to the latest commit.
+
+Then, eventually customize your ``rc.lua``, and restart Awesome (``Mod4 + ctrl + r``).
 
 Notes
 =====
