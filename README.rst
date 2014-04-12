@@ -102,7 +102,7 @@ Switch a theme this way: ::
 
 then customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
 
-Alternatively, you can use [`switch-theme.sh`](https://github.com/copycat-killer/awesome-copycats/issues/36), which will also update to the latest commit.
+Alternatively, you can use `switch-theme.sh`_, which will also update to the latest commit.
 
 Notes
 =====
@@ -132,6 +132,7 @@ Feel free to email me if you have any request.
 .. _foozer: http://dotshare.it/dots/499/
 .. _1: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
 .. _2: https://github.com/copycat-killer/lain/archive/master.zip
+.. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
 .. _dependencies: https://github.com/copycat-killer/lain/wiki
 .. _Terminus: http://terminus-font.sourceforge.net/
