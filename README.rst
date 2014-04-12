@@ -83,7 +83,7 @@ Installation
 Using git you can have the full master branch: ::
 
     git clone https://github.com/copycat-killer/awesome-copycats.git
-    mv -u awesome-copycats ~/.config/awesome
+    mv awesome-copycats/* ~/.config/awesome; rmdir awesome-copycats
     cd ~/.config/awesome
     git submodule init
     git submodule update
@@ -101,6 +101,8 @@ Switch a theme this way: ::
     cp rc.lua.theme rc.lua
 
 then customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
+
+Alternatively, you can use [`switch-theme.sh`](https://github.com/copycat-killer/awesome-copycats/issues/36), which will also update to the latest commit.
 
 Notes
 =====
