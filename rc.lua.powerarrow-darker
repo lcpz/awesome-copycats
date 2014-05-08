@@ -117,6 +117,15 @@ mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 -- calendar
 lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 
+-- Weather
+weathericon = wibox.widget.imagebox(beautiful.widget_weather)
+yawn = lain.widgets.yawn(3534, {
+    settings = function()
+        widget:set_markup(markup("#eca4c4", forecast:lower() .. " @ " .. units .. "°C "))
+    end
+})
+
+
 -- Mail IMAP check
 mailicon = wibox.widget.imagebox(beautiful.widget_mail)
 mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
@@ -342,6 +351,12 @@ for s = 1, screen.count() do
     right_layout:add(arrl_ld)
     right_layout:add(mailicon)
     --right_layout:add(mailwidget)
+
+    	right_layout:add(arrl_dl)
+	right_layout:add(weathericon)
+    	right_layout:add(yawn.widget)
+
+
     right_layout:add(arrl_dl)
     right_layout:add(memicon)
     right_layout:add(memwidget)
