@@ -351,12 +351,9 @@ for s = 1, screen.count() do
     right_layout:add(arrl_ld)
     right_layout:add(mailicon)
     --right_layout:add(mailwidget)
-
-    	right_layout:add(arrl_dl)
-	right_layout:add(weathericon)
-    	right_layout:add(yawn.widget)
-
-
+    right_layout:add(arrl_dl)
+    right_layout:add(weathericon)
+    right_layout:add(yawn.widget)
     right_layout:add(arrl_dl)
     right_layout:add(memicon)
     right_layout:add(memwidget)
