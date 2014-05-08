@@ -122,7 +122,7 @@ lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
 yawn = lain.widgets.yawn(yahoo_oid, {
     settings = function()
-        widget:set_markup(markup("#eca4c4", forecast:lower() .. " @ " .. units .. "°C "))
+        widget:set_markup(markup("#eca4c4", forecast:lower() .. " @ " .. units .. "°C"))
     end
 })
 
@@ -175,7 +175,7 @@ mpdwidgetbg = wibox.widget.background(mpdwidget, "#313131")
 memicon = wibox.widget.imagebox(beautiful.widget_mem)
 memwidget = lain.widgets.mem({
     settings = function()
-        widget:set_text(" " .. mem_now.used .. "MB ")
+        widget:set_text("" .. mem_now.used .. "MB")
     end
 })
 
@@ -183,7 +183,8 @@ memwidget = lain.widgets.mem({
 cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
 cpuwidget = wibox.widget.background(lain.widgets.cpu({
     settings = function()
-        widget:set_text(" " .. cpu_now.usage .. "% ")
+
+       widget:set_text("" .. cpu_now.usage .. "%")
     end
 }), "#313131")
 
@@ -191,7 +192,7 @@ cpuwidget = wibox.widget.background(lain.widgets.cpu({
 tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 tempwidget = lain.widgets.temp({
     settings = function()
-        widget:set_text(" " .. coretemp_now .. "°C ")
+        widget:set_text("" .. coretemp_now .. "°C")
     end
 })
 
@@ -199,7 +200,7 @@ tempwidget = lain.widgets.temp({
 fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
 fswidget = lain.widgets.fs({
     settings  = function()
-        widget:set_text(" " .. fs_now.used .. "% ")
+        widget:set_text("" .. fs_now.used .. "%")
     end
 })
 fswidgetbg = wibox.widget.background(fswidget, "#313131")
@@ -219,7 +220,7 @@ batwidget = lain.widgets.bat({
         else
             baticon:set_image(beautiful.widget_battery)
         end
-        widget:set_markup(" " .. bat_now.perc .. "% ")
+        widget:set_markup(bat_now.perc .. "%")
     end
 })
 
@@ -237,7 +238,7 @@ volumewidget = lain.widgets.alsa({
             volicon:set_image(beautiful.widget_vol)
         end
 
-        widget:set_text(" " .. volume_now.level .. "% ")
+        widget:set_text("" .. volume_now.level .. "%")
     end
 })
 
@@ -246,9 +247,9 @@ neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 netwidget = wibox.widget.background(lain.widgets.net({
     settings = function()
-        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
+        widget:set_markup(markup("#7AC82E", "" .. net_now.received)
                           .. " " ..
-                          markup("#46A8C3", " " .. net_now.sent .. " "))
+                          markup("#46A8C3", "" .. net_now.sent .. ""))
     end
 }), "#313131")
 
