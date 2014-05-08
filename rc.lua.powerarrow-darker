@@ -74,6 +74,7 @@ graphics   = "gimp"
 mail       = terminal .. " -e mutt "
 iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
 musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
+yahoo_oid  = "2972"
 
 local layouts = {
     awful.layout.suit.floating,
@@ -119,7 +120,7 @@ lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
 
 -- Weather
 weathericon = wibox.widget.imagebox(beautiful.widget_weather)
-yawn = lain.widgets.yawn(3534, {
+yawn = lain.widgets.yawn(yahoo_oid, {
     settings = function()
         widget:set_markup(markup("#eca4c4", forecast:lower() .. " @ " .. units .. "°C "))
     end
@@ -351,6 +352,12 @@ for s = 1, screen.count() do
     right_layout:add(arrl_ld)
     right_layout:add(mailicon)
     --right_layout:add(mailwidget)
+
+    	right_layout:add(arrl_dl)
+	right_layout:add(weathericon)
+    	right_layout:add(yawn.widget)
+
+
     right_layout:add(arrl_dl)
     right_layout:add(weathericon)
     right_layout:add(yawn.widget)
