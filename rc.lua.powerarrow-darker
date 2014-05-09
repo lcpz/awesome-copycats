@@ -208,7 +208,11 @@ fswidgetbg = wibox.widget.background(fswidget, "#313131")
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.widget_battery)
 batwidget = lain.widgets.bat({
+    timeout=5,      
     settings = function()
+
+
+
         if bat_now.perc == "N/A" then
             widget:set_markup(" AC ")
             baticon:set_image(beautiful.widget_ac)
@@ -221,6 +225,11 @@ batwidget = lain.widgets.bat({
             baticon:set_image(beautiful.widget_battery)
         end
         widget:set_markup(bat_now.perc .. "%")
+
+        --Fix for battery charging ;)
+        if bat_now.status == "Charging" or bat_now.status == "Unknown" then
+            baticon:set_image(beautiful.widget_ac)
+        end
     end
 })
 
