@@ -729,7 +729,6 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
                 -- No borders with only one visible client
                 elseif #clients == 1 or layout == "max" then
                     clients[1].border_width = 0
-                    awful.client.moveresize(0, 0, 2, 2, clients[1])
                 else
                     c.border_width = beautiful.border_width
                 end
