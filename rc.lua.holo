@@ -1,8 +1,8 @@
 --[[
-                                
-     Holo Awesome WM config 2.0 
-     github.com/copycat-killer  
-                                
+
+     Holo Awesome WM config 2.0
+     github.com/copycat-killer
+
 --]]
 
 -- {{{ Required libraries
@@ -38,20 +38,8 @@ do
 end
 -- }}}
 
--- {{{ Autostart applications
-function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-     findme = cmd:sub(0, firstspace-1)
-  end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
-end
-
-run_once("urxvtd")
-run_once("unclutter")
-run_once("compton")
--- }}}
+-- STARTUP apps
+require("settings.startup")
 
 -- {{{ Variable definitions
 -- localization
@@ -175,7 +163,7 @@ mpdwidget = lain.widgets.mpd({
             mpd_now.artist = mpd_now.artist:upper():gsub("&.-;", string.lower)
             mpd_now.title = mpd_now.title:upper():gsub("&.-;", string.lower)
             widget:set_markup(markup.font("Tamsyn 4", " ")
-                              .. markup.font("Tamsyn 8", 
+                              .. markup.font("Tamsyn 8",
                               mpd_now.artist
                               .. " - " ..
                               mpd_now.title

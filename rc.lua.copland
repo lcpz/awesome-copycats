@@ -1,8 +1,8 @@
 --[[
-                               
-     Copland Awesome WM config 
-     github.com/copycat-killer 
-                               
+
+     Copland Awesome WM config
+     github.com/copycat-killer
+
 --]]
 
 -- {{{ Required libraries
@@ -39,20 +39,8 @@ do
 end
 -- }}}
 
--- {{{ Autostart applications
-function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-     findme = cmd:sub(0, firstspace-1)
-  end
-  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
-end
-
-run_once("urxvtd")
-run_once("unclutter")
-run_once("compton")
--- }}}
+-- STARTUP apps
+require("settings.startup")
 
 -- {{{ Variable definitions
 -- localization
@@ -244,7 +232,7 @@ settings = function()
         volicon:set_image(beautiful.vol)
     end
 end,
-colors = 
+colors =
 {
     background = beautiful.bg_normal,
     mute = "#EB8F8F",
