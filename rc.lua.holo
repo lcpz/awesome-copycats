@@ -1,8 +1,8 @@
 --[[
-                                
-     Holo Awesome WM config 2.0 
-     github.com/copycat-killer  
-                                
+
+     Holo Awesome WM config 2.0
+     github.com/copycat-killer
+
 --]]
 
 -- {{{ Required libraries
@@ -13,7 +13,7 @@ require("awful.autofocus")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
 local naughty   = require("naughty")
-local drop      = require("scratchdrop")
+local drop      = require("plugins.scratchdrop")
 local lain      = require("lain")
 -- }}}
 
@@ -102,7 +102,7 @@ end
 -- }}}
 
 -- {{{ Menu
-require("freedesktop/freedesktop")
+require("plugins.freedesktop/freedesktop")
 -- }}}
 
 -- {{{ Wibox
@@ -175,7 +175,7 @@ mpdwidget = lain.widgets.mpd({
             mpd_now.artist = mpd_now.artist:upper():gsub("&.-;", string.lower)
             mpd_now.title = mpd_now.title:upper():gsub("&.-;", string.lower)
             widget:set_markup(markup.font("Tamsyn 4", " ")
-                              .. markup.font("Tamsyn 8", 
+                              .. markup.font("Tamsyn 8",
                               mpd_now.artist
                               .. " - " ..
                               mpd_now.title
