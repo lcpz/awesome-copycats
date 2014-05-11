@@ -42,7 +42,60 @@ awful.key({ modkey, "Control" }, "r",      awesome.restart),
 awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
 
 -- Dropdown terminal
-awful.key({ modkey,	          }, "z",      function () drop(terminal) end)
+awful.key({ modkey,	          }, "z",      function () drop(terminal) end),
+
+-- Take a screenshot
+-- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
+awful.key({ altkey }, "p", function() os.execute("screenshot") end),
+
+-- Tag browsing
+awful.key({ modkey }, "Left",   awful.tag.viewprev       ),
+awful.key({ modkey }, "Right",  awful.tag.viewnext       ),
+awful.key({ modkey }, "Escape", awful.tag.history.restore),
+
+-- Non-empty tag browsing
+awful.key({ altkey }, "Left", function () lain.util.tag_view_nonempty(-1) end),
+awful.key({ altkey }, "Right", function () lain.util.tag_view_nonempty(1) end),
+
+-- Default client focus
+awful.key({ altkey }, "k",
+    function ()
+        awful.client.focus.byidx( 1)
+        if client.focus then client.focus:raise() end
+    end),
+awful.key({ altkey }, "j",
+    function ()
+        awful.client.focus.byidx(-1)
+        if client.focus then client.focus:raise() end
+    end),
+
+-- By direction client focus
+awful.key({ modkey }, "j",
+    function()
+        awful.client.focus.bydirection("down")
+        if client.focus then client.focus:raise() end
+    end),
+awful.key({ modkey }, "k",
+    function()
+        awful.client.focus.bydirection("up")
+        if client.focus then client.focus:raise() end
+    end),
+awful.key({ modkey }, "h",
+    function()
+        awful.client.focus.bydirection("left")
+        if client.focus then client.focus:raise() end
+    end),
+awful.key({ modkey }, "l",
+    function()
+        awful.client.focus.bydirection("right")
+        if client.focus then client.focus:raise() end
+    end),
+
+-- Show Menu
+awful.key({ modkey }, "w",
+    function ()
+        mymainmenu:show({ keygrabber = true })
+    end)
 )
 
 -- Bind all key numbers to tags.
