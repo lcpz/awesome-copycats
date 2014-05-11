@@ -416,4 +416,4 @@ root.keys(globalkeys)
 require("settings.rules")
 
 -- Signals
-require("myrc.signals")
+require("stock.signals")
