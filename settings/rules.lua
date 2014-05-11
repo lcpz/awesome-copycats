@@ -1,7 +1,7 @@
--- {{{ Rules
-
 local awful = require("awful")
 local beautiful = require("beautiful")
+
+-- {{{ Rules
 
 awful.rules.rules = {
     -- All clients will match this rule.
@@ -34,4 +34,5 @@ awful.rules.rules = {
           properties = { maximized_horizontal = true,
                          maximized_vertical = true } },
 }
+
 -- }}}
