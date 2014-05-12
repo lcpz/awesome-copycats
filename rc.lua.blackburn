@@ -23,9 +23,6 @@ require("myrc.errors")
 require("settings.startup")
 
 -- {{{ Variable definitions
--- localization
-os.setlocale(os.getenv("LANG"))
-
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/blackburn/theme.lua")
 

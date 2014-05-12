@@ -1,3 +1,6 @@
+-- localization
+os.setlocale(os.getenv("LANG"))
+
 -- common
 modkey     = "Mod4"
 altkey     = "Mod1"
