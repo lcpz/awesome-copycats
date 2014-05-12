@@ -32,24 +32,8 @@ require("settings.variables")
 iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
 musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
 
-layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-}
--- }}}
-
--- {{{ Tags
-tags = {
-   names = { "1", "2", "3", "4", "5"},
-   layout = { layouts[1], layouts[2], layouts[3], layouts[1], layouts[4] }
-}
-
-for s = 1, screen.count() do
-   tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+-- Tags and layouts
+require("settings.tags")
 -- }}}
 
 -- {{{ Wallpaper

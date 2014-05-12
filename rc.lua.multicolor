@@ -29,29 +29,8 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lu
 -- variables
 require("settings.variables")
 
-layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.tile,
-    awful.layout.suit.tile.left,
-    awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    awful.layout.suit.fair.horizontal,
-    awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle,
-    awful.layout.suit.max,
-}
--- }}}
-
--- {{{ Tags
-tags = {
-   names = { "web", "term", "docs", "media", "files", "other" },
-   layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[7], layouts[1] }
-}
-for s = 1, screen.count() do
--- Each screen has its own tag table.
-   tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+-- Tags and layouts
+require("settings.tags")
 -- }}}
 
 -- {{{ Wallpaper

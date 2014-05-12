@@ -36,27 +36,8 @@ lain.layout.termfair.ncol      = 1
 lain.layout.centerfair.nmaster = 3
 lain.layout.centerfair.ncol    = 1
 
-layouts = {
-    awful.layout.suit.floating,
-    awful.layout.suit.fair,
-    awful.layout.suit.tile,
-    lain.layout.uselessfair.horizontal,
-    lain.layout.uselesstile,
-    lain.layout.uselessfair,
-    lain.layout.termfair,
-    lain.layout.centerfair,
-    lain.layout.uselesspiral.dwindle
-}
--- }}}
-
--- {{{ Tags
-tags = {
-    names = { "start", "2", "3", "4", "5" },
-    layout = { layouts[1], layouts[2], layouts[3], layouts[4], layouts[5] }
-}
-for s = 1, screen.count() do
-   tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+-- Tags and layouts
+require("settings.tags")
 -- }}}
 
 -- {{{ Wallpaper

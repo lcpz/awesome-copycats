@@ -29,23 +29,8 @@ beautiful.init(awful.util.getdir("config") .. "/themes/dremora/theme.lua")
 -- variables
 require("settings.variables")
 
-layouts = {
-    awful.layout.suit.floating,
-    lain.layout.uselesstile,
-    awful.layout.suit.fair,
-    lain.layout.uselesstile.left,
-    lain.layout.uselesstile.top
-}
--- }}}
-
--- {{{ Tags
-tags = {
-   names = { "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" },
-   layout = { layouts[1], layouts[3], layouts[2], layouts[1], layouts[5] }
-}
-for s = 1, screen.count() do
-   tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+-- Tags and layouts
+require("settings.tags")
 -- }}}
 
 -- {{{ Wallpaper

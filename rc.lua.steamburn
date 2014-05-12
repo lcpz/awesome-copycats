@@ -33,24 +33,8 @@ require("settings.variables")
 lain.layout.termfair.nmaster = 3
 lain.layout.termfair.ncol    = 1
 
-layouts = {
-    awful.layout.suit.floating,
-    lain.layout.uselessfair.horizontal,
-    lain.layout.uselesstile,
-    lain.layout.uselessfair,
-    lain.layout.termfair,
-    lain.layout.uselesspiral.dwindle
-}
--- }}}
-
--- {{{ Tags
-tags = {
-   names = { "web", "term", "docs", "media", "down"},
-   layout = { layouts[1], layouts[3], layouts[4], layouts[1], layouts[6] }
-}
-for s = 1, screen.count() do
-   tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+-- Tags and layouts
+require("settings.tags")
 -- }}}
 
 -- {{{ Wallpaper

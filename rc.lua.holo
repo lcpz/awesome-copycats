@@ -31,23 +31,8 @@ require("settings.variables")
 
 musiplr   = terminal .. " -e ncmpcpp "
 
-layouts = {
-    awful.layout.suit.floating,
-    lain.layout.uselesstile,
-    awful.layout.suit.fair,
-    lain.layout.uselesstile.left,
-    lain.layout.uselesstile.top
-}
--- }}}
-
--- {{{ Tags
-tags = {
-   names = { " WEB ", " TERMINAL ", " FILES ", " OTHER " },
-   layout = { layouts[1], layouts[3], layouts[2], layouts[4] }
-}
-for s = 1, screen.count() do
-   tags[s] = awful.tag(tags.names, s, tags.layout)
-end
+-- Tags and layouts
+require("settings.tags")
 -- }}}
 
 -- {{{ Wallpaper
