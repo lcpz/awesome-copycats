@@ -1,5 +1,6 @@
 local awful = require("awful")
 local drop = require("scratchdrop")
+local lain = require("lain")
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
