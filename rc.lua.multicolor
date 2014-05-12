@@ -32,8 +32,6 @@ beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lu
 -- variables
 require("settings.variables")
 
-mail       = terminal .. " -e mutt "
-
 layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
