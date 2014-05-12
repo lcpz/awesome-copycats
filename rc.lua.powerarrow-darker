@@ -29,18 +29,9 @@ os.setlocale(os.getenv("LANG"))
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
 
--- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
-editor_cmd = terminal .. " -e " .. editor
+-- variables
+require("settings.variables")
 
--- user defined
-browser    = "dwb"
-browser2   = "iron"
-gui_editor = "gvim"
-graphics   = "gimp"
 mail       = terminal .. " -e mutt "
 iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
 musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "

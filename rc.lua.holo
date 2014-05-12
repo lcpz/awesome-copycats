@@ -29,18 +29,9 @@ require("settings.startup")
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/holo/theme.lua")
 
--- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
-editor_cmd = terminal .. " -e " .. editor
+-- variables
+require("settings.variables")
 
--- user defined
-browser    = "dwb"
-browser2   = "iron"
-gui_editor = "gvim"
-graphics   = "gimp"
 musiplr   = terminal .. " -e ncmpcpp "
 
 layouts = {
