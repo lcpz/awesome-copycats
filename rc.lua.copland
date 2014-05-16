@@ -1,6 +1,6 @@
 --[[
 
-     Copland Awesome WM config
+     Copland Awesome WM config 3.0
      github.com/copycat-killer
 
 --]]
@@ -14,11 +14,11 @@ local wibox     = require("wibox")
 local beautiful = require("beautiful")
 local naughty   = require("naughty")
 local lain      = require("lain")
-local eminent   = require("eminent")
+local eminent   = require("third-party/eminent")
 -- }}}
 
 -- Error handling
-require("myrc.errors")
+require("stock.errors")
 
 -- STARTUP apps
 require("settings.startup")
@@ -45,7 +45,7 @@ require("stock.wallpaper")
 -- }}}
 
 -- {{{ Menu
-require("freedesktop/freedesktop")
+require("third-party/freedesktop/freedesktop")
 -- }}}
 
 -- {{{ Wibox
@@ -166,23 +166,24 @@ diskwidget:set_bgimage(beautiful.widget_bg)
 -- ALSA volume bar
 volicon = wibox.widget.imagebox(beautiful.vol)
 volume = lain.widgets.alsabar({width = 55, ticks = true, ticks_size = 6,
-settings = function()
-    if volume_now.status == "off" then
-        volicon:set_image(beautiful.vol_mute)
-    elseif volume_now.level == 0 then
-        volicon:set_image(beautiful.vol_no)
-    elseif volume_now.level <= 50 then
-        volicon:set_image(beautiful.vol_low)
-    else
-        volicon:set_image(beautiful.vol)
-    end
-end,
-colors =
-{
-    background = beautiful.bg_normal,
-    mute = "#EB8F8F",
-    unmute = beautiful.fg_normal
-}})
+    settings = function()
+        if volume_now.status == "off" then
+            volicon:set_image(beautiful.vol_mute)
+        elseif volume_now.level == 0 then
+            volicon:set_image(beautiful.vol_no)
+        elseif volume_now.level <= 50 then
+            volicon:set_image(beautiful.vol_low)
+        else
+            volicon:set_image(beautiful.vol)
+        end
+    end,
+    colors =
+    {
+        background = beautiful.bg_normal,
+        mute = "#EB8F8F",
+        unmute = beautiful.fg_normal
+    }
+})
 volmargin = wibox.layout.margin(volume.bar, 2, 7)
 volmargin:set_top(6)
 volmargin:set_bottom(6)

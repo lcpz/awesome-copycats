@@ -17,7 +17,7 @@ local lain      = require("lain")
 -- }}}
 
 -- Error handling
-require("myrc.errors")
+require("stock.errors")
 
 -- STARTUP apps
 require("settings.startup")
@@ -42,7 +42,7 @@ require("stock.wallpaper")
 -- }}}
 
 -- {{{ Menu
-require("freedesktop/freedesktop")
+require("third-party/freedesktop/freedesktop")
 -- }}}
 
 -- {{{ Wibox
@@ -237,9 +237,9 @@ globalkeys = awful.util.table.join(globalkeys,
     end),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
-    awful.key({ altkey,           }, "h",      function () fshomeupd.show(7) end),
-    awful.key({ altkey,           }, "w",      function () yawn.show(7) end),
+    awful.key({ altkey }, "c", function () lain.widgets.calendar:show(7) end),
+    awful.key({ altkey }, "h", function () fshomeupd.show(7) end),
+    awful.key({ altkey }, "w", function () yawn.show(7) end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",

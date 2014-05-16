@@ -1,6 +1,6 @@
 --[[
                                      
-     Blackburn Awesome WM config 2.0 
+     Blackburn Awesome WM config 3.0 
      github.com/copycat-killer       
                                      
 --]]

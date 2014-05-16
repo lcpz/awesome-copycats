@@ -1,5 +1,5 @@
 local beautiful = require("beautiful")
-local gears = require("gears")
+local gears     = require("gears")
 
 -- {{{ Wallpaper
 if beautiful.wallpaper then

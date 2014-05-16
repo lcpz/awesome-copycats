@@ -1,6 +1,6 @@
 --[[
 
-     Multicolor Awesome WM config 2.0
+     Multicolor Awesome WM config 3.0
      github.com/copycat-killer
 
 --]]
@@ -17,7 +17,7 @@ local lain      = require("lain")
 -- }}}
 
 -- Error handling
-require("myrc.errors")
+require("stock.errors")
 
 -- STARTUP apps
 require("settings.startup")
@@ -38,11 +38,11 @@ require("stock.wallpaper")
 -- }}}
 
 -- {{{ Freedesktop Menu
-require("freedesktop/freedesktop")
+require("third-party/freedesktop/freedesktop")
 -- }}}
 
 -- {{{ Wibox
-markup      = lain.util.markup
+markup = lain.util.markup
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
@@ -287,9 +287,9 @@ globalkeys = awful.util.table.join(globalkeys,
     end),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
-    awful.key({ altkey,           }, "h",      function () fswidget.show(7) end),
-    awful.key({ altkey,           }, "w",      function () yawn.show(7) end),
+    awful.key({ altkey }, "c", function () lain.widgets.calendar:show(7) end),
+    awful.key({ altkey }, "h", function () fswidget.show(7) end),
+    awful.key({ altkey }, "w", function () yawn.show(7) end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",

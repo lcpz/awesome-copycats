@@ -7,7 +7,7 @@
 local awful     = require("awful")
 local beautiful = require("beautiful")
 
-require('freedesktop')
+require('third-party/freedesktop')
 -- require("debian.menu")
 
 freedesktop.utils.terminal   = terminal -- defined in rc.lua, otherwise define it here (default: "xterm")

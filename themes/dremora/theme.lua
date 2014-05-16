@@ -1,6 +1,6 @@
 --[[
                                    
-     Dremora Awesome WM config 2.0 
+     Dremora Awesome WM config 3.0 
      github.com/copycat-killer     
                                    
 --]]

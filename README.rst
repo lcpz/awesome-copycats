@@ -41,6 +41,7 @@ Notable features
 - Non-empty tag browsing
 - Dynamic useless gaps
 - Dynamic tagging
+- Modular
 
 Gallery
 =======
@@ -102,7 +103,7 @@ Switch a theme this way: ::
 
 Alternatively, you can use `switch-theme.sh`_, which will also update to the latest commit.
 
-Then, eventually customize your ``rc.lua``, and restart Awesome (``Mod4 + ctrl + r``).
+Then, eventually customize your settings and restart Awesome (``Mod4 + ctrl + r``).
 
 Notes
 =====
@@ -119,7 +120,7 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 
 Freedesktop uses ``/etc/mime.types``, so be sure to have MIME support installed.
 
-Eminent, freedesktop and scratchdrop are third-party softwares: **either disable them or rely on their creators if they cause you** slowdowns_ **or** issues_ **.**
+If you have issues with `third-party` modules, **either disable them or report to their creators**.
 
 Feel free to email me if you have any request.
 
@@ -141,5 +142,3 @@ Feel free to email me if you have any request.
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
-.. _slowdowns: https://github.com/copycat-killer/awesome-copycats/issues/24#issuecomment-33289499
-.. _issues: https://github.com/copycat-killer/awesome-copycats/issues/12

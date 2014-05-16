@@ -190,7 +190,7 @@ function parse_desktop_file(arg)
         end
     end
 
-    if program.Exec then
+    if program.Exec and program.Name then
         local cmdline = program.Exec:gsub('%%c', program.Name)
         cmdline = cmdline:gsub('%%[fmuFMU]', '')
         cmdline = cmdline:gsub('%%k', program.file)
