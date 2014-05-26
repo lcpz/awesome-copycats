@@ -106,8 +106,10 @@ end
 -- }}}
 
 -- {{{ Menu
-require("freedesktop/freedesktop")
+--require("freedesktop/freedesktop")
 -- }}}
+
+require('freedesktop.utils')
 
 -- {{{ Wibox
 markup = lain.util.markup
