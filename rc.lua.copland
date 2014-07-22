@@ -706,10 +706,8 @@ end)
 client.connect_signal("focus",
     function(c)
         if c.maximized_horizontal == true and c.maximized_vertical == true then
-            c.border_width = 0
             c.border_color = beautiful.border_normal
         else
-            c.border_width = beautiful.border_width
             c.border_color = beautiful.border_focus
         end
     end)
@@ -729,7 +727,6 @@ for s = 1, screen.count() do screen[s]:connect_signal("arrange", function ()
                 -- No borders with only one visible client
                 elseif #clients == 1 or layout == "max" then
                     clients[1].border_width = 0
-                    awful.client.moveresize(0, 0, 2, 2, clients[1])
                 else
                     c.border_width = beautiful.border_width
                 end

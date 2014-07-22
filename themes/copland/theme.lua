@@ -48,7 +48,7 @@ theme.disk                                      = theme.dir .. "/icons/disk.png"
 theme.ac                                        = theme.dir .. "/icons/ac.png"
 theme.bat                                       = theme.dir .. "/icons/bat.png"
 theme.bat_low                                   = theme.dir .. "/icons/bat_low.png"
-theme.bat_no                                 = theme.dir .. "/icons/bat_no.png"
+theme.bat_no                                    = theme.dir .. "/icons/bat_no.png"
 theme.play                                      = theme.dir .. "/icons/play.png"
 theme.pause                                     = theme.dir .. "/icons/pause.png"
 
@@ -92,14 +92,14 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 theme.useless_gap_width                         = 10
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
 theme.layout_termfair                           = theme.dir .. "/icons/termfair.png"
-theme.layout_centerwork                     = theme.dir .. "/icons/centerwork.png"
+theme.layout_centerwork                         = theme.dir .. "/icons/centerwork.png"
 theme.layout_uselessfair                        = theme.dir .. "/icons/fairv.png"
 theme.layout_uselessfairh                       = theme.dir .. "/icons/fairh.png"
 theme.layout_uselessdwindle                     = theme.dir .. "/icons/dwindle.png"
 theme.layout_uselesstile                        = theme.dir .. "/icons/tile.png"
 theme.layout_uselesstiletop                     = theme.dir .. "/icons/tiletop.png"
 theme.layout_uselesstileleft                    = theme.dir .. "/icons/tileleft.png"
-theme.layout_uselesstilebottom              = theme.dir .. "/icons/tilebottom.png"
+theme.layout_uselesstilebottom                  = theme.dir .. "/icons/tilebottom.png"
 theme.layout_uselesspiral                       = theme.dir .. "/icons/spiral.png"
 
 return theme
