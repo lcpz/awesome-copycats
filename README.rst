@@ -85,8 +85,7 @@ Using git you can have the full master branch: ::
     git clone https://github.com/copycat-killer/awesome-copycats.git
     mv awesome-copycats/* ~/.config/awesome; rmdir awesome-copycats
     cd ~/.config/awesome
-    git submodule init
-    git submodule update
+    git submodule update --init
 
 This may take some time.
 
