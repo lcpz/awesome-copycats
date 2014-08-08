@@ -106,7 +106,7 @@ Then, eventually customize your ``rc.lua``, and restart Awesome (``Mod4 + ctrl +
 Notes
 =====
 
-Be sure to have the latest versions of Lua, Lua-lgi, and Awesome.
+Be sure to have the latest **stable** versions of Lua, Lua-lgi, and Awesome.
 
 Complements are provided by lain_: be sure to meet its dependencies_.
 
