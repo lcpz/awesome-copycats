@@ -118,6 +118,8 @@ require("freedesktop/freedesktop")
 -- {{{ Wibox
 markup = lain.util.markup
 blue   = beautiful.fg_focus
+red    = "#EB8F8F"
+green  = "#8FEB8F"
 
 -- Textclock
 mytextclock = awful.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
@@ -186,18 +188,18 @@ batupd = lain.widgets.bat({
             baticon:set_image(beautiful.ac)
         else
             bat_perc = tonumber(bat_now.perc)
-            if bat_perc > 50 then
+            if bat_perc >= 98 then
+                batbar:set_color(green)
+            elseif bat_perc > 50 then
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat)
             elseif bat_perc > 15 then
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat_low)
             else
-                batbar:set_color("#EB8F8F")
+                batbar:set_color(red)
                 baticon:set_image(beautiful.bat_no)
-
             end
-
         end
         batbar:set_value(bat_perc / 100)
     end
@@ -244,10 +246,10 @@ settings = function()
         volicon:set_image(beautiful.vol)
     end
 end,
-colors = 
+colors =
 {
     background = beautiful.bg_normal,
-    mute = "#EB8F8F",
+    mute = red,
     unmute = beautiful.fg_normal
 }})
 volmargin = wibox.layout.margin(volume.bar, 2, 7)
@@ -505,7 +507,7 @@ globalkeys = awful.util.table.join(
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
-            awful.util.spawn_with_shell("mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle")
+            awful.util.spawn_with_shell("mpc toggle || ncmpc toggle || pms toggle")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
