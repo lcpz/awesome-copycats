@@ -330,6 +330,8 @@ for s = 1, screen.count() do
     left_layout:add(spr)
 
     -- Widgets that are aligned to the upper right
+    -- If you are moving widgets from a section with light grey background to dark grey or vice versa,
+    -- use a replacement icon as appropriate from themes/powerarrow-darker/alticons so your icons match the bg.
     local right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
@@ -505,22 +507,22 @@ globalkeys = awful.util.table.join(
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
-            awful.util.spawn_with_shell("mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle")
+            awful.util.spawn_with_shell("mpc toggle || ncmpc toggle || pms toggle")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
-            awful.util.spawn_with_shell("mpc stop || ncmpcpp stop || ncmpc stop || pms stop")
+            awful.util.spawn_with_shell("mpc stop || ncmpc stop || pms stop")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
-            awful.util.spawn_with_shell("mpc prev || ncmpcpp prev || ncmpc prev || pms prev")
+            awful.util.spawn_with_shell("mpc prev || ncmpc prev || pms prev")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
-            awful.util.spawn_with_shell("mpc next || ncmpcpp next || ncmpc next || pms next")
+            awful.util.spawn_with_shell("mpc next || ncmpc next || pms next")
             mpdwidget.update()
         end),
 

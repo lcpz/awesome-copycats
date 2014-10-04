@@ -118,6 +118,8 @@ mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
 -- {{{ Wibox
 markup = lain.util.markup
 blue   = beautiful.fg_focus
+red    = "#EB8F8F"
+green  = "#8FEB8F"
 
 -- Textclock
 mytextclock = awful.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
@@ -186,18 +188,18 @@ batupd = lain.widgets.bat({
             baticon:set_image(beautiful.ac)
         else
             bat_perc = tonumber(bat_now.perc)
-            if bat_perc > 50 then
+            if bat_perc >= 98 then
+                batbar:set_color(green)
+            elseif bat_perc > 50 then
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat)
             elseif bat_perc > 15 then
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat_low)
             else
-                batbar:set_color("#EB8F8F")
+                batbar:set_color(red)
                 baticon:set_image(beautiful.bat_no)
-
             end
-
         end
         batbar:set_value(bat_perc / 100)
     end
@@ -247,7 +249,7 @@ end,
 colors =
 {
     background = beautiful.bg_normal,
-    mute = "#EB8F8F",
+    mute = red,
     unmute = beautiful.fg_normal
 }})
 volmargin = wibox.layout.margin(volume.bar, 2, 7)
@@ -505,22 +507,22 @@ globalkeys = awful.util.table.join(
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
-            awful.util.spawn_with_shell("mpc toggle || ncmpcpp toggle || ncmpc toggle || pms toggle")
+            awful.util.spawn_with_shell("mpc toggle || ncmpc toggle || pms toggle")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
-            awful.util.spawn_with_shell("mpc stop || ncmpcpp stop || ncmpc stop || pms stop")
+            awful.util.spawn_with_shell("mpc stop || ncmpc stop || pms stop")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
-            awful.util.spawn_with_shell("mpc prev || ncmpcpp prev || ncmpc prev || pms prev")
+            awful.util.spawn_with_shell("mpc prev || ncmpc prev || pms prev")
             mpdwidget.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
-            awful.util.spawn_with_shell("mpc next || ncmpcpp next || ncmpc next || pms next")
+            awful.util.spawn_with_shell("mpc next || ncmpc next || pms next")
             mpdwidget.update()
         end),
 
