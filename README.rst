@@ -35,7 +35,7 @@ Notable features
 - Custom layouts
 - No borders when there's only one visible client
 - Powerful volume bar
-- Freedesktop menu
+- Menubar menu
 - Vi-like client focus
 - Nice client border (colors change along with processes status)
 - Non-empty tag browsing
@@ -106,7 +106,7 @@ Then, eventually customize your ``rc.lua``, and restart Awesome (``Mod4 + ctrl +
 Notes
 =====
 
-Be sure to have the latest **stable** versions of Lua, Lua-lgi, and Awesome.
+Be sure to have the latest **stable** versions of Lua and Awesome.
 
 Complements are provided by lain_: be sure to meet its dependencies_.
 
@@ -115,10 +115,6 @@ Fonts are Terminus_ (Multicolor, Powerarrow Darker) and Tamsyn_ (other ones).
 Every theme has a colorscheme_.
 
 Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
-
-Freedesktop uses ``/etc/mime.types``, so be sure to have MIME support installed.
-
-Eminent, freedesktop and scratchdrop are third-party softwares: **either disable them or rely on their creators if they cause you** slowdowns_ **or** issues_ **.**
 
 Feel free to email me if you have any request.
 
@@ -140,5 +136,3 @@ Feel free to email me if you have any request.
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
-.. _slowdowns: https://github.com/copycat-killer/awesome-copycats/issues/24#issuecomment-33289499
-.. _issues: https://github.com/copycat-killer/awesome-copycats/issues/12

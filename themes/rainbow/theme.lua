@@ -33,9 +33,9 @@ theme.tasklist_floating             = theme.ocol .. "[F]" .. theme.ccol
 theme.tasklist_maximized_horizontal = theme.ocol .. "[M] " .. theme.ccol
 theme.tasklist_maximized_vertical   = ""
 theme.tasklist_disable_icon         = true
-  
+
 theme.menu_awesome_icon             = theme.dir .."/icons/awesome.png"
-theme.menu_submenu_icon             = theme.dir .."/icons/submenu.png"
+theme.submenu_icon                  = theme.dir .."/icons/submenu.png"
 theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
 theme.vol_bg                        = theme.dir .. "/icons/vol_bg.png"

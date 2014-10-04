@@ -9,7 +9,7 @@
 local gears     = require("gears")
 local awful     = require("awful")
 awful.rules     = require("awful.rules")
-require("awful.autofocus")
+                  require("awful.autofocus")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
 local naughty   = require("naughty")
@@ -51,7 +51,6 @@ end
 
 run_once("urxvtd")
 run_once("unclutter")
-run_once("compton")
 -- }}}
 
 -- {{{ Variable definitions
@@ -112,7 +111,8 @@ end
 -- }}}
 
 -- {{{ Menu
-require("freedesktop/freedesktop")
+mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
+                              theme = { height = 16, width = 130 }})
 -- }}}
 
 -- {{{ Wibox
@@ -244,7 +244,7 @@ settings = function()
         volicon:set_image(beautiful.vol)
     end
 end,
-colors = 
+colors =
 {
     background = beautiful.bg_normal,
     mute = "#EB8F8F",
@@ -484,22 +484,22 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Up",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "+")
-            volume.notify()
+            volume.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "-")
-            volume.notify()
+            volume.update()
         end),
     awful.key({ altkey }, "m",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " playback toggle")
-            volume.notify()
+            volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
             awful.util.spawn("amixer -q set " .. volume.channel .. " playback 100%")
-            volume.notify()
+            volume.update()
         end),
 
     -- MPD control
