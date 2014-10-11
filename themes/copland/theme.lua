@@ -101,5 +101,6 @@ theme.layout_uselesstiletop                     = theme.dir .. "/icons/tiletop.p
 theme.layout_uselesstileleft                    = theme.dir .. "/icons/tileleft.png"
 theme.layout_uselesstilebottom                  = theme.dir .. "/icons/tilebottom.png"
 theme.layout_uselesspiral                       = theme.dir .. "/icons/spiral.png"
+theme.layout_leaved = "~/.config/awesome/awesome-leaved/leaved.png"
 
 return theme
