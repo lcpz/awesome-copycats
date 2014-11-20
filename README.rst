@@ -83,11 +83,9 @@ Installation
 Using git you can have the full master branch: ::
 
     git clone https://github.com/copycat-killer/awesome-copycats.git
-    mv awesome-copycats/* ~/.config/awesome; rmdir awesome-copycats
-    cd ~/.config/awesome
-    git submodule update --init
+    cd awesome-copycats && git submodule update --init
 
-This may take some time.
+then, move the contents of `awesome-copycats` to `~/.config/awesome`.
 
 Otherwise, download the latest two masters of ``awesome-copycats`` and ``lain`` (1_ and 2_), extract the first one, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
 
