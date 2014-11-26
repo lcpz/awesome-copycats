@@ -82,8 +82,7 @@ Installation
 
 Using git you can have the full master branch: ::
 
-    git clone https://github.com/copycat-killer/awesome-copycats.git
-    cd awesome-copycats && git submodule update --init
+    git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
 
 then, move the contents of `awesome-copycats` to `~/.config/awesome`.
 
