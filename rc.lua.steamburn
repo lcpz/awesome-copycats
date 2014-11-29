@@ -120,7 +120,7 @@ mytextclock = awful.widget.textclock(" %H:%M ")
 lain.widgets.calendar:attach(mytextclock)
 
 -- Mail IMAP check
-aimailwidget = lain.widgets.imap({
+mailwidget = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
