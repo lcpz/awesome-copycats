@@ -143,7 +143,7 @@ volumewidget = lain.widgets.alsa({
 })
 
 -- Weather
-yawn = lain.widgets.yawn(123456,
+yawn = lain.widgets.yawn(city,
 {
     settings = function()
         yawn_notification_preset.fg = white
