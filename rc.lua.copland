@@ -191,7 +191,7 @@ volumewidget = wibox.widget.background(volmargin)
 volumewidget:set_bgimage(beautiful.widget_bg)
 
 -- Weather
-yawn = lain.widgets.yawn(123456)
+yawn = lain.widgets.yawn(city)
 
 -- Separators
 spr = wibox.widget.textbox(' ')
