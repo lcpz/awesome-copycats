@@ -127,7 +127,7 @@ volumewidget = wibox.widget.background(volmargin)
 volumewidget:set_bgimage(beautiful.vol_bg)
 
 -- Weather
-yawn = lain.widgets.yawn(123456,
+yawn = lain.widgets.yawn(city,
 {
     settings = function()
         yawn_notification_preset.fg = white
