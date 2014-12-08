@@ -49,7 +49,7 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow Darker** copycatted from romockee_ [custom porting from v3.4]
+**Powerarrow Darker** inspired by romockee_
 
 .. image:: http://dotshare.it/public/images/uploads/649.png
 
@@ -118,7 +118,7 @@ Feel free to email me if you have any request.
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
 .. _Awesome: http://awesome.naquadah.org/
 .. _tip: https://bbs.archlinux.org/profile.php?id=51327
-.. _romockee: https://github.com/romockee/powerarrow-dark
+.. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
 .. _foozer: http://dotshare.it/dots/499/
