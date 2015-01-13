@@ -71,7 +71,7 @@ browser    = "dwb"
 browser2   = "iron"
 gui_editor = "gvim"
 graphics   = "gimp"
-musiplr   = terminal .. " -e ncmpcpp "
+musicplr   = terminal .. " -e ncmpcpp "
 
 local layouts = {
     awful.layout.suit.floating,
