@@ -348,7 +348,7 @@ for s = 1, screen.count() do
         right_layout_toggle = not right_layout_toggle
     end
     
-    local right_layout = wibox.layout.fixed.horizontal()
+    right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
     right_layout:add(arrl)
