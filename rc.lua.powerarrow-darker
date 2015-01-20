@@ -353,7 +353,7 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(arrl)
     right_layout_add(mpdicon, mpdwidget)
-    right_layout_add(voliconi, olumewidget)
+    right_layout_add(voliconi, volumewidget)
     --right_layout_add(mailicon, mailwidget)
     right_layout_add(memicon, memwidget)
     right_layout_add(cpuicon, cpuwidget)
