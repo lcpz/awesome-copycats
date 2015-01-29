@@ -15,6 +15,8 @@ local beautiful = require("beautiful")
 local naughty   = require("naughty")
 local drop      = require("scratchdrop")
 local lain      = require("lain")
+
+local separators = require("separators")
 -- }}}
 
 -- {{{ Error handling
@@ -245,10 +247,8 @@ netwidget = lain.widgets.net({
 spr = wibox.widget.textbox(' ')
 arrl = wibox.widget.imagebox()
 arrl:set_image(beautiful.arrl)
-arrl_dl = wibox.widget.imagebox()
-arrl_dl:set_image(beautiful.arrl_dl)
-arrl_ld = wibox.widget.imagebox()
-arrl_ld:set_image(beautiful.arrl_ld)
+arrl_dl = separators:left(beautiful.bg_focus, "alpha") 
+arrl_ld = separators:left("alpha", beautiful.bg_focus) 
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -337,7 +337,7 @@ for s = 1, screen.count() do
         if right_layout_toggle then
             right_layout:add(arrl_ld)
             for i, n in pairs(arg) do
-                right_layout:add(wibox.widget.background(n ,'#313131'))
+                right_layout:add(wibox.widget.background(n ,beautiful.bg_focus))
             end
         else
             right_layout:add(arrl_dl)
@@ -353,7 +353,7 @@ for s = 1, screen.count() do
     right_layout:add(spr)
     right_layout:add(arrl)
     right_layout_add(mpdicon, mpdwidget)
-    right_layout_add(voliconi, volumewidget)
+    right_layout_add(volicon, volumewidget)
     --right_layout_add(mailicon, mailwidget)
     right_layout_add(memicon, memwidget)
     right_layout_add(cpuicon, cpuwidget)
