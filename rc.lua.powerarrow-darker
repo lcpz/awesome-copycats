@@ -15,8 +15,6 @@ local beautiful = require("beautiful")
 local naughty   = require("naughty")
 local drop      = require("scratchdrop")
 local lain      = require("lain")
-
-local separators = require("separators")
 -- }}}
 
 -- {{{ Error handling
@@ -112,6 +110,7 @@ mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
 
 -- {{{ Wibox
 markup = lain.util.markup
+separators = lain.util.separators
 
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
@@ -247,8 +246,8 @@ netwidget = lain.widgets.net({
 spr = wibox.widget.textbox(' ')
 arrl = wibox.widget.imagebox()
 arrl:set_image(beautiful.arrl)
-arrl_dl = separators:left(beautiful.bg_focus, "alpha") 
-arrl_ld = separators:left("alpha", beautiful.bg_focus) 
+arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha") 
+arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus) 
 
 -- Create a wibox for each screen and add it
 mywibox = {}
