@@ -328,9 +328,6 @@ for s = 1, screen.count() do
     left_layout:add(spr)
 
     -- Widgets that are aligned to the upper right
-    -- If you are moving widgets from a section with light grey background to dark grey or vice versa,
-    -- use a replacement icon as appropriate from themes/powerarrow-darker/alticons so your icons match the bg.
-    
     local right_layout_toggle = true
     local function right_layout_add (...)  
         local arg = {...}
