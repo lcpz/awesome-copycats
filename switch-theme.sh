@@ -1,9 +1,11 @@
 #! /usr/bin/make -f
 
 # Awesome Copycats switch theme script
-# It also updates to latest commit.
+#
+# It also updates to latest commit and
+# backups previous rc.lua.
+#
 # Dependencies: make, git
-
 
 DESTDIR=~/.config/awesome
 PROJECT=copycat-killer/awesome-copycats
@@ -14,9 +16,12 @@ define swap_dialog
 	echo "see https://github.com/$(PROJECT)" ; \
 	echo ; $(themes) | cat -n ; echo ; \
 	typeset -i num; \
-	read -p "Switch to theme: " num ; \
+  :
+  :x
+  :x
 	if [ ! -z $${num} -a $${num} -ge 1 -a -le $${n_themes} ] ; then \
 	  NEW_THEME=$$($(themes) | head -n$${num} | tail -n1 ) ; \
+	  mv --backup=numbered rc.lua rc.lua.previous ; \
 	  cp $${NEW_THEME} rc.lua ; \
 	  echo "Theme is now $${NEW_THEME}"; \
   else echo " !! Aborted. " ; fi
