@@ -428,23 +428,24 @@ globalkeys = awful.util.table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "+")
-            volume.notify()
+            awful.util.spawn(string.format("amixer -c %s set %s %s+", volume.card, volume.channel, volume.step))
+            volume.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "-")
-            volume.notify()
+            awful.util.spawn(string.format("amixer -c %s set %s %s-", volume.card, volume.channel, volume.step))
+            volume.update()
         end),
     awful.key({ altkey }, "m",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " playback toggle")
-            volume.notify()
+            awful.util.spawn(string.format("amixer -c %s set %s toggle", volume.card, volume.channel))
+            --awful.util.spawn(string.format("amixer set %s toggle", volume.card, volume.channel))
+            volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " playback 100%")
-            volume.notify()
+            awful.util.spawn(string.format("amixer -c %s set %s 100", volume.card, volume.channel))
+            volume.update()
         end),
 
     -- MPD control

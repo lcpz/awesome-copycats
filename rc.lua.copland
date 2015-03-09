@@ -183,11 +183,25 @@ batmargin:set_top(6)
 batmargin:set_bottom(6)
 batupd = lain.widgets.bat({
     settings = function()
-        if bat_now.perc == "N/A" then
+       if bat_now.perc == "N/A" or bat_now.status == "Not present" then
             bat_perc = 100
             baticon:set_image(beautiful.ac)
+        elseif bat_now.status == "Charging" then
+            bat_perc = tonumber(bat_now.perc)
+            baticon:set_image(beautiful.ac)
+
+            if bat_perc >= 98 then
+                batbar:set_color(green)
+            elseif bat_perc > 50 then
+                batbar:set_color(beautiful.fg_normal)
+            elseif bat_perc > 15 then
+                batbar:set_color(beautiful.fg_normal)
+            else
+                batbar:set_color(red)
+            end
         else
             bat_perc = tonumber(bat_now.perc)
+
             if bat_perc >= 98 then
                 batbar:set_color(green)
             elseif bat_perc > 50 then
@@ -235,6 +249,7 @@ diskwidget:set_bgimage(beautiful.widget_bg)
 -- ALSA volume bar
 volicon = wibox.widget.imagebox(beautiful.vol)
 volume = lain.widgets.alsabar({width = 55, ticks = true, ticks_size = 6,
+card = "1", step = "2%",
 settings = function()
     if volume_now.status == "off" then
         volicon:set_image(beautiful.vol_mute)
@@ -485,22 +500,23 @@ globalkeys = awful.util.table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "+")
+            awful.util.spawn(string.format("amixer -c %s set %s %s+", volume.card, volume.channel, volume.step))
             volume.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " " .. volume.step .. "-")
+            awful.util.spawn(string.format("amixer -c %s set %s %s-", volume.card, volume.channel, volume.step))
             volume.update()
         end),
     awful.key({ altkey }, "m",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " playback toggle")
+            awful.util.spawn(string.format("amixer -c %s set %s toggle", volume.card, volume.channel))
+            --awful.util.spawn(string.format("amixer set %s toggle", volume.card, volume.channel))
             volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            awful.util.spawn("amixer -q set " .. volume.channel .. " playback 100%")
+            awful.util.spawn(string.format("amixer -c %s set %s 100", volume.card, volume.channel))
             volume.update()
         end),
 
