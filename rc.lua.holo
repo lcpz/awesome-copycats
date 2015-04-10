@@ -236,6 +236,7 @@ batwidget = lain.widgets.bat({
 
 -- ALSA volume bar
 myvolumebar = lain.widgets.alsabar({
+    card   = "0",
     ticks  = true,
     width  = 80,
     height = 10,
@@ -736,18 +737,21 @@ awful.rules.rules = {
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function (c, startup)
     -- Enable sloppy focus
-    c:connect_signal("mouse::enter", function(c)
-        if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
-            and awful.client.focus.filter(c) then
-            client.focus = c
-        end
-    end)
-
-    if not startup and not c.size_hints.user_position
-       and not c.size_hints.program_position then
-        awful.placement.no_overlap(c)
-        awful.placement.no_offscreen(c)
-    end
+    local sloppyfocus_last = {x=nil, y=nil, c=nil}
+    client.connect_signal("mouse::enter", function(c)
+         local mcoords = mouse.coords()
+         if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
+                 and awful.client.focus.filter(c) then
+             -- Skip focusing the client if the mouse wasn't moved.
+             if (mcoords.x ~= sloppyfocus_last.x or mcoords.y ~= sloppyfocus_last.y)
+                 and c ~= sloppyfocus_last.c then
+                 client.focus = c
+                 sloppyfocus_last.c = c
+             end
+         end
+         sloppyfocus_last.x = mcoords.x
+         sloppyfocus_last.y = mcoords.y
+     end)
 
     local titlebars_enabled = false
     if titlebars_enabled and (c.type == "normal" or c.type == "dialog") then
