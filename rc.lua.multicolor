@@ -180,11 +180,11 @@ baticon = wibox.widget.imagebox(beautiful.widget_batt)
 batwidget = lain.widgets.bat({
     settings = function()
         if bat_now.perc == "N/A" then
-            bat_now.perc = "AC "
+            perc = "AC "
         else
-            bat_now.perc = bat_now.perc .. "% "
+            perc = bat_now.perc .. "% "
         end
-        widget:set_text(bat_now.perc)
+        widget:set_text(perc)
     end
 })
 
