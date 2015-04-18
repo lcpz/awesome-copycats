@@ -473,7 +473,7 @@ globalkeys = awful.util.table.join(
         end),
 
     -- Copy to clipboard
-    awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel -i -b") end),
+    awful.key({ modkey }, "c", function () os.execute("xsel -p -o | xsel --clipboard") end),
 
     -- User programs
     awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
