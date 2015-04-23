@@ -563,23 +563,23 @@ globalkeys = awful.util.table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s %s+", myvolumebar.card, myvolumebar.channel, myvolumebar.step))
+            os.execute(string.format("amixer -c %s set %s %s+", myvolumebar.card, myvolumebar.channel, myvolumebar.step))
             myvolumebar.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s %s-", myvolumebar.card, myvolumebar.channel, myvolumebar.step))
+            os.execute(string.format("amixer -c %s set %s %s-", myvolumebar.card, myvolumebar.channel, myvolumebar.step))
             myvolumebar.update()
         end),
     awful.key({ altkey }, "m",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s toggle", myvolumebar.card, myvolumebar.channel))
-            --awful.util.spawn(string.format("amixer set %s toggle", myvolumebar.card, myvolumebar.channel))
+            os.execute(string.format("amixer -c %s set %s toggle", myvolumebar.card, myvolumebar.channel))
+            --os.execute(string.format("amixer set %s toggle", myvolumebar.channel))
             myvolumebar.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s 100", myvolumebar.card, myvolumebar.channel))
+            os.execute(string.format("amixer -c %s set %s 100", myvolumebar.card, myvolumebar.channel))
             myvolumebar.update()
         end),
 

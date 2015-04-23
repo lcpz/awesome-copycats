@@ -428,23 +428,23 @@ globalkeys = awful.util.table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s %s+", volume.card, volume.channel, volume.step))
+            os.execute(string.format("amixer -c %s set %s %s+", volume.card, volume.channel, volume.step))
             volume.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s %s-", volume.card, volume.channel, volume.step))
+            os.execute(string.format("amixer -c %s set %s %s-", volume.card, volume.channel, volume.step))
             volume.update()
         end),
     awful.key({ altkey }, "m",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s toggle", volume.card, volume.channel))
-            --awful.util.spawn(string.format("amixer set %s toggle", volume.card, volume.channel))
+            os.execute(string.format("amixer -c %s set %s toggle", volume.card, volume.channel))
+            --os.execute(string.format("amixer set %s toggle", volume.channel))
             volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            awful.util.spawn(string.format("amixer -c %s set %s 100", volume.card, volume.channel))
+            os.execute(string.format("amixer -c %s set %s 100", volume.card, volume.channel))
             volume.update()
         end),
 
