@@ -53,8 +53,6 @@ run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
--- localization
-os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/blackburn/theme.lua")
@@ -315,7 +313,7 @@ for s = 1, screen.count() do
     mywibox[s]:set_widget(layout)
 
     -- Set proper background, instead of beautiful.bg_normal
-    mywibox[s]:set_bg(beautiful.topbar_path .. screen[mouse.screen].workarea.width .. ".png")
+    mywibox[s]:set_bg(beautiful.topbar_path .. tostring(screen[mouse.screen].workarea.width):gsub(".0", "") .. ".png")
 end
 -- }}}
 

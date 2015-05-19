@@ -53,8 +53,6 @@ run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
--- localization
---os.setlocale(os.getenv("LANG"))
 
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/holo/theme.lua")
@@ -444,7 +442,7 @@ for s = 1, screen.count() do
     mybottomwibox[s]:set_widget(bottom_layout)
 
     -- Set proper backgrounds, instead of beautiful.bg_normal
-    mywibox[s]:set_bg(beautiful.topbar_path .. screen[mouse.screen].workarea.width .. ".png")
+    mywibox[s]:set_bg(beautiful.topbar_path .. tostring(screen[mouse.screen].workarea.width):gsub(".0", "") .. ".png")
     mybottomwibox[s]:set_bg("#242424")
 
     -- Create a borderbox above the bottomwibox
