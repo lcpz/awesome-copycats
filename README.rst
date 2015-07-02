@@ -26,7 +26,7 @@ Notable features
 - Quake drop-down terminal
 - Calendar with current day highlighted and months switch with a click
 - Elegant notifications for new mails, current song, volume level, hdd critical state, low battery
-- Yahoo! Weather integration
+- OpenWeatherMap integration
 - Net carrier status notifier
 - Colorful autoupdating icons
 - Symbolic tag names

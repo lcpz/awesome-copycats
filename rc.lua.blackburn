@@ -198,11 +198,11 @@ volumewidget = lain.widgets.alsa({
     end
 })
 
--- Weather
-yawn = lain.widgets.yawn(123456,
-{
+myweather = lain.widgets.weather({
+    city_id = 123456, -- placeholder
     settings = function()
-        widget:set_markup(" " .. units .. " ")
+        units = math.floor(weather_now["main"]["temp"])
+        widget:set_text(" " .. units .. " ")
     end
 })
 
@@ -297,8 +297,8 @@ for s = 1, screen.count() do
     right_layout:add(first)
     right_layout:add(mpdwidget)
     --right_layout:add(mailwidget)
-    right_layout:add(yawn.icon)
-    right_layout:add(yawn.widget)
+    right_layout:add(myweather.icon)
+    right_layout:add(myweather)
     right_layout:add(fshome)
     right_layout:add(batwidget)
     right_layout:add(volumewidget)
@@ -423,7 +423,7 @@ globalkeys = awful.util.table.join(
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
     awful.key({ altkey,           }, "h",      function () fshome.show(7) end),
-    awful.key({ altkey,           }, "w",      function () yawn.show(7) end),
+    awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",
