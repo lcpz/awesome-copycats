@@ -10,9 +10,9 @@
 
 -- Grab environment
 local ipairs = ipairs
-local awful = require("awful")
-local table = table
-local capi = {
+local awful  = require("awful")
+local table  = table
+local capi   = {
     screen = screen,
 }
 
@@ -22,9 +22,9 @@ module("eminent")
 -- Grab the original functions we're replacing
 local deflayout = nil
 local orig = {
-    new = awful.tag.new,
+    new     = awful.tag.new,
     taglist = awful.widget.taglist.new,
-    filter = awful.widget.taglist.filter.all,
+    filter  = awful.widget.taglist.filter.all,
 }
 
 -- Return tags with stuff on them, mark others hidden

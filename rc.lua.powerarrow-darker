@@ -117,7 +117,7 @@ mytextclock = awful.widget.textclock(" %a %d %b  %H:%M")
 mytextclock = lain.widgets.abase({
     timeout  = 60,
     cmd      = "date +'%a %d %b %R'",
-    settings = function() 
+    settings = function()
         widget:set_text(" " .. output)
     end
 })
@@ -252,8 +252,8 @@ netwidget = lain.widgets.net({
 spr = wibox.widget.textbox(' ')
 arrl = wibox.widget.imagebox()
 arrl:set_image(beautiful.arrl)
-arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha") 
-arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus) 
+arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
+arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 
 -- Create a wibox for each screen and add it
 mywibox = {}
@@ -334,7 +334,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the upper right
     local right_layout_toggle = true
-    local function right_layout_add (...)  
+    local function right_layout_add (...)
         local arg = {...}
         if right_layout_toggle then
             right_layout:add(arrl_ld)
@@ -349,7 +349,7 @@ for s = 1, screen.count() do
         end
         right_layout_toggle = not right_layout_toggle
     end
-    
+
     right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
