@@ -123,7 +123,7 @@ Does your fork look very nice? You can send it to me!
 The best ones will be linked here.
 
 
-.. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/3.0/
+.. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
 .. _Awesome: http://awesome.naquadah.org/
 .. _tip: https://bbs.archlinux.org/profile.php?id=51327
 .. _romockee: https://github.com/romockee/powerarrow
