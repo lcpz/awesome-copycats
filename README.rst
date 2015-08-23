@@ -2,9 +2,9 @@
 Awesome WM Copycats
 ===================
 
---------------------------------
-Power themes for Awesome WM 3.5+
---------------------------------
+--------------------------
+Themes for Awesome WM 3.5+
+--------------------------
 
 :Author: Luke Bonham <dada [at] archlinux [dot] info>
 :Version: git
