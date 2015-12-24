@@ -512,6 +512,10 @@ globalkeys = awful.util.table.join(
             volumewidget.update()
         end),
 
+    -- BACKLIGHT control
+    awful.key({  }, "XF86MonBrightnessUp",   function() os.execute("xbacklight -inc 5") end),
+    awful.key({  }, "XF86MonBrightnessDown", function() os.execute("xbacklight -dec 5") end),
+
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
