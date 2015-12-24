@@ -656,12 +656,24 @@ awful.rules.rules = {
 	  { rule = { class = "Gimp" },
      	    properties = { tag = tags[1][4] } },
 
+    { rule = { class = "luakit" },
+          properties = { floating = true,
+                         maximized_horizontal = true,
+                         maximized_vertical = true,
+                         floating = true } },
+
     { rule = { class = "Zathura" },
-          properties = { tag = tags[1][8],
-                         maximized_horizontal = false,
-                         maximized_vertical = false,
-                         floating = true},
-                       callback = function(c) c:geometry({x=50,y=50,width=400,height=800}) end},
+          properties = { floating = true,
+                         maximized_horizontal = true,
+                         maximized_vertical = true,
+                         floating = true } },
+
+--    { rule = { class = "Zathura" },
+--          properties = { tag = tags[1][8],
+--                         maximized_horizontal = false,
+--                         maximized_vertical = false,
+--                         floating = true},
+--                       callback = function(c) c:geometry({x=50,y=50,width=400,height=800}) end},
 }
 -- }}}
 
