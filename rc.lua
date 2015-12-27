@@ -482,6 +482,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
     awful.key({ modkey, "Control" }, "r",      awesome.restart),
     awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
+    awful.key({ modkey, "Shift"   }, "q",      awesome.quit),
 
     -- Dropdown terminal
     awful.key({ modkey,	          }, "z",      function () drop(terminal) end),
@@ -512,6 +513,7 @@ globalkeys = awful.util.table.join(
             volumewidget.update()
         end),
 
+    awful.key({  }, "F12", function() os.execute("poweroff") end),
     -- BACKLIGHT control
     awful.key({  }, "XF86MonBrightnessUp",   function() os.execute("xbacklight -inc 5") end),
     awful.key({  }, "XF86MonBrightnessDown", function() os.execute("xbacklight -dec 5") end),
