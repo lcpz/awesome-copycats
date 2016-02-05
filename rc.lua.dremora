@@ -159,7 +159,6 @@ mpdwidget = lain.widgets.mpd({
 fshome = lain.widgets.fs({
     partition = "/home",
     settings  = function()
-        fs_notification_preset.fg = white
         fs_header = ""
         fs_p      = ""
 
