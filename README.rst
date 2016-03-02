@@ -115,14 +115,6 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 
 Feel free to email me if you have any request.
 
-Notable forks
-=============
-
-Does your fork look very nice? You can send it to me!
-
-The best ones will be linked here.
-
-
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
 .. _Awesome: http://awesome.naquadah.org/
 .. _tip: https://bbs.archlinux.org/profile.php?id=51327
