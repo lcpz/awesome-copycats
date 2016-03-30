@@ -65,8 +65,7 @@ editor     = os.getenv("EDITOR") or "nano" or "vi"
 editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
-browser    = "dwb"
-browser2   = "iron"
+browser    = "firefox"
 gui_editor = "gvim"
 graphics   = "gimp"
 
@@ -576,13 +575,7 @@ awful.rules.rules = {
     { rule = { class = "URxvt" },
           properties = { opacity = 0.99 } },
 
-    { rule = { class = "MPlayer" },
-          properties = { floating = true } },
-
-    { rule = { class = "Dwb" },
-          properties = { tag = tags[1][1] } },
-
-    { rule = { class = "Iron" },
+    { rule = { class = "Firefox" },
           properties = { tag = tags[1][1] } },
 
     { rule = { instance = "plugin-container" },
