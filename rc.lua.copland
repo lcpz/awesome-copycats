@@ -180,31 +180,26 @@ batmargin:set_top(6)
 batmargin:set_bottom(6)
 batupd = lain.widgets.bat({
     settings = function()
-       if bat_now.perc == "N/A" or bat_now.status == "Not present" then
-            bat_perc = 100
-            baticon:set_image(beautiful.ac)
-        elseif bat_now.status == "Charging" then
-            bat_perc = tonumber(bat_now.perc)
-            baticon:set_image(beautiful.ac)
+        if bat_now.status == "N/A" then return end
 
-            if bat_perc >= 98 then
+        if bat_now.status == "Charging" then
+            baticon:set_image(beautiful.ac)
+            if bat_now.perc >= 98 then
                 batbar:set_color(green)
-            elseif bat_perc > 50 then
+            elseif bat_now.perc > 50 then
                 batbar:set_color(beautiful.fg_normal)
-            elseif bat_perc > 15 then
+            elseif bat_now.perc > 15 then
                 batbar:set_color(beautiful.fg_normal)
             else
                 batbar:set_color(red)
             end
         else
-            bat_perc = tonumber(bat_now.perc)
-
-            if bat_perc >= 98 then
+            if bat_now.perc >= 98 then
                 batbar:set_color(green)
-            elseif bat_perc > 50 then
+            elseif bat_now.perc > 50 then
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat)
-            elseif bat_perc > 15 then
+            elseif bat_now.perc > 15 then
                 batbar:set_color(beautiful.fg_normal)
                 baticon:set_image(beautiful.bat_low)
             else
@@ -212,7 +207,7 @@ batupd = lain.widgets.bat({
                 baticon:set_image(beautiful.bat_no)
             end
         end
-        batbar:set_value(bat_perc / 100)
+        batbar:set_value(bat_now.perc / 100)
     end
 })
 batwidget = wibox.widget.background(batmargin)

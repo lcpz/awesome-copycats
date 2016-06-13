@@ -191,10 +191,9 @@ tempwidget = lain.widgets.temp({
 baticon = wibox.widget.imagebox(beautiful.widget_batt)
 batwidget = lain.widgets.bat({
     settings = function()
-        if bat_now.perc == "N/A" then
-            perc = "AC "
-        else
-            perc = bat_now.perc .. "% "
+        perc = bat_now.perc .. "% "
+        if bat_now.ac_status == 1 then
+            perc = perc .. "Plug "
         end
         widget:set_text(perc)
     end

@@ -221,12 +221,9 @@ batwidget = lain.widgets.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
-
-        if bat_now.status == "Not present" then
-            bat_header = ""
-            bat_p      = ""
+        if bat_now.ac_status == 1 then
+            bat_p = bat_p .. "Plugged "
         end
-
         widget:set_markup(markup(blue, bat_header) .. bat_p)
     end
 })
