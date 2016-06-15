@@ -249,8 +249,6 @@ netwidget = lain.widgets.net({
 
 -- Separators
 spr = wibox.widget.textbox(' ')
-arrl = wibox.widget.imagebox()
-arrl:set_image(beautiful.arrl)
 arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
 arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 
@@ -352,7 +350,6 @@ for s = 1, screen.count() do
     right_layout = wibox.layout.fixed.horizontal()
     if s == 1 then right_layout:add(wibox.widget.systray()) end
     right_layout:add(spr)
-    right_layout:add(arrl)
     right_layout_add(mpdicon, mpdwidget)
     right_layout_add(volicon, volumewidget)
     --right_layout_add(mailicon, mailwidget)
