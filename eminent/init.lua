@@ -30,7 +30,6 @@ local orig = {
 -- Return tags with stuff on them, mark others hidden
 function gettags(screen)
     local tags = {}
-
     for k, t in ipairs(capi.screen[screen]:tags()) do
         if t.selected or #t:clients() > 0 then
             awful.tag.setproperty(t, "hide", false)
