@@ -20,6 +20,7 @@ local string = string
 
 local pairs        = pairs
 local setmetatable = setmetatable
+local tostring     = tostring
 
 module("quake")
 
@@ -54,7 +55,7 @@ function QuakeConsole:display()
    if not client then
       -- The client does not exist, we spawn it
       awful.util.spawn(self.app .. " " .. string.format(self.argname, self.name),
-		       false, self.screen)
+      false, self.screen)
       return
    end
 
@@ -64,11 +65,11 @@ function QuakeConsole:display()
    client.size_hints_honor = false
    client:geometry(self.geometry)
 
-   -- Sticky and on top
+   -- Not sticky and on top
    client.ontop = true
    client.above = true
    client.skip_taskbar = true
-   client.sticky = true
+   client.sticky = false
 
    -- This is not a normal window, don't apply any specific keyboard stuff
    client:buttons({})
@@ -78,6 +79,7 @@ function QuakeConsole:display()
    if self.visible then
        client.hidden = false
        client:raise()
+       self.last_tag = tostring(awful.tag.selected(self.screen))
        client:tags({awful.tag.selected(self.screen)})
        capi.client.focus = client
    else
@@ -89,6 +91,7 @@ function QuakeConsole:display()
        client:tags(ctags)
    end
 
+   return client
 end
 
 -- Create a console
@@ -146,8 +149,13 @@ end
 
 -- Toggle the console
 function QuakeConsole:toggle()
-    self.visible = not self.visible
-    self:display()
+    current_tag = awful.tag.selected(self.screen)
+    if self.last_tag ~= tostring(current_tag) and self.visible then
+        awful.client.movetotag(current_tag, self:display())
+    else
+        self.visible = not self.visible
+        self:display()
+    end
 end
 
 setmetatable(_M, { __call = function(_, ...) return QuakeConsole:new(...) end })
