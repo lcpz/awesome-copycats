@@ -12,7 +12,6 @@ awful.rules     = require("awful.rules")
                   require("awful.autofocus")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
-local quake     = require("quake")
 local drop      = require("scratchdrop")
 local lain      = require("lain")
 -- }}}
@@ -81,7 +80,7 @@ local layouts = {
 -- quake terminal
 local quakeconsole = {}
 for s = 1, screen.count() do
-   quakeconsole[s] = quake({ app = terminal, wibox_height = 32})
+   quakeconsole[s] = lain.util.quake({ app = terminal, wibox_height = 32})
 end
 -- }}}
 

@@ -13,7 +13,6 @@ awful.rules     = require("awful.rules")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
 local naughty   = require("naughty")
-local quake     = require("quake")
 local lain      = require("lain")
 local eminent   = require("eminent")
 -- }}}
@@ -91,7 +90,7 @@ local layouts = {
 -- quake terminal
 local quakeconsole = {}
 for s = 1, screen.count() do
-   quakeconsole[s] = quake({ app = terminal })
+   quakeconsole[s] = lain.util.quake({ app = terminal })
 end
 -- }}}
 
