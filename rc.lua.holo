@@ -12,7 +12,7 @@ awful.rules     = require("awful.rules")
                   require("awful.autofocus")
 local wibox     = require("wibox")
 local beautiful = require("beautiful")
-local drop      = require("scratchdrop")
+local naughty   = require("naughty")
 local lain      = require("lain")
 -- }}}
 
