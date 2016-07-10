@@ -116,7 +116,7 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 Feel free to email me if you have any request.
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
-.. _Awesome: http://awesome.naquadah.org/
+.. _Awesome: http://github.com/awesomeWM/awesome  
 .. _tip: https://bbs.archlinux.org/profile.php?id=51327
 .. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
