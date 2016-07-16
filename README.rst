@@ -82,10 +82,8 @@ Installation
 
 Using git you can have the full master branch: ::
 
-```shell
-$ cd $HOME/.config/awesome
-$ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
-```
+    cd ~/.config/awesome
+    git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
 
 Otherwise, download the latest two masters of ``awesome-copycats`` and ``lain`` (1_ and 2_), extract the first one, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
 
