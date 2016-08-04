@@ -16,7 +16,7 @@ local next       = next
 module("menugen")
 
 -- Built in menubar should be checking local applications directory
-menu_gen.all_menu_dirs = { '/usr/share/applications/', '/usr/local/share/applications/', '~/.local/share/applications' }
+menu_gen.all_menu_dirs = { '/usr/share/applications/', '/usr/local/share/applications/', '~/.local/share/applications', '~/.nix-profile/share/applications' }
 
 -- Expecting an wm_name of awesome omits too many applications and tools
 menu_utils.wm_name = ""
