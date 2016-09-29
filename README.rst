@@ -80,12 +80,13 @@ Gallery
 Installation
 ============
 
-Using git you can have the full master branch: ::
+With Git: ::
 
-    cd ~/.config/awesome
-    git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
+    $ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
+    $ mv -bv awesome-copycats/* ~/.config/awesome
 
-Otherwise, download the latest two masters of ``awesome-copycats`` and ``lain`` (1_ and 2_), extract the first one, extract the second one into the first one, and put the contents of the first one into your Awesome directory.
+
+otherwise, download awesome-copycats-master_ and lain-master_ archives, extract the first one, extract the second one into the first one, and put the contents of the first one into ``~/.config/awesome``.
 
 Usage
 =====
@@ -112,17 +113,15 @@ Every theme has a colorscheme_.
 
 Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
 
-Feel free to email me if you have any request.
-
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
-.. _Awesome: http://github.com/awesomeWM/awesome  
+.. _Awesome: http://github.com/awesomeWM/awesome
 .. _tip: https://bbs.archlinux.org/profile.php?id=51327
 .. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
 .. _foozer: http://dotshare.it/dots/499/
-.. _1: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
-.. _2: https://github.com/copycat-killer/lain/archive/master.zip
+.. _awesome-copycats-master: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
+.. _lain-master: https://github.com/copycat-killer/lain/archive/master.zip
 .. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
 .. _dependencies: https://github.com/copycat-killer/lain/wiki
