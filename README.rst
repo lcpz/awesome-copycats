@@ -92,8 +92,8 @@ Usage
 
 Switch a theme this way: ::
 
-    cd ~/.config/awesome
-    cp rc.lua.theme rc.lua
+    $ cd ~/.config/awesome
+    $ cp rc.lua.theme rc.lua
 
 Alternatively, you can use `switch-theme.sh`_, which will also update to the latest commit.
 
