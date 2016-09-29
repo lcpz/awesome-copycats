@@ -21,11 +21,11 @@ Notable features
 
 - Autohide widgets (*tell me only when you have to*)
 - Autostart applications
-- Fast MPD and volume shortcuts (first time you see this trick in Awesome)
-- Other shortcuts for copying to the clipboard (goodbye clipboard managers!), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
+- Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
+- Other shortcuts for copying to the clipboard (no need for clipboard managers), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
 - Quake drop-down terminal
-- Calendar with current day highlighted and months switch with a click
-- Elegant notifications for new mails, current song, volume level, hdd critical state, low battery
+- Calendar with current day highlighted and months switch with a click/scroll
+- Notifications for new mails, current song, volume level, hdd critical state, low battery
 - OpenWeatherMap integration
 - Net carrier status notifier
 - Colorful autoupdating icons
@@ -34,26 +34,25 @@ Notable features
 - PNG wibox bar
 - Custom layouts
 - No borders when there's only one visible client
-- Powerful volume bar
 - Menubar menu
 - Vi-like client focus
-- Nice client border (colors change along with processes status)
 - Non-empty tag browsing
+- Dynamic client borders (colors change along with processes status)
 - Dynamic useless gaps
 - Dynamic tagging
 
 Gallery
 =======
 
-**Multicolor** inspired by tip_
+**Multicolor**, inspired by lucamanni_
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow Darker** inspired by romockee_
+**Powerarrow Darker**, inspired by romockee_
 
 .. image:: http://dotshare.it/public/images/uploads/649.png
 
-**Steamburn** copycatted from ok100_ [porting from dwm]
+**Steamburn**, porting of ok100_'s dwm 
 
 .. image:: http://dotshare.it/public/images/uploads/648.png
 
@@ -69,11 +68,11 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/606.png
 
-**Holo** requested by amouly_
+**Holo**, requested by amouly_
 
 .. image:: http://dotshare.it/public/images/uploads/651.png
 
-**Copland** inspired by foozer_
+**Copland**, inspired by foozer_
 
 .. image:: http://dotshare.it/public/images/uploads/655.png
 
@@ -98,7 +97,7 @@ Switch a theme this way: ::
 
 Alternatively, you can use `switch-theme.sh`_, which will also update to the latest commit.
 
-Then customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
+Then, customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
 
 Notes
 =====
@@ -115,7 +114,7 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
 .. _Awesome: http://github.com/awesomeWM/awesome
-.. _tip: https://bbs.archlinux.org/profile.php?id=51327
+.. _lucamanni: https://github.com/lucamanni/awesome
 .. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
