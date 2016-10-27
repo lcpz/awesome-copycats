@@ -185,7 +185,7 @@ batmargin:set_top(6)
 batmargin:set_bottom(6)
 batupd = lain.widgets.bat({
     settings = function()
-        if bat_now.status == "N/A" then return end
+        if bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
 
         if bat_now.status == "Charging" then
             baticon:set_image(beautiful.ac)
