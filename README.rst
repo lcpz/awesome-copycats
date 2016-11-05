@@ -135,4 +135,3 @@ Default additional software used: ::
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
-.. _screenshot: https://github.com/copycat-killer/dots/blob/master/bin/screenshot
