@@ -112,6 +112,10 @@ Every theme has a colorscheme_.
 
 Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
 
+Default additional software used: ::
+
+    unclutter firefox scrot mpd mpc dmenu xsel
+
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
 .. _Awesome: http://github.com/awesomeWM/awesome
 .. _lucamanni: https://github.com/lucamanni/awesome
@@ -131,3 +135,4 @@ Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running und
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
+.. _screenshot: https://github.com/copycat-killer/dots/blob/master/bin/screenshot
