@@ -108,7 +108,7 @@ end
 -- }}}
 
 -- {{{ Menu
-mymainmenu = awful.menu.new({ items = require("menugen").build_menu(),
+mymainmenu = awful.menu.new({ items = require("freedesktop").menu.build(),
                               theme = { height = 16, width = 130 }})
 -- Menubar configuration
 --menubar.utils.terminal = terminal -- Set the terminal for applications that require it
