@@ -34,7 +34,7 @@ Notable features
 - PNG wibox bar
 - Custom layouts
 - No borders when there's only one visible client
-- Menubar menu
+- Freedesktop.org compliant menu and desktop icons
 - Vi-like client focus
 - Non-empty tag browsing
 - Dynamic client borders (colors change along with processes status)
