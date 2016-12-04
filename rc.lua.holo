@@ -133,7 +133,7 @@ calendar_icon:set_image(beautiful.calendar)
 calendarwidget = wibox.widget.background()
 calendarwidget:set_widget(mytextcalendar)
 calendarwidget:set_bgimage(beautiful.widget_bg)
-lain.widgets.calendar:attach(calendarwidget, { fg = "#FFFFFF", position = "bottom_right" })
+lain.widgets.calendar.attach(calendarwidget, { fg = "#FFFFFF", position = "bottom_right" })
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use

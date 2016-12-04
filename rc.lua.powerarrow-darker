@@ -130,7 +130,7 @@ mytextclock = lain.widgets.abase({
 })
 
 -- calendar
-lain.widgets.calendar:attach(mytextclock, { font_size = 10 })
+lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 
 -- Mail IMAP check
 mailicon = wibox.widget.imagebox(beautiful.widget_mail)

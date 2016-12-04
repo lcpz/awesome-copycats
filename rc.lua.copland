@@ -130,7 +130,7 @@ green  = "#8FEB8F"
 mytextclock = awful.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
 
 -- Calendar
-lain.widgets.calendar:attach(mytextclock)
+lain.widgets.calendar.attach(mytextclock)
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use

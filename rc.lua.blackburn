@@ -117,7 +117,7 @@ gray   = "#9E9C9A"
 mytextclock = awful.widget.textclock(" %H:%M ")
 
 -- Calendar
-lain.widgets.calendar:attach(mytextclock)
+lain.widgets.calendar.attach(mytextclock)
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use

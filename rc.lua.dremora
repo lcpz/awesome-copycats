@@ -119,7 +119,7 @@ mytextclock = awful.widget.textclock(markup(gray, " %a")
 .. markup(white, " %d ") .. markup(gray, "%b ") ..  markup(white, "%H:%M "))
 
 -- Calendar
-lain.widgets.calendar:attach(mytextclock, { fg = white })
+lain.widgets.calendar.attach(mytextclock, { fg = white })
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use

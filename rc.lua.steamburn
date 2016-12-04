@@ -122,7 +122,7 @@ gray   = "#94928F"
 mytextclock = awful.widget.textclock(" %H:%M ")
 
 -- Calendar
-lain.widgets.calendar:attach(mytextclock)
+lain.widgets.calendar.attach(mytextclock)
 
 -- Mail IMAP check
 mailwidget = lain.widgets.imap({
