@@ -425,7 +425,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,	          }, "z",      function () quakeconsole[mouse.screen]:toggle() end),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",      function () lain.widgets.calendar:show(7) end),
+    awful.key({ altkey,           }, "c",      function () lain.widgets.calendar.show(7) end),
     awful.key({ altkey,           }, "h",      function () fshome.show(7) end),
     awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
 
