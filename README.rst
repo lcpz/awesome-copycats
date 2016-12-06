@@ -84,8 +84,14 @@ With Git: ::
     $ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
     $ mv -bv awesome-copycats/* ~/.config/awesome
 
+otherwise: ::
 
-otherwise, download awesome-copycats-master_ and lain-master_ archives, extract the first one, extract the second one into the first one, and put the contents of the first one into ``~/.config/awesome``.
+    $ wget https://github.com/copycat-killer/awesome-copycats/archive/master.zip -O awesome-copycats.zip
+    $ wget https://github.com/copycat-killer/lain/archive/master.zip -O lain.zip
+    $ wget https://github.com/copycat-killer/awesome-freedesktop/archive/master.zip -O freedesktop.zip
+    $ unzip '*.zip'; rm *.zip
+    $ mv lain-master awesome-copycats-master/lain; mv awesome-freedesktop awesome-copycats-master/freedesktop
+    $ mv -bv awesome-copycats-master/* ~/.config/awesome
 
 Usage
 =====
@@ -125,6 +131,7 @@ Default additional software used: ::
 .. _foozer: http://dotshare.it/dots/499/
 .. _awesome-copycats-master: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
 .. _lain-master: https://github.com/copycat-killer/lain/archive/master.zip
+.. _freedesktop-master: https://github.com/copycat-killer/awesome-freedesktop/archive/master.zip
 .. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
 .. _dependencies: https://github.com/copycat-killer/lain/wiki#dependencies
