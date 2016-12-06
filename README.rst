@@ -82,7 +82,7 @@ Installation
 With Git: ::
 
     $ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
-    $ mv -bv awesome-copycats/* ~/.config/awesome
+    $ mv -bv awesome-copycats/* ~/.config/awesome; rm -r awesome-copycats
 
 otherwise: ::
 
@@ -91,7 +91,7 @@ otherwise: ::
     $ wget https://github.com/copycat-killer/awesome-freedesktop/archive/master.zip -O freedesktop.zip
     $ unzip '*.zip'; rm *.zip
     $ mv lain-master awesome-copycats-master/lain; mv awesome-freedesktop awesome-copycats-master/freedesktop
-    $ mv -bv awesome-copycats-master/* ~/.config/awesome
+    $ mv -bv awesome-copycats-master/* ~/.config/awesome; rm -r awesome-copycats-master
 
 Usage
 =====
@@ -129,9 +129,6 @@ Default additional software used: ::
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
 .. _foozer: http://dotshare.it/dots/499/
-.. _awesome-copycats-master: https://github.com/copycat-killer/awesome-copycats/archive/master.zip
-.. _lain-master: https://github.com/copycat-killer/lain/archive/master.zip
-.. _freedesktop-master: https://github.com/copycat-killer/awesome-freedesktop/archive/master.zip
 .. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
 .. _dependencies: https://github.com/copycat-killer/lain/wiki#dependencies
