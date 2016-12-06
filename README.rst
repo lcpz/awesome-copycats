@@ -127,7 +127,7 @@ Default additional software used: ::
 .. _lain-master: https://github.com/copycat-killer/lain/archive/master.zip
 .. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
-.. _dependencies: https://github.com/copycat-killer/lain/wiki
+.. _dependencies: https://github.com/copycat-killer/lain/wiki#dependencies
 .. _Terminus: http://terminus-font.sourceforge.net/
 .. _Tamzen: https://github.com/sunaku/tamzen-font 
 .. _Tamsyn: http://www.fial.com/~scott/tamsyn-font/
