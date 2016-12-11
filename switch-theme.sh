@@ -30,11 +30,11 @@ n_themes=$(themes) | wc -l
 .SILENT : all
 
 all: $(DESTDIR)
-				cd	$(DESTDIR)	&&	\
-				echo	-n	$(git	pull)#"Already	up-to-date.";	\
-				git	submodule	init	;	\
-				git	submodule	update;	\
-				$(swap_dialog)
+    cd	$(DESTDIR)	&&	\
+		echo	-n	$(git	pull)#"Already	up-to-date.";	\
+		git	submodule	init	;	\
+		git	submodule	update;	\
+		$(swap_dialog)
 
 $(DESTDIR):
     git clone https://github.com/${PROJECT}.git $@
