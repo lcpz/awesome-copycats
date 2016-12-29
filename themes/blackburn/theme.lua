@@ -6,7 +6,7 @@
                                      
 --]]
 
-theme                               = {}
+local theme                         = {}
 
 theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/blackburn"
 theme.wallpaper                     = theme.dir .. "/wall.png"
@@ -20,7 +20,7 @@ theme.bg_normal                     = "#060606"
 theme.bg_focus                      = "#060606"
 theme.fg_urgent                     = "#CC9393"
 theme.bg_urgent                     = "#2A1F1E"
-theme.border_width                  = "1"
+theme.border_width                  = 1
 theme.border_normal                 = "#0E0E0E"
 theme.border_focus                  = "#F79372"
 
@@ -28,8 +28,8 @@ theme.taglist_fg_focus              = "#F6784F"
 theme.taglist_bg_focus              = "#060606"
 theme.tasklist_fg_focus             = "#F6784F"
 theme.tasklist_bg_focus             = "#060606"
-theme.menu_height                   = "16"
-theme.menu_width                    = "140"
+theme.menu_height                   = 16
+theme.menu_width                    = 140
 
 theme.submenu_icon                  = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel.png"
@@ -51,14 +51,6 @@ theme.layout_magnifier              = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating               = theme.dir .. "/icons/floating.png"
 
 theme.tasklist_disable_icon         = true
-theme.tasklist_floating             = ""
-theme.tasklist_maximized_horizontal = ""
-theme.tasklist_maximized_vertical   = ""
-
--- lain related
-theme.useless_gap_width             = 10
-theme.layout_uselesstile            = theme.dir .. "/icons/uselesstile.png"
-theme.layout_uselesstileleft        = theme.dir .. "/icons/uselesstileleft.png"
-theme.layout_uselesstiletop         = theme.dir .. "/icons/uselesstiletop.png"
+theme.useless_gap                   = 8
 
 return theme

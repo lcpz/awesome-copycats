@@ -6,7 +6,7 @@
                                
 --]]
 
-theme                                           = {}
+local theme                                     = {}
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/copland"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
@@ -26,8 +26,8 @@ theme.taglist_bg_focus                          = "#111111"
 theme.taglist_bg_normal                         = "#111111"
 theme.titlebar_bg_normal                        = "#191919"
 theme.titlebar_bg_focus                         = "#262626"
-theme.menu_height                               = "15"
-theme.menu_width                                = "150"
+theme.menu_height                               = 16
+theme.menu_width                                = 130
 
 theme.tasklist_sticky                           = ""
 theme.tasklist_ontop                            = ""
@@ -89,18 +89,11 @@ theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
+theme.useless_gap                               = 0
+
 -- lain related
-theme.useless_gap_width                         = 10
 theme.layout_centerfair                         = theme.dir .. "/icons/centerfair.png"
 theme.layout_termfair                           = theme.dir .. "/icons/termfair.png"
 theme.layout_centerwork                         = theme.dir .. "/icons/centerwork.png"
-theme.layout_uselessfair                        = theme.dir .. "/icons/fairv.png"
-theme.layout_uselessfairh                       = theme.dir .. "/icons/fairh.png"
-theme.layout_uselessdwindle                     = theme.dir .. "/icons/dwindle.png"
-theme.layout_uselesstile                        = theme.dir .. "/icons/tile.png"
-theme.layout_uselesstiletop                     = theme.dir .. "/icons/tiletop.png"
-theme.layout_uselesstileleft                    = theme.dir .. "/icons/tileleft.png"
-theme.layout_uselesstilebottom                  = theme.dir .. "/icons/tilebottom.png"
-theme.layout_uselesspiral                       = theme.dir .. "/icons/spiral.png"
 
 return theme
