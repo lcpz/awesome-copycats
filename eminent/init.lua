@@ -12,9 +12,7 @@
 local ipairs = ipairs
 local awful  = require("awful")
 local table  = table
-local capi   = {
-    screen = screen,
-}
+local capi   = { screen = screen }
 
 -- Eminent: Effortless wmii-style dynamic tagging
 module("eminent")
