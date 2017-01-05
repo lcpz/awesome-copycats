@@ -113,7 +113,7 @@ markup = lain.util.markup
 gray   = "#9E9C9A"
 
 -- Textclock
-mytextclock = awful.widget.textclock(" %H:%M ")
+mytextclock = wibox.widget.textclock(" %H:%M ")
 
 -- Calendar
 lain.widgets.calendar.attach(mytextclock)
@@ -345,7 +345,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- Take a screenshot
     -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "P", function() os.execute(os.getenv("HOME") .. "/screenshot") end),
+    awful.key({ altkey }, "P", function() os.execute("screenshot") end),
 
     -- Hotkeys
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -532,7 +532,7 @@ globalkeys = awful.util.table.join(
 
     -- User programs
     awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
-    awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
+    awful.key({ modkey }, "e", function () awful.util.spawn(gui_editor) end),
     awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
 
     --[[ Default

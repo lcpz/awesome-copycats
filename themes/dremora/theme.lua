@@ -29,7 +29,7 @@ theme.taglist_bg_focus              = "#121212"
 theme.menu_height                   = "16"
 theme.menu_width                    = "140"
 
-theme.submenu_icon                  = theme.dir .. "/icons/submenu.png"
+theme.menu_submenu_icon             = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
 theme.arrl_lr_pre                   = theme.dir .. "/icons/arrl_lr_pre.png"

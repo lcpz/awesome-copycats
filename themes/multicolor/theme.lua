@@ -43,7 +43,7 @@ theme.menu_fg_focus                 = "#ff8c00"
 theme.menu_bg_normal                = "#050505dd"
 theme.menu_bg_focus                 = "#050505dd"
 
-theme.submenu_icon                  = theme.confdir .. "/icons/submenu.png"
+theme.menu_submenu_icon             = theme.confdir .. "/icons/submenu.png"
 theme.widget_temp                   = theme.confdir .. "/icons/temp.png"
 theme.widget_uptime                 = theme.confdir .. "/icons/ac.png"
 theme.widget_cpu                    = theme.confdir .. "/icons/cpu.png"

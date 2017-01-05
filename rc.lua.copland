@@ -15,6 +15,7 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local lain          = require("lain")
 local eminent       = require("eminent")
+local shape         = require("gears.shape")
 --local menubar       = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- }}}
@@ -64,7 +65,6 @@ modkey     = "Mod4"
 altkey     = "Mod1"
 terminal   = "urxvtc" or "xterm"
 editor     = os.getenv("EDITOR") or "nano" or "vi"
-editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
 browser    = "firefox"
@@ -101,17 +101,19 @@ end
 
 -- {{{ Menu
 myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
+    { "hotkeys", function() return false, hotkeys_popup.show_help end },
+    { "manual", terminal .. " -e man awesome" },
+    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+    { "restart", awesome.restart },
+    { "quit", function() awesome.quit() end }
 }
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "applications", require("freedesktop").menu.build() },
-                                    { "open terminal", terminal },
-                                  }
-                        })
+mymainmenu = awful.menu({
+    items = {
+        { "awesome", myawesomemenu, beautiful.awesome_icon },
+        { "applications", require("freedesktop").menu.build() },
+        { "open terminal", terminal },
+    }
+})
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
@@ -175,15 +177,17 @@ mpdwidget = lain.widgets.mpd({
 
 -- Battery
 baticon = wibox.widget.imagebox(beautiful.bat)
-batbar = awful.widget.progressbar()
-batbar:set_color(beautiful.fg_normal)
-batbar:set_width(55)
-batbar:set_ticks(true)
-batbar:set_ticks_size(6)
-batbar:set_background_color(beautiful.bg_normal)
-batmargin = wibox.layout.margin(batbar, 2, 7)
-batmargin:set_top(6)
-batmargin:set_bottom(6)
+batbar = wibox.widget {
+    forced_height    = 1,
+    forced_width     = 59,
+    color            = beautiful.fg_normal,
+    background_color = beautiful.bg_normal,
+    margins          = 1,
+    paddings         = 1,
+    ticks            = true,
+    ticks_size       = 6,
+    widget           = wibox.widget.progressbar,
+}
 batupd = lain.widgets.bat({
     settings = function()
         if bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
@@ -216,59 +220,60 @@ batupd = lain.widgets.bat({
         batbar:set_value(bat_now.perc / 100)
     end
 })
-batwidget = wibox.widget.background(batmargin)
-batwidget:set_bgimage(beautiful.widget_bg)
+batbg = wibox.container.background(batbar, "#474747", shape.rectangle)
+batwidget = wibox.container.margin(batbg, 2, 7, 4, 4) 
 
 -- /home fs
-diskicon = wibox.widget.imagebox(beautiful.disk)
-diskbar = awful.widget.progressbar()
-diskbar:set_color(beautiful.fg_normal)
-diskbar:set_width(55)
-diskbar:set_ticks(true)
-diskbar:set_ticks_size(6)
-diskbar:set_background_color(beautiful.bg_normal)
-diskmargin = wibox.layout.margin(diskbar, 2, 7)
-diskmargin:set_top(6)
-diskmargin:set_bottom(6)
+fsicon = wibox.widget.imagebox(beautiful.disk)
+fsbar = wibox.widget {
+    forced_height    = 1,
+    forced_width     = 59,
+    color            = beautiful.fg_normal,
+    background_color = beautiful.bg_normal,
+    margins          = 1,
+    paddings         = 1,
+    ticks            = true,
+    ticks_size       = 6,
+    widget           = wibox.widget.progressbar,
+}
 fshome = lain.widgets.fs({
     partition = "/home",
     settings  = function()
         if fs_now.used < 90 then
-            diskbar:set_color(beautiful.fg_normal)
+            fsbar:set_color(beautiful.fg_normal)
         else
-            diskbar:set_color("#EB8F8F")
+            fsbar:set_color("#EB8F8F")
         end
-        diskbar:set_value(fs_now.used / 100)
+        fsbar:set_value(fs_now.used / 100)
     end
 })
-diskwidget = wibox.widget.background(diskmargin)
-diskwidget:set_bgimage(beautiful.widget_bg)
+fsbg = wibox.container.background(fsbar, "#474747", shape.rectangle)
+fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4) 
 
 -- ALSA volume bar
 volicon = wibox.widget.imagebox(beautiful.vol)
-volume = lain.widgets.alsabar({width = 55, ticks = true, ticks_size = 6, step = "2%",
-settings = function()
-    if volume_now.status == "off" then
-        volicon:set_image(beautiful.vol_mute)
-    elseif volume_now.level == 0 then
-        volicon:set_image(beautiful.vol_no)
-    elseif volume_now.level <= 50 then
-        volicon:set_image(beautiful.vol_low)
-    else
-        volicon:set_image(beautiful.vol)
-    end
-end,
-colors =
-{
-    background = beautiful.bg_normal,
-    mute = red,
-    unmute = beautiful.fg_normal
-}})
-volmargin = wibox.layout.margin(volume.bar, 2, 7)
-volmargin:set_top(6)
-volmargin:set_bottom(6)
-volumewidget = wibox.widget.background(volmargin)
-volumewidget:set_bgimage(beautiful.widget_bg)
+volume = lain.widgets.alsabar({
+    width = 59, border_width = 0, ticks = true, ticks_size = 6, step = "2%",
+    --togglechannel = "IEC958,3",
+    settings = function()
+        if volume_now.status == "off" then
+            volicon:set_image(beautiful.vol_mute)
+        elseif volume_now.level == 0 then
+            volicon:set_image(beautiful.vol_no)
+        elseif volume_now.level <= 50 then
+            volicon:set_image(beautiful.vol_low)
+        else
+            volicon:set_image(beautiful.vol)
+        end
+    end,
+    colors = {
+        background   = beautiful.bg_normal,
+        mute         = red,
+        unmute       = beautiful.fg_normal
+    }
+})
+volumebg = wibox.container.background(volume.bar, "#474747", shape.rectangle)
+volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
 
 -- Weather
 myweather = lain.widgets.weather({
@@ -279,7 +284,6 @@ myweather = lain.widgets.weather({
 spr = wibox.widget.textbox(' ')
 small_spr = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
 bar_spr = wibox.widget.textbox('<span font="Tamsyn 3"> </span>' .. markup("#333333", "|") .. '<span font="Tamsyn 3"> </span>')
-
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -396,8 +400,8 @@ awful.screen.connect_for_each_screen(function(s)
             baticon,
             batwidget,
             bar_spr,
-            diskicon,
-            diskwidget,
+            fsicon,
+            fswidget,
             bar_spr,
             volicon,
             volumewidget,
@@ -420,7 +424,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- Take a screenshot
     -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "P", function() os.execute(os.getenv("HOME") .. "/screenshot") end),
+    awful.key({ altkey }, "p", function() os.execute("screenshot") end),
 
     -- Hotkeys
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -554,29 +558,29 @@ globalkeys = awful.util.table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            os.execute(string.format("amixer set %s 1%%+", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s 1%%+", volume.channel))
+            volume.notify()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            os.execute(string.format("amixer set %s 1%%-", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s 1%%-", volume.channel))
+            volume.notify()
         end),
     awful.key({ altkey }, "m",
         function ()
-            os.execute(string.format("amixer set %s toggle", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s toggle", volume.togglechannel or volume.channel))
+            volume.notify()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            os.execute(string.format("amixer set %s 100%%", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s 100%%", volume.channel))
+            volume.notify()
         end),
 
 		awful.key({ altkey, "Control" }, "0",
 				function ()
 						os.execute(string.format("amixer -q set %s 0%%", volume.channel))
-						volumewidget.update()
+						volume.notify()
 				end),
 
     -- MPD control
@@ -607,7 +611,7 @@ globalkeys = awful.util.table.join(
 
     -- User programs
     awful.key({ modkey }, "q", function () awful.util.spawn(browser) end),
-    awful.key({ modkey }, "s", function () awful.util.spawn(gui_editor) end),
+    awful.key({ modkey }, "e", function () awful.util.spawn(gui_editor) end),
     awful.key({ modkey }, "g", function () awful.util.spawn(graphics) end),
 
     --[[ Default

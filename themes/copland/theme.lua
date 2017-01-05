@@ -37,10 +37,9 @@ theme.tasklist_maximized_vertical               = ""
 theme.tasklist_disable_icon                     = true
 
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
-theme.submenu_icon                              = theme.dir .."/icons/submenu.png"
+theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_unsel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
-theme.widget_bg                                 = theme.dir .. "/icons/widget_bg.png"
 theme.vol                                       = theme.dir .. "/icons/vol.png"
 theme.vol_low                                   = theme.dir .. "/icons/vol_low.png"
 theme.vol_no                                    = theme.dir .. "/icons/vol_no.png"

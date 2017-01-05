@@ -41,7 +41,7 @@ theme.layout_txt_fullscreen         = "[F]"
 theme.layout_txt_magnifier          = "[M]"
 theme.layout_txt_floating           = "[|]"
 
-theme.submenu_icon                  = themes_dir .. "/icons/submenu.png"
+theme.menu_submenu_icon             = themes_dir .. "/icons/submenu.png"
 theme.taglist_squares_sel           = themes_dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel         = themes_dir .. "/icons/square_unsel.png"
 
