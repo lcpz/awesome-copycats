@@ -508,6 +508,10 @@ globalkeys = awful.util.table.join(
         end
     end),
 
+    -- On the fly useless gaps change
+    awful.key({ altkey, "Control" }, "+", function () lain.util.useless_gaps_resize(1) end),
+    awful.key({ altkey, "Control" }, "-", function () lain.util.useless_gaps_resize(-1) end),
+
     -- Rename tag
     awful.key({ altkey, "Shift"   }, "r", function () lain.util.rename_tag() end),
 
@@ -837,6 +841,5 @@ client.connect_signal("focus",
             c.border_color = beautiful.border_focus
         end
     end)
-client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}

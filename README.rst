@@ -2,6 +2,15 @@
 Awesome WM Copycats
 ===================
 
+-------
+Warning
+-------
+
+I am in the process of updating to awesome 4.0. Currently, the ported themes are:
+
+- blackburn
+- copland
+
 --------------------------
 Themes for Awesome WM 3.5+
 --------------------------
@@ -52,7 +61,7 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/649.png
 
-**Steamburn**, porting of ok100_'s dwm 
+**Steamburn**, porting of ok100_'s dwm
 
 .. image:: http://dotshare.it/public/images/uploads/648.png
 
@@ -133,7 +142,7 @@ Default additional software used: ::
 .. _lain: https://github.com/copycat-killer/lain
 .. _dependencies: https://github.com/copycat-killer/lain/wiki#dependencies
 .. _Terminus: http://terminus-font.sourceforge.net/
-.. _Tamzen: https://github.com/sunaku/tamzen-font 
+.. _Tamzen: https://github.com/sunaku/tamzen-font
 .. _Tamsyn: http://www.fial.com/~scott/tamsyn-font/
 .. _colorscheme: https://github.com/copycat-killer/dots/tree/master/.colors
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
