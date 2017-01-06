@@ -11,9 +11,9 @@ I am in the process of updating to awesome 4.0. Currently, the ported themes are
 - blackburn
 - copland
 
---------------------------
-Themes for Awesome WM 3.5+
---------------------------
+-------------------------
+Themes for Awesome WM 4.x
+-------------------------
 
 :Author: Luke Bonham <dada [at] archlinux [dot] info>
 :Version: git
@@ -40,7 +40,7 @@ Notable features
 - Colorful autoupdating icons
 - Symbolic tag names
 - TXT layoutbox
-- PNG wibox bar
+- Cairo wibox bar
 - Custom layouts
 - No borders when there's only one visible client
 - Freedesktop.org compliant menu and desktop icons
