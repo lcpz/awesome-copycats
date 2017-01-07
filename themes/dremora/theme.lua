@@ -6,7 +6,7 @@
                                    
 --]]
 
-theme                               = {}
+local theme                         = {}
 
 theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/dremora"
 theme.wallpaper                     = theme.dir .. "/wall.png"
@@ -26,17 +26,15 @@ theme.titlebar_bg_focus             = "#292929"
 
 theme.taglist_fg_focus              = "#dddcff"
 theme.taglist_bg_focus              = "#121212"
-theme.menu_height                   = "16"
-theme.menu_width                    = "140"
+theme.menu_height                   = 16
+theme.menu_width                    = 130
 
+theme.awesome_icon                  = theme.dir .."/icons/awesome.png"
 theme.menu_submenu_icon             = theme.dir .. "/icons/submenu.png"
 theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
-theme.arrl_lr_pre                   = theme.dir .. "/icons/arrl_lr_pre.png"
-theme.arrl_lr_post                  = theme.dir .. "/icons/arrl_lr_post.png"
 
 theme.layout_tile                   = theme.dir .. "/icons/tile.png"
-theme.layout_tilegaps               = theme.dir .. "/icons/tilegaps.png"
 theme.layout_tileleft               = theme.dir .. "/icons/tileleft.png"
 theme.layout_tilebottom             = theme.dir .. "/icons/tilebottom.png"
 theme.layout_tiletop                = theme.dir .. "/icons/tiletop.png"
@@ -54,8 +52,9 @@ theme.tasklist_floating             = ""
 theme.tasklist_maximized_horizontal = ""
 theme.tasklist_maximized_vertical   = ""
 
+theme.useless_gap                   = 10
+
 -- lain related
-theme.useless_gap_width             = 10
 theme.layout_uselesstile            = theme.dir .. "/icons/uselesstile.png"
 theme.layout_uselesstileleft        = theme.dir .. "/icons/uselesstileleft.png"
 theme.layout_uselesstiletop         = theme.dir .. "/icons/uselesstiletop.png"

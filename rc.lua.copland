@@ -80,7 +80,7 @@ lain.layout.centerfair.ncol    = 1
 -- quake terminal
 local quakeconsole = {}
 for s in screen do
-   quakeconsole[s] = lain.util.quake({ app = terminal, width = 0.999, horiz = "left" })
+   quakeconsole[s] = lain.util.quake({ app = terminal })
 end
 -- }}}
 
@@ -284,6 +284,7 @@ myweather = lain.widgets.weather({
 spr = wibox.widget.textbox(' ')
 small_spr = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
 bar_spr = wibox.widget.textbox('<span font="Tamsyn 3"> </span>' .. markup("#333333", "|") .. '<span font="Tamsyn 3"> </span>')
+
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -523,9 +524,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+    awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+    awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),

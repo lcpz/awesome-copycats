@@ -63,17 +63,22 @@ modkey     = "Mod4"
 altkey     = "Mod1"
 terminal   = "urxvtc" or "xterm"
 editor     = os.getenv("EDITOR") or "nano" or "vi"
-editor_cmd = terminal .. " -e " .. editor
 
 -- user defined
 browser    = "firefox"
 gui_editor = "gvim"
 graphics   = "gimp"
 
+-- lain
+lain.layout.termfair.nmaster   = 3
+lain.layout.termfair.ncol      = 1
+lain.layout.centerfair.nmaster = 3
+lain.layout.centerfair.ncol    = 1
+
 -- quake terminal
 local quakeconsole = {}
 for s in screen do
-   quakeconsole[s] = lain.util.quake({ app = terminal, width = 0.999, horiz = "left" })
+   quakeconsole[s] = lain.util.quake({ app = terminal })
 end
 -- }}}
 
@@ -94,23 +99,26 @@ end
 
 -- {{{ Menu
 myawesomemenu = {
-   { "hotkeys", function() return false, hotkeys_popup.show_help end},
-   { "manual", terminal .. " -e man awesome" },
-   { "edit config", editor_cmd .. " " .. awesome.conffile },
-   { "restart", awesome.restart },
-   { "quit", function() awesome.quit() end}
+    { "hotkeys", function() return false, hotkeys_popup.show_help end },
+    { "manual", terminal .. " -e man awesome" },
+    { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+    { "restart", awesome.restart },
+    { "quit", function() awesome.quit() end }
 }
-mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesome_icon },
-                                    { "applications", require("freedesktop").menu.build() },
-                                    { "open terminal", terminal },
-                                  }
-                        })
+mymainmenu = awful.menu({
+    items = {
+        { "awesome", myawesomemenu, beautiful.awesome_icon },
+        { "applications", require("freedesktop").menu.build() },
+        { "open terminal", terminal },
+    }
+})
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
-markup = lain.util.markup
-gray   = "#9E9C9A"
+markup     = lain.util.markup
+separators = lain.util.separators
+gray       = "#9E9C9A"
 
 -- Textclock
 mytextclock = wibox.widget.textclock(" %H:%M ")
@@ -183,8 +191,10 @@ batwidget = lain.widgets.bat({
 })
 
 -- ALSA volume
-volumewidget = lain.widgets.alsa({
+volume = lain.widgets.alsa({
     settings = function()
+separators = lain.util.separators
+separators = lain.util.separators
         header = " Vol "
         level  = volume_now.level
 
@@ -208,10 +218,8 @@ myweather = lain.widgets.weather({
 
 -- Separators
 first = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
-arrl_pre = wibox.widget.imagebox()
-arrl_pre:set_image(beautiful.arrl_lr_pre)
-arrl_post = wibox.widget.imagebox()
-arrl_post:set_image(beautiful.arrl_lr_post)
+arrl_pre = separators.arrow_right("alpha", "#1A1A1A")
+arrl_post = separators.arrow_right("#1A1A1A", "alpha")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -277,10 +285,10 @@ awful.screen.connect_for_each_screen(function(s)
 
     awful.tag({ "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" }, s, {
         awful.layout.suit.floating,
-        lain.layout.uselesstile,
+        awful.layout.suit.tile,
         awful.layout.suit.fair,
-        lain.layout.uselesstile.left,
-        lain.layout.uselesstile.top
+        awful.layout.suit.tile.left,
+        awful.layout.suit.tile.top
     })
 
     -- Create a promptbox for each screen
@@ -326,7 +334,7 @@ awful.screen.connect_for_each_screen(function(s)
             myweather,
             fshome,
             batwidget,
-            volumewidget,
+            volume,
             mytextclock,
         },
     }
@@ -345,7 +353,7 @@ root.buttons(awful.util.table.join(
 globalkeys = awful.util.table.join(
     -- Take a screenshot
     -- https://github.com/copycat-killer/dots/blob/master/bin/screenshot
-    awful.key({ altkey }, "P", function() os.execute("screenshot") end),
+    awful.key({ altkey }, "p", function() os.execute("screenshot") end),
 
     -- Hotkeys
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
@@ -444,9 +452,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, "Shift"   }, "q", awesome.quit,
               {description = "quit awesome", group = "awesome"}),
 
-    awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)          end,
+    awful.key({ altkey, "Shift"   }, "l",     function () awful.tag.incmwfact( 0.05)          end,
               {description = "increase master width factor", group = "layout"}),
-    awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)          end,
+    awful.key({ altkey, "Shift"   }, "h",     function () awful.tag.incmwfact(-0.05)          end,
               {description = "decrease master width factor", group = "layout"}),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1, nil, true) end,
               {description = "increase the number of master clients", group = "layout"}),
@@ -483,29 +491,29 @@ globalkeys = awful.util.table.join(
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            os.execute(string.format("amixer set %s 1%%+", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s 1%%+", volume.channel))
+            volume.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            os.execute(string.format("amixer set %s 1%%-", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s 1%%-", volume.channel))
+            volume.update()
         end),
     awful.key({ altkey }, "m",
         function ()
-            os.execute(string.format("amixer set %s toggle", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s toggle", volume.togglechannel or volume.channel))
+            volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            os.execute(string.format("amixer set %s 100%%", volumewidget.channel))
-            volumewidget.update()
+            os.execute(string.format("amixer set %s 100%%", volume.channel))
+            volume.update()
         end),
 
 		awful.key({ altkey, "Control" }, "0",
 				function ()
 						os.execute(string.format("amixer -q set %s 0%%", volume.channel))
-						volumewidget.update()
+						volume.update()
 				end),
 
     -- MPD control
@@ -671,12 +679,16 @@ awful.rules.rules = {
     },
 
     -- Titlebars
-    { rule_any = { type = { "dialog" }, except = { instance = "pinentry" } },
-      properties = { titlebars_enabled = true } },
+    { rule_any = { type = { "dialog", "normal" } },
+      properties = { titlebars_enabled = false } },
 
     -- Set Firefox to always map on the first tag on screen 1.
     { rule = { class = "Firefox" },
       properties = { screen = 1, tag = awful.screen.focused().tags[1] } },
+
+    { rule = { class = "Gimp", role = "gimp-image-window" },
+          properties = { maximized_horizontal = true,
+                         maximized_vertical = true } },
 }
 -- }}}
 

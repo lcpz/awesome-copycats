@@ -10,6 +10,7 @@ I am in the process of updating to awesome 4.0. Currently, the ported themes are
 
 - blackburn
 - copland
+- dremora
 
 -------------------------
 Themes for Awesome WM 4.x
