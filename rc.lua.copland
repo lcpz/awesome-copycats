@@ -17,6 +17,7 @@ local lain          = require("lain")
 local eminent       = require("eminent")
 local shape         = require("gears.shape")
 --local menubar       = require("menubar")
+local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- }}}
 
@@ -107,11 +108,14 @@ myawesomemenu = {
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-mymainmenu = awful.menu({
-    items = {
-        { "awesome", myawesomemenu, beautiful.awesome_icon },
-        { "applications", require("freedesktop").menu.build() },
-        { "open terminal", terminal },
+mymainmenu = freedesktop.menu.build({
+    before = {
+        { "Awesome", myawesomemenu, beautiful.awesome_icon },
+        -- other triads can be put here
+    },
+    after = {
+        { "Open terminal", terminal },
+        -- other triads can be put here
     }
 })
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
