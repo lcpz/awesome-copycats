@@ -11,6 +11,7 @@ I am in the process of updating to awesome 4.0. Currently, the ported themes are
 - blackburn
 - copland
 - dremora
+- multicolor
 
 -------------------------
 Themes for Awesome WM 4.x
@@ -24,7 +25,7 @@ Themes for Awesome WM 4.x
 Description
 ===========
 
-A set of themes with the aim of making Awesome_ appearance awesome too!
+A set of themes for the Awesome_ window manager.
 
 Notable features
 ================
