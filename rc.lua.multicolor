@@ -159,6 +159,7 @@ myweather = lain.widgets.weather({
 -- / fs
 fsicon = wibox.widget.imagebox(beautiful.widget_fs)
 fsroot = lain.widgets.fs({
+    options = "--exclude-type=tmpfs",
     settings  = function()
         widget:set_markup(markup("#80d9d8", fs_now.used .. "% "))
     end

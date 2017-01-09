@@ -15,7 +15,7 @@ local beautiful     = require("beautiful")
 local naughty       = require("naughty")
 local lain          = require("lain")
 --local menubar       = require("menubar")
-local freedesktop   = require"(freedesktop")
+local freedesktop   = require("freedesktop")
 local hotkeys_popup = require("awful.hotkeys_popup").widget
 -- }}}
 
@@ -172,6 +172,7 @@ mpdwidget = lain.widgets.mpd({
 -- /home fs
 fshome = lain.widgets.fs({
     partition = "/home",
+    options = "--exclude-type=tmpfs",
     settings  = function()
         fs_header = ""
         fs_p      = ""
@@ -197,8 +198,6 @@ batwidget = lain.widgets.bat({
 -- ALSA volume
 volume = lain.widgets.alsa({
     settings = function()
-separators = lain.util.separators
-separators = lain.util.separators
         header = " Vol "
         level  = volume_now.level
 
@@ -216,7 +215,7 @@ myweather = lain.widgets.weather({
     city_id = 123456, -- placeholder
     settings = function()
         units = math.floor(weather_now["main"]["temp"])
-        widget:set_text(" " .. units .. " ")
+        widget:set_markup(" " .. units .. " ")
     end
 })
 
@@ -280,6 +279,14 @@ local function set_wallpaper(s)
     end
 end
 
+local barheight = 18
+local barcolor  = gears.color({
+    type  = "linear",
+    from  = { barheight, 0 },
+    to    = { barheight, barheight },
+    stops = { {0, beautiful.bg_focus }, {0.8, beautiful.border_normal}, {1, "#1A1A1A"} }
+})
+
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
 
@@ -306,13 +313,14 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons, { bg_focus = barcolor })
+
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons, { bg_normal = barcolor, bg_focus = barcolor })
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = barheight, bg = barcolor })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -489,7 +497,7 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar.show(7) end),
-    awful.key({ altkey,           }, "h",      function () fshome.show(7, "--exclude-type=tmpfs") end),
+    awful.key({ altkey,           }, "h",      function () fshome.show(7) end),
     awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
 
     -- ALSA volume control

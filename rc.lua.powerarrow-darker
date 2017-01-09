@@ -125,7 +125,7 @@ mytextclock = lain.widgets.abase({
     timeout  = 60,
     cmd      = "date +'%a %d %b %R'",
     settings = function()
-        widget:set_text(" " .. output)
+        widget:set_markup(" " .. output)
     end
 })
 

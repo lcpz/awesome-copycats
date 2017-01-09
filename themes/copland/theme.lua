@@ -29,11 +29,6 @@ theme.titlebar_bg_focus                         = "#262626"
 theme.menu_height                               = 16
 theme.menu_width                                = 130
 
-theme.tasklist_sticky                           = ""
-theme.tasklist_ontop                            = ""
-theme.tasklist_floating                         = ""
-theme.tasklist_maximized_horizontal             = ""
-theme.tasklist_maximized_vertical               = ""
 theme.tasklist_disable_icon                     = true
 
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"

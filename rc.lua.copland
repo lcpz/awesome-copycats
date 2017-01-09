@@ -243,6 +243,7 @@ fsbar = wibox.widget {
 }
 fshome = lain.widgets.fs({
     partition = "/home",
+    options = "--exclude-type=tmpfs",
     settings  = function()
         if fs_now.used < 90 then
             fsbar:set_color(beautiful.fg_normal)
@@ -562,7 +563,7 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey,           }, "c",      function () lain.widgets.calendar.show(7) end),
-    awful.key({ altkey,           }, "h",      function () fshome.show(7, "--exclude-type=tmpfs") end),
+    awful.key({ altkey,           }, "h",      function () fshome.show(7) end),
     awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
 
     -- ALSA volume control

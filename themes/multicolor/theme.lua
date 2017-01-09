@@ -54,10 +54,8 @@ theme.widget_vol                    = theme.confdir .. "/icons/spkr.png"
 theme.taglist_squares_sel           = theme.confdir .. "/icons/square_a.png"
 theme.taglist_squares_unsel         = theme.confdir .. "/icons/square_b.png"
 
+theme.tasklist_plain_task_name      = true
 theme.tasklist_disable_icon         = true
-theme.tasklist_floating             = ""
-theme.tasklist_maximized_horizontal = ""
-theme.tasklist_maximized_vertical   = ""
 
 theme.layout_tile                   = theme.confdir .. "/icons/tile.png"
 theme.layout_tilegaps               = theme.confdir .. "/icons/tilegaps.png"
