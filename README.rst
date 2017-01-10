@@ -11,6 +11,7 @@ I am in the process of updating to awesome 4.0. Currently, the ported themes are
 - blackburn
 - copland
 - dremora
+- holo
 - multicolor
 
 -------------------------
@@ -41,14 +42,13 @@ Notable features
 - Net carrier status notifier
 - Colorful autoupdating icons
 - Symbolic tag names
-- TXT layoutbox
-- Cairo wibox bar
+- Text layoutbox
+- Cairo wibar
 - Custom layouts
 - No borders when there's only one visible client
 - Freedesktop.org compliant menu and desktop icons
 - Vi-like client focus
 - Non-empty tag browsing
-- Dynamic client borders (colors change along with processes status)
 - Dynamic useless gaps
 - Dynamic tagging
 
@@ -123,7 +123,7 @@ Only compatible with **stable** versions of Lua and Awesome (git/unstable versio
 
 Complements are provided by lain_: be sure to meet its dependencies_.
 
-Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland) and Tamsyn_ (other ones).
+Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ (Holo) and Tamsyn_ (other ones).
 
 Every theme has a colorscheme_.
 
@@ -133,19 +133,20 @@ Default additional software used: ::
 
     unclutter firefox scrot mpd mpc dmenu xsel
 
-.. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0/
+.. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _Awesome: http://github.com/awesomeWM/awesome
 .. _lucamanni: https://github.com/lucamanni/awesome
 .. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
-.. _foozer: http://dotshare.it/dots/499/
+.. _foozer: http://dotshare.it/dots/499
 .. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
 .. _dependencies: https://github.com/copycat-killer/lain/wiki#dependencies
-.. _Terminus: http://terminus-font.sourceforge.net/
+.. _Terminus: http://terminus-font.sourceforge.net
 .. _Tamzen: https://github.com/sunaku/tamzen-font
-.. _Tamsyn: http://www.fial.com/~scott/tamsyn-font/
+.. _Roboto: https://fonts.google.com/specimen/Roboto
+.. _Tamsyn: http://www.fial.com/~scott/tamsyn-font
 .. _colorscheme: https://github.com/copycat-killer/dots/tree/master/.colors
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
