@@ -57,7 +57,6 @@ run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
-
 -- beautiful init
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/copland/theme.lua")
 
@@ -77,11 +76,6 @@ lain.layout.termfair.nmaster   = 3
 lain.layout.termfair.ncol      = 1
 lain.layout.centerfair.nmaster = 3
 lain.layout.centerfair.ncol    = 1
-
--- quake application
-for s in screen do
-   s.quake = lain.util.quake({ app = terminal })
-end
 -- }}}
 
 -- {{{ Helper functions
@@ -349,6 +343,9 @@ end
 screen.connect_signal("property::geometry", set_wallpaper)
 
 awful.screen.connect_for_each_screen(function(s)
+    -- Quake application
+    s.quake = lain.util.quake({ app = terminal })
+
     -- Wallpaper
     set_wallpaper(s)
 
@@ -356,12 +353,8 @@ awful.screen.connect_for_each_screen(function(s)
         awful.layout.suit.floating,
         awful.layout.suit.fair,
         awful.layout.suit.tile,
-        lain.layout.uselessfair.horizontal,
-        lain.layout.uselesstile,
-        lain.layout.uselessfair,
         lain.layout.termfair,
-        lain.layout.centerfair,
-        lain.layout.uselesspiral.dwindle
+        lain.layout.centerfair
     })
 
     -- Create a promptbox for each screen
