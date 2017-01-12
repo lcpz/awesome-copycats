@@ -76,10 +76,9 @@ lain.layout.termfair.ncol      = 1
 lain.layout.centerfair.nmaster = 3
 lain.layout.centerfair.ncol    = 1
 
--- quake terminal
-local quakeconsole = {}
+-- quake application
 for s in screen do
-   quakeconsole[s] = lain.util.quake({ app = terminal })
+   s.quake = lain.util.quake({ app = terminal })
 end
 -- }}}
 
@@ -580,13 +579,13 @@ globalkeys = awful.util.table.join(
               end,
               {description = "restore minimized", group = "client"}),
 
-    -- Dropdown terminal
-    awful.key({ modkey,	          }, "z",      function () quakeconsole[mouse.screen]:toggle() end),
+    -- Dropdown application
+    awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end),
 
     -- Widgets popups
-    awful.key({ altkey,           }, "c",      function () lain.widgets.calendar.show(7) end),
-    awful.key({ altkey,           }, "h",      function () fsroot.show(7, "--exclude-type=tmpfs") end),
-    awful.key({ altkey,           }, "w",      function () myweather.show(7) end),
+    awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),
+    awful.key({ altkey, }, "h", function () fsroot.show(7) end),
+    awful.key({ altkey, }, "w", function () myweather.show(7) end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",
