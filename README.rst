@@ -119,8 +119,6 @@ Then, customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
 Notes
 =====
 
-Only compatible with **stable** versions of Lua and Awesome (git/unstable versions are *not* supported).
-
 Complements are provided by lain_: be sure to meet its dependencies_.
 
 Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ (Holo) and Tamsyn_ (other ones).
