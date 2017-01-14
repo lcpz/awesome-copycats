@@ -81,7 +81,7 @@ Gallery
 
 **Holo**, requested by amouly_
 
-.. image:: http://dotshare.it/public/images/uploads/651.png
+.. image:: http://dotshare.it/public/images/uploads/651.jpg
 
 **Copland**, inspired by foozer_
 
