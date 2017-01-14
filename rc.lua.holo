@@ -156,7 +156,7 @@ mailwidget = lain.widgets.imap({
 ]]
 
 -- MPD
-mpd_icon = wibox.widget.imagebox(beautiful.mpd)
+mpd_icon = awful.widget.launcher({ image = beautiful.mpd, command = musicplr })
 prev_icon = wibox.widget.imagebox(beautiful.prev)
 next_icon = wibox.widget.imagebox(beautiful.nex)
 stop_icon = wibox.widget.imagebox(beautiful.stop)
@@ -188,8 +188,6 @@ musicbg = wibox.container.background(mpdwidget, beautiful.bg_focus, shape.rectan
 musicwidget = wibox.container.margin(musicbg, 0, 0, 5, 5)
 
 musicwidget:buttons(awful.util.table.join(awful.button({ }, 1,
-function () awful.spawn.with_shell(musicplr) end)))
-mpd_icon:buttons(awful.util.table.join(awful.button({ }, 1,
 function () awful.spawn.with_shell(musicplr) end)))
 prev_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
@@ -800,7 +798,7 @@ awful.rules.rules = {
 
     -- Titlebars
     { rule_any = { type = { "dialog", "normal" } },
-      properties = { titlebars_enabled = false } },
+      properties = { titlebars_enabled = true } },
 
     -- Set Firefox to always map on the first tag on screen 1.
     { rule = { class = "Firefox" },
