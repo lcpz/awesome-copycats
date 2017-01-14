@@ -28,8 +28,8 @@ Description
 
 A set of themes for the Awesome_ window manager.
 
-Notable features
-================
+Features
+========
 
 - Autohide widgets (*tell me only when you have to*)
 - Autostart applications
@@ -119,7 +119,7 @@ Then, customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
 Notes
 =====
 
-Complements are provided by lain_: be sure to meet its dependencies_.
+Complements are provided by lain_.
 
 Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ (Holo) and Tamsyn_ (other ones).
 
@@ -140,7 +140,6 @@ Default additional software used: ::
 .. _foozer: http://dotshare.it/dots/499
 .. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
-.. _dependencies: https://github.com/copycat-killer/lain/wiki#dependencies
 .. _Terminus: http://terminus-font.sourceforge.net
 .. _Tamzen: https://github.com/sunaku/tamzen-font
 .. _Roboto: https://fonts.google.com/specimen/Roboto
