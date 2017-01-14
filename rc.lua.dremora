@@ -119,7 +119,7 @@ white      = beautiful.fg_focus
 gray       = "#858585"
 
 -- Textclock
-mytextclock = awful.widget.textclock(markup(gray, " %a")
+mytextclock = wibox.widget.textclock(markup(gray, " %a")
 .. markup(white, " %d ") .. markup(gray, "%b ") ..  markup(white, "%H:%M "))
 
 -- Calendar

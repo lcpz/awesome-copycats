@@ -119,7 +119,7 @@ markup = lain.util.markup
 gray   = "#94928F"
 
 -- Textclock
-mytextclock = awful.widget.textclock(" %H:%M ")
+mytextclock = wibox.widget.textclock(" %H:%M ")
 
 -- Calendar
 lain.widgets.calendar.attach(mytextclock)

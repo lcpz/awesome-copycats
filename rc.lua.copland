@@ -122,7 +122,7 @@ green  = "#8FEB8F"
 
 -- Textclock
 --os.setlocale(os.getenv("LANG")) -- to localize the clock
-mytextclock = awful.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
+mytextclock = wibox.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
 
 -- Calendar
 lain.widgets.calendar.attach(mytextclock)

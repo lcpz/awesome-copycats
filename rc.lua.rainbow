@@ -121,7 +121,7 @@ white  = beautiful.fg_focus
 gray   = beautiful.fg_normal
 
 -- Textclock
-mytextclock = awful.widget.textclock(markup.font("Tamsyn 3", " ") ..
+mytextclock = wibox.widget.textclock(markup.font("Tamsyn 3", " ") ..
                                      markup(white, " %H:%M "))
 
 -- Calendar
