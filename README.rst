@@ -116,7 +116,7 @@ Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ 
 
 Every theme has a colorscheme_.
 
-Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
+Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_. If you want more glyphs, try FontAwesome_.
 
 Default additional software used: ::
 
@@ -140,3 +140,4 @@ Default additional software used: ::
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
+.. _FontAwesome: https://github.com/FortAwesome/Font-Awesome
