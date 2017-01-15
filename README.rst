@@ -31,16 +31,15 @@ A set of themes for the Awesome_ window manager.
 Features
 ========
 
-- Autohide widgets (*tell me only when you have to*)
+- Autohide widgets
 - Autostart applications
 - Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
-- Other shortcuts for copying to the clipboard (no need for clipboard managers), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
+- Shortcuts for copying to the clipboard (no need for clipboard managers), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
 - Quake drop-down terminal
 - Calendar with current day highlighted and months switch with a click/scroll
 - Notifications for new mails, current song, volume level, hdd critical state, low battery
 - OpenWeatherMap integration
 - Net carrier status notifier
-- Colorful autoupdating icons
 - Symbolic tag names
 - Text layoutbox
 - Cairo wibar
@@ -49,7 +48,7 @@ Features
 - Freedesktop.org compliant menu and desktop icons
 - Vi-like client focus
 - Non-empty tag browsing
-- Dynamic useless gaps
+- On-the-fly useless gaps resize
 - Dynamic tagging
 
 Gallery
