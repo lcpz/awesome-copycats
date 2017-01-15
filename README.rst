@@ -1,15 +1,5 @@
-===================
 Awesome WM Copycats
 ===================
-
--------
-Warning
--------
-
-I am in the process of updating to awesome 4.0. The following themes are still not ported:
-
-- rainbow
-- steamburn
 
 -------------------------
 Themes for Awesome WM 4.x
@@ -19,6 +9,11 @@ Themes for Awesome WM 4.x
 :Version: git
 :License: BY-NC-SA_
 :Source: https://github.com/copycat-killer/awesome-copycats
+
+Warning
+=======
+
+If you still have to use branch 3.5.x, you can refer to the commit 4c8b1da_. Be aware that it's no longer supported, so update to 4.x ASAP.
 
 Description
 ===========
@@ -38,7 +33,7 @@ Features
 - OpenWeatherMap integration
 - Net carrier status notifier
 - Symbolic tag names
-- Text layoutbox
+- DWM-like textual layoutbox
 - Cairo wibar
 - Custom layouts
 - No borders when there's only one visible client
@@ -128,6 +123,7 @@ Default additional software used: ::
     unclutter firefox scrot mpd mpc dmenu xsel
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
+.. _4c8b1da: https://github.com/copycat-killer/awesome-copycats/tree/4c8b1da4d0fc3aeea561bbd2eed5e7ca2353ad3d
 .. _Awesome: http://github.com/awesomeWM/awesome
 .. _lucamanni: https://github.com/lucamanni/awesome
 .. _romockee: https://github.com/romockee/powerarrow
