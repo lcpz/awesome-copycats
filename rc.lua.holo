@@ -102,6 +102,7 @@ myawesomemenu = {
     { "quit", function() awesome.quit() end }
 }
 mymainmenu = freedesktop.menu.build({
+    icon_size = 32,
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon_white },
         -- other triads can be put here
