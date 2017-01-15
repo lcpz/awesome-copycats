@@ -563,7 +563,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
     awful.key({ modkey }, "g", function () awful.spawn(graphics) end),
 
-    --[[ Default
+    -- Default
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
@@ -583,11 +583,12 @@ globalkeys = awful.util.table.join(
               {description = "show the menubar", group = "launcher"})
     --]]
 
-    -- dmenu
+    --[[ dmenu
     awful.key({ modkey }, "x", function ()
         awful.spawn(string.format("dmenu_run -i -fn 'Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
         beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
 		end)
+    --]]
 )
 
 clientkeys = awful.util.table.join(
