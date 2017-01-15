@@ -6,13 +6,10 @@ Awesome WM Copycats
 Warning
 -------
 
-I am in the process of updating to awesome 4.0. Currently, the ported themes are:
+I am in the process of updating to awesome 4.0. The following themes are still not ported:
 
-- blackburn
-- copland
-- dremora
-- holo
-- multicolor
+- rainbow
+- steamburn
 
 -------------------------
 Themes for Awesome WM 4.x
