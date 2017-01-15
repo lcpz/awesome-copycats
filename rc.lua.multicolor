@@ -588,28 +588,28 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey }, "Up",
         function ()
             os.execute(string.format("amixer set %s 1%%+", volume.channel))
-            volume.notify()
+            volume.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
             os.execute(string.format("amixer set %s 1%%-", volume.channel))
-            volume.notify()
+            volume.update()
         end),
     awful.key({ altkey }, "m",
         function ()
             os.execute(string.format("amixer set %s toggle", volume.togglechannel or volume.channel))
-            volume.notify()
+            volume.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
             os.execute(string.format("amixer set %s 100%%", volume.channel))
-            volume.notify()
+            volume.update()
         end),
 
 		awful.key({ altkey, "Control" }, "0",
 				function ()
 						os.execute(string.format("amixer -q set %s 0%%", volume.channel))
-						volume.notify()
+						volume.update()
 				end),
 
     -- MPD control

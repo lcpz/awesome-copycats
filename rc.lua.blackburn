@@ -279,6 +279,14 @@ local barcolor  = gears.color({
     to    = { barheight, barheight },
     stops = { {0, beautiful.bg_focus }, {0.8, beautiful.border_normal}, {1, "#1A1A1A"} }
 })
+beautiful.titlebar_bg = barcolor
+
+beautiful.titlebar_bg_focus = gears.color({
+    type  = "linear",
+    from  = { barheight, 0 },
+    to    = { barheight, barheight },
+    stops = { {0, beautiful.bg_normal}, {0.5, beautiful.border_normal}, {1, "#492417"} }
+})
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", set_wallpaper)
@@ -295,7 +303,7 @@ awful.screen.connect_for_each_screen(function(s)
         awful.layout.suit.tile,
         awful.layout.suit.fair,
         awful.layout.suit.tile.left,
-        awful.layout.suit.tile.top
+        awful.layout.suit.tile.top,
     })
 
     -- Create a promptbox for each screen
@@ -759,6 +767,7 @@ client.connect_signal("request::titlebars", function(c)
             layout = wibox.layout.fixed.horizontal()
         },
         layout = wibox.layout.align.horizontal
+
     }
 end)
 
