@@ -92,7 +92,7 @@ otherwise: ::
     $ wget https://github.com/copycat-killer/lain/archive/master.zip -O lain.zip
     $ wget https://github.com/copycat-killer/awesome-freedesktop/archive/master.zip -O freedesktop.zip
     $ unzip '*.zip'; rm *.zip
-    $ mv lain-master awesome-copycats-master/lain; mv awesome-freedesktop awesome-copycats-master/freedesktop
+    $ mv lain-master awesome-copycats-master/lain; mv awesome-freedesktop-master awesome-copycats-master/freedesktop
     $ mv -bv awesome-copycats-master/* ~/.config/awesome; rm -r awesome-copycats-master
 
 Usage
