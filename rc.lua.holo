@@ -60,16 +60,37 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/holo/theme.lua")
 
 -- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
+local modkey     = "Mod4"
+local altkey     = "Mod1"
+local terminal   = "urxvtc" or "xterm"
+local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 -- user defined
-browser    = "firefox"
-gui_editor = "gvim"
-graphics   = "gimp"
-musicplr = terminal .. " -e ncmpcpp "
+local browser    = "firefox"
+local gui_editor = "gvim"
+local graphics   = "gimp"
+local musicplr   = terminal .. " -e ncmpcpp "
+local tagnames   = { " WEB ", " TERMINAL ", " FILES ", " OTHER " }
+
+-- table of layouts to cover with awful.layout.inc, order matters.
+awful.layout.layouts = {
+    awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
+}
 
 -- lain
 lain.layout.termfair.nmaster   = 3
@@ -94,14 +115,14 @@ end
 -- }}}
 
 -- {{{ Menu
-myawesomemenu = {
+local myawesomemenu = {
     { "hotkeys", function() return false, hotkeys_popup.show_help end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-mymainmenu = freedesktop.menu.build({
+local mymainmenu = freedesktop.menu.build({
     icon_size = 32,
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon_white },
@@ -112,31 +133,31 @@ mymainmenu = freedesktop.menu.build({
         -- other triads can be put here
     }
 })
-mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
+local mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon, menu = mymainmenu })
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
 -- {{{ Wibar
-markup = lain.util.markup
-blue   = "#80CCE6"
-space3 = markup.font("Tamsyn 3", " ")
+local markup = lain.util.markup
+local blue   = "#80CCE6"
+local space3 = markup.font("Tamsyn 3", " ")
 
 -- Clock
-mytextclock = wibox.widget.textclock(markup("#FFFFFF", space3 .. "%H:%M   " .. markup.font("Tamsyn 4", " ")))
-clock_icon = wibox.widget.imagebox(beautiful.clock)
-clockbg = wibox.container.background(mytextclock, beautiful.bg_focus, shape.rectangle)
-clockwidget = wibox.container.margin(clockbg, 0, 3, 5, 5)
+local mytextclock = wibox.widget.textclock(markup("#FFFFFF", space3 .. "%H:%M   " .. markup.font("Tamsyn 4", " ")))
+local clock_icon = wibox.widget.imagebox(beautiful.clock)
+local clockbg = wibox.container.background(mytextclock, beautiful.bg_focus, shape.rectangle)
+local clockwidget = wibox.container.margin(clockbg, 0, 3, 5, 5)
 
 -- Calendar
-mytextcalendar = wibox.widget.textclock(markup("#FFFFFF", space3 .. "%d %b " .. markup.font("Tamsyn 5", " ")))
-calendar_icon = wibox.widget.imagebox(beautiful.calendar)
-calbg = wibox.container.background(mytextcalendar, beautiful.bg_focus, shape.rectangle)
-calendarwidget = wibox.container.margin(calbg, 0, 0, 5, 5)
+local mytextcalendar = wibox.widget.textclock(markup("#FFFFFF", space3 .. "%d %b " .. markup.font("Tamsyn 5", " ")))
+local calendar_icon = wibox.widget.imagebox(beautiful.calendar)
+local calbg = wibox.container.background(mytextcalendar, beautiful.bg_focus, shape.rectangle)
+local calendarwidget = wibox.container.margin(calbg, 0, 0, 5, 5)
 lain.widgets.calendar.attach(calendarwidget, { fg = "#FFFFFF", position = "bottom_right", font = "Monospace", font_size = 9 })
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-mailwidget = lain.widgets.imap({
+local mailwidget = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -157,13 +178,13 @@ mailwidget = lain.widgets.imap({
 ]]
 
 -- MPD
-mpd_icon = awful.widget.launcher({ image = beautiful.mpd, command = musicplr })
-prev_icon = wibox.widget.imagebox(beautiful.prev)
-next_icon = wibox.widget.imagebox(beautiful.nex)
-stop_icon = wibox.widget.imagebox(beautiful.stop)
-pause_icon = wibox.widget.imagebox(beautiful.pause)
-play_pause_icon = wibox.widget.imagebox(beautiful.play)
-mpdwidget = lain.widgets.mpd({
+local mpd_icon = awful.widget.launcher({ image = beautiful.mpd, command = musicplr })
+local prev_icon = wibox.widget.imagebox(beautiful.prev)
+local next_icon = wibox.widget.imagebox(beautiful.nex)
+local stop_icon = wibox.widget.imagebox(beautiful.stop)
+local pause_icon = wibox.widget.imagebox(beautiful.pause)
+local play_pause_icon = wibox.widget.imagebox(beautiful.play)
+local mpdwidget = lain.widgets.mpd({
     settings = function ()
         if mpd_now.state == "play" then
             mpd_now.artist = mpd_now.artist:upper():gsub("&.-;", string.lower)
@@ -185,8 +206,8 @@ mpdwidget = lain.widgets.mpd({
         end
     end
 })
-musicbg = wibox.container.background(mpdwidget, beautiful.bg_focus, shape.rectangle)
-musicwidget = wibox.container.margin(musicbg, 0, 0, 5, 5)
+local musicbg = wibox.container.background(mpdwidget, beautiful.bg_focus, shape.rectangle)
+local musicwidget = wibox.container.margin(musicbg, 0, 0, 5, 5)
 
 musicwidget:buttons(awful.util.table.join(awful.button({ }, 1,
 function () awful.spawn.with_shell(musicplr) end)))
@@ -214,7 +235,7 @@ end)))
 
 -- Battery
 --[[
-batwidget = lain.widgets.bat({
+local batwidget = lain.widgets.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -227,7 +248,7 @@ batwidget = lain.widgets.bat({
 --]]
 
 -- ALSA volume bar
-volume = lain.widgets.alsabar({
+local volume = lain.widgets.alsabar({
     notifications = { font = "Monospace", font_size = 10 },
     --togglechannel = "IEC958,3",
     --[[
@@ -240,51 +261,51 @@ volume = lain.widgets.alsabar({
     --]]
 })
 --[[
-volumemar = wibox.container.margin(volume.bar, 0, 0, 10, 10)
-volumewidget = wibox.container.background(volumemar, beautiful.bg_focus, shape.rectangle)
+local volumemar = wibox.container.margin(volume.bar, 0, 0, 10, 10)
+local volumewidget = wibox.container.background(volumemar, beautiful.bg_focus, shape.rectangle)
 volumewidget.shape_border_width = 5
 volumewidget.shape_border_color = beautiful.tasklist_bg_normal
 --]]
 
 
 -- CPU
-cpu_icon = wibox.widget.imagebox(beautiful.cpu)
-cpu_widget = lain.widgets.cpu({
+local cpu_icon = wibox.widget.imagebox(beautiful.cpu)
+local cpu_widget = lain.widgets.cpu({
     settings = function()
         widget:set_markup(space3 .. "CPU " .. cpu_now.usage
                           .. "% " .. markup.font("Tamsyn 5", " "))
     end
 })
-cpubg = wibox.container.background(cpu_widget, beautiful.bg_focus, shape.rectangle)
-cpuwidget = wibox.container.margin(cpubg, 0, 0, 5, 5)
+local cpubg = wibox.container.background(cpu_widget, beautiful.bg_focus, shape.rectangle)
+local cpuwidget = wibox.container.margin(cpubg, 0, 0, 5, 5)
 
 -- Net
-netdown_icon = wibox.widget.imagebox(beautiful.net_down)
-netup_icon = wibox.widget.imagebox(beautiful.net_up)
-netwidget = lain.widgets.net({
+local netdown_icon = wibox.widget.imagebox(beautiful.net_down)
+local netup_icon = wibox.widget.imagebox(beautiful.net_up)
+local netwidget = lain.widgets.net({
     settings = function()
         widget:set_markup(markup.font("Tamsyn 1", " ") .. net_now.received .. " - "
                           .. net_now.sent .. markup.font("Tamsyn 2", " "))
     end
 })
-netbg = wibox.container.background(netwidget, beautiful.bg_focus, shape.rectangle)
-networkwidget = wibox.container.margin(netbg, 0, 0, 5, 5)
+local netbg = wibox.container.background(netwidget, beautiful.bg_focus, shape.rectangle)
+local networkwidget = wibox.container.margin(netbg, 0, 0, 5, 5)
 
 -- Weather
-myweather = lain.widgets.weather({
+local myweather = lain.widgets.weather({
     notification_preset = { font = "Monospace 9" },
     city_id = 123456 -- placeholder
 })
 
 -- Separators
-first = wibox.widget.textbox('<span font="Tamsyn 7"> </span>')
-spr_small = wibox.widget.imagebox(beautiful.spr_small)
-spr_very_small = wibox.widget.imagebox(beautiful.spr_very_small)
-spr_right = wibox.widget.imagebox(beautiful.spr_right)
-spr_bottom_right = wibox.widget.imagebox(beautiful.spr_bottom_right)
-spr_left = wibox.widget.imagebox(beautiful.spr_left)
-bar = wibox.widget.imagebox(beautiful.bar)
-bottom_bar = wibox.widget.imagebox(beautiful.bottom_bar)
+local first = wibox.widget.textbox('<span font="Tamsyn 7"> </span>')
+local spr_small = wibox.widget.imagebox(beautiful.spr_small)
+local spr_very_small = wibox.widget.imagebox(beautiful.spr_very_small)
+local spr_right = wibox.widget.imagebox(beautiful.spr_right)
+local spr_bottom_right = wibox.widget.imagebox(beautiful.spr_bottom_right)
+local spr_left = wibox.widget.imagebox(beautiful.spr_left)
+local bar = wibox.widget.imagebox(beautiful.bar)
+local bottom_bar = wibox.widget.imagebox(beautiful.bottom_bar)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -358,13 +379,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    awful.tag({ " WEB ", " TERMINAL ", " FILES ", " OTHER " }, s, {
-        awful.layout.suit.floating,
-        awful.layout.suit.fair,
-        awful.layout.suit.tile,
-        awful.layout.suit.tile.left,
-        awful.layout.suit.tile.top
-    })
+    -- Tags
+    awful.tag(tagnames, s, awful.layout.layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

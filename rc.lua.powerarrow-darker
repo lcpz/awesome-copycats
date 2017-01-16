@@ -59,18 +59,36 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker/theme.lua")
 
 -- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
-mail       = terminal .. " -e mutt "
-iptraf     = terminal .. " -g 180x54-20+34 -e sudo iptraf-ng -i all "
-musicplr   = terminal .. " -g 130x34-320+16 -e ncmpcpp "
+local modkey     = "Mod4"
+local altkey     = "Mod1"
+local terminal   = "urxvtc" or "xterm"
+local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 -- user defined
-browser    = "firefox"
-gui_editor = "gvim"
-graphics   = "gimp"
+local browser    = "firefox"
+local gui_editor = "gvim"
+local graphics   = "gimp"
+local tagnames   = { "1", "2", "3", "4", "5" }
+
+-- table of layouts to cover with awful.layout.inc, order matters.
+awful.layout.layouts = {
+    awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
+}
 
 -- lain
 lain.layout.termfair.nmaster   = 3
@@ -95,14 +113,14 @@ end
 -- }}}
 
 -- {{{ Menu
-myawesomemenu = {
+local myawesomemenu = {
     { "hotkeys", function() return false, hotkeys_popup.show_help end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-mymainmenu = freedesktop.menu.build({
+local mymainmenu = freedesktop.menu.build({
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
         -- other triads can be put here
@@ -116,13 +134,13 @@ mymainmenu = freedesktop.menu.build({
 -- }}}
 
 -- {{{ Wibox
-markup = lain.util.markup
-separators = lain.util.separators
+local markup = lain.util.markup
+local separators = lain.util.separators
 
-clockicon = wibox.widget.imagebox(beautiful.widget_clock)
---mytextclock = wibox.widget.textclock(" %a %d %b  %H:%M")
+local clockicon = wibox.widget.imagebox(beautiful.widget_clock)
+--local mytextclock = wibox.widget.textclock(" %a %d %b  %H:%M")
 
-mytextclock = lain.widgets.abase({
+local mytextclock = lain.widgets.abase({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
     settings = function()
@@ -134,10 +152,10 @@ mytextclock = lain.widgets.abase({
 lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 
 -- Mail IMAP check
-mailicon = wibox.widget.imagebox(beautiful.widget_mail)
+local mailicon = wibox.widget.imagebox(beautiful.widget_mail)
 mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
 --[[ commented because it needs to be set before use
-mailwidget = lain.widgets.imap({
+local mailwidget = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -155,9 +173,9 @@ mailwidget = lain.widgets.imap({
 ]]
 
 -- MPD
-mpdicon = wibox.widget.imagebox(beautiful.widget_music)
+local mpdicon = wibox.widget.imagebox(beautiful.widget_music)
 mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-mpdwidget = lain.widgets.mpd({
+local mpdwidget = lain.widgets.mpd({
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
@@ -177,32 +195,32 @@ mpdwidget = lain.widgets.mpd({
 })
 
 -- MEM
-memicon = wibox.widget.imagebox(beautiful.widget_mem)
-memwidget = lain.widgets.mem({
+local memicon = wibox.widget.imagebox(beautiful.widget_mem)
+local memwidget = lain.widgets.mem({
     settings = function()
         widget:set_text(" " .. mem_now.used .. "MB ")
     end
 })
 
 -- CPU
-cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-cpuwidget = lain.widgets.cpu({
+local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+local cpuwidget = lain.widgets.cpu({
     settings = function()
         widget:set_text(" " .. cpu_now.usage .. "% ")
     end
 })
 
 -- Coretemp
-tempicon = wibox.widget.imagebox(beautiful.widget_temp)
-tempwidget = lain.widgets.temp({
+local tempicon = wibox.widget.imagebox(beautiful.widget_temp)
+local tempwidget = lain.widgets.temp({
     settings = function()
         widget:set_text(" " .. coretemp_now .. "°C ")
     end
 })
 
 -- / fs
-fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
-fsroot = lain.widgets.fs({
+local fsicon = wibox.widget.imagebox(beautiful.widget_hdd)
+local fsroot = lain.widgets.fs({
     options  = "--exclude-type=tmpfs",
     settings = function()
         widget:set_text(" " .. fs_now.used .. "% ")
@@ -210,8 +228,8 @@ fsroot = lain.widgets.fs({
 })
 
 -- Battery
-baticon = wibox.widget.imagebox(beautiful.widget_battery)
-batwidget = lain.widgets.bat({
+local baticon = wibox.widget.imagebox(beautiful.widget_battery)
+local batwidget = lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "N/A" then
             if bat_now.ac_status == 1 then
@@ -233,8 +251,8 @@ batwidget = lain.widgets.bat({
 })
 
 -- ALSA volume
-volicon = wibox.widget.imagebox(beautiful.widget_vol)
-volume = lain.widgets.alsa({
+local volicon = wibox.widget.imagebox(beautiful.widget_vol)
+local volume = lain.widgets.alsa({
     settings = function()
         if volume_now.status == "off" then
             volicon:set_image(beautiful.widget_vol_mute)
@@ -251,9 +269,9 @@ volume = lain.widgets.alsa({
 })
 
 -- Net
-neticon = wibox.widget.imagebox(beautiful.widget_net)
+local neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
-netwidget = lain.widgets.net({
+local netwidget = lain.widgets.net({
     settings = function()
         widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
@@ -262,9 +280,9 @@ netwidget = lain.widgets.net({
 })
 
 -- Separators
-spr = wibox.widget.textbox(' ')
-arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
-arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
+local spr     = wibox.widget.textbox(' ')
+local arrl_dl = separators.arrow_left(beautiful.bg_focus, "alpha")
+local arrl_ld = separators.arrow_left("alpha", beautiful.bg_focus)
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -331,13 +349,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    awful.tag({ "1", "2", "3", "4", "5" }, s, {
-        awful.layout.suit.floating,
-        awful.layout.suit.tile,
-        awful.layout.suit.tile.bottom,
-        awful.layout.suit.fair,
-        awful.layout.suit.fair.horizontal,
-    })
+    -- Tags
+    awful.tag(tagnames, s, awful.layout.layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

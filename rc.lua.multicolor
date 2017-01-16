@@ -59,15 +59,36 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/multicolor/theme.lua")
 
 -- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
+local modkey     = "Mod4"
+local altkey     = "Mod1"
+local terminal   = "urxvtc" or "xterm"
+local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 -- user defined
-browser    = "firefox"
-gui_editor = "gvim"
-graphics   = "gimp"
+local browser    = "firefox"
+local gui_editor = "gvim"
+local graphics   = "gimp"
+local tagnames   = { "web", "term", "docs", "media", "files", "other" }
+
+-- table of layouts to cover with awful.layout.inc, order matters.
+awful.layout.layouts = {
+    awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
+}
 
 -- lain
 lain.layout.termfair.nmaster   = 3
@@ -92,14 +113,14 @@ end
 -- }}}
 
 -- {{{ Menu
-myawesomemenu = {
+local myawesomemenu = {
     { "hotkeys", function() return false, hotkeys_popup.show_help end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-mymainmenu = freedesktop.menu.build({
+local mymainmenu = freedesktop.menu.build({
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
         -- other triads can be put here
@@ -113,14 +134,14 @@ mymainmenu = freedesktop.menu.build({
 -- }}}
 
 -- {{{ Wibox
-markup = lain.util.markup
+local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv("LANG")) -- to localize the clock
-clockicon = wibox.widget.imagebox(beautiful.widget_clock)
-mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
+local clockicon = wibox.widget.imagebox(beautiful.widget_clock)
+local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
 --[[
-mytextclock = lain.widgets.base({
+local mytextclock = lain.widgets.base({
     timeout  = 60,
     cmd      = "date +'%A %d %B %R'",
     settings = function()
@@ -138,8 +159,8 @@ mytextclock = lain.widgets.base({
 lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
 
 -- Weather
-weathericon = wibox.widget.imagebox(beautiful.widget_weather)
-myweather = lain.widgets.weather({
+local weathericon = wibox.widget.imagebox(beautiful.widget_weather)
+local myweather = lain.widgets.weather({
     city_id = 123456, -- placeholder
     weather_na_markup = markup("#eca4c4", "N/A "),
     settings = function()
@@ -150,8 +171,8 @@ myweather = lain.widgets.weather({
 })
 
 -- / fs
-fsicon = wibox.widget.imagebox(beautiful.widget_fs)
-fsroot = lain.widgets.fs({
+local fsicon = wibox.widget.imagebox(beautiful.widget_fs)
+local fsroot = lain.widgets.fs({
     options = "--exclude-type=tmpfs",
     settings  = function()
         widget:set_markup(markup("#80d9d8", fs_now.used .. "% "))
@@ -160,8 +181,8 @@ fsroot = lain.widgets.fs({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-mailicon = wibox.widget.imagebox()
-mailwidget = lain.widgets.imap({
+local mailicon = wibox.widget.imagebox()
+local mailwidget = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -182,25 +203,24 @@ mailwidget = lain.widgets.imap({
 ]]
 
 -- CPU
-cpuicon = wibox.widget.imagebox()
-cpuicon:set_image(beautiful.widget_cpu)
-cpuwidget = lain.widgets.cpu({
+local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
+local cpuwidget = lain.widgets.cpu({
     settings = function()
         widget:set_markup(markup("#e33a6e", cpu_now.usage .. "% "))
     end
 })
 
 -- Coretemp
-tempicon = wibox.widget.imagebox(beautiful.widget_temp)
-tempwidget = lain.widgets.temp({
+local tempicon = wibox.widget.imagebox(beautiful.widget_temp)
+local tempwidget = lain.widgets.temp({
     settings = function()
         widget:set_markup(markup("#f1af5f", coretemp_now .. "°C "))
     end
 })
 
 -- Battery
-baticon = wibox.widget.imagebox(beautiful.widget_batt)
-batwidget = lain.widgets.bat({
+local baticon = wibox.widget.imagebox(beautiful.widget_batt)
+local batwidget = lain.widgets.bat({
     settings = function()
         if bat_now.perc ~= "N/A" then
             bat_now.perc = bat_now.perc .. "%"
@@ -214,8 +234,8 @@ batwidget = lain.widgets.bat({
 })
 
 -- ALSA volume
-volicon = wibox.widget.imagebox(beautiful.widget_vol)
-volume = lain.widgets.alsa({
+local volicon = wibox.widget.imagebox(beautiful.widget_vol)
+local volume = lain.widgets.alsa({
     settings = function()
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
@@ -226,12 +246,10 @@ volume = lain.widgets.alsa({
 })
 
 -- Net
-netdownicon = wibox.widget.imagebox(beautiful.widget_netdown)
---netdownicon.align = "middle"
-netdowninfo = wibox.widget.textbox()
-netupicon = wibox.widget.imagebox(beautiful.widget_netup)
---netupicon.align = "middle"
-netupinfo = lain.widgets.net({
+local netdownicon = wibox.widget.imagebox(beautiful.widget_netdown)
+local netdowninfo = wibox.widget.textbox()
+local netupicon = wibox.widget.imagebox(beautiful.widget_netup)
+local netupinfo = lain.widgets.net({
     settings = function()
         if iface ~= "network off" and
            string.match(myweather._private.layout.text, "N/A")
@@ -245,16 +263,16 @@ netupinfo = lain.widgets.net({
 })
 
 -- MEM
-memicon = wibox.widget.imagebox(beautiful.widget_mem)
-memwidget = lain.widgets.mem({
+local memicon = wibox.widget.imagebox(beautiful.widget_mem)
+local memwidget = lain.widgets.mem({
     settings = function()
         widget:set_markup(markup("#e0da37", mem_now.used .. "M "))
     end
 })
 
 -- MPD
-mpdicon = wibox.widget.imagebox()
-mpdwidget = lain.widgets.mpd({
+local mpdicon = wibox.widget.imagebox()
+local mpdwidget = lain.widgets.mpd({
     settings = function()
         mpd_notification_preset = {
             text = string.format("%s [%s] - %s\n%s", mpd_now.artist,
@@ -345,18 +363,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    awful.tag({ "web", "term", "docs", "media", "files", "other" }, s, {
-        awful.layout.suit.floating,
-        awful.layout.suit.tile,
-        awful.layout.suit.tile.left,
-        awful.layout.suit.tile.bottom,
-        awful.layout.suit.tile.top,
-        awful.layout.suit.fair,
-        awful.layout.suit.fair.horizontal,
-        awful.layout.suit.spiral,
-        awful.layout.suit.spiral.dwindle,
-        awful.layout.suit.max
-    })
+    -- Tags
+    awful.tag(tagnames, s, awful.layout.layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

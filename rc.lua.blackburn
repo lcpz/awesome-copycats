@@ -59,15 +59,36 @@ run_once("unclutter -root")
 beautiful.init(os.getenv("HOME") .. "/.config/awesome/themes/blackburn/theme.lua")
 
 -- common
-modkey     = "Mod4"
-altkey     = "Mod1"
-terminal   = "urxvtc" or "xterm"
-editor     = os.getenv("EDITOR") or "nano" or "vi"
+local modkey     = "Mod4"
+local altkey     = "Mod1"
+local terminal   = "urxvtc" or "xterm"
+local editor     = os.getenv("EDITOR") or "nano" or "vi"
 
 -- user defined
-browser    = "firefox"
-gui_editor = "gvim"
-graphics   = "gimp"
+local browser    = "firefox"
+local gui_editor = "gvim"
+local graphics   = "gimp"
+local tagnames   = { "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" }
+
+-- table of layouts to cover with awful.layout.inc, order matters.
+awful.layout.layouts = {
+    awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile.left,
+    awful.layout.suit.tile.bottom,
+    awful.layout.suit.tile.top,
+    awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle,
+    awful.layout.suit.max,
+    awful.layout.suit.max.fullscreen,
+    awful.layout.suit.magnifier,
+    awful.layout.suit.corner.nw,
+    -- awful.layout.suit.corner.ne,
+    -- awful.layout.suit.corner.sw,
+    -- awful.layout.suit.corner.se,
+}
 
 -- lain
 lain.layout.termfair.nmaster   = 3
@@ -92,14 +113,14 @@ end
 -- }}}
 
 -- {{{ Menu
-myawesomemenu = {
+local myawesomemenu = {
     { "hotkeys", function() return false, hotkeys_popup.show_help end },
     { "manual", terminal .. " -e man awesome" },
     { "edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-mymainmenu = freedesktop.menu.build({
+local mymainmenu = freedesktop.menu.build({
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
         -- other triads can be put here
@@ -118,14 +139,14 @@ separators = lain.util.separators
 gray       = "#9E9C9A"
 
 -- Textclock
-mytextclock = wibox.widget.textclock(" %H:%M ")
+local mytextclock = wibox.widget.textclock(" %H:%M ")
 
 -- Calendar
 lain.widgets.calendar.attach(mytextclock)
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-mailwidget = lain.widgets.imap({
+local mailwidget = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -145,7 +166,7 @@ mailwidget = lain.widgets.imap({
 ]]
 
 -- MPD
-mpdwidget = lain.widgets.mpd({
+local mpdwidget = lain.widgets.mpd({
     settings = function()
         artist = mpd_now.artist .. " "
         title  = mpd_now.title  .. "  "
@@ -163,7 +184,7 @@ mpdwidget = lain.widgets.mpd({
 })
 
 -- /home fs
-fshome = lain.widgets.fs({
+local fshome = lain.widgets.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
     settings  = function()
@@ -180,7 +201,7 @@ fshome = lain.widgets.fs({
 })
 
 -- Battery
-batwidget = lain.widgets.bat({
+local batwidget = lain.widgets.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -189,7 +210,7 @@ batwidget = lain.widgets.bat({
 })
 
 -- ALSA volume
-volume = lain.widgets.alsa({
+local volume = lain.widgets.alsa({
     settings = function()
         header = " Vol "
         level  = volume_now.level
@@ -204,7 +225,7 @@ volume = lain.widgets.alsa({
     end
 })
 
-myweather = lain.widgets.weather({
+local myweather = lain.widgets.weather({
     city_id = 123456, -- placeholder
     settings = function()
         units = math.floor(weather_now["main"]["temp"])
@@ -213,9 +234,9 @@ myweather = lain.widgets.weather({
 })
 
 -- Separators
-first = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
-arrl_pre = separators.arrow_right("alpha", "#1A1A1A")
-arrl_post = separators.arrow_right("#1A1A1A", "alpha")
+local first     = wibox.widget.textbox('<span font="Tamsyn 4"> </span>')
+local arrl_pre  = separators.arrow_right("alpha", "#1A1A1A")
+local arrl_post = separators.arrow_right("#1A1A1A", "alpha")
 
 -- Create a wibox for each screen and add it
 local taglist_buttons = awful.util.table.join(
@@ -298,13 +319,8 @@ awful.screen.connect_for_each_screen(function(s)
     -- Wallpaper
     set_wallpaper(s)
 
-    awful.tag({ "ƀ", "Ƅ", "Ɗ", "ƈ", "ƙ" }, s, {
-        awful.layout.suit.floating,
-        awful.layout.suit.tile,
-        awful.layout.suit.fair,
-        awful.layout.suit.tile.left,
-        awful.layout.suit.tile.top,
-    })
+    -- Tags
+    awful.tag(tagnames, s, awful.layout.layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()

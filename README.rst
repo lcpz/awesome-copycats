@@ -118,7 +118,7 @@ Every theme has a colorscheme_.
 
 Blackburn and Dremora use Icons_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_. If you want more glyphs, try FontAwesome_.
 
-Default additional software used: ::
+Additional software used: ::
 
     unclutter firefox scrot mpd mpc dmenu xsel
 
