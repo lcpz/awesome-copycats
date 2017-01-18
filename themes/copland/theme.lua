@@ -60,7 +60,7 @@ theme.layout_fullscreen                         = theme.dir .. "/icons/fullscree
 theme.layout_magnifier                          = theme.dir .. "/icons/magnifier.png"
 theme.layout_floating                           = theme.dir .. "/icons/floating.png"
 
-theme.useless_gap                               = 0
+theme.useless_gap                               = 8
 
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
