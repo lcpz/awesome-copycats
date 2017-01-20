@@ -196,7 +196,7 @@ local fshome = lain.widgets.fs({
         fs_header = ""
         fs_p      = ""
 
-        if fs_now.used >= 90 then
+        if tonumber(fs_now.used) >= 90 then
             fs_header = " Hdd "
             fs_p      = fs_now.used
         end
@@ -778,14 +778,12 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
---[[
 client.connect_signal("mouse::enter", function(c)
     if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
         and awful.client.focus.filter(c) then
         client.focus = c
     end
 end)
-]]
 
 -- No border for maximized clients
 client.connect_signal("focus",
