@@ -144,7 +144,12 @@ local mytextclock = wibox.widget.textclock(markup(gray, " %a")
 .. markup(white, " %d ") .. markup(gray, "%b ") ..  markup(white, "%H:%M "))
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock, { fg = white })
+lain.widgets.calendar.attach(mytextclock, {
+    notification_preset = {
+        font = "Tamsyn 10.5",
+        fg   = white,
+        bg   = beautiful.bg_normal
+}})
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
@@ -191,7 +196,7 @@ local mpdwidget = lain.widgets.mpd({
 local fshome = lain.widgets.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
-    notification_preset = { fg = white },
+    notification_preset = { fg = white, bg = beautiful.bg_normal, font = "Tamsyn 10.5" },
     settings  = function()
         fs_header = ""
         fs_p      = ""

@@ -146,7 +146,12 @@ local green  = "#8FEB8F"
 local mytextclock = wibox.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock)
+lain.widgets.calendar.attach(mytextclock, {
+    notification_preset = {
+        font = "Tamsyn 10.5",
+        fg   = beautiful.fg_normal,
+        bg   = beautiful.bg_normal
+}})
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
@@ -258,6 +263,7 @@ local fsbar = wibox.widget {
 local fshome = lain.widgets.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
+    notification_preset = { fg = beautiful.fg_normal, bg = beautiful.bg_normal, font = "Tamsyn 10.5" },
     settings  = function()
         if tonumber(fs_now.used) < 90 then
             fsbar:set_color(beautiful.fg_normal)

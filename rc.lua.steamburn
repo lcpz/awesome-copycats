@@ -141,7 +141,12 @@ local gray   = "#94928F"
 local mytextclock = wibox.widget.textclock(" %H:%M ")
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock)
+lain.widgets.calendar.attach(mytextclock, {
+    notification_preset = {
+        font = "Tamsyn 10.5",
+        fg   = white,
+        bg   = beautiful.bg_normal
+}})
 
 -- Mail IMAP check
 local mailwidget = lain.widgets.imap({
@@ -196,7 +201,8 @@ local memwidget = lain.widgets.mem({
 
 -- /home fs
 local fshome = lain.widgets.fs({
-    partition = "/home"
+    partition = "/home",
+    notification_preset = { fg = beautiful.fg_normal, bg = beautiful.bg_normal, font = "Tamsyn 10.5" },
 })
 
 -- Battery

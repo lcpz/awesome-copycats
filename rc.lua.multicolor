@@ -156,7 +156,12 @@ local mytextclock = lain.widgets.base({
 ]]
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock, { font_size = 10 })
+lain.widgets.calendar.attach(mytextclock, {
+    notification_preset = {
+        font = "Terminus 10",
+        fg   = beautiful.fg_normal,
+        bg   = beautiful.bg_normal
+}})
 
 -- Weather
 local weathericon = wibox.widget.imagebox(beautiful.widget_weather)
@@ -174,6 +179,7 @@ local myweather = lain.widgets.weather({
 local fsicon = wibox.widget.imagebox(beautiful.widget_fs)
 local fsroot = lain.widgets.fs({
     options = "--exclude-type=tmpfs",
+    notification_preset = { font = "Terminus 10", fg = beautiful.fg_normal },
     settings  = function()
         widget:set_markup(markup("#80d9d8", fs_now.used .. "% "))
     end
