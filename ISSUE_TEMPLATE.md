@@ -1,19 +1,15 @@
 
-If you have an issue
---------------------
+# If you have an issue
 
-**Please read the wiki and browse the Issues section first**. If you can't find a solution there, then go ahead.
+**Please read the wiki and browse the Issues section first.**
 
-### Output of `awesome -v` and `lua -v`.
+If you can't find a solution there, then go ahead and provide:
 
-### Expected behavior and actual behavior.
+* output of `awesome -v` and `lua -v`
+* expected behavior and actual behavior
+* steps to reproduce the problem
 
-### Steps to reproduce the problem.
 
+# If you have a new feature or theme request
 
-If you have a new feature or theme request
-------------------------------------------
-
-### Screenshots and/or mockups of the desired design.
-
-### Detailed description.
+Write a detailed description of the desired design, preferably with screenshots or mockups.
