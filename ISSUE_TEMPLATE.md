@@ -10,8 +10,6 @@ and, if you still don't have an answer, you can ask here.
 
 **Please be warned:** if your question is __unrelated__ to this repository, a reply is only an act of kindness.
 
-Any abuse will not be tolerated.
-
 # If you have an issue
 
 **Please search the [Issues section](https://github.com/copycat-killer/awesome-copycats/issues) first.**
