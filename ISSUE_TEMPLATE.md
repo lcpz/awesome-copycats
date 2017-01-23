@@ -6,15 +6,15 @@ Take the following steps:
 2. Search [Awesome doc](https://awesomewm.org/doc)
 3. Ask [community](https://awesomewm.org/community)
 
-and, if you still don't have an answer, you can ask me here.
+and, if you still don't have an answer, you can ask here.
 
-**Please be warned:** if your question is *unrelated* to this repository, any reply is only an act of kindness.
+**Please be warned:** if your question is __unrelated__ to this repository, a reply is only an act of kindness.
 
-I will not tolerate any abuse of the GitHub issue format.
+Any abuse will not be tolerated.
 
 # If you have an issue
 
-**Please read the wiki and browse the Issues section first.**
+**Please search the [Issues section](https://github.com/copycat-killer/awesome-copycats/issues) first.**
 
 If you can't find a solution there, then go ahead and provide:
 
