@@ -212,7 +212,10 @@ local fshome = lain.widgets.fs({
 })
 
 -- ALSA volume bar
-local volume = lain.widgets.alsabar({ ticks = true, width = 67 })
+local volume = lain.widgets.alsabar({
+    ticks = true, width = 67,
+    notification_preset = { font = beautiful.font }
+})
 local volumebg = wibox.container.background(volume.bar, "#585858", shape.rectangle)
 local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
 

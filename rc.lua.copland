@@ -280,7 +280,7 @@ local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
 local volicon = wibox.widget.imagebox(beautiful.vol)
 local volume = lain.widgets.alsabar({
     width = 59, border_width = 0, ticks = true, ticks_size = 6, step = "2%",
-    --togglechannel = "IEC958,3",
+    notification_preset = { font = beautiful.font },
     settings = function()
         if volume_now.status == "off" then
             volicon:set_image(beautiful.vol_mute)
