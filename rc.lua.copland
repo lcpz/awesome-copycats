@@ -279,7 +279,7 @@ local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(beautiful.vol)
 local volume = lain.widgets.alsabar({
-    width = 59, border_width = 0, ticks = true, ticks_size = 6, step = "2%",
+    width = 59, border_width = 0, ticks = true, ticks_size = 6
     notification_preset = { font = beautiful.font },
     settings = function()
         if volume_now.status == "off" then
@@ -303,7 +303,7 @@ local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
 
 -- Weather
 local myweather = lain.widgets.weather({
-    city_id = 123456 -- placeholder
+    city_id = 2643743, -- placeholder (London)
 })
 
 -- Separators

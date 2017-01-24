@@ -1,9 +1,9 @@
 
 --[[
-                               
-     Copland Awesome WM config 
-     github.com/copycat-killer 
-                               
+                                   
+     Copland Awesome WM config 2.0 
+     github.com/copycat-killer     
+                                   
 --]]
 
 local theme                                     = {}
@@ -46,6 +46,7 @@ theme.bat_low                                   = theme.dir .. "/icons/bat_low.p
 theme.bat_no                                    = theme.dir .. "/icons/bat_no.png"
 theme.play                                      = theme.dir .. "/icons/play.png"
 theme.pause                                     = theme.dir .. "/icons/pause.png"
+theme.stop                                      = theme.dir .. "/icons/stop.png"
 
 theme.layout_tile                               = theme.dir .. "/icons/tile.png"
 theme.layout_tileleft                           = theme.dir .. "/icons/tileleft.png"

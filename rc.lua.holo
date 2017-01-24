@@ -292,8 +292,8 @@ local networkwidget = wibox.container.margin(netbg, 0, 0, 5, 5)
 
 -- Weather
 local myweather = lain.widgets.weather({
+    city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Monospace 9" },
-    city_id = 123456 -- placeholder
 })
 
 -- Separators

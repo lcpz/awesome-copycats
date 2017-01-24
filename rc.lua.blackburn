@@ -232,7 +232,7 @@ local volume = lain.widgets.alsa({
 })
 
 local myweather = lain.widgets.weather({
-    city_id = 123456, -- placeholder
+    city_id = 2643743, -- placeholder (London)
     settings = function()
         units = math.floor(weather_now["main"]["temp"])
         widget:set_markup(" " .. units .. " ")

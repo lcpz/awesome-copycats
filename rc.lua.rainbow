@@ -221,7 +221,7 @@ local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
 
 -- Weather
 local myweather = lain.widgets.weather({
-    city_id = 123456, -- placeholder
+    city_id = 2643743, -- placeholder (London)
     settings = function()
         w_notification_preset.fg = white
     end
