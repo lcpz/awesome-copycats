@@ -279,7 +279,7 @@ local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(beautiful.vol)
 local volume = lain.widgets.alsabar({
-    width = 59, border_width = 0, ticks = true, ticks_size = 6
+    width = 59, border_width = 0, ticks = true, ticks_size = 6,
     notification_preset = { font = beautiful.font },
     settings = function()
         if volume_now.status == "off" then
@@ -862,10 +862,9 @@ end)
 -- No border for maximized clients
 client.connect_signal("focus",
     function(c)
-        if c.maximized_horizontal == true and c.maximized_vertical == true then
+        if c.maximized then -- no borders if only 1 client visible
             c.border_width = 0
-        -- no borders if only 1 client visible
-        elseif #awful.client.visible(mouse.screen) > 1 then
+        elseif #awful.screen.focused().clients > 1 then
             c.border_width = beautiful.border_width
             c.border_color = beautiful.border_focus
         end
