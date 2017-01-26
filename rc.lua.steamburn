@@ -144,12 +144,13 @@ local mytextclock = wibox.widget.textclock(" %H:%M ")
 lain.widgets.calendar.attach(mytextclock, {
     notification_preset = {
         font = "Tamsyn 10.5",
-        fg   = white,
+        fg   = gray,
         bg   = beautiful.bg_normal
 }})
 
--- Mail IMAP check
-local mailwidget = lain.widgets.imap({
+--[[ Mail IMAP check
+-- commented because it needs to be set before use
+local mail = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -166,9 +167,10 @@ local mailwidget = lain.widgets.imap({
         widget:set_markup(markup(gray, mail) .. count)
     end
 })
+--]]
 
 -- MPD
-local mpdwidget = lain.widgets.mpd({
+local mpd = lain.widgets.mpd({
     settings = function()
         artist = mpd_now.artist .. " "
         title  = mpd_now.title  .. " "
@@ -186,14 +188,14 @@ local mpdwidget = lain.widgets.mpd({
 })
 
 -- CPU
-local cpuwidget = lain.widgets.sysload({
+local cpu = lain.widgets.sysload({
     settings = function()
         widget:set_markup(markup(gray, " Cpu ") .. load_1 .. " ")
     end
 })
 
 -- MEM
-local memwidget = lain.widgets.mem({
+local mem = lain.widgets.mem({
     settings = function()
         widget:set_markup(markup(gray, " Mem ") .. mem_now.used .. " ")
     end
@@ -201,12 +203,13 @@ local memwidget = lain.widgets.mem({
 
 -- /home fs
 local fshome = lain.widgets.fs({
+    options = "--exclude-type=tmpfs",
     partition = "/home",
     notification_preset = { fg = beautiful.fg_normal, bg = beautiful.bg_normal, font = "Tamsyn 10.5" },
 })
 
 -- Battery
-local batwidget = lain.widgets.bat({
+local bat = lain.widgets.bat({
     settings = function()
         bat_perc = bat_now.perc
         if bat_now.ac_status == 1 then bat_perc = "Plug" end
@@ -215,7 +218,7 @@ local batwidget = lain.widgets.bat({
 })
 
 -- Net checker
-local netwidget = lain.widgets.net({
+local net = lain.widgets.net({
     settings = function()
         if net_now.state == "up" then net_state = "On"
         else net_state = "Off" end
@@ -373,13 +376,13 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             spr,
-            mpdwidget,
-            mailwidget,
-            cpuwidget,
-            memwidget,
-            batwidget,
-            netwidget,
-            volume,
+            mpd.widget,
+            --mail.widget,
+            cpu.widget,
+            mem.widget,
+            bat.widget,
+            net.widget,
+            volume.widget,
             mytextclock
         },
     }
@@ -569,22 +572,22 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Control" }, "Up",
         function ()
             awful.spawn.with_shell("mpc toggle || ncmpc toggle || pms toggle")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
             awful.spawn.with_shell("mpc stop || ncmpc stop || pms stop")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
             awful.spawn.with_shell("mpc prev || ncmpc prev || pms prev")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
             awful.spawn.with_shell("mpc next || ncmpc next || pms next")
-            mpdwidget.update()
+            mpd.update()
         end),
     --]]
 

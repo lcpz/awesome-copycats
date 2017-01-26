@@ -139,8 +139,7 @@ local separators = lain.util.separators
 
 local clockicon = wibox.widget.imagebox(beautiful.widget_clock)
 --local mytextclock = wibox.widget.textclock(" %a %d %b  %H:%M")
-
-local mytextclock = lain.widgets.abase({
+local clock = lain.widgets.abase({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
     settings = function()
@@ -159,9 +158,9 @@ lain.widgets.calendar.attach(mytextclock, {
 
 -- Mail IMAP check
 local mailicon = wibox.widget.imagebox(beautiful.widget_mail)
-mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
 --[[ commented because it needs to be set before use
-local mailwidget = lain.widgets.imap({
+mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
+local mail = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -176,12 +175,12 @@ local mailwidget = lain.widgets.imap({
         end
     end
 })
-]]
+--]]
 
 -- MPD
 local mpdicon = wibox.widget.imagebox(beautiful.widget_music)
 mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-local mpdwidget = lain.widgets.mpd({
+local mpd = lain.widgets.mpd({
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
@@ -202,7 +201,7 @@ local mpdwidget = lain.widgets.mpd({
 
 -- MEM
 local memicon = wibox.widget.imagebox(beautiful.widget_mem)
-local memwidget = lain.widgets.mem({
+local mem = lain.widgets.mem({
     settings = function()
         widget:set_text(" " .. mem_now.used .. "MB ")
     end
@@ -210,7 +209,7 @@ local memwidget = lain.widgets.mem({
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-local cpuwidget = lain.widgets.cpu({
+local cpu = lain.widgets.cpu({
     settings = function()
         widget:set_text(" " .. cpu_now.usage .. "% ")
     end
@@ -218,7 +217,7 @@ local cpuwidget = lain.widgets.cpu({
 
 -- Coretemp
 local tempicon = wibox.widget.imagebox(beautiful.widget_temp)
-local tempwidget = lain.widgets.temp({
+local temp = lain.widgets.temp({
     settings = function()
         widget:set_text(" " .. coretemp_now .. "°C ")
     end
@@ -236,7 +235,7 @@ local fsroot = lain.widgets.fs({
 
 -- Battery
 local baticon = wibox.widget.imagebox(beautiful.widget_battery)
-local batwidget = lain.widgets.bat({
+local bat = lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "N/A" then
             if bat_now.ac_status == 1 then
@@ -278,7 +277,7 @@ local volume = lain.widgets.alsa({
 -- Net
 local neticon = wibox.widget.imagebox(beautiful.widget_net)
 neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
-local netwidget = lain.widgets.net({
+local net = lain.widgets.net({
     settings = function()
         widget:set_markup(markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
@@ -395,33 +394,34 @@ awful.screen.connect_for_each_screen(function(s)
             spr,
             arrl_ld,
             wibox.container.background(mpdicon, beautiful.bg_focus),
-            wibox.container.background(mpdwidget, beautiful.bg_focus),
+            wibox.container.background(mpd.widget, beautiful.bg_focus),
             arrl_dl,
             volicon,
-            volume,
+            volume.widget,
             arrl_ld,
             wibox.container.background(mailicon, beautiful.bg_focus),
-            --wibox.container.background(mailwidget, beautiful.bg_focus),
+            --wibox.container.background(mail.widget, beautiful.bg_focus),
             arrl_dl,
             memicon,
-            memwidget,
+            mem.widget,
             arrl_ld,
             wibox.container.background(cpuicon, beautiful.bg_focus),
-            wibox.container.background(cpuwidget, beautiful.bg_focus),
+            wibox.container.background(cpu.widget, beautiful.bg_focus),
             arrl_dl,
             tempicon,
-            tempwidget,
+            temp.widget,
             arrl_ld,
             wibox.container.background(fsicon, beautiful.bg_focus),
-            wibox.container.background(fsroot, beautiful.bg_focus),
+            wibox.container.background(fsroot.widget, beautiful.bg_focus),
             arrl_dl,
             baticon,
-            batwidget,
+            bat.widget,
             arrl_ld,
             wibox.container.background(neticon, beautiful.bg_focus),
-            wibox.container.background(netwidget, beautiful.bg_focus),
+            wibox.container.background(net.widget, beautiful.bg_focus),
             arrl_dl,
-            mytextclock,
+            clock.widget,
+            --mytextclock,
             spr,
             arrl_ld,
             wibox.container.background(s.mylayoutbox, beautiful.bg_focus),
@@ -612,22 +612,22 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Control" }, "Up",
         function ()
             awful.spawn.with_shell("mpc toggle || ncmpc toggle || pms toggle")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
             awful.spawn.with_shell("mpc stop || ncmpc stop || pms stop")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
             awful.spawn.with_shell("mpc prev || ncmpc prev || pms prev")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
             awful.spawn.with_shell("mpc next || ncmpc next || pms next")
-            mpdwidget.update()
+            mpd.update()
         end),
     --]]
 

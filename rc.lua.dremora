@@ -153,7 +153,7 @@ lain.widgets.calendar.attach(mytextclock, {
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mailwidget = lain.widgets.imap({
+local mail = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -171,10 +171,10 @@ local mailwidget = lain.widgets.imap({
         widget:set_markup(markup(gray, mail) .. markup(white, count))
     end
 })
-]]
+--]]
 
 -- MPD
-local mpdwidget = lain.widgets.mpd({
+local mpd = lain.widgets.mpd({
     settings = function()
         mpd_notification_preset.fg = white
         artist = mpd_now.artist .. " "
@@ -211,7 +211,7 @@ local fshome = lain.widgets.fs({
 })
 
 -- Battery
-local batwidget = lain.widgets.bat({
+local bat = lain.widgets.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -353,11 +353,11 @@ awful.screen.connect_for_each_screen(function(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             first,
-            mpdwidget,
-            --mailwidget,
-            fshome,
-            batwidget,
-            volume,
+            mpd.widget,
+            --mail.widget,
+            fshome.widget,
+            bat.widget,
+            volume.widget,
             mytextclock,
         },
     }
@@ -547,22 +547,22 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Control" }, "Up",
         function ()
             awful.spawn.with_shell("mpc toggle || ncmpc toggle || pms toggle")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
             awful.spawn.with_shell("mpc stop || ncmpc stop || pms stop")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
             awful.spawn.with_shell("mpc prev || ncmpc prev || pms prev")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
             awful.spawn.with_shell("mpc next || ncmpc next || pms next")
-            mpdwidget.update()
+            mpd.update()
         end),
     --]]
 

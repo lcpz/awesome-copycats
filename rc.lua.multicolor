@@ -188,7 +188,7 @@ local fsroot = lain.widgets.fs({
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
 local mailicon = wibox.widget.imagebox()
-local mailwidget = lain.widgets.imap({
+local mail = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -206,11 +206,11 @@ local mailwidget = lain.widgets.imap({
         end
     end
 })
-]]
+--]]
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(beautiful.widget_cpu)
-local cpuwidget = lain.widgets.cpu({
+local cpu = lain.widgets.cpu({
     settings = function()
         widget:set_markup(markup("#e33a6e", cpu_now.usage .. "% "))
     end
@@ -218,7 +218,7 @@ local cpuwidget = lain.widgets.cpu({
 
 -- Coretemp
 local tempicon = wibox.widget.imagebox(beautiful.widget_temp)
-local tempwidget = lain.widgets.temp({
+local temp = lain.widgets.temp({
     settings = function()
         widget:set_markup(markup("#f1af5f", coretemp_now .. "°C "))
     end
@@ -226,7 +226,7 @@ local tempwidget = lain.widgets.temp({
 
 -- Battery
 local baticon = wibox.widget.imagebox(beautiful.widget_batt)
-local batwidget = lain.widgets.bat({
+local bat = lain.widgets.bat({
     settings = function()
         if bat_now.perc ~= "N/A" then
             bat_now.perc = bat_now.perc .. "%"
@@ -270,7 +270,7 @@ local netupinfo = lain.widgets.net({
 
 -- MEM
 local memicon = wibox.widget.imagebox(beautiful.widget_mem)
-local memwidget = lain.widgets.mem({
+local memory = lain.widgets.mem({
     settings = function()
         widget:set_markup(markup("#e0da37", mem_now.used .. "M "))
     end
@@ -407,26 +407,26 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            mailicon,
-            mailwidget,
+            --mailicon,
+            --mail.widget,
             netdownicon,
             netdowninfo,
             netupicon,
-            netupinfo,
+            netupinfo.widget,
             volicon,
             volume,
             memicon,
-            memwidget,
+            memory.widget,
             cpuicon,
-            cpuwidget,
+            cpu.widget,
             fsicon,
-            fsroot,
+            fsroot.widget,
             weathericon,
-            myweather,
+            myweather.widget,
             tempicon,
-            tempwidget,
+            temp.widget,
             baticon,
-            batwidget,
+            bat.widget,
             clockicon,
             mytextclock,
         },

@@ -157,7 +157,7 @@ lain.widgets.calendar.attach(calendarwidget, { notification_preset = { fg = "#FF
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mailwidget = lain.widgets.imap({
+local mail = lain.widgets.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -175,7 +175,7 @@ local mailwidget = lain.widgets.imap({
         widget:set_markup(markup(blue, mail) .. markup("#FFFFFF", count))
     end
 })
-]]
+--]]
 
 -- MPD
 local mpd_icon = awful.widget.launcher({ image = beautiful.mpd, command = musicplr })
@@ -184,7 +184,7 @@ local next_icon = wibox.widget.imagebox(beautiful.nex)
 local stop_icon = wibox.widget.imagebox(beautiful.stop)
 local pause_icon = wibox.widget.imagebox(beautiful.pause)
 local play_pause_icon = wibox.widget.imagebox(beautiful.play)
-local mpdwidget = lain.widgets.mpd({
+local mpd = lain.widgets.mpd({
     settings = function ()
         if mpd_now.state == "play" then
             mpd_now.artist = mpd_now.artist:upper():gsub("&.-;", string.lower)
@@ -206,7 +206,7 @@ local mpdwidget = lain.widgets.mpd({
         end
     end
 })
-local musicbg = wibox.container.background(mpdwidget, beautiful.bg_focus, shape.rectangle)
+local musicbg = wibox.container.background(mpd.widget, beautiful.bg_focus, shape.rectangle)
 local musicwidget = wibox.container.margin(musicbg, 0, 0, 5, 5)
 
 musicwidget:buttons(awful.util.table.join(awful.button({ }, 1,
@@ -214,28 +214,28 @@ function () awful.spawn.with_shell(musicplr) end)))
 prev_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     awful.spawn.with_shell("mpc prev || ncmpc prev || pms prev")
-    mpdwidget.update()
+    mpd.update()
 end)))
 next_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     awful.spawn.with_shell("mpc next || ncmpc next || pms next")
-    mpdwidget.update()
+    mpd.update()
 end)))
 stop_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     play_pause_icon:set_image(beautiful.play)
     awful.spawn.with_shell("mpc stop || ncmpc stop || pms stop")
-    mpdwidget.update()
+    mpd.update()
 end)))
 play_pause_icon:buttons(awful.util.table.join(awful.button({}, 1,
 function ()
     awful.spawn.with_shell("mpc toggle || ncmpc toggle || pms toggle")
-    mpdwidget.update()
+    mpd.update()
 end)))
 
 -- Battery
 --[[
-local batwidget = lain.widgets.bat({
+local bat = lain.widgets.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -269,31 +269,31 @@ volumewidget.shape_border_color = beautiful.tasklist_bg_normal
 
 -- CPU
 local cpu_icon = wibox.widget.imagebox(beautiful.cpu)
-local cpu_widget = lain.widgets.cpu({
+local cpu = lain.widgets.cpu({
     settings = function()
         widget:set_markup(space3 .. "CPU " .. cpu_now.usage
                           .. "% " .. markup.font("Tamsyn 5", " "))
     end
 })
-local cpubg = wibox.container.background(cpu_widget, beautiful.bg_focus, shape.rectangle)
+local cpubg = wibox.container.background(cpu.widget, beautiful.bg_focus, shape.rectangle)
 local cpuwidget = wibox.container.margin(cpubg, 0, 0, 5, 5)
 
 -- Net
 local netdown_icon = wibox.widget.imagebox(beautiful.net_down)
 local netup_icon = wibox.widget.imagebox(beautiful.net_up)
-local netwidget = lain.widgets.net({
+local net = lain.widgets.net({
     settings = function()
         widget:set_markup(markup.font("Tamsyn 1", " ") .. net_now.received .. " - "
                           .. net_now.sent .. markup.font("Tamsyn 2", " "))
     end
 })
-local netbg = wibox.container.background(netwidget, beautiful.bg_focus, shape.rectangle)
+local netbg = wibox.container.background(net.widget, beautiful.bg_focus, shape.rectangle)
 local networkwidget = wibox.container.margin(netbg, 0, 0, 5, 5)
 
 -- Weather
 local myweather = lain.widgets.weather({
     city_id = 2643743, -- placeholder (London)
-    notification_preset = { font = "Monospace 9" },
+    notification_preset = { font = "Monospace 9", position = "bottom_right" },
 })
 
 -- Separators
@@ -419,8 +419,8 @@ awful.screen.connect_for_each_screen(function(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
-            --mailwidget,
-            --batwidget,
+            --mail,
+            --bat,
             spr_right,
             musicwidget,
             bar,
@@ -652,22 +652,22 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, "Control" }, "Up",
         function ()
             awful.spawn.with_shell("mpc toggle || ncmpc toggle || pms toggle")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
             awful.spawn.with_shell("mpc stop || ncmpc stop || pms stop")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
             awful.spawn.with_shell("mpc prev || ncmpc prev || pms prev")
-            mpdwidget.update()
+            mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
             awful.spawn.with_shell("mpc next || ncmpc next || pms next")
-            mpdwidget.update()
+            mpd.update()
         end),
     --]]
 
