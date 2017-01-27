@@ -6,6 +6,12 @@
                                              
 --]]
 
+local gears = require("gears")
+local lain  = require("lain")
+local awful = require("awful")
+local wibox = require("wibox")
+local os    = { getenv = os.getenv }
+                
 local theme                                     = {}
 
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker"
@@ -87,5 +93,286 @@ theme.titlebar_maximized_button_focus_active    = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/maximized_normal_active.png"
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
+
+-- {{{ Wibox
+local markup = lain.util.markup
+local separators = lain.util.separators
+
+local clockicon = wibox.widget.imagebox(theme.widget_clock)
+--local mytextclock = wibox.widget.textclock(" %a %d %b  %H:%M")
+local clock = lain.widgets.abase({
+    timeout  = 60,
+    cmd      = " date +'%a %d %b %R'",
+    settings = function()
+        widget:set_markup(" " .. output)
+    end
+})
+
+-- calendar
+lain.widgets.calendar.attach(mytextclock, {
+    notification_preset = {
+        font = "Terminus 10",
+        fg   = theme.fg_normal,
+        bg   = theme.bg_normal
+    } 
+})
+
+-- Mail IMAP check
+local mailicon = wibox.widget.imagebox(theme.widget_mail)
+--[[ commented because it needs to be set before use
+mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
+local mail = lain.widgets.imap({
+    timeout  = 180,
+    server   = "server",
+    mail     = "mail",
+    password = "keyring get mail",
+    settings = function()
+        if mailcount > 0 then
+            widget:set_text(" " .. mailcount .. " ")
+            mailicon:set_image(theme.widget_mail_on)
+        else
+            widget:set_text("")
+            mailicon:set_image(theme.widget_mail)
+        end
+    end
+})
+--]]
+
+-- MPD
+local mpdicon = wibox.widget.imagebox(theme.widget_music)
+mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
+local mpd = lain.widgets.mpd({
+    settings = function()
+        if mpd_now.state == "play" then
+            artist = " " .. mpd_now.artist .. " "
+            title  = mpd_now.title  .. " "
+            mpdicon:set_image(theme.widget_music_on)
+        elseif mpd_now.state == "pause" then
+            artist = " mpd "
+            title  = "paused "
+        else
+            artist = ""
+            title  = ""
+            mpdicon:set_image(theme.widget_music)
+        end
+
+        widget:set_markup(markup("#EA6F81", artist) .. title)
+    end
+})
+
+-- MEM
+local memicon = wibox.widget.imagebox(theme.widget_mem)
+local mem = lain.widgets.mem({
+    settings = function()
+        widget:set_text(" " .. mem_now.used .. "MB ")
+    end
+})
+
+-- CPU
+local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
+local cpu = lain.widgets.cpu({
+    settings = function()
+        widget:set_text(" " .. cpu_now.usage .. "% ")
+    end
+})
+
+-- Coretemp
+local tempicon = wibox.widget.imagebox(theme.widget_temp)
+local temp = lain.widgets.temp({
+    settings = function()
+        widget:set_text(" " .. coretemp_now .. "°C ")
+    end
+})
+
+-- / fs
+local fsicon = wibox.widget.imagebox(theme.widget_hdd)
+local fsroot = lain.widgets.fs({
+    options  = "--exclude-type=tmpfs",
+    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Terminus 10" },
+    settings = function()
+        widget:set_text(" " .. fs_now.used .. "% ")
+    end
+})
+
+-- Battery
+local baticon = wibox.widget.imagebox(theme.widget_battery)
+local bat = lain.widgets.bat({
+    settings = function()
+        if bat_now.status ~= "N/A" then
+            if bat_now.ac_status == 1 then
+                widget:set_markup(" AC ")
+                baticon:set_image(theme.widget_ac)
+                return
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
+                baticon:set_image(theme.widget_battery_empty)
+            elseif not bat_now.perc and tonumber(bat_now.perc) <= 15 then
+                baticon:set_image(theme.widget_battery_low)
+            else
+                baticon:set_image(theme.widget_battery)
+            end
+            widget:set_markup(" " .. bat_now.perc .. "% ")
+        else
+            baticon:set_image(theme.widget_ac)
+        end
+    end
+})
+
+-- ALSA volume
+local volicon = wibox.widget.imagebox(theme.widget_vol)
+local volume = lain.widgets.alsa({
+    settings = function()
+        if volume_now.status == "off" then
+            volicon:set_image(theme.widget_vol_mute)
+        elseif tonumber(volume_now.level) == 0 then
+            volicon:set_image(theme.widget_vol_no)
+        elseif tonumber(volume_now.level) <= 50 then
+            volicon:set_image(theme.widget_vol_low)
+        else
+            volicon:set_image(theme.widget_vol)
+        end
+
+        widget:set_text(" " .. volume_now.level .. "% ")
+    end
+})
+
+-- Net
+local neticon = wibox.widget.imagebox(theme.widget_net)
+neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
+local net = lain.widgets.net({
+    settings = function()
+        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
+                          .. " " ..
+                          markup("#46A8C3", " " .. net_now.sent .. " "))
+    end
+})
+
+-- Separators
+local spr     = wibox.widget.textbox(' ')
+local arrl_dl = separators.arrow_left(theme.bg_focus, "alpha")
+local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
+
+-- Create a wibox for each screen and add it
+local taglist_buttons = awful.util.table.join(
+                    awful.button({ }, 1, function(t) t:view_only() end),
+                    awful.button({ modkey }, 1, function(t)
+                                              if client.focus then
+                                                  client.focus:move_to_tag(t)
+                                              end
+                                          end),
+                    awful.button({ }, 3, awful.tag.viewtoggle),
+                    awful.button({ modkey }, 3, function(t)
+                                              if client.focus then
+                                                  client.focus:toggle_tag(t)
+                                              end
+                                          end),
+                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+                )
+
+local tasklist_buttons = awful.util.table.join(
+                     awful.button({ }, 1, function (c)
+                                              if c == client.focus then
+                                                  c.minimized = true
+                                              else
+                                                  -- Without this, the following
+                                                  -- :isvisible() makes no sense
+                                                  c.minimized = false
+                                                  if not c:isvisible() and c.first_tag then
+                                                      c.first_tag:view_only()
+                                                  end
+                                                  -- This will also un-minimize
+                                                  -- the client, if needed
+                                                  client.focus = c
+                                                  c:raise()
+                                              end
+                                          end),
+                     awful.button({ }, 3, client_menu_toggle_fn()),
+                     awful.button({ }, 4, function ()
+                                              awful.client.focus.byidx(1)
+                                          end),
+                     awful.button({ }, 5, function ()
+                                              awful.client.focus.byidx(-1)
+                                          end))
+
+awful.screen.connect_for_each_screen(function(s)
+    -- Quake application
+    s.quake = lain.util.quake({ app = terminal })
+
+    -- Wallpaper
+    set_wallpaper(s)
+
+    -- Tags
+    awful.tag(tagnames, s, awful.layout.layouts)
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
+    -- Create an imagebox widget which will contains an icon indicating which layout we're using.
+    -- We need one layoutbox per screen.
+    s.mylayoutbox = awful.widget.layoutbox(s)
+    s.mylayoutbox:buttons(awful.util.table.join(
+                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
+                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
+                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+
+    -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18 })
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        { -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            spr,
+            s.mytaglist,
+            s.mypromptbox,
+            spr,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            spr,
+            arrl_ld,
+            wibox.container.background(mpdicon, theme.bg_focus),
+            wibox.container.background(mpd.widget, theme.bg_focus),
+            arrl_dl,
+            volicon,
+            volume.widget,
+            arrl_ld,
+            wibox.container.background(mailicon, theme.bg_focus),
+            --wibox.container.background(mail.widget, theme.bg_focus),
+            arrl_dl,
+            memicon,
+            mem.widget,
+            arrl_ld,
+            wibox.container.background(cpuicon, theme.bg_focus),
+            wibox.container.background(cpu.widget, theme.bg_focus),
+            arrl_dl,
+            tempicon,
+            temp.widget,
+            arrl_ld,
+            wibox.container.background(fsicon, theme.bg_focus),
+            wibox.container.background(fsroot.widget, theme.bg_focus),
+            arrl_dl,
+            baticon,
+            bat.widget,
+            arrl_ld,
+            wibox.container.background(neticon, theme.bg_focus),
+            wibox.container.background(net.widget, theme.bg_focus),
+            arrl_dl,
+            clock.widget,
+            --mytextclock,
+            spr,
+            arrl_ld,
+            wibox.container.background(s.mylayoutbox, theme.bg_focus),
+        },
+    }
+end)
 
 return theme
