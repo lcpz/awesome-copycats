@@ -414,7 +414,7 @@ awful.screen.connect_for_each_screen(function(s)
             netupicon,
             netupinfo.widget,
             volicon,
-            volume,
+            volume.widget,
             memicon,
             memory.widget,
             cpuicon,
