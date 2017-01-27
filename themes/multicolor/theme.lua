@@ -1,9 +1,9 @@
 
 --[[
-                                      
-     Multicolor Awesome WM config 2.0 
-     github.com/copycat-killer        
-                                      
+                                     
+     Multicolor Awesome WM theme 2.0 
+     github.com/copycat-killer       
+                                     
 --]]
 
 
