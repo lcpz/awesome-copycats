@@ -87,7 +87,7 @@ Installation
 Usage
 =====
 
-Set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, and restart Awesome (``Mod4 + ctrl + r``).
+Set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme and restart Awesome (``Mod4 + ctrl + r``).
 
 Notes
 =====
