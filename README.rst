@@ -10,11 +10,6 @@ Themes for Awesome WM 4.x
 :License: BY-NC-SA_
 :Source: https://github.com/copycat-killer/awesome-copycats
 
-Warning
-=======
-
-If you still have to use branch 3.5.x, you can refer to the commit b0ab0d7_, but be aware that it's no longer supported.
-
 Description
 ===========
 
@@ -23,6 +18,7 @@ A set of themes for the Awesome_ window manager.
 Features
 ========
 
+- Modularity
 - Autohide widgets
 - Autostart applications
 - Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
@@ -81,31 +77,17 @@ Gallery
 Installation
 ============
 
-With Git: ::
+::
 
-    $ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
+    $ git clone -b modular --recursive https://github.com/copycat-killer/awesome-copycats.git
     $ mv -bv awesome-copycats/* ~/.config/awesome; rm -r awesome-copycats
-
-otherwise: ::
-
-    $ wget https://github.com/copycat-killer/awesome-copycats/archive/master.zip -O awesome-copycats.zip
-    $ wget https://github.com/copycat-killer/lain/archive/master.zip -O lain.zip
-    $ wget https://github.com/copycat-killer/awesome-freedesktop/archive/master.zip -O freedesktop.zip
-    $ unzip '*.zip'; rm *.zip
-    $ mv lain-master awesome-copycats-master/lain; mv awesome-freedesktop-master awesome-copycats-master/freedesktop
-    $ mv -bv awesome-copycats-master/* ~/.config/awesome; rm -r awesome-copycats-master
+    $ cd ~/.config/awesome
+    $ cp rc.lua.template rc.lua
 
 Usage
 =====
 
-Switch a theme this way: ::
-
-    $ cd ~/.config/awesome
-    $ cp rc.lua.theme rc.lua
-
-Alternatively, you can use `switch-theme.sh`_, which will also update to the latest commit.
-
-Then, customize your ``rc.lua`` and restart Awesome (``Mod4 + ctrl + r``).
+Set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, and restart Awesome (``Mod4 + ctrl + r``).
 
 Notes
 =====
@@ -123,14 +105,12 @@ Additional software used: ::
     unclutter firefox scrot mpd mpc dmenu xsel
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
-.. _b0ab0d7: https://github.com/copycat-killer/awesome-copycats/tree/b0ab0d7837987be81b9195a36631df773113d491
 .. _Awesome: http://github.com/awesomeWM/awesome
 .. _lucamanni: https://github.com/lucamanni/awesome
 .. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
 .. _amouly: https://bbs.archlinux.org/viewtopic.php?pid=1307158#p1307158
 .. _foozer: http://dotshare.it/dots/499
-.. _`switch-theme.sh`: https://github.com/copycat-killer/awesome-copycats/issues/36
 .. _lain: https://github.com/copycat-killer/lain
 .. _Terminus: http://terminus-font.sourceforge.net
 .. _Tamzen: https://github.com/sunaku/tamzen-font
