@@ -339,7 +339,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end),
 
     -- Widgets popups
-    awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),
+    awful.key({ altkey, }, "c", function () beautiful.cal.show(7) end),
     awful.key({ altkey, }, "h", function () beautiful.fs.show(7) end),
     awful.key({ altkey, }, "w", function () beautiful.weather.show(7) end),
 

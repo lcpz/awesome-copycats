@@ -101,7 +101,8 @@ local clock = lain.widgets.abase({
 })
 
 -- Calendar
-lain.widgets.calendar.attach(clock.widget, {
+theme.cal = lain.widgets.calendar({
+    attach_to = { clock.widget },
     notification_preset = {
         font = "Terminus 10",
         fg   = theme.fg_normal,

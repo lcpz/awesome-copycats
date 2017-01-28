@@ -99,12 +99,14 @@ local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock, {
+theme.cal = lain.widgets.calendar({
+    attach_to = { mytextclock },
     notification_preset = {
         font = "Terminus 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
-}})
+    }
+})
 
 -- Weather
 local weathericon = wibox.widget.imagebox(theme.widget_weather)

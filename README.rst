@@ -20,7 +20,7 @@ Features
 
 - Modularity
 - Autohide widgets
-- Autostart applications
+- Autostart windowless processes
 - Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
 - Shortcuts for copying to the clipboard (no need for clipboard managers), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
 - Quake drop-down terminal
