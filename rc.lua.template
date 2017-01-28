@@ -65,7 +65,6 @@ local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "gvim"
 local browser      = "firefox"
-local graphics     = "gimp"
 
 awful.util.terminal = terminal
 awful.util.tagnames = { "web", "term", "docs", "media", "files", "other" }
@@ -378,33 +377,34 @@ globalkeys = awful.util.table.join(
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
-            awful.spawn.with_shell("mpc toggle || ncmpc toggle || pms toggle")
+            awful.spawn.with_shell("mpc toggle")
             beautiful.mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
-            awful.spawn.with_shell("mpc stop || ncmpc stop || pms stop")
+            awful.spawn.with_shell("mpc stop")
             beautiful.mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
-            awful.spawn.with_shell("mpc prev || ncmpc prev || pms prev")
+            awful.spawn.with_shell("mpc prev")
             beautiful.mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
-            awful.spawn.with_shell("mpc next || ncmpc next || pms next")
+            awful.spawn.with_shell("mpc next")
             beautiful.mpd.update()
         end),
     --]]
 
-    -- Copy primary to clipboard
-    awful.key({ modkey }, "c", function () os.execute("xsel | xsel -b") end),
+    -- Copy primary to clipboard (terminals to gtk)
+    awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
+    -- Copy clipboard to primary (gtk to terminals)
+    awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end),
 
     -- User programs
-    awful.key({ modkey }, "q", function () awful.spawn(browser) end),
     awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
-    awful.key({ modkey }, "g", function () awful.spawn(graphics) end),
+    awful.key({ modkey }, "q", function () awful.spawn(browser) end),
 
     -- Default
     -- Prompt

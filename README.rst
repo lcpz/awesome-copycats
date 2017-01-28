@@ -81,13 +81,17 @@ Installation
 
     $ git clone -b modular --recursive https://github.com/copycat-killer/awesome-copycats.git
     $ mv -bv awesome-copycats/* ~/.config/awesome; rm -r awesome-copycats
-    $ cd ~/.config/awesome
-    $ cp rc.lua.template rc.lua
 
 Usage
 =====
 
-Set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme and restart Awesome (``Mod4 + ctrl + r``).
+::
+    $ cd ~/.config/awesome
+    $ cp rc.lua.template rc.lua
+
+Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme and restart Awesome (``Mod4 + ctrl + r``).
+
+To customize a theme, head over ``themes/$chosen_teme/theme.lua``.
 
 Notes
 =====
