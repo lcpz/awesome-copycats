@@ -58,7 +58,7 @@ run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "powerarrow-darker"
+local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
@@ -425,7 +425,7 @@ globalkeys = awful.util.table.join(
               end,
               {description = "lua execute prompt", group = "awesome"})
     --]]
-    
+
     --[[ dmenu
     awful.key({ modkey }, "x", function ()
         awful.spawn(string.format("dmenu_run -i -fn 'Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
