@@ -394,7 +394,18 @@ globalkeys = awful.util.table.join(
             awful.spawn.with_shell("mpc next")
             beautiful.mpd.update()
         end),
-    --]]
+    awful.key({ altkey }, "0",
+        function ()
+            local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
+            if beautiful.mpd.timer.started then
+                beautiful.mpd.timer:stop()
+                common.text = common.text .. lain.util.markup.bold("ON")
+            else
+                beautiful.mpd.timer:start()
+                common.text = common.text .. lain.util.markup.bold("OFF")
+            end
+            naughty.notify(common)
+        end),
 
     -- Copy primary to clipboard (terminals to gtk)
     awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end),
