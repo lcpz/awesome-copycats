@@ -7,6 +7,9 @@
 --]]
 
 -- {{{ Required libraries
+local awesome, client, screen = awesome, client, screen
+local string, os, tostring, tonumber, type = string, os, tostring, tonumber, type
+
 local gears         = require("gears")
 local awful         = require("awful")
                       require("awful.autofocus")
@@ -40,7 +43,7 @@ do
 end
 -- }}}
 
--- {{{ Autostart applications
+-- {{{ Autostart windowless processes
 local function run_once(cmd)
   findme = cmd
   firstspace = cmd:find(" ")
@@ -58,10 +61,10 @@ run_once("unclutter -root")
 local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local terminal     = "urxvtc" or "xterm"
-local browser      = "firefox"
+local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "gvim"
+local browser      = "firefox"
 local graphics     = "gimp"
 
 awful.util.terminal = terminal
@@ -83,7 +86,64 @@ awful.layout.layouts = {
     -- awful.layout.suit.corner.ne,
     -- awful.layout.suit.corner.sw,
     -- awful.layout.suit.corner.se,
+    -- lain.layout.cascade,
+    -- lain.layout.cascade.tile,
+    -- lain.layout.centerwork,
+    -- lain.layout.centerwork.horizontal,
+    -- lain.layout.termfair,
+    -- lain.layout.termfair.center,
 }
+awful.util.taglist_buttons = awful.util.table.join(
+                    awful.button({ }, 1, function(t) t:view_only() end),
+                    awful.button({ modkey }, 1, function(t)
+                                              if client.focus then
+                                                  client.focus:move_to_tag(t)
+                                              end
+                                          end),
+                    awful.button({ }, 3, awful.tag.viewtoggle),
+                    awful.button({ modkey }, 3, function(t)
+                                              if client.focus then
+                                                  client.focus:toggle_tag(t)
+                                              end
+                                          end),
+                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
+                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
+                )
+awful.util.tasklist_buttons = awful.util.table.join(
+                     awful.button({ }, 1, function (c)
+                                              if c == client.focus then
+                                                  c.minimized = true
+                                              else
+                                                  -- Without this, the following
+                                                  -- :isvisible() makes no sense
+                                                  c.minimized = false
+                                                  if not c:isvisible() and c.first_tag then
+                                                      c.first_tag:view_only()
+                                                  end
+                                                  -- This will also un-minimize
+                                                  -- the client, if needed
+                                                  client.focus = c
+                                                  c:raise()
+                                              end
+                                          end),
+                     awful.button({ }, 3, function()
+                         local instance = nil
+
+                         return function ()
+                             if instance and instance.wibox.visible then
+                                 instance:hide()
+                                 instance = nil
+                             else
+                                 instance = awful.menu.clients({ theme = { width = 250 } })
+                             end
+                        end
+                     end),
+                     awful.button({ }, 4, function ()
+                                              awful.client.focus.byidx(1)
+                                          end),
+                     awful.button({ }, 5, function ()
+                                              awful.client.focus.byidx(-1)
+                                          end))
 
 lain.layout.termfair.nmaster        = 3
 lain.layout.termfair.ncol           = 1
@@ -114,7 +174,7 @@ local mymainmenu = freedesktop.menu.build({
 --menubar.utils.terminal = terminal -- Set the Menubar terminal for applications that require it
 -- }}}
 
--- {{{ Wibox
+-- {{{ Screen
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
@@ -488,8 +548,7 @@ awful.rules.rules = {
       properties = { screen = 1, tag = screen[1].tags[1] } },
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
-          properties = { maximized_horizontal = true,
-                         maximized_vertical = true } },
+          properties = { maximized = true } },
 }
 -- }}}
 

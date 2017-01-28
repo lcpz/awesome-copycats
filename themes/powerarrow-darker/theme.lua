@@ -1,9 +1,9 @@
 
 --[[
-                                             
-     Powerarrow Darker Awesome WM config 2.0 
-     github.com/copycat-killer               
-                                             
+                                            
+     Powerarrow Darker Awesome WM theme 2.0 
+     github.com/copycat-killer              
+                                            
 --]]
 
 local gears = require("gears")
@@ -11,12 +11,10 @@ local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 local os    = { getenv = os.getenv }
-                
-local theme                                     = {}
 
+local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-
 theme.font                                      = "Terminus 9"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#EA6F81"
@@ -32,11 +30,9 @@ theme.tasklist_bg_focus                         = "#1A1A1A"
 theme.titlebar_bg_focus                         = theme.bg_focus
 theme.titlebar_bg_normal                        = theme.bg_normal
 theme.titlebar_fg_focus                         = theme.fg_focus
-
 theme.menu_height                               = 16
 theme.menu_width                                = 140
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
-
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
 theme.layout_tile                               = theme.dir .. "/icons/tile.png"
@@ -69,12 +65,9 @@ theme.widget_vol_no                             = theme.dir .. "/icons/vol_no.pn
 theme.widget_vol_mute                           = theme.dir .. "/icons/vol_mute.png"
 theme.widget_mail                               = theme.dir .. "/icons/mail.png"
 theme.widget_mail_on                            = theme.dir .. "/icons/mail_on.png"
-
 theme.tasklist_plain_task_name                  = true
 theme.tasklist_disable_icon                     = true
-
 theme.useless_gap                               = 0
-
 theme.titlebar_close_button_focus               = theme.dir .. "/icons/titlebar/close_focus.png"
 theme.titlebar_close_button_normal              = theme.dir .. "/icons/titlebar/close_normal.png"
 theme.titlebar_ontop_button_focus_active        = theme.dir .. "/icons/titlebar/ontop_focus_active.png"
@@ -94,12 +87,11 @@ theme.titlebar_maximized_button_normal_active   = theme.dir .. "/icons/titlebar/
 theme.titlebar_maximized_button_focus_inactive  = theme.dir .. "/icons/titlebar/maximized_focus_inactive.png"
 theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/maximized_normal_inactive.png"
 
--- {{{ Wibox
 local markup = lain.util.markup
 local separators = lain.util.separators
 
+-- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
---local mytextclock = wibox.widget.textclock(" %a %d %b  %H:%M")
 local clock = lain.widgets.abase({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
@@ -108,13 +100,13 @@ local clock = lain.widgets.abase({
     end
 })
 
--- calendar
-lain.widgets.calendar.attach(mytextclock, {
+-- Calendar
+lain.widgets.calendar.attach(clock.widget, {
     notification_preset = {
         font = "Terminus 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
-    } 
+    }
 })
 
 -- Mail IMAP check
@@ -252,57 +244,18 @@ local arrl_dl = separators.arrow_left(theme.bg_focus, "alpha")
 local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
 
 -- Create a wibox for each screen and add it
-local taglist_buttons = awful.util.table.join(
-                    awful.button({ }, 1, function(t) t:view_only() end),
-                    awful.button({ modkey }, 1, function(t)
-                                              if client.focus then
-                                                  client.focus:move_to_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 3, awful.tag.viewtoggle),
-                    awful.button({ modkey }, 3, function(t)
-                                              if client.focus then
-                                                  client.focus:toggle_tag(t)
-                                              end
-                                          end),
-                    awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
-                    awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
-                )
-
-local tasklist_buttons = awful.util.table.join(
-                     awful.button({ }, 1, function (c)
-                                              if c == client.focus then
-                                                  c.minimized = true
-                                              else
-                                                  -- Without this, the following
-                                                  -- :isvisible() makes no sense
-                                                  c.minimized = false
-                                                  if not c:isvisible() and c.first_tag then
-                                                      c.first_tag:view_only()
-                                                  end
-                                                  -- This will also un-minimize
-                                                  -- the client, if needed
-                                                  client.focus = c
-                                                  c:raise()
-                                              end
-                                          end),
-                     awful.button({ }, 3, client_menu_toggle_fn()),
-                     awful.button({ }, 4, function ()
-                                              awful.client.focus.byidx(1)
-                                          end),
-                     awful.button({ }, 5, function ()
-                                              awful.client.focus.byidx(-1)
-                                          end))
-
 awful.screen.connect_for_each_screen(function(s)
     -- Quake application
-    s.quake = lain.util.quake({ app = terminal })
+    s.quake = lain.util.quake({ app = awful.util.terminal })
 
-    -- Wallpaper
-    set_wallpaper(s)
+    -- If wallpaper is a function, call it with the screen
+    if type(wallpaper) == "function" then
+        theme.wallpaper = theme.wallpaper(s)
+    end
+    gears.wallpaper.maximized(theme.wallpaper, s, true)
 
     -- Tags
-    awful.tag(tagnames, s, awful.layout.layouts)
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts)
 
     -- Create a promptbox for each screen
     s.mypromptbox = awful.widget.prompt()
@@ -321,7 +274,7 @@ awful.screen.connect_for_each_screen(function(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18 })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18, bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
@@ -367,7 +320,6 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.container.background(net.widget, theme.bg_focus),
             arrl_dl,
             clock.widget,
-            --mytextclock,
             spr,
             arrl_ld,
             wibox.container.background(s.mylayoutbox, theme.bg_focus),
