@@ -58,7 +58,7 @@ run_once("unclutter -root")
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "multicolor"
+local chosen_theme = "powerarrow-darker"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
@@ -67,30 +67,30 @@ local gui_editor   = "gvim"
 local browser      = "firefox"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "web", "term", "docs", "media", "files", "other" }
+awful.util.tagnames = { 1, 2, 3, 4, 5 }
 awful.layout.layouts = {
     awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
-    awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    -- awful.layout.suit.spiral.dwindle,
-    -- awful.layout.suit.max,
-    -- awful.layout.suit.max.fullscreen,
-    -- awful.layout.suit.magnifier,
-    -- awful.layout.suit.corner.nw,
-    -- awful.layout.suit.corner.ne,
-    -- awful.layout.suit.corner.sw,
-    -- awful.layout.suit.corner.se,
-    -- lain.layout.cascade,
-    -- lain.layout.cascade.tile,
-    -- lain.layout.centerwork,
-    -- lain.layout.centerwork.horizontal,
-    -- lain.layout.termfair,
-    -- lain.layout.termfair.center,
+    --awful.layout.suit.fair,
+    --awful.layout.suit.fair.horizontal,
+    --awful.layout.suit.spiral,
+    --awful.layout.suit.spiral.dwindle,
+    --awful.layout.suit.max,
+    --awful.layout.suit.max.fullscreen,
+    --awful.layout.suit.magnifier,
+    --awful.layout.suit.corner.nw,
+    --awful.layout.suit.corner.ne,
+    --awful.layout.suit.corner.sw,
+    --awful.layout.suit.corner.se,
+    --lain.layout.cascade,
+    --lain.layout.cascade.tile,
+    --lain.layout.centerwork,
+    --lain.layout.centerwork.horizontal,
+    --lain.layout.termfair,
+    --lain.layout.termfair.center,
 }
 awful.util.taglist_buttons = awful.util.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
@@ -149,7 +149,8 @@ lain.layout.termfair.ncol           = 1
 lain.layout.termfair.center.nmaster = 3
 lain.layout.termfair.center.ncol    = 1
 
-beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+beautiful.init(theme_path)
 -- }}}
 
 -- {{{ Menu
@@ -174,10 +175,6 @@ local mymainmenu = freedesktop.menu.build({
 -- }}}
 
 -- {{{ Screen
--- if we want to be modular and see the layout icons at start
-for s in screen do
-    s.selected_tag:emit_signal("property::layout")
-end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
@@ -190,6 +187,8 @@ screen.connect_signal("property::geometry", function(s)
         gears.wallpaper.maximized(wallpaper, s, true)
     end
 end)
+-- Create a wibox for each screen and add it
+awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) end)
 -- }}}
 
 -- {{{ Mouse bindings
@@ -342,7 +341,7 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey, }, "z", function () awful.screen.focused().quake:toggle() end),
 
     -- Widgets popups
-    awful.key({ altkey, }, "c", function () beautiful.cal.show(7) end),
+    awful.key({ altkey, }, "c", function () lain.widgets.calendar.show(7) end),
     awful.key({ altkey, }, "h", function () beautiful.fs.show(7) end),
     awful.key({ altkey, }, "w", function () beautiful.weather.show(7) end),
 
@@ -407,6 +406,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "q", function () awful.spawn(browser) end),
 
     -- Default
+    --[[ Menubar
+    awful.key({ modkey }, "p", function() menubar.show() end,
+              {description = "show the menubar", group = "launcher"})
+    --]]
     -- Prompt
     awful.key({ modkey }, "r", function () awful.screen.focused().mypromptbox:run() end,
               {description = "run prompt", group = "launcher"}),
@@ -420,12 +423,9 @@ globalkeys = awful.util.table.join(
                     history_path = awful.util.get_cache_dir() .. "/history_eval"
                   }
               end,
-              {description = "lua execute prompt", group = "awesome"}),
-    -- Menubar
-    awful.key({ modkey }, "p", function() menubar.show() end,
-              {description = "show the menubar", group = "launcher"})
+              {description = "lua execute prompt", group = "awesome"})
     --]]
-
+    
     --[[ dmenu
     awful.key({ modkey }, "x", function ()
         awful.spawn(string.format("dmenu_run -i -fn 'Tamsyn' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
