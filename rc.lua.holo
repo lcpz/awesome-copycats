@@ -153,7 +153,10 @@ local mytextcalendar = wibox.widget.textclock(markup("#FFFFFF", space3 .. "%d %b
 local calendar_icon = wibox.widget.imagebox(beautiful.calendar)
 local calbg = wibox.container.background(mytextcalendar, beautiful.bg_focus, shape.rectangle)
 local calendarwidget = wibox.container.margin(calbg, 0, 0, 5, 5)
-lain.widgets.calendar.attach(calendarwidget, { notification_preset = { fg = "#FFFFFF", bg = beautiful.bg_normal, position = "bottom_right", font = "Monospace 10" } })
+lain.widgets.calendar({
+    attach_to = { calendarwidget, clockwidget },
+    notification_preset = { fg = "#FFFFFF", bg = beautiful.bg_normal, position = "bottom_right", font = "Monospace 10" }
+})
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use

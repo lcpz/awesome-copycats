@@ -141,7 +141,8 @@ local gray   = "#94928F"
 local mytextclock = wibox.widget.textclock(" %H:%M ")
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock, {
+lain.widgets.calendar({
+    attach_to = { mytextclock },
     notification_preset = {
         font = "Tamsyn 10.5",
         fg   = gray,

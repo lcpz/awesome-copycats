@@ -156,7 +156,8 @@ local mytextclock = lain.widgets.base({
 ]]
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock, {
+lain.widgets.calendar({
+    attach_to = { mytextclock },
     notification_preset = {
         font = "Terminus 10",
         fg   = beautiful.fg_normal,

@@ -146,7 +146,8 @@ local green  = "#8FEB8F"
 local mytextclock = wibox.widget.textclock("<span font='Tamsyn 5'> </span>%H:%M ")
 
 -- Calendar
-lain.widgets.calendar.attach(mytextclock, {
+lain.widgets.calendar({
+    attach_to = { mytextclock },
     notification_preset = {
         font = "Tamsyn 10.5",
         fg   = beautiful.fg_normal,
@@ -281,6 +282,7 @@ local volicon = wibox.widget.imagebox(beautiful.vol)
 local volume = lain.widgets.alsabar({
     width = 59, border_width = 0, ticks = true, ticks_size = 6,
     notification_preset = { font = beautiful.font },
+    --togglechannel = "IEC958,3",
     settings = function()
         if volume_now.status == "off" then
             volicon:set_image(beautiful.vol_mute)
@@ -300,6 +302,28 @@ local volume = lain.widgets.alsabar({
 })
 local volumebg = wibox.container.background(volume.bar, "#474747", shape.rectangle)
 local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
+
+volume.bar:buttons(awful.util.table.join (
+          awful.button({}, 1, function()
+            awful.spawn.with_shell(string.format("%s -e alsamixer", terminal))
+          end),
+          awful.button({}, 2, function()
+            awful.spawn(string.format("%s set %s 100%%", volume.cmd, volume.channel))
+            volume.update()
+          end),
+          awful.button({}, 3, function()
+            awful.spawn(string.format("%s set %s toggle", volume.cmd, volume.togglechannel or volume.channel))
+            volume.update()
+          end),
+          awful.button({}, 4, function()
+            awful.spawn(string.format("%s set %s 1%%+", volume.cmd, volume.channel))
+            volume.update()
+          end),
+          awful.button({}, 5, function()
+            awful.spawn(string.format("%s set %s 1%%-", volume.cmd, volume.channel))
+            volume.update()
+          end)
+))
 
 -- Weather
 local myweather = lain.widgets.weather({
