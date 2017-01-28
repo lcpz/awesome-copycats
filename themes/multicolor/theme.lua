@@ -97,6 +97,7 @@ local markup = lain.util.markup
 os.setlocale(os.getenv("LANG")) -- to localize the clock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
 local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. markup("#535f7a", ">") .. markup("#de5e1e", " %H:%M "))
+mytextclock.font = theme.font
 
 -- Calendar
 theme.cal = lain.widgets.calendar({
@@ -249,8 +250,7 @@ theme.mpd = lain.widgets.mpd({
     end
 })
 
--- Create a wibox for each screen and add it
-awful.screen.connect_for_each_screen(function(s)
+function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
@@ -338,6 +338,6 @@ awful.screen.connect_for_each_screen(function(s)
             s.mylayoutbox,
         },
     }
-end)
+end
 
 return theme

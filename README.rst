@@ -89,7 +89,7 @@ Usage
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
 
-Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme and restart Awesome (``Mod4 + ctrl + r``).
+Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, do your settings, and restart Awesome (``Mod4 + ctrl + r``).
 
 To customize a theme, head over ``themes/$chosen_teme/theme.lua``.
 

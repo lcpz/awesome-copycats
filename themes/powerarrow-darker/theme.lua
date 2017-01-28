@@ -96,7 +96,7 @@ local clock = lain.widgets.abase({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
     settings = function()
-        widget:set_markup(" " .. output)
+        widget:set_markup(" " .. markup.font(theme.font, output))
     end
 })
 
@@ -244,8 +244,7 @@ local spr     = wibox.widget.textbox(' ')
 local arrl_dl = separators.arrow_left(theme.bg_focus, "alpha")
 local arrl_ld = separators.arrow_left("alpha", theme.bg_focus)
 
--- Create a wibox for each screen and add it
-awful.screen.connect_for_each_screen(function(s)
+function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
@@ -269,10 +268,10 @@ awful.screen.connect_for_each_screen(function(s)
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
                            awful.button({ }, 5, function () awful.layout.inc(-1) end)))
     -- Create a taglist widget
-    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, taglist_buttons)
+    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
     -- Create a tasklist widget
-    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = 18, bg = theme.bg_normal, fg = theme.fg_normal })
@@ -326,6 +325,6 @@ awful.screen.connect_for_each_screen(function(s)
             wibox.container.background(s.mylayoutbox, theme.bg_focus),
         },
     }
-end)
+end
 
 return theme
