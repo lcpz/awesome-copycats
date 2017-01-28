@@ -175,6 +175,10 @@ local mymainmenu = freedesktop.menu.build({
 -- }}}
 
 -- {{{ Screen
+-- if we want to be modular and see the layout icons at start
+for s in screen do
+    s.selected_tag:emit_signal("property::layout")
+end
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
 screen.connect_signal("property::geometry", function(s)
     -- Wallpaper
