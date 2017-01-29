@@ -15,7 +15,7 @@ local os    = { getenv = os.getenv }
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "Terminus 9"
+theme.font                                      = "xos4 Terminus 9"
 theme.fg_normal                                 = "#DDDDFF"
 theme.fg_focus                                  = "#EA6F81"
 theme.fg_urgent                                 = "#CC9393"
@@ -104,7 +104,7 @@ local clock = lain.widgets.abase({
 theme.cal = lain.widgets.calendar({
     attach_to = { clock.widget },
     notification_preset = {
-        font = "Terminus 10",
+        font = "xos4 Terminus 10",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
@@ -134,7 +134,7 @@ local mail = lain.widgets.imap({
 -- MPD
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-local mpd = lain.widgets.mpd({
+theme.mpd = lain.widgets.mpd({
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
@@ -149,7 +149,7 @@ local mpd = lain.widgets.mpd({
             mpdicon:set_image(theme.widget_music)
         end
 
-        widget:set_markup(markup("#EA6F81", artist) .. title)
+        widget:set_markup(markup.font(theme.font, markup("#EA6F81", artist) .. title))
     end
 })
 
@@ -157,7 +157,7 @@ local mpd = lain.widgets.mpd({
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widgets.mem({
     settings = function()
-        widget:set_text(" " .. mem_now.used .. "MB ")
+        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
     end
 })
 
@@ -165,7 +165,7 @@ local mem = lain.widgets.mem({
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
 local cpu = lain.widgets.cpu({
     settings = function()
-        widget:set_text(" " .. cpu_now.usage .. "% ")
+        widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
     end
 })
 
@@ -173,17 +173,17 @@ local cpu = lain.widgets.cpu({
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
 local temp = lain.widgets.temp({
     settings = function()
-        widget:set_text(" " .. coretemp_now .. "°C ")
+        widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
     end
 })
 
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_hdd)
-local fsroot = lain.widgets.fs({
+theme.fs = lain.widgets.fs({
     options  = "--exclude-type=tmpfs",
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Terminus 10" },
+    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "xos4 Terminus 10" },
     settings = function()
-        widget:set_text(" " .. fs_now.used .. "% ")
+        widget:set_markup(markup.font(theme.font, " " .. fs_now.used .. "% "))
     end
 })
 
@@ -193,7 +193,7 @@ local bat = lain.widgets.bat({
     settings = function()
         if bat_now.status ~= "N/A" then
             if bat_now.ac_status == 1 then
-                widget:set_markup(" AC ")
+                widget:set_markup(markup.font(theme.font, " AC "))
                 baticon:set_image(theme.widget_ac)
                 return
             elseif not bat_now.perc and tonumber(bat_now.perc) <= 5 then
@@ -203,8 +203,9 @@ local bat = lain.widgets.bat({
             else
                 baticon:set_image(theme.widget_battery)
             end
-            widget:set_markup(" " .. bat_now.perc .. "% ")
+            widget:set_markup(markup.font(theme.font, " " .. bat_now.perc .. "% "))
         else
+            widget:set_markup(markup.font(theme.font, " AC "))
             baticon:set_image(theme.widget_ac)
         end
     end
@@ -212,7 +213,7 @@ local bat = lain.widgets.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-local volume = lain.widgets.alsa({
+theme.volume = lain.widgets.alsa({
     settings = function()
         if volume_now.status == "off" then
             volicon:set_image(theme.widget_vol_mute)
@@ -224,18 +225,18 @@ local volume = lain.widgets.alsa({
             volicon:set_image(theme.widget_vol)
         end
 
-        widget:set_text(" " .. volume_now.level .. "% ")
+        widget:set_markup(markup.font(theme.font, " " .. volume_now.level .. "% "))
     end
 })
 
 -- Net
 local neticon = wibox.widget.imagebox(theme.widget_net)
-neticon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(iptraf) end)))
 local net = lain.widgets.net({
     settings = function()
-        widget:set_markup(markup("#7AC82E", " " .. net_now.received)
+        widget:set_markup(markup.font(theme.font,
+                          markup("#7AC82E", " " .. net_now.received)
                           .. " " ..
-                          markup("#46A8C3", " " .. net_now.sent .. " "))
+                          markup("#46A8C3", " " .. net_now.sent .. " ")))
     end
 })
 
@@ -293,10 +294,10 @@ function theme.at_screen_connect(s)
             spr,
             arrl_ld,
             wibox.container.background(mpdicon, theme.bg_focus),
-            wibox.container.background(mpd.widget, theme.bg_focus),
+            wibox.container.background(theme.mpd.widget, theme.bg_focus),
             arrl_dl,
             volicon,
-            volume.widget,
+            theme.volume.widget,
             arrl_ld,
             wibox.container.background(mailicon, theme.bg_focus),
             --wibox.container.background(mail.widget, theme.bg_focus),
@@ -311,7 +312,7 @@ function theme.at_screen_connect(s)
             temp.widget,
             arrl_ld,
             wibox.container.background(fsicon, theme.bg_focus),
-            wibox.container.background(fsroot.widget, theme.bg_focus),
+            wibox.container.background(theme.fs.widget, theme.bg_focus),
             arrl_dl,
             baticon,
             bat.widget,

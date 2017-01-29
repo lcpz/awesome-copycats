@@ -143,7 +143,7 @@ theme.mpd = lain.widgets.mpd({
         else
             title  = ""
             artist = ""
-            mpdicon.image = nil
+            mpdicon._private.image = nil
             mpdicon:emit_signal("widget::redraw_needed")
             mpdicon:emit_signal("widget::layout_changed")
         end
