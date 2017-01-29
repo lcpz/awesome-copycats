@@ -5,6 +5,7 @@
 
 DESTDIR=~/.config/awesome
 PROJECT=copycat-killer/awesome-copycats
+SHELL=$(which bash)
 
 # $(swap_dialog)
 define swap_dialog
