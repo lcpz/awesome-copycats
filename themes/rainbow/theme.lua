@@ -37,7 +37,7 @@ theme.tasklist_floating                         = theme.ocol .. "[F]</span>"
 theme.tasklist_maximized_horizontal             = theme.ocol .. "[M] </span>"
 theme.tasklist_maximized_vertical               = ""
 theme.tasklist_disable_icon                     = true
-theme.menu_awesome_icon                         = theme.dir .."/icons/awesome.png"
+theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
 theme.menu_submenu_icon                         = theme.dir .."/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
@@ -198,10 +198,6 @@ theme.weather = lain.widgets.weather({
     notification_preset = { font = theme.font, fg = white }
 })
 
-local mybase = lain.widgets.abase({
-    cmd = "echo 123"
-})
-
 -- Separators
 local first = wibox.widget.textbox(markup.font("Misc Tamsyn 4", " "))
 local spr   = wibox.widget.textbox(' ')
@@ -252,7 +248,7 @@ function theme.at_screen_connect(s)
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            small_spr,
+            first,
             s.mytaglist,
             spr,
             s.mytxtlayoutbox,
@@ -268,7 +264,6 @@ function theme.at_screen_connect(s)
             theme.mpd.widget,
             --mail.widget,
             theme.fs.widget,
-            mybase.widget,
             volumewidget,
             mytextclock,
         },
