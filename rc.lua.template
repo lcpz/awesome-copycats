@@ -166,7 +166,8 @@ local myawesomemenu = {
     { "restart", awesome.restart },
     { "quit", function() awesome.quit() end }
 }
-local mymainmenu = freedesktop.menu.build({
+awful.util.mymainmenu = freedesktop.menu.build({
+    icon_size = beautiful.menu_icon_size or 16,
     before = {
         { "Awesome", myawesomemenu, beautiful.awesome_icon },
         -- other triads can be put here
@@ -198,7 +199,7 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 
 -- {{{ Mouse bindings
 root.buttons(awful.util.table.join(
-    awful.button({ }, 3, function () mymainmenu:toggle() end),
+    awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
 ))
@@ -262,7 +263,7 @@ globalkeys = awful.util.table.join(
             awful.client.focus.bydirection("right")
             if client.focus then client.focus:raise() end
         end),
-    awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
+    awful.key({ modkey,           }, "w", function () awful.util.mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
 
     -- Layout manipulation

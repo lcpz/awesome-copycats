@@ -6,12 +6,12 @@
                                
 --]]
 
-local gears   = require("gears")
-local lain    = require("lain")
-local awful   = require("awful")
-local wibox   = require("wibox")
-local string  = string
-local os      = { getenv = os.getenv }
+local gears  = require("gears")
+local lain   = require("lain")
+local awful  = require("awful")
+local wibox  = require("wibox")
+local string = string
+local os     = { getenv = os.getenv }
 
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
@@ -33,8 +33,9 @@ theme.tasklist_bg_normal                        = "#222222"
 theme.tasklist_fg_focus                         = "#4CB7DB"
 theme.menu_height                               = 20
 theme.menu_width                                = 160
-theme.awesome_icon                              = theme.icon_dir .. "/awesome_icon.png"
-theme.awesome_icon_white                        = theme.icon_dir .. "/awesome_icon_white.png"
+theme.menu_icon_size                            = 32
+theme.awesome_icon                              = theme.icon_dir .. "/awesome_icon_white.png"
+theme.awesome_icon_launcher                     = theme.icon_dir .. "/awesome_icon.png"
 theme.vol_bg                                    = theme.icon_dir .. "/vol_bg.png"
 theme.taglist_squares_sel                       = theme.icon_dir .. "/square_sel.png"
 theme.taglist_squares_unsel                     = theme.icon_dir .. "/square_unsel.png"
@@ -265,6 +266,11 @@ theme.weather = lain.widgets.weather({
     notification_preset = { font = "Monospace 9", position = "bottom_right" },
 })
 
+-- Launcher
+local mylauncher = awful.widget.button({ image = theme.awesome_icon_launcher })
+mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:toggle() end)
+--awful.widget.launcher({ image = theme.awesome_icon_launcher, command = awful.util.mymainmenu:toggle() })
+
 -- Separators
 local first = wibox.widget.textbox('<span font="Roboto 7"> </span>')
 local spr_small = wibox.widget.imagebox(theme.spr_small)
@@ -279,7 +285,7 @@ local barcolor  = gears.color({
     type  = "linear",
     from  = { 32, 0 },
     to    = { 32, 32 },
-    stops = { {0, theme.bg_focus }, {0.25, "#505050"}, {1, theme.bg_focus} }
+    stops = { {0, theme.bg_focus}, {0.25, "#505050"}, {1, theme.bg_focus} }
 })
 
 function theme.at_screen_connect(s)
