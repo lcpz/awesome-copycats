@@ -166,6 +166,29 @@ theme.volume = lain.widgets.alsabar({
     ticks = true, width = 67,
     notification_preset = { font = theme.font }
 })
+theme.volume.tooltip.wibox.fg = theme.fg_focus
+theme.volume.tooltip.wibox.font = theme.font
+theme.volume.bar:buttons(awful.util.table.join (
+          awful.button({}, 1, function()
+            awful.spawn.with_shell(string.format("%s -e alsamixer", terminal))
+          end),
+          awful.button({}, 2, function()
+            awful.spawn(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 3, function()
+            awful.spawn(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 4, function()
+            awful.spawn(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 5, function()
+            awful.spawn(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end)
+))
 local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.shape.rectangle)
 local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
 
@@ -173,6 +196,10 @@ local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
 theme.weather = lain.widgets.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = theme.font, fg = white }
+})
+
+local mybase = lain.widgets.abase({
+    cmd = "echo 123"
 })
 
 -- Separators
@@ -241,6 +268,7 @@ function theme.at_screen_connect(s)
             theme.mpd.widget,
             --mail.widget,
             theme.fs.widget,
+            mybase.widget,
             volumewidget,
             mytextclock,
         },

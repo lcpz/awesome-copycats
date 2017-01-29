@@ -253,9 +253,6 @@ theme.volume = lain.widgets.alsabar({
     }
 })
 theme.volume.tooltip.wibox.fg = theme.fg_focus
-local volumebg = wibox.container.background(theme.volume.bar, "#474747", gears.shape.rectangle)
-local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
-
 theme.volume.bar:buttons(awful.util.table.join (
           awful.button({}, 1, function()
             awful.spawn.with_shell(string.format("%s -e alsamixer", terminal))
@@ -277,6 +274,8 @@ theme.volume.bar:buttons(awful.util.table.join (
             theme.volume.update()
           end)
 ))
+local volumebg = wibox.container.background(theme.volume.bar, "#474747", gears.shape.rectangle)
+local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
 
 -- Weather
 theme.weather = lain.widgets.weather({
