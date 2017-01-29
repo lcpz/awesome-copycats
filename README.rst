@@ -86,6 +86,7 @@ Usage
 =====
 
 ::
+
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
 
