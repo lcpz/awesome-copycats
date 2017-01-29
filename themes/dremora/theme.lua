@@ -185,6 +185,7 @@ theme.weather = lain.widgets.weather({
 local first     = wibox.widget.textbox('<span font="Misc Tamsyn 4"> </span>')
 local arrl_pre  = separators.arrow_right("alpha", "#1A1A1A")
 local arrl_post = separators.arrow_right("#1A1A1A", "alpha")
+
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
