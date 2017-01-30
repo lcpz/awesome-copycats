@@ -36,7 +36,6 @@ theme.menu_width                                = 160
 theme.menu_icon_size                            = 32
 theme.awesome_icon                              = theme.icon_dir .. "/awesome_icon_white.png"
 theme.awesome_icon_launcher                     = theme.icon_dir .. "/awesome_icon.png"
-theme.vol_bg                                    = theme.icon_dir .. "/vol_bg.png"
 theme.taglist_squares_sel                       = theme.icon_dir .. "/square_sel.png"
 theme.taglist_squares_unsel                     = theme.icon_dir .. "/square_unsel.png"
 theme.spr_small                                 = theme.icon_dir .. "/spr_small.png"
@@ -59,7 +58,6 @@ theme.cpu                                       = theme.icon_dir .. "/cpu.png"
 theme.net_up                                    = theme.icon_dir .. "/net_up.png"
 theme.net_down                                  = theme.icon_dir .. "/net_down.png"
 theme.layout_tile                               = theme.icon_dir .. "/tile.png"
-theme.layout_tilegaps                           = theme.icon_dir .. "/tilegaps.png"
 theme.layout_tileleft                           = theme.icon_dir .. "/tileleft.png"
 theme.layout_tilebottom                         = theme.icon_dir .. "/tilebottom.png"
 theme.layout_tiletop                            = theme.icon_dir .. "/tiletop.png"
@@ -269,7 +267,6 @@ theme.weather = lain.widgets.weather({
 -- Launcher
 local mylauncher = awful.widget.button({ image = theme.awesome_icon_launcher })
 mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:toggle() end)
---awful.widget.launcher({ image = theme.awesome_icon_launcher, command = awful.util.mymainmenu:toggle() })
 
 -- Separators
 local first = wibox.widget.textbox('<span font="Roboto 7"> </span>')
