@@ -12,7 +12,6 @@ local awful        = require("awful")
 local wibox        = require("wibox")
 local theme_assets = require("beautiful.theme_assets")
 local math, string, tonumber, os = math, string, tonumber, os
-local client = client
 
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
@@ -114,7 +113,6 @@ local markup = lain.util.markup
 local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "%a %d %b, %H:%M"))
 mytextclock.font = theme.font
 lain.widgets.calendar({
-    cal = "/usr/bin/cal --color=always",
     attach_to = { mytextclock },
     notification_preset = {
         fg = "#FFFFFF",
@@ -403,23 +401,5 @@ function theme.at_screen_connect(s)
         gears.surface.apply_shape_bounding(s.myleftwibox, dockshape)
     end)
 end
-
---[[
-client.connect_signal("property::width",function(c)
-    if c.shape ~= gears.shape.rounded_rect then
-        c.shape = gears.shape.rounded_rect
-    end
-end)
-client.connect_signal("property::height",function(c)
-    if c.shape ~= gears.shape.rounded_rect then
-        c.shape = gears.shape.rounded_rect
-    end
-end)
-client.connect_signal("property::width",function(c)
-    if c.shape ~= gears.shape.rounded_rect then
-        c.shape = gears.shape.rounded_rect
-    end
-end)
---]]
 
 return theme
