@@ -4,4 +4,4 @@
 
 [submodule "freedesktop"]
 	path = freedesktop
-	url = git@github.com:copycat-killer/awesome-freedesktop.git
+	url = git://github.com/copycat-killer/awesome-freedesktop.git
