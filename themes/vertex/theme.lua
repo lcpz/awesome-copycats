@@ -12,6 +12,7 @@ local awful        = require("awful")
 local wibox        = require("wibox")
 local theme_assets = require("beautiful.theme_assets")
 local math, string, tonumber, os = math, string, tonumber, os
+local client = client
 
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
@@ -113,13 +114,14 @@ local markup = lain.util.markup
 local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "%a %d %b, %H:%M"))
 mytextclock.font = theme.font
 lain.widgets.calendar({
-attach_to = { mytextclock },
-notification_preset = {
-    fg = "#FFFFFF",
-    bg = theme.bg_normal,
-    position = "top_middle",
-    font = "Monospace 10"
-}
+    cal = "/usr/bin/cal --color=always",
+    attach_to = { mytextclock },
+    notification_preset = {
+        fg = "#FFFFFF",
+        bg = theme.bg_normal,
+        position = "top_middle",
+        font = "Monospace 10"
+    }
 })
 
 -- Battery
@@ -326,7 +328,7 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             s.mypromptbox,
             tspace1,
-            wibox.container.constraint(s.mytasklist, "min", s.workarea.width/4),
+            wibox.container.constraint(wibox.container.constraint(s.mytasklist, "min", s.workarea.width/4), "max", s.workarea.width/4),
         },
         { -- Middle widgets
             layout = wibox.layout.flex.horizontal,
@@ -401,5 +403,23 @@ function theme.at_screen_connect(s)
         gears.surface.apply_shape_bounding(s.myleftwibox, dockshape)
     end)
 end
+
+--[[
+client.connect_signal("property::width",function(c)
+    if c.shape ~= gears.shape.rounded_rect then
+        c.shape = gears.shape.rounded_rect
+    end
+end)
+client.connect_signal("property::height",function(c)
+    if c.shape ~= gears.shape.rounded_rect then
+        c.shape = gears.shape.rounded_rect
+    end
+end)
+client.connect_signal("property::width",function(c)
+    if c.shape ~= gears.shape.rounded_rect then
+        c.shape = gears.shape.rounded_rect
+    end
+end)
+--]]
 
 return theme
