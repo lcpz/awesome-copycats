@@ -11,7 +11,7 @@ local lain         = require("lain")
 local awful        = require("awful")
 local wibox        = require("wibox")
 local theme_assets = require("beautiful.theme_assets")
-local math, string, tonumber, os = math, string, tonumber, os
+local math, string, tonumber, type, os = math, string, tonumber, type, os
 
 local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
@@ -155,6 +155,25 @@ local bat = lain.widgets.bat({
     end
 })
 
+-- MPD
+theme.mpd = lain.widgets.mpd({
+    music_dir = "/mnt/storage/Downloads/Music",
+    settings = function()
+        if mpd_now.state == "play" then
+            title = mpd_now.title
+            artist  = "  " .. mpd_now.artist  .. " "
+        elseif mpd_now.state == "pause" then
+            title = "mpd "
+            artist  = "paused "
+        else
+            title  = ""
+            artist = ""
+        end
+
+        widget:set_markup(markup.font(theme.font, title .. markup(theme.fg_focus, artist)))
+    end
+})
+
 -- ALSA volume
 local volicon = wibox.widget.imagebox()
 theme.volume = lain.widgets.alsabar({
@@ -246,13 +265,13 @@ mylauncher:connect_signal("button::press", function() awful.util.mymainmenu:togg
 -- Separators
 local space = wibox.widget.textbox(" ")
 local rspace1 = wibox.widget.textbox()
-local rspace11 = wibox.widget.textbox()
+local rspace0 = wibox.widget.textbox()
 local rspace2 = wibox.widget.textbox()
 local rspace3 = wibox.widget.textbox()
 local tspace1 = wibox.widget.textbox()
 tspace1.forced_width = 18
 rspace1.forced_width = 16
-rspace11.forced_width = 18
+rspace0.forced_width = 18
 rspace2.forced_width = 19
 rspace3.forced_width = 21
 
@@ -326,7 +345,7 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             s.mypromptbox,
             tspace1,
-            wibox.container.constraint(wibox.container.constraint(s.mytasklist, "min", s.workarea.width/4), "max", s.workarea.width/4),
+            wibox.container.constraint(s.mytasklist, "exact", s.workarea.width/2.6),
         },
         { -- Middle widgets
             layout = wibox.layout.flex.horizontal,
@@ -335,12 +354,13 @@ function theme.at_screen_connect(s)
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            wibox.container.constraint(space, "min", s.workarea.width/4),
+            wibox.container.constraint(wibox.widget { nil, nil, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "exact", s.workarea.width/3),
+            rspace0,
             theme.weather.icon,
             theme.weather.widget,
             rspace1,
             wificon,
-            rspace11,
+            rspace0,
             volicon,
             rspace2,
             baticon,
