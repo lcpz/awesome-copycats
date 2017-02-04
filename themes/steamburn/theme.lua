@@ -223,10 +223,10 @@ function theme.at_screen_connect(s)
     awful.tag.attached_connect_signal(s, "property::selected", function () update_txt_layoutbox(s) end)
     awful.tag.attached_connect_signal(s, "property::layout", function () update_txt_layoutbox(s) end)
     s.mytxtlayoutbox:buttons(awful.util.table.join(
-                           awful.button({}, 1, function() awful.layout.inc(layouts, 1) end),
-                           awful.button({}, 3, function() awful.layout.inc(layouts, -1) end),
-                           awful.button({}, 4, function() awful.layout.inc(layouts, 1) end),
-                           awful.button({}, 5, function() awful.layout.inc(layouts, -1) end)))
+                           awful.button({}, 1, function() awful.layout.inc(1) end),
+                           awful.button({}, 3, function() awful.layout.inc(-1) end),
+                           awful.button({}, 4, function() awful.layout.inc(1) end),
+                           awful.button({}, 5, function() awful.layout.inc(-1) end)))
 
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
