@@ -10,7 +10,6 @@ local gears        = require("gears")
 local lain         = require("lain")
 local awful        = require("awful")
 local wibox        = require("wibox")
-local theme_assets = require("beautiful.theme_assets")
 local math, string, tonumber, type, os = math, string, tonumber, type, os
 
 local theme                                     = {}
@@ -30,8 +29,9 @@ theme.border_normal                             = "#252525"
 theme.border_focus                              = "#7CA2EE"
 theme.tooltip_border_color                      = theme.fg_focus
 theme.tooltip_border_width                      = theme.border_width
-theme.menu_height                               = 24 
+theme.menu_height                               = 24
 theme.menu_width                                = 140
+theme.awesome_icon                              = theme.icon_dir .. "/awesome.png"
 theme.taglist_squares_sel                       = theme.icon_dir .. "/square_sel.png"
 theme.taglist_squares_unsel                     = theme.icon_dir .. "/square_unsel.png"
 theme.panelbg                                   = theme.icon_dir .. "/panel.png"
@@ -104,9 +104,6 @@ theme.titlebar_maximized_button_focus_active    = theme.default_dir.."/titlebar/
 
 -- http://fontawesome.io/cheatsheet
 awful.util.tagnames = { " ", " ", " ", " ", " ", " ", " ", " ", " " }
-
--- Generate Awesome icon
-theme.awesome_icon = theme_assets.awesome_icon(36, theme.fg_normal, theme.bg_normal)
 
 local markup = lain.util.markup
 
