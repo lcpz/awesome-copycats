@@ -8,7 +8,7 @@
 
 -- {{{ Required libraries
 local awesome, client, screen, tag = awesome, client, screen, tag
-local pairs, string, os, table, tostring, tonumber, type = pairs, string, os, table, tostring, tonumber, type
+local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
 local gears         = require("gears")
 local awful         = require("awful")
@@ -44,17 +44,18 @@ end
 -- }}}
 
 -- {{{ Autostart windowless processes
-local function run_once(cmd)
-  findme = cmd
-  firstspace = cmd:find(" ")
-  if firstspace then
-     findme = cmd:sub(0, firstspace-1)
-  end
-  awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd))
+local function run_once(cmd_arr)
+    for _, cmd in ipairs(cmd_arr) do
+        findme = cmd
+        firstspace = cmd:find(" ")
+        if firstspace then
+            findme = cmd:sub(0, firstspace-1)
+        end
+        awful.spawn.with_shell(string.format("pgrep -u $USER -x %s > /dev/null || (%s)", findme, cmd))
+    end
 end
 
-run_once("urxvtd")
-run_once("unclutter -root")
+run_once({ "urxvtd", "unclutter -root" })
 -- }}}
 
 -- {{{ Variable definitions
@@ -449,14 +450,6 @@ globalkeys = awful.util.table.join(
               {description = "lua execute prompt", group = "awesome"})
     --]]
 )
-
-clientkeys = {}
-function clientkey(mod, key, func, desc)
-   local key = awful.key(mod, key, func, desc)
-   for k,v in pairs(key) do
-      tinsert(clientkeys, v)
-   end
-end
 
 clientkeys = awful.util.table.join(
     awful.key({ altkey, "Shift"   }, "m",      lain.util.magnify_client                         ),
