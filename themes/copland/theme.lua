@@ -98,7 +98,7 @@ local mytextclock = wibox.widget.textclock("<span font='Tamzen 5'> </span>%H:%M 
 mytextclock.font = theme.font
 
 -- Calendar
-lain.widgets.calendar({
+lain.widget.calendar({
     attach_to = { mytextclock },
     notification_preset = {
         font = "Tamzen 11",
@@ -109,7 +109,7 @@ lain.widgets.calendar({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -130,7 +130,7 @@ local mail = lain.widgets.imap({
 
 -- MPD
 local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function()
         if mpd_now.state == "play" then
             title = mpd_now.title
@@ -165,7 +165,7 @@ local batbar = wibox.widget {
     ticks_size       = 6,
     widget           = wibox.widget.progressbar,
 }
-local batupd = lain.widgets.bat({
+local batupd = lain.widget.bat({
     settings = function()
         if bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
 
@@ -213,7 +213,7 @@ local fsbar = wibox.widget {
     ticks_size       = 6,
     widget           = wibox.widget.progressbar,
 }
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Tamzen 10.5" },
@@ -231,7 +231,7 @@ local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
 
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(theme.vol)
-theme.volume = lain.widgets.alsabar({
+theme.volume = lain.widget.alsabar({
     width = 59, border_width = 0, ticks = true, ticks_size = 6,
     notification_preset = { font = theme.font },
     --togglechannel = "IEC958,3",
@@ -278,7 +278,7 @@ local volumebg = wibox.container.background(theme.volume.bar, "#474747", gears.s
 local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
 
 -- Weather
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
 })
 

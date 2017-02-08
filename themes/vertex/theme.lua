@@ -111,7 +111,7 @@ local markup = lain.util.markup
 --os.setlocale(os.getenv("LANG")) -- to localize the clock
 local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "%a %d %b, %H:%M"))
 mytextclock.font = theme.font
-lain.widgets.calendar({
+lain.widget.calendar({
     attach_to = { mytextclock },
     notification_preset = {
         fg = "#FFFFFF",
@@ -134,7 +134,7 @@ battooltip.timeout = 0
 battooltip:set_shape(function(cr, width, height)
     gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - 35)
 end)
-local bat = lain.widgets.bat({
+local bat = lain.widget.bat({
     settings = function()
         local index, perc = "bat", tonumber(bat_now.perc) or 0
 
@@ -162,7 +162,7 @@ local bat = lain.widgets.bat({
 })
 
 -- MPD
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     music_dir = "/mnt/storage/Downloads/Music",
     settings = function()
         if mpd_now.state == "play" then
@@ -182,7 +182,7 @@ theme.mpd = lain.widgets.mpd({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox()
-theme.volume = lain.widgets.alsabar({
+theme.volume = lain.widget.alsabar({
     togglechannel = "IEC958,3",
     notification_preset = { font = "Monospace 12", fg = theme.fg_normal },
     settings = function()
@@ -240,7 +240,7 @@ wifitooltip.timeout = 0
 wifitooltip:set_shape(function(cr, width, height)
     gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - 120)
 end)
-local mywifisig = lain.widgets.abase({
+local mywifisig = lain.widget.watch({
     cmd = { awful.util.shell, "-c", "awk 'NR==3 {printf(\"%d-%.0f\\n\",$2, $3*10/7)}' /proc/net/wireless; iw dev wlan0 link" },
     settings = function()
         local carrier, perc = output:match("(%d)-(%d+)")
@@ -269,7 +269,7 @@ local mywifisig = lain.widgets.abase({
 wificon:connect_signal("button::press", function() awful.spawn(string.format("%s -e wavemon", awful.util.terminal)) end)
 
 -- Weather
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Monospace 10" },
     settings = function()

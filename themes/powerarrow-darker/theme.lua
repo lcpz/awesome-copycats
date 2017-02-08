@@ -92,7 +92,7 @@ local separators = lain.util.separators
 
 -- Textclock
 local clockicon = wibox.widget.imagebox(theme.widget_clock)
-local clock = lain.widgets.abase({
+local clock = lain.widget.watch({
     timeout  = 60,
     cmd      = " date +'%a %d %b %R'",
     settings = function()
@@ -101,7 +101,7 @@ local clock = lain.widgets.abase({
 })
 
 -- Calendar
-theme.cal = lain.widgets.calendar({
+theme.cal = lain.widget.calendar({
     attach_to = { clock.widget },
     notification_preset = {
         font = "xos4 Terminus 10",
@@ -114,7 +114,7 @@ theme.cal = lain.widgets.calendar({
 local mailicon = wibox.widget.imagebox(theme.widget_mail)
 --[[ commented because it needs to be set before use
 mailicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn(mail) end)))
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -134,7 +134,7 @@ local mail = lain.widgets.imap({
 -- MPD
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(awful.util.table.join(awful.button({ }, 1, function () awful.util.spawn_with_shell(musicplr) end)))
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function()
         if mpd_now.state == "play" then
             artist = " " .. mpd_now.artist .. " "
@@ -155,7 +155,7 @@ theme.mpd = lain.widgets.mpd({
 
 -- MEM
 local memicon = wibox.widget.imagebox(theme.widget_mem)
-local mem = lain.widgets.mem({
+local mem = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. "MB "))
     end
@@ -163,7 +163,7 @@ local mem = lain.widgets.mem({
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widgets.cpu({
+local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. cpu_now.usage .. "% "))
     end
@@ -171,7 +171,7 @@ local cpu = lain.widgets.cpu({
 
 -- Coretemp
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
-local temp = lain.widgets.temp({
+local temp = lain.widget.temp({
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. coretemp_now .. "°C "))
     end
@@ -179,7 +179,7 @@ local temp = lain.widgets.temp({
 
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_hdd)
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     options  = "--exclude-type=tmpfs",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "xos4 Terminus 10" },
     settings = function()
@@ -189,7 +189,7 @@ theme.fs = lain.widgets.fs({
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_battery)
-local bat = lain.widgets.bat({
+local bat = lain.widget.bat({
     settings = function()
         if bat_now.status ~= "N/A" then
             if bat_now.ac_status == 1 then
@@ -213,7 +213,7 @@ local bat = lain.widgets.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widgets.alsa({
+theme.volume = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
             volicon:set_image(theme.widget_vol_mute)
@@ -231,7 +231,7 @@ theme.volume = lain.widgets.alsa({
 
 -- Net
 local neticon = wibox.widget.imagebox(theme.widget_net)
-local net = lain.widgets.net({
+local net = lain.widget.net({
     settings = function()
         widget:set_markup(markup.font(theme.font,
                           markup("#7AC82E", " " .. net_now.received)

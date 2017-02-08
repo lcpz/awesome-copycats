@@ -111,7 +111,7 @@ local mytextcalendar = wibox.widget.textclock(markup.fontfg(theme.font, "#FFFFFF
 local calendar_icon = wibox.widget.imagebox(theme.calendar)
 local calbg = wibox.container.background(mytextcalendar, theme.bg_focus, gears.shape.rectangle)
 local calendarwidget = wibox.container.margin(calbg, 0, 0, 5, 5)
-lain.widgets.calendar({
+lain.widget.calendar({
     attach_to = { mytextclock, mytextcalendar },
     notification_preset = {
         fg = "#FFFFFF",
@@ -123,7 +123,7 @@ lain.widgets.calendar({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -150,7 +150,7 @@ local next_icon = wibox.widget.imagebox(theme.nex)
 local stop_icon = wibox.widget.imagebox(theme.stop)
 local pause_icon = wibox.widget.imagebox(theme.pause)
 local play_pause_icon = wibox.widget.imagebox(theme.play)
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function ()
         if mpd_now.state == "play" then
             mpd_now.artist = mpd_now.artist:upper():gsub("&.-;", string.lower)
@@ -201,7 +201,7 @@ end)))
 
 -- Battery
 --[[
-local bat = lain.widgets.bat({
+local bat = lain.widget.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -214,13 +214,13 @@ local bat = lain.widgets.bat({
 --]]
 --
 --  fs
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     options = "--exclude-type=tmpfs",
     notification_preset = { bg = theme.bg_normal, font = "Monospace 9, " },
 })
 
 -- ALSA volume bar
-theme.volume = lain.widgets.alsabar({
+theme.volume = lain.widget.alsabar({
     notification_preset = { font = "Monospace 9"},
     --togglechannel = "IEC958,3",
     width = 80, height = 10, border_width = 0,
@@ -237,7 +237,7 @@ volumewidget = wibox.container.margin(volumewidget, 0, 0, 5, 5)
 
 -- CPU
 local cpu_icon = wibox.widget.imagebox(theme.cpu)
-local cpu = lain.widgets.cpu({
+local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(space3 .. markup.font(theme.font, "CPU " .. cpu_now.usage
                           .. "% ") .. markup.font("Roboto 5", " "))
@@ -249,7 +249,7 @@ local cpuwidget = wibox.container.margin(cpubg, 0, 0, 5, 5)
 -- Net
 local netdown_icon = wibox.widget.imagebox(theme.net_down)
 local netup_icon = wibox.widget.imagebox(theme.net_up)
-local net = lain.widgets.net({
+local net = lain.widget.net({
     settings = function()
         widget:set_markup(markup.font("Roboto 1", " ") .. markup.font(theme.font, net_now.received .. " - "
                           .. net_now.sent) .. markup.font("Roboto 2", " "))
@@ -259,7 +259,7 @@ local netbg = wibox.container.background(net.widget, theme.bg_focus, gears.shape
 local networkwidget = wibox.container.margin(netbg, 0, 0, 5, 5)
 
 -- Weather
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Monospace 9", position = "bottom_right" },
 })

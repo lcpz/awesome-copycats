@@ -91,7 +91,7 @@ local mytextclock = wibox.widget.textclock(markup(white, " %H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
-lain.widgets.calendar({
+lain.widget.calendar({
     attach_to = { mytextclock },
     notification_preset = {
         font = "Misc Tamsyn 11",
@@ -102,7 +102,7 @@ lain.widgets.calendar({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -124,7 +124,7 @@ local mail = lain.widgets.imap({
 ]]
 
 -- MPD
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset.fg = white
 
@@ -144,7 +144,7 @@ theme.mpd = lain.widgets.mpd({
 })
 
 -- /home fs
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
     notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
@@ -162,7 +162,7 @@ theme.fs = lain.widgets.fs({
 })
 
 -- ALSA volume bar
-theme.volume = lain.widgets.alsabar({
+theme.volume = lain.widget.alsabar({
     ticks = true, width = 67,
     notification_preset = { font = theme.font }
 })
@@ -193,7 +193,7 @@ local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.s
 local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
 
 -- Weather
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = theme.font, fg = white }
 })

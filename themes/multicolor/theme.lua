@@ -100,7 +100,7 @@ local mytextclock = wibox.widget.textclock(markup("#7788af", "%A %d %B ") .. mar
 mytextclock.font = theme.font
 
 -- Calendar
-theme.cal = lain.widgets.calendar({
+theme.cal = lain.widget.calendar({
     attach_to = { mytextclock },
     notification_preset = {
         font = "xos4 Terminus 10",
@@ -111,7 +111,7 @@ theme.cal = lain.widgets.calendar({
 
 -- Weather
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
     weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
@@ -124,7 +124,7 @@ theme.weather = lain.widgets.weather({
 
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_fs)
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     options = "--exclude-type=tmpfs",
     notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
     settings  = function()
@@ -135,7 +135,7 @@ theme.fs = lain.widgets.fs({
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
 local mailicon = wibox.widget.imagebox()
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -157,7 +157,7 @@ local mail = lain.widgets.imap({
 
 -- CPU
 local cpuicon = wibox.widget.imagebox(theme.widget_cpu)
-local cpu = lain.widgets.cpu({
+local cpu = lain.widget.cpu({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e33a6e", cpu_now.usage .. "% "))
     end
@@ -165,7 +165,7 @@ local cpu = lain.widgets.cpu({
 
 -- Coretemp
 local tempicon = wibox.widget.imagebox(theme.widget_temp)
-local temp = lain.widgets.temp({
+local temp = lain.widget.temp({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#f1af5f", coretemp_now .. "°C "))
     end
@@ -173,7 +173,7 @@ local temp = lain.widgets.temp({
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_batt)
-local bat = lain.widgets.bat({
+local bat = lain.widget.bat({
     settings = function()
         if bat_now.perc ~= "N/A" then
             bat_now.perc = bat_now.perc .. "%"
@@ -188,7 +188,7 @@ local bat = lain.widgets.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox(theme.widget_vol)
-theme.volume = lain.widgets.alsa({
+theme.volume = lain.widget.alsa({
     settings = function()
         if volume_now.status == "off" then
             volume_now.level = volume_now.level .. "M"
@@ -202,7 +202,7 @@ theme.volume = lain.widgets.alsa({
 local netdownicon = wibox.widget.imagebox(theme.widget_netdown)
 local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
-local netupinfo = lain.widgets.net({
+local netupinfo = lain.widget.net({
     settings = function()
         if iface ~= "network off" and
            string.match(theme.weather.widget.text, "N/A")
@@ -217,7 +217,7 @@ local netupinfo = lain.widgets.net({
 
 -- MEM
 local memicon = wibox.widget.imagebox(theme.widget_mem)
-local memory = lain.widgets.mem({
+local memory = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.fontfg(theme.font, "#e0da37", mem_now.used .. "M "))
     end
@@ -225,7 +225,7 @@ local memory = lain.widgets.mem({
 
 -- MPD
 local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset = {
             text = string.format("%s [%s] - %s\n%s", mpd_now.artist,

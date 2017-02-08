@@ -84,7 +84,7 @@ local mytextclock = wibox.widget.textclock(" %H:%M ")
 mytextclock.font = theme.font
 
 -- Calendar
-lain.widgets.calendar({
+lain.widget.calendar({
     attach_to = { mytextclock },
     notification_preset = {
         font = "Misc Tamsyn 11",
@@ -95,7 +95,7 @@ lain.widgets.calendar({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -115,7 +115,7 @@ local mail = lain.widgets.imap({
 --]]
 
 -- MPD
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function()
         artist = mpd_now.artist .. " "
         title  = mpd_now.title  .. " "
@@ -133,28 +133,28 @@ theme.mpd = lain.widgets.mpd({
 })
 
 -- CPU
-local cpu = lain.widgets.sysload({
+local cpu = lain.widget.sysload({
     settings = function()
         widget:set_markup(markup.font(theme.font, markup(gray, " Cpu ") .. load_1 .. " "))
     end
 })
 
 -- MEM
-local mem = lain.widgets.mem({
+local mem = lain.widget.mem({
     settings = function()
         widget:set_markup(markup.font(theme.font, markup(gray, " Mem ") .. mem_now.used .. " "))
     end
 })
 
 -- /home fs
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     options = "--exclude-type=tmpfs",
     partition = "/home",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
 })
 
 -- Battery
-local bat = lain.widgets.bat({
+local bat = lain.widget.bat({
     settings = function()
         bat_perc = bat_now.perc
         if bat_now.ac_status == 1 then bat_perc = "Plug" end
@@ -163,7 +163,7 @@ local bat = lain.widgets.bat({
 })
 
 -- Net checker
-local net = lain.widgets.net({
+local net = lain.widget.net({
     settings = function()
         if net_now.state == "up" then net_state = "On"
         else net_state = "Off" end
@@ -172,7 +172,7 @@ local net = lain.widgets.net({
 })
 
 -- ALSA volume
-theme.volume = lain.widgets.alsa({
+theme.volume = lain.widget.alsa({
     settings = function()
         header = " Vol "
         vlevel  = volume_now.level
@@ -188,7 +188,7 @@ theme.volume = lain.widgets.alsa({
 })
 
 -- Weather
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
 })
 

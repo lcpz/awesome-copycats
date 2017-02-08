@@ -82,7 +82,7 @@ local mytextclock = wibox.widget.textclock(markup(gray, " %a")
 mytextclock.font = theme.font
 
 -- Calendar
-lain.widgets.calendar({
+lain.widget.calendar({
     attach_to = { mytextclock },
     notification_preset = {
         font = "Misc Tamsyn 11",
@@ -92,7 +92,7 @@ lain.widgets.calendar({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mail = lain.widgets.imap({
+local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -113,7 +113,7 @@ local mail = lain.widgets.imap({
 --]]
 
 -- MPD
-theme.mpd = lain.widgets.mpd({
+theme.mpd = lain.widget.mpd({
     settings = function()
         mpd_notification_preset.fg = white
         artist = mpd_now.artist .. " "
@@ -132,7 +132,7 @@ theme.mpd = lain.widgets.mpd({
 })
 
 -- /home fs
-theme.fs = lain.widgets.fs({
+theme.fs = lain.widget.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
     notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
@@ -150,7 +150,7 @@ theme.fs = lain.widgets.fs({
 })
 
 -- Battery
-local bat = lain.widgets.bat({
+local bat = lain.widget.bat({
     settings = function()
         bat_header = " Bat "
         bat_p      = bat_now.perc .. " "
@@ -159,7 +159,7 @@ local bat = lain.widgets.bat({
 })
 
 -- ALSA volume
-theme.volume = lain.widgets.alsa({
+theme.volume = lain.widget.alsa({
     --togglechannel = "IEC958,3",
     settings = function()
         header = " Vol "
@@ -176,7 +176,7 @@ theme.volume = lain.widgets.alsa({
 })
 
 -- Weather
-theme.weather = lain.widgets.weather({
+theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { fg = white }
 })
