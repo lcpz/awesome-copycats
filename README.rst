@@ -48,7 +48,7 @@ Gallery
 
 **Powerarrow Darker**, inspired by romockee_
 
-.. image:: http://dotshare.it/public/images/uploads/649.png
+.. image:: http://dotshare.it/public/images/uploads/649.jpg
 
 **Steamburn**, porting of ok100_'s dwm
 
@@ -96,7 +96,7 @@ Usage
 
 Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, do your settings, and restart Awesome (``Mod4 + ctrl + r``).
 
-To customize a theme, head over ``themes/$chosen_teme/theme.lua``.
+To customize a theme, head over ``themes/$chosen_theme/theme.lua``.
 
 Notes
 =====
@@ -107,7 +107,7 @@ Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ 
 
 Every theme has a colorscheme_.
 
-Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian_ or Ubuntu_.
+Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
 Additional software used: ::
 
@@ -128,6 +128,5 @@ Additional software used: ::
 .. _Tamsyn: http://www.fial.com/~scott/tamsyn-font
 .. _colorscheme: https://github.com/copycat-killer/dots/tree/master/.colors
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
-.. _Debian: http://weiwu.sdf.org/100921.html
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
 .. _FontAwesome: https://github.com/FortAwesome/Font-Awesome
