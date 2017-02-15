@@ -316,6 +316,10 @@ local barcolor2 = gears.color({
     stops = { {0, "#323232"}, {1, theme.bg_normal} }
 })
 
+local dockshape = function(cr, width, height)
+    gears.shape.partially_rounded_rect(cr, width, height, false, true, true, false, 6)
+end
+
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal, border = theme.border_width })
@@ -390,12 +394,13 @@ function theme.at_screen_connect(s)
     }
 
     -- Create the vertical wibox
-    local dockheight = (40 *  s.workarea.height)/100
-    local dockshape = function(cr, width, height)
-        gears.shape.partially_rounded_rect(cr, width, height, false, true, true, false, 6)
-    end
+    s.dockheight = (40 *  s.workarea.height)/100
 
-    s.myleftwibox = wibox({ screen = s, x=0, y=s.workarea.height/2 - dockheight/2, width = 6, height = dockheight, fg = theme.fg_normal, bg = barcolor2, ontop = true, visible = true, type = "dock" })
+    s.myleftwibox = wibox({ screen = s, x=0, y=s.workarea.height/2 - s.dockheight/2, width = 6, height = s.dockheight, fg = theme.fg_normal, bg = barcolor2, ontop = true, visible = true, type = "dock" })
+
+    if s.index > 1 and s.myleftwibox.y == 0 then
+        s.myleftwibox.y = screen[1].myleftwibox.y
+    end
 
     -- Add widgets to the vertical wibox
     s.myleftwibox:setup {
@@ -413,12 +418,14 @@ function theme.at_screen_connect(s)
     -- Add toggling functionalities
     s.docktimer = gears.timer{ timeout = 2 }
     s.docktimer:connect_signal("timeout", function()
+        local s = awful.screen.focused()
         s.myleftwibox.width = 6
         s.layoutb.visible = false
         mylauncher.visible = false
         s.docktimer:stop()
     end)
     tag.connect_signal("property::selected", function(t)
+        local s = t.screen or awful.screen.focused()
         s.myleftwibox.width = 46
         s.layoutb.visible = true
         mylauncher.visible = true
@@ -429,12 +436,14 @@ function theme.at_screen_connect(s)
     end)
 
     s.myleftwibox:connect_signal("mouse::leave", function()
+        local s = awful.screen.focused()
         s.myleftwibox.width = 6
         s.layoutb.visible = false
         mylauncher.visible = false
     end)
 
     s.myleftwibox:connect_signal("mouse::enter", function()
+        local s = awful.screen.focused()
         s.myleftwibox.width = 46
         s.layoutb.visible = true
         mylauncher.visible = true
