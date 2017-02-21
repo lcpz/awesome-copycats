@@ -81,7 +81,7 @@ Gallery
 Installation
 ============
 
-::
+.. code-block:: shell
 
     $ git clone --recursive https://github.com/copycat-killer/awesome-copycats.git
     $ mv -bv awesome-copycats/* ~/.config/awesome; rm -r awesome-copycats
@@ -89,7 +89,23 @@ Installation
 Usage
 =====
 
-::
+The modular structure allows to
+
+* set variables
+* define startup processes
+* change keybindings and layouts
+* set client properties
+
+in ``rc.lua``, and
+
+* configure widgets
+* define wiboxes and screen settings
+
+in ``theme.lua``, so that you just need to change ``chosen_theme`` variable in ``rc.lua`` to preserve your preferences *and* switch the theme, instead of having N different ``rc.lua`` full of redundancy.
+
+Just do the following:
+
+.. code-block:: shell
 
     $ cd ~/.config/awesome
     $ cp rc.lua.template rc.lua
@@ -97,6 +113,17 @@ Usage
 Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, do your settings, and restart Awesome (``Mod4 + ctrl + r``).
 
 To customize a theme, head over ``themes/$chosen_theme/theme.lua``.
+
+Otherwise, if you want to be synced with upstream, modify ``theme_path`` variable in ``rc.lua`` like this:
+
+.. code-block:: diff
+
+    -local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
+    +local theme_path = string.format("%s/.config/awesome/themes/%s/theme-personal.lua", os.getenv("HOME"), chosen_theme)
+
+then, copy ``theme.lua`` to ``theme-personal.lua`` and do your customizations there.
+
+This way, you can safely ``git pull`` anytime.
 
 Notes
 =====
