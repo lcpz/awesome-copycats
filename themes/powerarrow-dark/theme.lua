@@ -1,9 +1,9 @@
 
 --[[
-                                            
-     Powerarrow Darker Awesome WM theme 2.0 
-     github.com/copycat-killer              
-                                            
+                                      
+     Powerarrow Dark Awesome WM theme 
+     github.com/copycat-killer        
+                                      
 --]]
 
 local gears = require("gears")
@@ -13,7 +13,7 @@ local wibox = require("wibox")
 local os    = { getenv = os.getenv }
 
 local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-darker"
+theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
 theme.font                                      = "xos4 Terminus 9"
 theme.fg_normal                                 = "#DDDDFF"
