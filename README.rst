@@ -10,6 +10,11 @@ Themes for Awesome WM 4.x
 :License: BY-NC-SA_
 :Source: https://github.com/copycat-killer/awesome-copycats
 
+Warning
+=======
+
+If you still have to use branch 3.5.x, you can refer to the commit b0ab0d7_, but be aware that it's no longer supported.
+
 Description
 ===========
 
@@ -141,6 +146,7 @@ Additional software used: ::
     unclutter firefox scrot mpd mpc dmenu xsel
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
+.. _b0ab0d7: https://github.com/copycat-killer/awesome-copycats/tree/b0ab0d7837987be81b9195a36631df773113d491
 .. _Awesome: http://github.com/awesomeWM/awesome
 .. _lucamanni: https://github.com/lucamanni/awesome
 .. _romockee: https://github.com/romockee/powerarrow
