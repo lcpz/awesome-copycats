@@ -207,7 +207,7 @@ function theme.at_screen_connect(s)
     s.quake = lain.util.quake({ app = awful.util.terminal })
 
     -- If wallpaper is a function, call it with the screen
-    if type(wallpaper) == "function" then
+    if type(theme.wallpaper) == "function" then
         theme.wallpaper = theme.wallpaper(s)
     end
     gears.wallpaper.maximized(theme.wallpaper, s, true)
