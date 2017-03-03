@@ -183,7 +183,7 @@ theme.mpd = lain.widget.mpd({
 -- ALSA volume
 local volicon = wibox.widget.imagebox()
 theme.volume = lain.widget.alsabar({
-    togglechannel = "IEC958,3",
+    --togglechannel = "IEC958,3",
     notification_preset = { font = "Monospace 12", fg = theme.fg_normal },
     settings = function()
         local index, perc = "", tonumber(volume_now.level) or 0

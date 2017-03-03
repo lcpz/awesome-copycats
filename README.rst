@@ -51,7 +51,11 @@ Gallery
 
 .. image:: http://dotshare.it/public/images/uploads/650.png
 
-**Powerarrow Dark**, inspired by romockee_
+**Powerarrow**, porting of romockee_'s
+
+.. image:: http://dotshare.it/public/images/uploads/1453.png
+
+**Powerarrow Dark**
 
 .. image:: http://dotshare.it/public/images/uploads/649.jpg
 
