@@ -175,14 +175,14 @@ local temp = lain.widget.temp({
 local baticon = wibox.widget.imagebox(theme.widget_batt)
 local bat = lain.widget.bat({
     settings = function()
-        if bat_now.perc ~= "N/A" then
-            bat_now.perc = bat_now.perc .. "%"
+        bat_p = bat_now.perc
+        if bat_p ~= "N/A" then
+        bat_p = bat_p .. "%"
         end
         if bat_now.ac_status == 1 then
-            bat_now.perc = bat_now.perc .. " plug"
+            bat_p = bat_p .. " plug"
         end
-
-        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, bat_now.perc .. " "))
+        widget:set_markup(markup.fontfg(theme.font, theme.fg_normal, bat_p .. " "))
     end
 })
 
