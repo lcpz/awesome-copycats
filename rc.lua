@@ -360,7 +360,6 @@ globalkeys = awful.util.table.join(
 						beautiful.volume.update()
 				end),
 
-    awful.key({  }, "F12", function() os.execute("poweroff") end),
     -- BACKLIGHT control
     awful.key({  }, "XF86MonBrightnessUp",   function() os.execute("xbacklight -inc 5") end),
     awful.key({  }, "XF86MonBrightnessDown", function() os.execute("xbacklight -dec 5") end),
