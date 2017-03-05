@@ -65,16 +65,23 @@ local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
 local gui_editor   = "gvim"
-local browser      = "firefox"
+local browser      = "luakit"
 
 awful.util.terminal = terminal
-awful.util.tagnames = { "1", "2", "3", "4", "5" }
+awful.util.tagnames = { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
 awful.layout.layouts = {
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
     awful.layout.suit.floating,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile,
+    awful.layout.suit.tile,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
