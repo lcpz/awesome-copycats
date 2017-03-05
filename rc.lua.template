@@ -59,7 +59,7 @@ run_once({ "urxvtd", "unclutter -root" })
 -- }}}
 
 -- {{{ Variable definitions
-local chosen_theme = "multicolor"
+local chosen_theme = "copland"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
@@ -349,66 +349,66 @@ globalkeys = awful.util.table.join(
 
     -- Widgets popups
     awful.key({ altkey, }, "c", function () lain.widget.calendar.show(7) end),
-    awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end),
-    awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
+    awful.key({ altkey, }, "h", function () if beautiful.widgets.fs then beautiful.widgets.fs.update.show(7) end end),
+    awful.key({ altkey, }, "w", function () if beautiful.widgets.weather then beautiful.widgets.weather.show(7) end end),
 
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
-            os.execute(string.format("amixer set %s 1%%+", beautiful.volume.channel))
-            beautiful.volume.update()
+            os.execute(string.format("amixer set %s 1%%+", beautiful.widgets.vol.channel))
+            beautiful.widgets.vol.update()
         end),
     awful.key({ altkey }, "Down",
         function ()
-            os.execute(string.format("amixer set %s 1%%-", beautiful.volume.channel))
-            beautiful.volume.update()
+            os.execute(string.format("amixer set %s 1%%-", beautiful.widgets.vol.channel))
+            beautiful.widgets.vol.update()
         end),
     awful.key({ altkey }, "m",
         function ()
-            os.execute(string.format("amixer set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
-            beautiful.volume.update()
+            os.execute(string.format("amixer set %s toggle", beautiful.widgets.vol.togglechannel or beautiful.widgets.vol.channel))
+            beautiful.widgets.vol.update()
         end),
     awful.key({ altkey, "Control" }, "m",
         function ()
-            os.execute(string.format("amixer set %s 100%%", beautiful.volume.channel))
-            beautiful.volume.update()
+            os.execute(string.format("amixer set %s 100%%", beautiful.widgets.vol.channel))
+            beautiful.widgets.vol.update()
         end),
 
 		awful.key({ altkey, "Control" }, "0",
 				function ()
-						os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-						beautiful.volume.update()
+						os.execute(string.format("amixer -q set %s 0%%", beautiful.widgets.vol.channel))
+						beautiful.widgets.vol.update()
 				end),
 
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
             awful.spawn.with_shell("mpc toggle")
-            beautiful.mpd.update()
+            beautiful.widgets.mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Down",
         function ()
             awful.spawn.with_shell("mpc stop")
-            beautiful.mpd.update()
+            beautiful.widgets.mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Left",
         function ()
             awful.spawn.with_shell("mpc prev")
-            beautiful.mpd.update()
+            beautiful.widgets.mpd.update()
         end),
     awful.key({ altkey, "Control" }, "Right",
         function ()
             awful.spawn.with_shell("mpc next")
-            beautiful.mpd.update()
+            beautiful.widgets.mpd.update()
         end),
     awful.key({ altkey }, "0",
         function ()
             local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
-            if beautiful.mpd.timer.started then
-                beautiful.mpd.timer:stop()
+            if beautiful.widgets.mpd.timer.started then
+                beautiful.widgets.mpd.timer:stop()
                 common.text = common.text .. lain.util.markup.bold("OFF")
             else
-                beautiful.mpd.timer:start()
+                beautiful.widgets.mpd.timer:start()
                 common.text = common.text .. lain.util.markup.bold("ON")
             end
             naughty.notify(common)

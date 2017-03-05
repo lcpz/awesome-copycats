@@ -92,14 +92,18 @@ local blue   = theme.fg_focus
 local red    = "#EB8F8F"
 local green  = "#8FEB8F"
 
+-- global widgets table
+theme.widgets = {}
+
 -- Textclock
 --os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock("<span font='Tamzen 5'> </span>%H:%M ")
-mytextclock.font = theme.font
+theme.widgets.mytextclock = {}
+theme.widgets.mytextclock.widget = wibox.widget.textclock("<span font='Tamzen 5'> </span>%H:%M ")
+theme.widgets.mytextclock.widget.font = theme.font
 
 -- Calendar
 lain.widget.calendar({
-    attach_to = { mytextclock },
+    attach_to = { theme.widgets.mytextclock.widget },
     notification_preset = {
         font = "Tamzen 11",
         fg   = theme.fg_normal,
@@ -109,7 +113,7 @@ lain.widget.calendar({
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
-local mail = lain.widget.imap({
+theme.widgets.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -129,32 +133,33 @@ local mail = lain.widget.imap({
 --]]
 
 -- MPD
-local mpdicon = wibox.widget.imagebox()
-theme.mpd = lain.widget.mpd({
+theme.widgets.mpd = lain.widget.mpd({
     settings = function()
         if mpd_now.state == "play" then
             title = mpd_now.title
             artist  = " " .. mpd_now.artist  .. markup("#333333", " <span font='Tamzen 2'> </span>|<span font='Tamzen 5'> </span>")
-            mpdicon:set_image(theme.play)
+            theme.widgets.mpd.icon:set_image(theme.play)
         elseif mpd_now.state == "pause" then
             title = "mpd "
             artist  = "paused" .. markup("#333333", " |<span font='Tamzen 5'> </span>")
-            mpdicon:set_image(theme.pause)
+            theme.widgets.mpd.icon:set_image(theme.pause)
         else
             title  = ""
             artist = ""
-            mpdicon._private.image = nil
-            mpdicon:emit_signal("widget::redraw_needed")
-            mpdicon:emit_signal("widget::layout_changed")
+            theme.widgets.mpd.icon._private.image = nil
+            theme.widgets.mpd.icon:emit_signal("widget::redraw_needed")
+            theme.widgets.mpd.icon:emit_signal("widget::layout_changed")
         end
 
         widget:set_markup(markup.font(theme.font, markup(blue, title) .. artist))
     end
 })
+theme.widgets.mpd.icon = wibox.widget.imagebox()
 
 -- Battery
-local baticon = wibox.widget.imagebox(theme.bat)
-local batbar = wibox.widget {
+theme.widgets.bat = {}
+theme.widgets.bat.icon = wibox.widget.imagebox(theme.bat)
+theme.widgets.bat.bar = wibox.widget {
     forced_height    = 1,
     forced_width     = 59,
     color            = theme.fg_normal,
@@ -165,44 +170,45 @@ local batbar = wibox.widget {
     ticks_size       = 6,
     widget           = wibox.widget.progressbar,
 }
-local batupd = lain.widget.bat({
+theme.widgets.bat.update = lain.widget.bat({
     settings = function()
         if bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
 
         if bat_now.status == "Charging" then
-            baticon:set_image(theme.ac)
+            theme.widgets.bat.icon:set_image(theme.ac)
             if bat_now.perc >= 98 then
-                batbar:set_color(green)
+                theme.widgets.bat.bar:set_color(green)
             elseif bat_now.perc > 50 then
-                batbar:set_color(theme.fg_normal)
+                theme.widgets.bat.bar:set_color(theme.fg_normal)
             elseif bat_now.perc > 15 then
-                batbar:set_color(theme.fg_normal)
+                theme.widgets.bat.bar:set_color(theme.fg_normal)
             else
-                batbar:set_color(red)
+                theme.widgets.bat.bar:set_color(red)
             end
         else
             if bat_now.perc >= 98 then
-                batbar:set_color(green)
+                theme.widgets.bat.bar:set_color(green)
             elseif bat_now.perc > 50 then
-                batbar:set_color(theme.fg_normal)
-                baticon:set_image(theme.bat)
+                theme.widgets.bat.bar:set_color(theme.fg_normal)
+                theme.widgets.bat.icon:set_image(theme.bat)
             elseif bat_now.perc > 15 then
-                batbar:set_color(theme.fg_normal)
-                baticon:set_image(theme.bat_low)
+                theme.widgets.bat.bar:set_color(theme.fg_normal)
+                theme.widgets.bat.icon:set_image(theme.bat_low)
             else
-                batbar:set_color(red)
-                baticon:set_image(theme.bat_no)
+                theme.widgets.bat.bar:set_color(red)
+                theme.widgets.bat.icon:set_image(theme.bat_no)
             end
         end
-        batbar:set_value(bat_now.perc / 100)
+        theme.widgets.bat.bar:set_value(bat_now.perc / 100)
     end
 })
-local batbg = wibox.container.background(batbar, "#474747", gears.shape.rectangle)
-local batwidget = wibox.container.margin(batbg, 2, 7, 4, 4)
+theme.widgets.bat.bg = wibox.container.background(theme.widgets.bat.bar, "#474747", gears.shape.rectangle)
+theme.widgets.bat.widget = wibox.container.margin(theme.widgets.bat.bg, 2, 7, 4, 4)
 
 -- /home fs
-local fsicon = wibox.widget.imagebox(theme.disk)
-local fsbar = wibox.widget {
+theme.widgets.fs      = {} 
+theme.widgets.fs.icon = wibox.widget.imagebox(theme.disk)
+theme.widgets.fs.bar  = wibox.widget {
     forced_height    = 1,
     forced_width     = 59,
     color            = theme.fg_normal,
@@ -213,37 +219,36 @@ local fsbar = wibox.widget {
     ticks_size       = 6,
     widget           = wibox.widget.progressbar,
 }
-theme.fs = lain.widget.fs({
+theme.widgets.fs.update = lain.widget.fs({
     partition = "/home",
     options = "--exclude-type=tmpfs",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Tamzen 10.5" },
     settings  = function()
         if tonumber(fs_now.used) < 90 then
-            fsbar:set_color(theme.fg_normal)
+            theme.widgets.fs.bar:set_color(theme.fg_normal)
         else
-            fsbar:set_color("#EB8F8F")
+            theme.widgets.fs.bar:set_color("#EB8F8F")
         end
-        fsbar:set_value(fs_now.used / 100)
+        theme.widgets.fs.bar:set_value(fs_now.used / 100)
     end
 })
-local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)
-local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
+theme.widgets.fs.bg = wibox.container.background(theme.widgets.fs.bar, "#474747", gears.shape.rectangle)
+theme.widgets.fs.widget = wibox.container.margin(theme.widgets.fs.bg, 2, 7, 4, 4)
 
 -- ALSA volume bar
-local volicon = wibox.widget.imagebox(theme.vol)
-theme.volume = lain.widget.alsabar({
+theme.widgets.vol = lain.widget.alsabar({
     width = 59, border_width = 0, ticks = true, ticks_size = 6,
     notification_preset = { font = theme.font },
     --togglechannel = "IEC958,3",
     settings = function()
         if volume_now.status == "off" then
-            volicon:set_image(theme.vol_mute)
+            theme.widgets.vol.icon:set_image(theme.vol_mute)
         elseif volume_now.level == 0 then
-            volicon:set_image(theme.vol_no)
+            theme.widgets.vol.icon:set_image(theme.vol_no)
         elseif volume_now.level <= 50 then
-            volicon:set_image(theme.vol_low)
+            theme.widgets.vol.icon:set_image(theme.vol_low)
         else
-            volicon:set_image(theme.vol)
+            theme.widgets.vol.icon:set_image(theme.vol)
         end
     end,
     colors = {
@@ -252,33 +257,34 @@ theme.volume = lain.widget.alsabar({
         unmute       = theme.fg_normal
     }
 })
-theme.volume.tooltip.wibox.fg = theme.fg_focus
-theme.volume.bar:buttons(awful.util.table.join (
+theme.widgets.vol.icon = wibox.widget.imagebox(theme.vol)
+theme.widgets.vol.tooltip.wibox.fg = theme.fg_focus
+theme.widgets.vol.bar:buttons(awful.util.table.join (
           awful.button({}, 1, function()
             awful.spawn.with_shell(string.format("%s -e alsamixer", awful.util.terminal))
           end),
           awful.button({}, 2, function()
-            awful.spawn(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
-            theme.volume.update()
+            awful.spawn(string.format("%s set %s 100%%", theme.widgets.vol.cmd, theme.widgets.vol.channel))
+            theme.widgets.vol.update()
           end),
           awful.button({}, 3, function()
-            awful.spawn(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
-            theme.volume.update()
+            awful.spawn(string.format("%s set %s toggle", theme.widgets.vol.cmd, theme.volume.togglechannel or theme.widgets.vol.channel))
+            theme.widgets.vol.update()
           end),
           awful.button({}, 4, function()
-            awful.spawn(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
-            theme.volume.update()
+            awful.spawn(string.format("%s set %s 1%%+", theme.widgets.vol.cmd, theme.widgets.vol.channel))
+            theme.widgets.vol.update()
           end),
           awful.button({}, 5, function()
-            awful.spawn(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
-            theme.volume.update()
+            awful.spawn(string.format("%s set %s 1%%-", theme.widgets.vol.cmd, theme.widgets.vol.channel))
+            theme.widgets.vol.update()
           end)
 ))
-local volumebg = wibox.container.background(theme.volume.bar, "#474747", gears.shape.rectangle)
-local volumewidget = wibox.container.margin(volumebg, 2, 7, 4, 4)
+theme.widgets.vol.bg = wibox.container.background(theme.widgets.vol.bar, "#474747", gears.shape.rectangle)
+theme.widgets.vol.widget = wibox.container.margin(theme.widgets.vol.bg, 2, 7, 4, 4)
 
 -- Weather
-theme.weather = lain.widget.weather({
+theme.widgets.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
 })
 
@@ -340,18 +346,18 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             small_spr,
             --mail.widget,
-            mpdicon,
-            theme.mpd.widget,
-            baticon,
-            batwidget,
+            theme.widgets.mpd.icon,
+            theme.widgets.mpd.widget,
+            theme.widgets.bat.icon,
+            theme.widgets.bat.widget,
             bar_spr,
-            fsicon,
-            fswidget,
+            theme.widgets.fs.icon,
+            theme.widgets.fs.widget,
             bar_spr,
-            volicon,
-            volumewidget,
+            theme.widgets.vol.icon,
+            theme.widgets.vol.widget,
             bar_spr,
-            mytextclock,
+            theme.widgets.mytextclock.widget,
         },
     }
 end
