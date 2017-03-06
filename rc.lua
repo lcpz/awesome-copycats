@@ -339,6 +339,23 @@ globalkeys = awful.util.table.join(
     awful.key({ altkey, }, "h", function () if beautiful.fs then beautiful.fs.show(7) end end),
     awful.key({ altkey, }, "w", function () if beautiful.weather then beautiful.weather.show(7) end end),
 
+    -- ALSA volume control for Thinkpad Extra Keypad
+    awful.key({ }, "XF86AudioRaiseVolume",
+        function ()
+            os.execute(string.format("amixer -q set %s 1%%+", beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
+    awful.key({ }, "XF86AudioLowerVolume",
+        function ()
+            os.execute(string.format("amixer -q set %s 1%%-", beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
+    awful.key({ }, "XF86AudioMute",
+        function ()
+            os.execute(string.format("amixer -q set %s toggle", beautiful.volume.togglechannel or beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
+
     -- ALSA volume control
     awful.key({ altkey }, "Up",
         function ()
