@@ -98,7 +98,7 @@ theme.titlebar_maximized_button_normal_inactive = theme.dir .. "/icons/titlebar/
 local markup = lain.util.markup
 local separators = lain.util.separators
 
--- Textclock
+-- Binary clock
 local binclock = require("themes.powerarrow.binclock"){
     height = 16,
     show_seconds = true,
