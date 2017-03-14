@@ -70,11 +70,11 @@ local browser      = "firefox"
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2", "3", "4", "5" }
 awful.layout.layouts = {
-    awful.layout.suit.floating,
     awful.layout.suit.tile,
     awful.layout.suit.tile.left,
     awful.layout.suit.tile.bottom,
     awful.layout.suit.tile.top,
+    awful.layout.suit.floating,
     --awful.layout.suit.fair,
     --awful.layout.suit.fair.horizontal,
     --awful.layout.suit.spiral,
@@ -380,6 +380,11 @@ globalkeys = awful.util.table.join(
 						beautiful.volume.update()
 				end),
 
+    awful.key({  }, "F12", function() os.execute("poweroff") end),
+    -- BACKLIGHT control
+    awful.key({  }, "XF86MonBrightnessUp",   function() os.execute("xbacklight -inc 5") end),
+    awful.key({  }, "XF86MonBrightnessDown", function() os.execute("xbacklight -dec 5") end),
+
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
@@ -570,6 +575,21 @@ awful.rules.rules = {
 
     { rule = { class = "Gimp", role = "gimp-image-window" },
           properties = { maximized = true } },
+
+    { rule = { class = "MPlayer" },
+          properties = { floating = true } },
+
+    { rule = { class = "luakit" },
+          properties = { floating = true,
+                         maximized_horizontal = true,
+                         maximized_vertical = true,
+                         floating = true } },
+
+    { rule = { class = "Zathura" },
+          properties = { floating = true,
+                         maximized_horizontal = true,
+                         maximized_vertical = true,
+                         floating = true } },
 }
 -- }}}
 
