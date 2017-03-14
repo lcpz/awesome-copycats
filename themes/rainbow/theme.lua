@@ -1,73 +1,273 @@
 
 --[[
-                                   
-     Rainbow Awesome WM config 2.0 
-     github.com/copycat-killer     
-                                   
+                                  
+     Rainbow Awesome WM theme 2.0 
+     github.com/copycat-killer    
+                                  
 --]]
 
-theme                               = {}
+local gears = require("gears")
+local lain  = require("lain")
+local awful = require("awful")
+local wibox = require("wibox")
+local os    = { getenv = os.getenv }
 
-theme.dir                           = os.getenv("HOME") .. "/.config/awesome/themes/rainbow"
-theme.wallpaper                     = theme.dir .. "/wall.png"
-
-theme.font                          = "Tamsyn 10.5"
-theme.fg_normal                     = "#9E9E9E"
-theme.fg_focus                      = "#EBEBFF"
-theme.bg_normal                     = "#242424"
-theme.bg_focus                      = "#242424"
-theme.fg_urgent                     = "#000000"
-theme.bg_urgent                     = "#FFFFFF"
-theme.border_width                  = 1
-theme.border_normal                 = "#242424"
-theme.border_focus                  = "#EBEBFF"
-theme.taglist_fg_focus              = "#EDEFFF"
-theme.taglist_bg_focus              = "#242424"
-theme.menu_height                   = "16"
-theme.menu_width                    = "150"
-
-theme.ocol                          = "<span color='" .. theme.fg_normal .. "'>"
-theme.ccol                          = "</span>"
-theme.tasklist_sticky               = theme.ocol .. "[S]" .. theme.ccol
-theme.tasklist_ontop                = theme.ocol .. "[T]" .. theme.ccol
-theme.tasklist_floating             = theme.ocol .. "[F]" .. theme.ccol
-theme.tasklist_maximized_horizontal = theme.ocol .. "[M] " .. theme.ccol
-theme.tasklist_maximized_vertical   = ""
-theme.tasklist_disable_icon         = true
-
-theme.menu_awesome_icon             = theme.dir .."/icons/awesome.png"
-theme.submenu_icon                  = theme.dir .."/icons/submenu.png"
-theme.taglist_squares_sel           = theme.dir .. "/icons/square_sel.png"
-theme.taglist_squares_unsel         = theme.dir .. "/icons/square_unsel.png"
-theme.vol_bg                        = theme.dir .. "/icons/vol_bg.png"
-
-theme.layout_txt_tile               = "[t]"
-theme.layout_txt_tileleft           = "[l]"
-theme.layout_txt_tilebottom         = "[b]"
-theme.layout_txt_tiletop            = "[tt]"
-theme.layout_txt_fairv              = "[fv]"
-theme.layout_txt_fairh              = "[fh]"
-theme.layout_txt_spiral             = "[s]"
-theme.layout_txt_dwindle            = "[d]"
-theme.layout_txt_max                = "[m]"
-theme.layout_txt_fullscreen         = "[F]"
-theme.layout_txt_magnifier          = "[M]"
-theme.layout_txt_floating           = "[*]"
+local theme                                     = {}
+theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
+theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/rainbow"
+theme.wallpaper                                 = theme.dir .. "/wall.png"
+theme.font                                      = "Misc Tamsyn 10.5"
+theme.fg_normal                                 = "#9E9E9E"
+theme.fg_focus                                  = "#EBEBFF"
+theme.bg_normal                                 = "#242424"
+theme.bg_focus                                  = "#242424"
+theme.fg_urgent                                 = "#000000"
+theme.bg_urgent                                 = "#FFFFFF"
+theme.border_width                              = 1
+theme.border_normal                             = "#242424"
+theme.border_focus                              = "#EBEBFF"
+theme.taglist_fg_focus                          = "#EDEFFF"
+theme.taglist_bg_focus                          = "#242424"
+theme.menu_height                               = 16
+theme.menu_width                                = 140
+theme.ocol                                      = "<span color='" .. theme.fg_normal .. "'>"
+theme.tasklist_sticky                           = theme.ocol .. "[S]</span>"
+theme.tasklist_ontop                            = theme.ocol .. "[T]</span>"
+theme.tasklist_floating                         = theme.ocol .. "[F]</span>"
+theme.tasklist_maximized_horizontal             = theme.ocol .. "[M] </span>"
+theme.tasklist_maximized_vertical               = ""
+theme.tasklist_disable_icon                     = true
+theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
+theme.menu_submenu_icon                         = theme.dir .."/icons/submenu.png"
+theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
+theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
+theme.useless_gap                               = 8
+theme.layout_txt_tile                           = "[t]"
+theme.layout_txt_tileleft                       = "[l]"
+theme.layout_txt_tilebottom                     = "[b]"
+theme.layout_txt_tiletop                        = "[tt]"
+theme.layout_txt_fairv                          = "[fv]"
+theme.layout_txt_fairh                          = "[fh]"
+theme.layout_txt_spiral                         = "[s]"
+theme.layout_txt_dwindle                        = "[d]"
+theme.layout_txt_max                            = "[m]"
+theme.layout_txt_fullscreen                     = "[F]"
+theme.layout_txt_magnifier                      = "[M]"
+theme.layout_txt_floating                       = "[*]"
+theme.titlebar_close_button_normal              = theme.default_dir.."/titlebar/close_normal.png"
+theme.titlebar_close_button_focus               = theme.default_dir.."/titlebar/close_focus.png"
+theme.titlebar_minimize_button_normal           = theme.default_dir.."/titlebar/minimize_normal.png"
+theme.titlebar_minimize_button_focus            = theme.default_dir.."/titlebar/minimize_focus.png"
+theme.titlebar_ontop_button_normal_inactive     = theme.default_dir.."/titlebar/ontop_normal_inactive.png"
+theme.titlebar_ontop_button_focus_inactive      = theme.default_dir.."/titlebar/ontop_focus_inactive.png"
+theme.titlebar_ontop_button_normal_active       = theme.default_dir.."/titlebar/ontop_normal_active.png"
+theme.titlebar_ontop_button_focus_active        = theme.default_dir.."/titlebar/ontop_focus_active.png"
+theme.titlebar_sticky_button_normal_inactive    = theme.default_dir.."/titlebar/sticky_normal_inactive.png"
+theme.titlebar_sticky_button_focus_inactive     = theme.default_dir.."/titlebar/sticky_focus_inactive.png"
+theme.titlebar_sticky_button_normal_active      = theme.default_dir.."/titlebar/sticky_normal_active.png"
+theme.titlebar_sticky_button_focus_active       = theme.default_dir.."/titlebar/sticky_focus_active.png"
+theme.titlebar_floating_button_normal_inactive  = theme.default_dir.."/titlebar/floating_normal_inactive.png"
+theme.titlebar_floating_button_focus_inactive   = theme.default_dir.."/titlebar/floating_focus_inactive.png"
+theme.titlebar_floating_button_normal_active    = theme.default_dir.."/titlebar/floating_normal_active.png"
+theme.titlebar_floating_button_focus_active     = theme.default_dir.."/titlebar/floating_focus_active.png"
+theme.titlebar_maximized_button_normal_inactive = theme.default_dir.."/titlebar/maximized_normal_inactive.png"
+theme.titlebar_maximized_button_focus_inactive  = theme.default_dir.."/titlebar/maximized_focus_inactive.png"
+theme.titlebar_maximized_button_normal_active   = theme.default_dir.."/titlebar/maximized_normal_active.png"
+theme.titlebar_maximized_button_focus_active    = theme.default_dir.."/titlebar/maximized_focus_active.png"
 
 -- lain related
-theme.useless_gap_width             = 10
-theme.layout_txt_cascade            = "[cascade]"
-theme.layout_txt_cascadetile        = "[cascadetile]"
-theme.layout_txt_centerwork         = "[centerwork]"
-theme.layout_txt_termfair           = "[termfair]"
-theme.layout_txt_centerfair         = "[centerfair]"
-theme.layout_txt_uselessfair        = "[uf]"
-theme.layout_txt_uselessfairh       = "[ufh]"
-theme.layout_txt_uselesspiral       = "[us]"
-theme.layout_txt_uselessdwindle     = "[ud]"
-theme.layout_txt_uselesstile        = "[ut]"
-theme.layout_txt_uselesstileleft    = "[utl]"
-theme.layout_txt_uselesstiletop     = "[utt]"
-theme.layout_txt_uselesstilebottom  = "[utb]"
+theme.layout_txt_cascade                        = "[cascade]"
+theme.layout_txt_cascadetile                    = "[cascadetile]"
+theme.layout_txt_centerwork                     = "[centerwork]"
+theme.layout_txt_termfair                       = "[termfair]"
+theme.layout_txt_centerfair                     = "[centerfair]"
+
+local markup = lain.util.markup
+local white  = theme.fg_focus
+local gray   = theme.fg_normal
+
+-- Textclock
+local mytextclock = wibox.widget.textclock(markup(white, " %H:%M "))
+mytextclock.font = theme.font
+
+-- Calendar
+lain.widget.calendar({
+    attach_to = { mytextclock },
+    notification_preset = {
+        font = "Misc Tamsyn 11",
+        fg   = white,
+        bg   = theme.bg_normal
+    }
+})
+
+--[[ Mail IMAP check
+-- commented because it needs to be set before use
+local mail = lain.widget.imap({
+    timeout  = 180,
+    server   = "server",
+    mail     = "mail",
+    password = "keyring get mail",
+    settings = function()
+        mail_notification_preset.fg = white
+
+        mail  = ""
+        count = ""
+
+        if mailcount > 0 then
+            mail = "Mail "
+            count = mailcount .. " "
+        end
+
+        widget:set_markup(markup.font(theme.font, markup(gray, mail) .. markup(white, count)))
+    end
+})
+]]
+
+-- MPD
+theme.mpd = lain.widget.mpd({
+    settings = function()
+        mpd_notification_preset.fg = white
+
+        artist = mpd_now.artist .. " "
+        title  = mpd_now.title  .. " "
+
+        if mpd_now.state == "pause" then
+            artist = "mpd "
+            title  = "paused "
+        elseif mpd_now.state == "stop" then
+            artist = ""
+            title  = ""
+        end
+
+        widget:set_markup(markup.font(theme.font, markup(gray, artist) .. markup(white, title)))
+    end
+})
+
+-- /home fs
+theme.fs = lain.widget.fs({
+    partition = "/home",
+    options = "--exclude-type=tmpfs",
+    notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
+    settings  = function()
+        hdd = ""
+        p   = ""
+
+        if tonumber(fs_now.used) >= 90 then
+            hdd = " Hdd "
+            p   = fs_now.used .. " "
+        end
+
+        widget:set_markup(markup.font(theme.font, markup(gray, hdd) .. markup(white, p)))
+    end
+})
+
+-- ALSA volume bar
+theme.volume = lain.widget.alsabar({
+    ticks = true, width = 67,
+    notification_preset = { font = theme.font }
+})
+theme.volume.tooltip.wibox.fg = theme.fg_focus
+theme.volume.tooltip.wibox.font = theme.font
+theme.volume.bar:buttons(awful.util.table.join (
+          awful.button({}, 1, function()
+            awful.spawn.with_shell(string.format("%s -e alsamixer", terminal))
+          end),
+          awful.button({}, 2, function()
+            awful.spawn(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 3, function()
+            awful.spawn(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 4, function()
+            awful.spawn(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end),
+          awful.button({}, 5, function()
+            awful.spawn(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
+            theme.volume.update()
+          end)
+))
+local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.shape.rectangle)
+local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
+
+-- Weather
+theme.weather = lain.widget.weather({
+    city_id = 2643743, -- placeholder (London)
+    notification_preset = { font = theme.font, fg = white }
+})
+
+-- Separators
+local first = wibox.widget.textbox(markup.font("Misc Tamsyn 4", " "))
+local spr   = wibox.widget.textbox(' ')
+
+local function update_txt_layoutbox(s)
+    -- Writes a string representation of the current layout in a textbox widget
+    local txt_l = theme["layout_txt_" .. awful.layout.getname(awful.layout.get(s))] or ""
+    s.mytxtlayoutbox:set_text(txt_l)
+end
+
+function theme.at_screen_connect(s)
+    -- Quake application
+    s.quake = lain.util.quake({ app = awful.util.terminal })
+
+    -- If wallpaper is a function, call it with the screen
+    if type(theme.wallpaper) == "function" then
+        theme.wallpaper = theme.wallpaper(s)
+    end
+    gears.wallpaper.maximized(theme.wallpaper, s, true)
+
+    -- Tags
+    awful.tag(awful.util.tagnames, s, awful.layout.layouts)
+
+    -- Create a promptbox for each screen
+    s.mypromptbox = awful.widget.prompt()
+
+    -- Textual layoutbox
+    s.mytxtlayoutbox = wibox.widget.textbox(theme["layout_txt_" .. awful.layout.getname(awful.layout.get(s))])
+    awful.tag.attached_connect_signal(s, "property::selected", function () update_txt_layoutbox(s) end)
+    awful.tag.attached_connect_signal(s, "property::layout", function () update_txt_layoutbox(s) end)
+    s.mytxtlayoutbox:buttons(awful.util.table.join(
+                           awful.button({}, 1, function() awful.layout.inc(1) end),
+                           awful.button({}, 3, function() awful.layout.inc(-1) end),
+                           awful.button({}, 4, function() awful.layout.inc(1) end),
+                           awful.button({}, 5, function() awful.layout.inc(-1) end)))
+
+    -- Create a taglist widget
+    s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
+
+    -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
+
+    -- Create the wibox
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18, bg = theme.bg_normal, fg = theme.fg_normal })
+
+    -- Add widgets to the wibox
+    s.mywibox:setup {
+        layout = wibox.layout.align.horizontal,
+        { -- Left widgets
+            layout = wibox.layout.fixed.horizontal,
+            first,
+            s.mytaglist,
+            spr,
+            s.mytxtlayoutbox,
+            --spr,
+            s.mypromptbox,
+            spr,
+        },
+        s.mytasklist, -- Middle widget
+        { -- Right widgets
+            layout = wibox.layout.fixed.horizontal,
+            wibox.widget.systray(),
+            spr,
+            theme.mpd.widget,
+            --mail.widget,
+            theme.fs.widget,
+            volumewidget,
+            mytextclock,
+        },
+    }
+end
 
 return theme
