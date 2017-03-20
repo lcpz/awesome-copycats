@@ -373,12 +373,11 @@ globalkeys = awful.util.table.join(
             os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
             beautiful.volume.update()
         end),
-
-		awful.key({ altkey, "Control" }, "0",
-				function ()
-						os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
-						beautiful.volume.update()
-				end),
+    awful.key({ altkey, "Control" }, "0",
+        function ()
+            os.execute(string.format("amixer -q set %s 0%%", beautiful.volume.channel))
+            beautiful.volume.update()
+        end),
 
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
