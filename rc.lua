@@ -216,9 +216,9 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
     -- Tag browsing
-    awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
+    awful.key({ modkey,           }, "u",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
-    awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
+    awful.key({ modkey,           }, "i",  awful.tag.viewnext,
               {description = "view next", group = "tag"}),
     awful.key({ modkey,           }, "Escape", awful.tag.history.restore,
               {description = "go back", group = "tag"}),
@@ -581,6 +581,12 @@ awful.rules.rules = {
 
     { rule = { class = "MPlayer" },
           properties = { floating = true } },
+
+    { rule = { class = "Qt Creator" },
+      properties = { floating = true,
+                     maximized_horizontal = true,
+                     maximized_vertical = true,
+                     floating = true } },
 
     { rule = { class = "luakit" },
           properties = { floating = true,
