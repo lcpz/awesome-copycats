@@ -55,7 +55,7 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" })
+run_once({ "urxvtd", "unclutter -root", "emacs --daemon"})
 -- }}}
 
 -- {{{ Variable definitions
@@ -64,7 +64,7 @@ local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "urxvtc" or "xterm"
 local editor       = os.getenv("EDITOR") or "nano" or "vi"
-local gui_editor   = "gvim"
+local gui_editor   = "emacs"
 local browser      = "luakit"
 
 awful.util.terminal = terminal
@@ -428,8 +428,10 @@ globalkeys = awful.util.table.join(
     awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end),
 
     -- User programs
-    awful.key({ modkey }, "e", function () awful.spawn(gui_editor) end),
     awful.key({ modkey }, "q", function () awful.spawn(browser) end),
+    -- awful.key({ modkey }, "2", function () awful.spawn(gui_editor) end),
+    awful.key({ modkey }, "w", function () awful.spawn(terminal .. " -e emacs -nw -mm") end),
+    awful.key({ modkey }, "e", function () awful.spawn(terminal .. " -e ranger") end),
 
     -- Default
     --[[ Menubar
