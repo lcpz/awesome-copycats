@@ -240,11 +240,12 @@ wifitooltip.timeout = 0
 wifitooltip:set_shape(function(cr, width, height)
     gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - 120)
 end)
-local mywifisig = lain.widget.watch({
-    cmd = { awful.util.shell, "-c", "awk 'NR==3 {printf(\"%d-%.0f\\n\",$2, $3*10/7)}' /proc/net/wireless; iw dev wlan0 link" },
-    settings = function()
-        local carrier, perc = output:match("(%d)-(%d+)")
-        local tiptext = output:gsub("(%d)-(%d+)", ""):gsub("%s+$", "")
+local mywifisig = awful.widget.watch(
+    { awful.util.shell, "-c", "awk 'NR==3 {printf(\"%d-%.0f\\n\",$2, $3*10/7)}' /proc/net/wireless; iw dev wlan0 link" },
+    2,
+    function(widget, stdout)
+        local carrier, perc = stdout:match("(%d)-(%d+)")
+        local tiptext = stdout:gsub("(%d)-(%d+)", ""):gsub("%s+$", "")
 
         if carrier == "1" then
             wificon:set_image(theme.wifidisc)
@@ -265,7 +266,7 @@ local mywifisig = lain.widget.watch({
             wifitooltip:set_markup(tiptext)
         end
     end
-})
+)
 wificon:connect_signal("button::press", function() awful.spawn(string.format("%s -e wavemon", awful.util.terminal)) end)
 
 -- Weather
