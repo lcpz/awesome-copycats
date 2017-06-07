@@ -157,10 +157,19 @@ theme.volume = lain.widget.alsabar({
 local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(awful.util.table.join(
-    awful.button({ modkey }, 1, function () awful.spawn_with_shell(musicplr) end),
-    awful.button({ }, 1, function () awful.spawn_with_shell("mpc prev") end),
-    awful.button({ }, 2, function () awful.spawn_with_shell("mpc toggle") end),
-    awful.button({ }, 3, function () awful.spawn_with_shell("mpc next") end)))
+    awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
+    awful.button({ }, 1, function ()
+        awful.spawn.with_shell("mpc prev")
+        theme.mpd.update()
+    end),
+    awful.button({ }, 2, function ()
+        awful.spawn.with_shell("mpc toggle")
+        theme.mpd.update()
+    end),
+    awful.button({ }, 3, function ()
+        awful.spawn.with_shell("mpc next")
+        theme.mpd.update()
+    end)))
 theme.mpd = lain.widget.mpd({
     settings = function()
         if mpd_now.state == "play" then
