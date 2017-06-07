@@ -7,7 +7,7 @@
 --]]
 
 -- {{{ Required libraries
-local awesome, client, screen, tag = awesome, client, screen, tag
+local awesome, client, mouse, screen, tag = awesome, client, mouse, screen, tag
 local ipairs, string, os, table, tostring, tonumber, type = ipairs, string, os, table, tostring, tonumber, type
 
 local gears         = require("gears")
@@ -55,15 +55,15 @@ local function run_once(cmd_arr)
     end
 end
 
-run_once({ "urxvtd", "unclutter -root" })
+run_once({ "unclutter -root" }) -- entries must be comma-separated
 -- }}}
 
 -- {{{ Variable definitions
 local chosen_theme = "multicolor"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
-local terminal     = "urxvtc" or "xterm"
-local editor       = os.getenv("EDITOR") or "nano" or "vi"
+local terminal     = "xterm"
+local editor       = os.getenv("EDITOR") or "nano"
 local gui_editor   = "gvim"
 local browser      = "firefox"
 
