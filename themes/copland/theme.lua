@@ -10,8 +10,8 @@ local gears   = require("gears")
 local lain    = require("lain")
 local awful   = require("awful")
 local wibox   = require("wibox")
-local eminent = require("eminent")
 local os      = { getenv = os.getenv, setlocale = os.setlocale }
+local awesome, client = awesome, client
 
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/copland"
@@ -287,6 +287,16 @@ local first     = wibox.widget.textbox(markup.font("Tamzen 3", " "))
 local spr       = wibox.widget.textbox(' ')
 local small_spr = wibox.widget.textbox(markup.font("Tamzen 4", " "))
 local bar_spr   = wibox.widget.textbox(markup.font("Tamzen 3", " ") .. markup.fontfg(theme.font, "#333333", "|") .. markup.font("Tamzen 5", " "))
+
+-- Eminent-like task filtering
+local orig_filter = awful.widget.taglist.filter.all
+
+-- Taglist label functions
+awful.widget.taglist.filter.all = function (t, args)
+    if t.selected or #t:clients() > 0 then
+        return orig_filter(t, args)
+    end
+end
 
 function theme.at_screen_connect(s)
     -- Quake application

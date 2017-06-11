@@ -137,7 +137,7 @@ This way, you can safely ``git pull`` anytime.
 Notes
 =====
 
-Complements are provided by lain_.
+Complements are provided by lain_ and freedesktop_.
 
 Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
 
@@ -159,6 +159,7 @@ Additional software used: ::
 .. _swordfischer: https://github.com/copycat-killer/awesome-copycats/issues/53
 .. _foozer: http://dotshare.it/dots/499
 .. _lain: https://github.com/copycat-killer/lain
+.. _freedesktop: https://github.com/copycat-killer/freedesktop
 .. _Terminus: http://terminus-font.sourceforge.net
 .. _Tamzen: https://github.com/sunaku/tamzen-font
 .. _Roboto: https://fonts.google.com/specimen/Roboto
