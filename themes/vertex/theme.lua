@@ -157,7 +157,7 @@ local bat = lain.widget.bat({
         end
 
         baticon:set_image(theme[index])
-        battooltip:set_markup(string.format("\n%s%%, %s", bat_now.perc, bat_now.time))
+        battooltip:set_markup(string.format("\n%s%%, %s", perc, bat_now.time))
     end
 })
 
