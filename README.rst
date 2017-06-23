@@ -10,15 +10,12 @@ Themes for Awesome WM 4.x
 :License: BY-NC-SA_
 :Source: https://github.com/copycat-killer/awesome-copycats
 
-Warning
-=======
-
-If you still have to use branch 3.5.x, you can refer to the commit b0ab0d7_, but be aware that it's no longer supported.
-
 Description
 ===========
 
-A set of themes for the Awesome_ window manager.
+A set of themes for the Awesome_ window manager, version >= 4.0.
+
+See branches_ for previous versions.
 
 Features
 ========
@@ -168,3 +165,4 @@ Additional software used: ::
 .. _Icons: https://github.com/copycat-killer/dots/tree/master/.fonts
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
 .. _FontAwesome: https://github.com/FortAwesome/Font-Awesome
+.. _branches: https://github.com/copycat-killer/awesome-copycats/branches
