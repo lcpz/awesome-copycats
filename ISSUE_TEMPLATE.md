@@ -14,7 +14,8 @@ and, if you still don't have an answer, you can ask here.
 
 First do
 
-1. search the [Issues section](https://github.com/copycat-killer/awesome-copycats/issues) and
+1. search the [issues section](https://github.com/copycat-killer/awesome-copycats/issues) and
+2. search [lain issues section](https://github.com/copycat-killer/lain/issues) and
 2. try with default Awesome configuration, usually located in `/etc/xdg/awesome/rc.lua` or `/usr/local/etc/xdg/awesome/rc.lua`.
 
 If you can't find a solution and your issue doesn't happen with default configuration, then go ahead and provide:
