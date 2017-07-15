@@ -119,7 +119,10 @@ theme.cal = lain.widget.calendar({
 
 -- Taskwarrior
 local task = wibox.widget.imagebox(theme.widget_task)
-lain.widget.contrib.task.attach(task)
+lain.widget.contrib.task.attach(task, {
+    -- do not colorize output
+    show_cmd = "task | sed -r 's/\\x1B\\[([0-9]{1,2}(;[0-9]{1,2})?)?[mGK]//g'"
+})
 task:buttons(awful.util.table.join(awful.button({}, 1, lain.widget.contrib.task.prompt)))
 
 -- Scissors (xsel copy and paste)
