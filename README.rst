@@ -24,7 +24,7 @@ Features
 - Autohide widgets
 - Autostart windowless processes
 - Fast MPD and volume shortcuts (first time this trick has been used in Awesome)
-- Shortcuts for copying to the clipboard (no need for clipboard managers), toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
+- Shortcuts for copying to the clipboard, toggle wiboxes, widgets popups, screenshots capture, moving and magnifying clients
 - Quake drop-down terminal
 - Calendar with current day highlighted and months switch with a click/scroll
 - Notifications for new mails, current song, volume level, hdd critical state, low battery
