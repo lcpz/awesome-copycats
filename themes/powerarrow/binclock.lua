@@ -1,10 +1,9 @@
-
 --[[
-                                                  
-     Licensed under GNU General Public License v2 
-      * (c) 2017, Luke Bonham                     
-      * (c) 2013, romockee                        
-                                                  
+
+     Licensed under GNU General Public License v2
+      * (c) 2017, Luke Bonham
+      * (c) 2013, romockee
+
 --]]
 
 local gears  = require("gears")

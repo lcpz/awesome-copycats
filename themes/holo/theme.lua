@@ -1,9 +1,8 @@
-
 --[[
-                               
-     Holo Awesome WM theme 3.0 
-     github.com/copycat-killer 
-                               
+
+     Holo Awesome WM theme 3.0
+     github.com/copycat-killer
+
 --]]
 
 local gears  = require("gears")

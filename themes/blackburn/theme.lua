@@ -1,9 +1,8 @@
-
 --[[
-                                    
-     Blackburn Awesome WM theme 3.0 
-     github.com/copycat-killer      
-                                    
+
+     Blackburn Awesome WM theme 3.0
+     github.com/copycat-killer
+
 --]]
 
 local gears   = require("gears")

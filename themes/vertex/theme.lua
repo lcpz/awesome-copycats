@@ -1,9 +1,8 @@
-
 --[[
-                           
- Vertex Awesome WM theme   
- github.com/copycat-killer 
-                           
+
+ Vertex Awesome WM theme
+ github.com/copycat-killer
+
 --]]
 
 local gears = require("gears")

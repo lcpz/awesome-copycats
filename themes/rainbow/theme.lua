@@ -1,9 +1,8 @@
-
 --[[
-                                  
-     Rainbow Awesome WM theme 2.0 
-     github.com/copycat-killer    
-                                  
+
+     Rainbow Awesome WM theme 2.0
+     github.com/copycat-killer
+
 --]]
 
 local gears = require("gears")

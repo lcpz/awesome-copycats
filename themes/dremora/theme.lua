@@ -1,9 +1,8 @@
-
 --[[
-                                  
-     Dremora Awesome WM theme 2.0 
-     github.com/copycat-killer    
-                                  
+
+     Dremora Awesome WM theme 2.0
+     github.com/copycat-killer
+
 --]]
 
 local gears   = require("gears")

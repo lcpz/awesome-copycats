@@ -1,9 +1,8 @@
-
 --[[
-                                 
-     Powerarrow Awesome WM theme 
-     github.com/copycat-killer   
-                                 
+
+     Powerarrow Awesome WM theme
+     github.com/copycat-killer
+
 --]]
 
 local gears = require("gears")
