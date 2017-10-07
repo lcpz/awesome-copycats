@@ -1,7 +1,7 @@
 --[[
 
      Steamburn Awesome WM theme 3.0
-     github.com/copycat-killer
+     github.com/lcpz
 
 --]]
 

@@ -1,7 +1,7 @@
 --[[
 
  Vertex Awesome WM theme
- github.com/copycat-killer
+ github.com/lcpz
 
 --]]
 

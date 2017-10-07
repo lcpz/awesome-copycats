@@ -1,7 +1,7 @@
 --[[
 
      Rainbow Awesome WM theme 2.0
-     github.com/copycat-killer
+     github.com/lcpz
 
 --]]
 
