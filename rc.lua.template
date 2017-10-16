@@ -1,4 +1,3 @@
-
 --[[
 
      Awesome WM configuration template
@@ -545,7 +544,7 @@ for i = 1, 9 do
                            tag:view_only()
                         end
                   end,
-                  descr_view), 
+                  descr_view),
         -- Toggle tag display.
         awful.key({ modkey, "Control" }, "#" .. i + 9,
                   function ()

@@ -5,7 +5,7 @@ Awesome WM Copycats
 Themes for Awesome WM 4.x
 -------------------------
 
-:Author: Luca CPZ <dada [at] archlinux [dot] info>
+:Author: Luca CPZ
 :Version: git
 :License: BY-NC-SA_
 :Source: https://github.com/lcpz/awesome-copycats
