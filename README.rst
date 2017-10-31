@@ -107,7 +107,7 @@ in ``rc.lua``, and
 * configure widgets
 * define wiboxes and screen settings
 
-in ``theme.lua``, so that you just need to change ``chosen_theme`` variable in ``rc.lua`` to preserve your preferences *and* switch the theme, instead of having N different ``rc.lua`` full of redundancy.
+in ``theme.lua``, so that you just need to change ``chosen_theme`` variable in ``rc.lua`` to preserve your preferences *and* switch the theme, instead of having multiple redundant ``rc.lua``s.
 
 Just do the following:
 
