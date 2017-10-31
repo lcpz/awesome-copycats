@@ -58,7 +58,16 @@ run_once({ "unclutter -root" }) -- entries must be comma-separated
 -- }}}
 
 -- {{{ Variable definitions
+-- local chosen_theme = "blackburn"
+-- local chosen_theme = "copland"
+-- local chosen_theme = "dremora"
+-- local chosen_theme = "holo"
 local chosen_theme = "multicolor"
+-- local chosen_theme = "powerarrow"
+-- local chosen_theme = "powerarrow-dark"
+-- local chosen_theme = "rainbow"
+-- local chosen_theme = "steamburn"
+-- local chosen_theme = "vertex"
 local modkey       = "Mod4"
 local altkey       = "Mod1"
 local terminal     = "xterm"
