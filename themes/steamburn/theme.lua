@@ -222,7 +222,7 @@ function theme.at_screen_connect(s)
     s.mytxtlayoutbox = wibox.widget.textbox(theme["layout_txt_" .. awful.layout.getname(awful.layout.get(s))])
     awful.tag.attached_connect_signal(s, "property::selected", function () update_txt_layoutbox(s) end)
     awful.tag.attached_connect_signal(s, "property::layout", function () update_txt_layoutbox(s) end)
-    s.mytxtlayoutbox:buttons(awful.util.table.join(
+    s.mytxtlayoutbox:buttons(gears.table.join(
                            awful.button({}, 1, function() awful.layout.inc(1) end),
                            awful.button({}, 3, function() awful.layout.inc(-1) end),
                            awful.button({}, 4, function() awful.layout.inc(1) end),
