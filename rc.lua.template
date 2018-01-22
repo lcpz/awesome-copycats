@@ -108,7 +108,7 @@ awful.layout.layouts = {
     --lain.layout.termfair,
     --lain.layout.termfair.center,
 }
-awful.util.taglist_buttons = awful.util.table.join(
+awful.util.taglist_buttons = gears.table.join(
                     awful.button({ }, 1, function(t) t:view_only() end),
                     awful.button({ modkey }, 1, function(t)
                                               if client.focus then
@@ -124,7 +124,7 @@ awful.util.taglist_buttons = awful.util.table.join(
                     awful.button({ }, 4, function(t) awful.tag.viewnext(t.screen) end),
                     awful.button({ }, 5, function(t) awful.tag.viewprev(t.screen) end)
                 )
-awful.util.tasklist_buttons = awful.util.table.join(
+awful.util.tasklist_buttons = gears.table.join(
                      awful.button({ }, 1, function (c)
                                               if c == client.focus then
                                                   c.minimized = true
@@ -214,7 +214,7 @@ awful.screen.connect_for_each_screen(function(s) beautiful.at_screen_connect(s) 
 -- }}}
 
 -- {{{ Mouse bindings
-root.buttons(awful.util.table.join(
+root.buttons(gears.table.join(
     awful.button({ }, 3, function () awful.util.mymainmenu:toggle() end),
     awful.button({ }, 4, awful.tag.viewnext),
     awful.button({ }, 5, awful.tag.viewprev)
@@ -222,7 +222,7 @@ root.buttons(awful.util.table.join(
 -- }}}
 
 -- {{{ Key bindings
-globalkeys = awful.util.table.join(
+globalkeys = gears.table.join(
     -- Take a screenshot
     -- https://github.com/lcpz/dots/blob/master/bin/screenshot
     awful.key({ altkey }, "p", function() os.execute("screenshot") end,
@@ -507,7 +507,7 @@ globalkeys = awful.util.table.join(
     --]]
 )
 
-clientkeys = awful.util.table.join(
+clientkeys = gears.table.join(
     awful.key({ altkey, "Shift"   }, "m",      lain.util.magnify_client,
               {description = "magnify client", group = "client"}),
     awful.key({ modkey,           }, "f",
@@ -553,7 +553,7 @@ for i = 1, 9 do
         descr_move = {description = "move focused client to tag #", group = "tag"}
         descr_toggle_focus = {description = "toggle focused client on tag #", group = "tag"}
     end
-    globalkeys = awful.util.table.join(globalkeys,
+    globalkeys = gears.table.join(globalkeys,
         -- View tag only.
         awful.key({ modkey }, "#" .. i + 9,
                   function ()
@@ -599,7 +599,7 @@ for i = 1, 9 do
     )
 end
 
-clientbuttons = awful.util.table.join(
+clientbuttons = gears.table.join(
     awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
     awful.button({ modkey }, 1, awful.mouse.client.move),
     awful.button({ modkey }, 3, awful.mouse.client.resize))
@@ -663,7 +663,7 @@ client.connect_signal("request::titlebars", function(c)
 
     -- Default
     -- buttons for the titlebar
-    local buttons = awful.util.table.join(
+    local buttons = gears.table.join(
         awful.button({ }, 1, function()
             client.focus = c
             c:raise()
@@ -711,14 +711,16 @@ client.connect_signal("mouse::enter", function(c)
 end)
 
 -- No border for maximized clients
-client.connect_signal("focus",
-    function(c)
-        if c.maximized then -- no borders if only 1 client visible
-            c.border_width = 0
-        elseif #awful.screen.focused().clients > 1 then
-            c.border_width = beautiful.border_width
-            c.border_color = beautiful.border_focus
-        end
-    end)
+function border_adjust(c)
+    if c.maximized then -- no borders if only 1 client visible
+        c.border_width = 0
+    elseif #awful.screen.focused().clients > 1 then
+        c.border_width = beautiful.border_width
+        c.border_color = beautiful.border_focus
+    end
+end
+
+client.connect_signal("focus", border_adjust)
+client.connect_signal("property::maximized", border_adjust)
 client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}

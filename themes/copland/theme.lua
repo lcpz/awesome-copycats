@@ -252,7 +252,7 @@ theme.volume = lain.widget.alsabar({
     }
 })
 theme.volume.tooltip.wibox.fg = theme.fg_focus
-theme.volume.bar:buttons(awful.util.table.join (
+theme.volume.bar:buttons(gears.table.join (
           awful.button({}, 1, function()
             awful.spawn.with_shell(string.format("%s -e alsamixer", awful.util.terminal))
           end),
@@ -316,7 +316,7 @@ function theme.at_screen_connect(s)
     -- Create an imagebox widget which will contains an icon indicating which layout we're using.
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
-    s.mylayoutbox:buttons(awful.util.table.join(
+    s.mylayoutbox:buttons(gears.table.join(
                            awful.button({ }, 1, function () awful.layout.inc( 1) end),
                            awful.button({ }, 3, function () awful.layout.inc(-1) end),
                            awful.button({ }, 4, function () awful.layout.inc( 1) end),
