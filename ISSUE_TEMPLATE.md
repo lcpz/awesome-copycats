@@ -35,13 +35,13 @@ If you can't find a solution and your issue doesn't happen with default configur
 Then something went wrong during its initialisation. You have to provide X error
 log. There are two ways:
 
-* (Physically) Restart X like this:
+1. Restart X like this:
   ```shell
   startx -- -keeptty -nolisten tcp > $HOME/.xorg.log 2>&1
   ```
   the error log will be output into `$HOME/.xorg.log`.
 
-* (Virtually) Use [Xephyr](https://wikipedia.org/wiki/Xephyr):
+2. Use [Xephyr](https://wikipedia.org/wiki/Xephyr):
   ```shell
   # set screen size as you like
   Xephyr :1 -screen 1280x800 2> stdout.txt & DISPLAY=:1 awesome
