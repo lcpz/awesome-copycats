@@ -17,6 +17,13 @@ A set of themes for the Awesome_ window manager, version 4.x.
 
 See branches_ for previous versions.
 
+Purpose
+=======
+
+The main purpose of this repository is to spread ready to use configurations, which can also serve as a cookbook for customisation.
+
+A secondary aim is to add new themes only when they constitute different UI/UX designs.
+
 Features
 ========
 
