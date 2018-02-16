@@ -133,16 +133,14 @@ theme.mpd = lain.widget.mpd({
 
 -- /home fs
 theme.fs = lain.widget.fs({
-    partition = "/home",
-    options = "--exclude-type=tmpfs",
     notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
     settings  = function()
         fs_header = ""
         fs_p      = ""
 
-        if tonumber(fs_now.used) >= 90 then
+        if fs_now["/home"].percentage >= 90 then
             fs_header = " Hdd "
-            fs_p      = fs_now.used
+            fs_p      = fs_now["/home"].percentage
         end
 
         widget:set_markup(markup.font(theme.font, markup(gray, fs_header) .. fs_p))

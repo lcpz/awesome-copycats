@@ -215,16 +215,14 @@ local fsbar = wibox.widget {
     widget           = wibox.widget.progressbar,
 }
 theme.fs = lain.widget.fs({
-    partition = "/home",
-    options = "--exclude-type=tmpfs",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Tamzen 10.5" },
     settings  = function()
-        if tonumber(fs_now.used) < 90 then
+        if fs_now["/home"].percentage < 90 then
             fsbar:set_color(theme.fg_normal)
         else
             fsbar:set_color("#EB8F8F")
         end
-        fsbar:set_value(fs_now.used / 100)
+        fsbar:set_value(fs_now["/home"].percentage / 100)
     end
 })
 local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)

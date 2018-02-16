@@ -149,7 +149,6 @@ local mem = lain.widget.mem({
 
 -- /home fs
 theme.fs = lain.widget.fs({
-    options = "--exclude-type=tmpfs",
     partition = "/home",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
 })

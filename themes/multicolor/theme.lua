@@ -43,7 +43,6 @@ theme.widget_cpu                                = theme.confdir .. "/icons/cpu.p
 theme.widget_weather                            = theme.confdir .. "/icons/dish.png"
 theme.widget_fs                                 = theme.confdir .. "/icons/fs.png"
 theme.widget_mem                                = theme.confdir .. "/icons/mem.png"
-theme.widget_fs                                 = theme.confdir .. "/icons/fs.png"
 theme.widget_note                               = theme.confdir .. "/icons/note.png"
 theme.widget_note_on                            = theme.confdir .. "/icons/note_on.png"
 theme.widget_netdown                            = theme.confdir .. "/icons/net_down.png"
@@ -125,10 +124,9 @@ theme.weather = lain.widget.weather({
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_fs)
 theme.fs = lain.widget.fs({
-    options = "--exclude-type=tmpfs",
     notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
     settings  = function()
-        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", fs_now.used .. "% "))
+        widget:set_markup(markup.fontfg(theme.font, "#80d9d8", fs_now["/"].percentage .. "% "))
     end
 })
 

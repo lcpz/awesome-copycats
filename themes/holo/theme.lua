@@ -213,11 +213,10 @@ local bat = lain.widget.bat({
     end
 })
 --]]
---
+
 --  fs
 theme.fs = lain.widget.fs({
-    options = "--exclude-type=tmpfs",
-    notification_preset = { bg = theme.bg_normal, font = "Monospace 9, " },
+    notification_preset = { bg = theme.bg_normal, font = "Monospace 9" },
 })
 
 -- ALSA volume bar
