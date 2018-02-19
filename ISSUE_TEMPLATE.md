@@ -46,7 +46,7 @@ log. There are two ways:
   # set screen size as you like
   Xephyr :1 -screen 1280x800 2> stdout.txt & DISPLAY=:1 awesome
   ```
-  the error log will be output in the file `stdout.txt`.
+  the error log will be output into the file `stdout.txt`.
 
 Before reporting, read the log and see if you can solve it yourself. If you can't, then follow the [previous section](#issuesec).
 
