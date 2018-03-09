@@ -141,7 +141,7 @@ This way, you can safely ``git pull`` anytime.
 Notes
 =====
 
-Complements are provided by lain_ and freedesktop_.
+Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies.
 
 Fonts are Terminus_ (Multicolor, Powerarrow Darker), Tamzen_ (Copland), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
 
