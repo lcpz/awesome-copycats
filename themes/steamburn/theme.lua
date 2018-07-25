@@ -157,7 +157,7 @@ theme.fs = lain.widget.fs({
 local bat = lain.widget.bat({
     settings = function()
         local perc = bat_now.perc
-        if bat_now.ac_status == 1 then perc = "Plug" end
+        if bat_now.ac_status == 1 then perc = perc .. " Plug" end
         widget:set_markup(markup.font(theme.font, markup(gray, " Bat ") .. perc .. " "))
     end
 })

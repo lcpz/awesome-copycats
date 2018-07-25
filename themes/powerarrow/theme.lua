@@ -240,7 +240,7 @@ theme.fs = lain.widget.fs({
 local baticon = wibox.widget.imagebox(theme.widget_battery)
 local bat = lain.widget.bat({
     settings = function()
-        if bat_now.status ~= "N/A" then
+        if bat_now.status and bat_now.status ~= "N/A" then
             if bat_now.ac_status == 1 then
                 widget:set_markup(markup.font(theme.font, " AC "))
                 baticon:set_image(theme.widget_ac)

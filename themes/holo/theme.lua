@@ -201,7 +201,6 @@ function ()
 end)))
 
 -- Battery
---[[
 local bat = lain.widget.bat({
     settings = function()
         bat_header = " Bat "
@@ -212,7 +211,6 @@ local bat = lain.widget.bat({
         widget:set_markup(markup.font(theme.font, markup(blue, bat_header) .. bat_p))
     end
 })
---]]
 
 --  fs
 theme.fs = lain.widget.fs({

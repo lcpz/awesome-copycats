@@ -168,7 +168,7 @@ local batbar = wibox.widget {
 }
 local batupd = lain.widget.bat({
     settings = function()
-        if bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
+        if (not bat_now.status) or bat_now.status == "N/A" or type(bat_now.perc) ~= "number" then return end
 
         if bat_now.status == "Charging" then
             baticon:set_image(theme.ac)
