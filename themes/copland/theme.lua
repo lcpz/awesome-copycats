@@ -10,7 +10,7 @@ local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
 
-local os = { getenv = os.getenv, setlocale = os.setlocale }
+local os = { execute = os.execute, getenv = os.getenv, setlocale = os.setlocale }
 local awesome, client = awesome, client
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
@@ -214,7 +214,7 @@ local fsbar = wibox.widget {
     ticks_size       = 6,
     widget           = wibox.widget.progressbar,
 }
-theme.fs = lain.widget.fs({
+theme.fs = lain.widget.fs {
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Tamzen 10.5" },
     settings  = function()
         if fs_now["/home"].percentage < 90 then
@@ -224,13 +224,13 @@ theme.fs = lain.widget.fs({
         end
         fsbar:set_value(fs_now["/home"].percentage / 100)
     end
-})
+}
 local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)
 local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
 
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(theme.vol)
-theme.volume = lain.widget.alsabar({
+theme.volume = lain.widget.alsabar {
     width = 59, border_width = 0, ticks = true, ticks_size = 6,
     notification_preset = { font = theme.font },
     --togglechannel = "IEC958,3",
@@ -250,26 +250,26 @@ theme.volume = lain.widget.alsabar({
         mute         = red,
         unmute       = theme.fg_normal
     }
-})
+}
 theme.volume.tooltip.wibox.fg = theme.fg_focus
 theme.volume.bar:buttons(my_table.join (
           awful.button({}, 1, function()
-            awful.spawn.with_shell(string.format("%s -e alsamixer", awful.util.terminal))
+            awful.spawn(string.format("%s -e alsamixer", awful.util.terminal))
           end),
           awful.button({}, 2, function()
-            awful.spawn(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
+            os.execute(string.format("%s set %s 100%%", theme.volume.cmd, theme.volume.channel))
             theme.volume.update()
           end),
           awful.button({}, 3, function()
-            awful.spawn(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
+            os.execute(string.format("%s set %s toggle", theme.volume.cmd, theme.volume.togglechannel or theme.volume.channel))
             theme.volume.update()
           end),
           awful.button({}, 4, function()
-            awful.spawn(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
+            os.execute(string.format("%s set %s 1%%+", theme.volume.cmd, theme.volume.channel))
             theme.volume.update()
           end),
           awful.button({}, 5, function()
-            awful.spawn(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
+            os.execute(string.format("%s set %s 1%%-", theme.volume.cmd, theme.volume.channel))
             theme.volume.update()
           end)
 ))

@@ -136,15 +136,15 @@ local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(my_table.join(
     awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
     awful.button({ }, 1, function ()
-        awful.spawn.with_shell("mpc prev")
+        os.execute("mpc prev")
         theme.mpd.update()
     end),
     awful.button({ }, 2, function ()
-        awful.spawn.with_shell("mpc toggle")
+        os.execute("mpc toggle")
         theme.mpd.update()
     end),
     awful.button({ }, 3, function ()
-        awful.spawn.with_shell("mpc next")
+        os.execute("mpc next")
         theme.mpd.update()
     end)))
 theme.mpd = lain.widget.mpd({

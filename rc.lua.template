@@ -398,9 +398,9 @@ globalkeys = my_table.join(
               {description = "show weather", group = "widgets"}),
 
     -- Brightness
-    awful.key({ }, "XF86MonBrightnessUp", function () awful.util.spawn("xbacklight -inc 10") end,
+    awful.key({ }, "XF86MonBrightnessUp", function () os.execute("xbacklight -inc 10") end,
               {description = "+10%", group = "hotkeys"}),
-    awful.key({ }, "XF86MonBrightnessDown", function () awful.util.spawn("xbacklight -dec 10") end,
+    awful.key({ }, "XF86MonBrightnessDown", function () os.execute("xbacklight -dec 10") end,
               {description = "-10%", group = "hotkeys"}),
 
     -- ALSA volume control
@@ -438,25 +438,25 @@ globalkeys = my_table.join(
     -- MPD control
     awful.key({ altkey, "Control" }, "Up",
         function ()
-            awful.spawn.with_shell("mpc toggle")
+            os.execute("mpc toggle")
             beautiful.mpd.update()
         end,
         {description = "mpc toggle", group = "widgets"}),
     awful.key({ altkey, "Control" }, "Down",
         function ()
-            awful.spawn.with_shell("mpc stop")
+            os.execute("mpc stop")
             beautiful.mpd.update()
         end,
         {description = "mpc stop", group = "widgets"}),
     awful.key({ altkey, "Control" }, "Left",
         function ()
-            awful.spawn.with_shell("mpc prev")
+            os.execute("mpc prev")
             beautiful.mpd.update()
         end,
         {description = "mpc prev", group = "widgets"}),
     awful.key({ altkey, "Control" }, "Right",
         function ()
-            awful.spawn.with_shell("mpc next")
+            os.execute("mpc next")
             beautiful.mpd.update()
         end,
         {description = "mpc next", group = "widgets"}),
@@ -475,10 +475,10 @@ globalkeys = my_table.join(
         {description = "mpc on/off", group = "widgets"}),
 
     -- Copy primary to clipboard (terminals to gtk)
-    awful.key({ modkey }, "c", function () awful.spawn("xsel | xsel -i -b") end,
+    awful.key({ modkey }, "c", function () awful.spawn.with_shell("xsel | xsel -i -b") end,
               {description = "copy terminal to gtk", group = "hotkeys"}),
     -- Copy clipboard to primary (gtk to terminals)
-    awful.key({ modkey }, "v", function () awful.spawn("xsel -b | xsel") end,
+    awful.key({ modkey }, "v", function () awful.spawn.with_shell("xsel -b | xsel") end,
               {description = "copy gtk to terminal", group = "hotkeys"}),
 
     -- User programs
@@ -494,9 +494,9 @@ globalkeys = my_table.join(
     --]]
     --[[ dmenu
     awful.key({ modkey }, "x", function ()
-        awful.spawn(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
-        beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
-		end,
+            os.execute(string.format("dmenu_run -i -fn 'Monospace' -nb '%s' -nf '%s' -sb '%s' -sf '%s'",
+            beautiful.bg_normal, beautiful.fg_normal, beautiful.bg_focus, beautiful.fg_focus))
+        end,
         {description = "show dmenu", group = "launcher"})
     --]]
     -- Prompt
