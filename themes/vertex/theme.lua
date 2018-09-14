@@ -248,12 +248,12 @@ local mywifisig = awful.widget.watch(
     function(widget, stdout)
         local carrier, perc = stdout:match("(%d)-(%d+)")
         local tiptext = stdout:gsub("(%d)-(%d+)", ""):gsub("%s+$", "")
+        perc = tonumber(perc)
 
-        if carrier == "1" then
+        if carrier == "1" or not perc then
             wificon:set_image(theme.wifidisc)
             wifitooltip:set_markup("No carrier")
         else
-            perc = tonumber(perc)
             if perc <= 5 then
                 wificon:set_image(theme.wifinone)
             elseif perc <= 25 then
