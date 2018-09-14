@@ -112,7 +112,7 @@ local mytextcalendar = wibox.widget.textclock(markup.fontfg(theme.font, "#FFFFFF
 local calendar_icon = wibox.widget.imagebox(theme.calendar)
 local calbg = wibox.container.background(mytextcalendar, theme.bg_focus, gears.shape.rectangle)
 local calendarwidget = wibox.container.margin(calbg, 0, 0, 5, 5)
-lain.widget.calendar({
+theme.cal = lain.widget.cal({
     attach_to = { mytextclock, mytextcalendar },
     notification_preset = {
         fg = "#FFFFFF",

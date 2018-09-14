@@ -85,7 +85,7 @@ local mytextclock = wibox.widget.textclock(" %H:%M ")
 mytextclock.font = theme.font
 
 -- Calendar
-lain.widget.calendar({
+theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
         font = "Misc Tamsyn 11",

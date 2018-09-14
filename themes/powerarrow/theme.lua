@@ -108,7 +108,7 @@ local binclock = require("themes.powerarrow.binclock"){
 }
 
 -- Calendar
-theme.cal = lain.widget.calendar({
+theme.cal = theme.cal = lain.widget.cal({
     --cal = "cal --color=always",
     attach_to = { binclock.widget },
     notification_preset = {

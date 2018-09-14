@@ -99,14 +99,14 @@ local mytextclock = wibox.widget.textclock("<span font='Misc Tamzen 5'> </span>%
 mytextclock.font = theme.font
 
 -- Calendar
-lain.widget.calendar {
+theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
         font = "Misc Tamzen 11",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
-}
+})
 
 --[[ Mail IMAP check
 -- commented because it needs to be set before use
