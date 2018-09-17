@@ -143,7 +143,7 @@ Notes
 
 Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies.
 
-Fonts are Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Tamzen_ (Copland), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
+Fonts are Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
 
 Every theme has a colorscheme_.
 

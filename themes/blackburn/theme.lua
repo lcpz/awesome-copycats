@@ -90,8 +90,8 @@ theme.cal = lain.widget.cal({
         bg   = theme.bg_normal
 }})
 
---[[ Mail IMAP check
--- commented because it needs to be set before use
+-- Mail IMAP check
+--[[ commented because it needs to be set before use
 local mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
@@ -132,6 +132,7 @@ theme.mpd = lain.widget.mpd({
 })
 
 -- /home fs
+--[[ commented because it uses
 theme.fs = lain.widget.fs({
     notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
     settings  = function()
@@ -146,6 +147,7 @@ theme.fs = lain.widget.fs({
         widget:set_markup(markup.font(theme.font, markup(gray, fs_header) .. fs_p))
     end
 })
+--]]
 
 -- Battery
 local bat = lain.widget.bat({
