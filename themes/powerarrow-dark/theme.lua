@@ -113,7 +113,7 @@ theme.cal = lain.widget.cal({
 local mailicon = wibox.widget.imagebox(theme.widget_mail)
 --[[ commented because it needs to be set before use
 mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
-local mail = lain.widget.imap({
+theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -192,12 +192,14 @@ local temp = lain.widget.temp({
 
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_hdd)
+--[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "xos4 Terminus 10" },
     settings = function()
         widget:set_markup(markup.font(theme.font, " " .. fs_now["/"].percentage .. "% "))
     end
 })
+--]]
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_battery)
@@ -313,7 +315,7 @@ function theme.at_screen_connect(s)
             theme.volume.widget,
             arrl_ld,
             wibox.container.background(mailicon, theme.bg_focus),
-            --wibox.container.background(mail.widget, theme.bg_focus),
+            --wibox.container.background(theme.mail.widget, theme.bg_focus),
             arrl_dl,
             memicon,
             mem.widget,
@@ -325,7 +327,7 @@ function theme.at_screen_connect(s)
             temp.widget,
             arrl_ld,
             wibox.container.background(fsicon, theme.bg_focus),
-            wibox.container.background(theme.fs.widget, theme.bg_focus),
+            --wibox.container.background(theme.fs.widget, theme.bg_focus),
             arrl_dl,
             baticon,
             bat.widget,

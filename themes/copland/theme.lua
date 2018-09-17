@@ -108,9 +108,9 @@ theme.cal = lain.widget.cal({
     }
 })
 
---[[ Mail IMAP check
--- commented because it needs to be set before use
-local mail = lain.widget.imap({
+-- Mail IMAP check
+--[[ commented because it needs to be set before use
+theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -202,6 +202,7 @@ local batbg = wibox.container.background(batbar, "#474747", gears.shape.rectangl
 local batwidget = wibox.container.margin(batbg, 2, 7, 4, 4)
 
 -- /home fs
+--[[ commented because it needs Gio/Glib >= 2.54
 local fsicon = wibox.widget.imagebox(theme.disk)
 local fsbar = wibox.widget {
     forced_height    = 1,
@@ -227,6 +228,7 @@ theme.fs = lain.widget.fs {
 }
 local fsbg = wibox.container.background(fsbar, "#474747", gears.shape.rectangle)
 local fswidget = wibox.container.margin(fsbg, 2, 7, 4, 4)
+--]]
 
 -- ALSA volume bar
 local volicon = wibox.widget.imagebox(theme.vol)
@@ -349,14 +351,14 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget.systray(),
             small_spr,
-            --mail.widget,
+            --theme.mail.widget,
             mpdicon,
             theme.mpd.widget,
             baticon,
             batwidget,
             bar_spr,
-            fsicon,
-            fswidget,
+            --fsicon,
+            --fswidget,
             bar_spr,
             volicon,
             volumewidget,

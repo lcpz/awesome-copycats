@@ -88,11 +88,12 @@ theme.cal = lain.widget.cal({
         font = "Misc Tamsyn 11",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
-}})
+    }
+})
 
 -- Mail IMAP check
 --[[ commented because it needs to be set before use
-local mail = lain.widget.imap({
+theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -132,7 +133,7 @@ theme.mpd = lain.widget.mpd({
 })
 
 -- /home fs
---[[ commented because it uses
+--[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
     notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
     settings  = function()
@@ -257,10 +258,10 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             first,
             theme.mpd.widget,
-            --mail.widget,
+            --theme.mail.widget,
             theme.weather.icon,
             theme.weather.widget,
-            theme.fs.widget,
+            --theme.fs.widget,
             bat,
             theme.volume.widget,
             mytextclock,

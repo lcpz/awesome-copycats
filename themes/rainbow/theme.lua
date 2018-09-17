@@ -101,9 +101,9 @@ theme.cal = lain.widget.cal({
     }
 })
 
---[[ Mail IMAP check
--- commented because it needs to be set before use
-local mail = lain.widget.imap({
+-- Mail IMAP check
+--[[ commented because it needs to be set before use
+theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -122,7 +122,7 @@ local mail = lain.widget.imap({
         widget:set_markup(markup.font(theme.font, markup(gray, mail) .. markup(white, count)))
     end
 })
-]]
+--]]
 
 -- MPD
 theme.mpd = lain.widget.mpd({
@@ -145,6 +145,7 @@ theme.mpd = lain.widget.mpd({
 })
 
 -- /home fs
+--[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
     notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
     settings  = function()
@@ -158,6 +159,7 @@ theme.fs = lain.widget.fs({
         widget:set_markup(markup.font(theme.font, markup(gray, fs_header) .. markup(white, fs_p)))
     end
 })
+--]]
 
 -- ALSA volume bar
 theme.volume = lain.widget.alsabar({
@@ -261,8 +263,8 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             spr,
             theme.mpd.widget,
-            --mail.widget,
-            theme.fs.widget,
+            --theme.mail.widget,
+            --theme.fs.widget,
             volumewidget,
             mytextclock,
         },

@@ -94,9 +94,9 @@ theme.cal = lain.widget.cal({
     }
 })
 
---[[ Mail IMAP check
--- commented because it needs to be set before use
-local mail = lain.widget.imap({
+-- Mail IMAP check
+--[[ commented because it needs to be set before use
+theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -148,10 +148,12 @@ local mem = lain.widget.mem({
 })
 
 -- /home fs
+--[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
     partition = "/home",
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
 })
+--]]
 
 -- Battery
 local bat = lain.widget.bat({
@@ -257,7 +259,7 @@ function theme.at_screen_connect(s)
             wibox.widget.systray(),
             spr,
             theme.mpd.widget,
-            --mail.widget,
+            --theme.mail.widget,
             cpu.widget,
             mem.widget,
             bat.widget,

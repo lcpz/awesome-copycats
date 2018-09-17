@@ -131,10 +131,10 @@ local scissors = wibox.widget.imagebox(theme.widget_scissors)
 scissors:buttons(my_table.join(awful.button({}, 1, function() awful.spawn.with_shell("xsel | xsel -i -b") end)))
 
 -- Mail IMAP check
-local mailicon = wibox.widget.imagebox(theme.widget_mail)
 --[[ commented because it needs to be set before use
+local mailicon = wibox.widget.imagebox(theme.widget_mail)
 mailicon:buttons(my_table.join(awful.button({ }, 1, function () awful.spawn(mail) end)))
-local mail = lain.widget.imap({
+theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
     mail     = "mail",
@@ -228,6 +228,7 @@ local tempicon = wibox.widget.imagebox(theme.widget_temp)
 
 -- / fs
 local fsicon = wibox.widget.imagebox(theme.widget_hdd)
+--[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
     notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "xos4 Terminus 10" },
     settings = function()
@@ -235,6 +236,7 @@ theme.fs = lain.widget.fs({
         widget:set_markup(markup.font(theme.font, fsp))
     end
 })
+--]]
 
 -- Battery
 local baticon = wibox.widget.imagebox(theme.widget_battery)
@@ -345,18 +347,18 @@ function theme.at_screen_connect(s)
             --[[ using shapes
             pl(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, "#343434"),
             pl(task, "#343434"),
-            --pl(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, "#343434"),
+            --pl(wibox.widget { mailicon, mail and theme.mail.widget, layout = wibox.layout.align.horizontal }, "#343434"),
             pl(wibox.widget { memicon, mem.widget, layout = wibox.layout.align.horizontal }, "#777E76"),
             pl(wibox.widget { cpuicon, cpu.widget, layout = wibox.layout.align.horizontal }, "#4B696D"),
             pl(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, "#4B3B51"),
-            pl(wibox.widget { fsicon, theme.fs.widget, layout = wibox.layout.align.horizontal }, "#CB755B"),
+            --pl(wibox.widget { fsicon, fs and fs.widget, layout = wibox.layout.align.horizontal }, "#CB755B"),
             pl(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, "#8DAA9A"),
             pl(wibox.widget { neticon, net.widget, layout = wibox.layout.align.horizontal }, "#C0C0A2"),
             pl(binclock.widget, "#777E76"),
             --]]
             -- using separators
             arrow(theme.bg_normal, "#343434"),
-            wibox.container.background(wibox.container.margin(wibox.widget { mailicon, mail and mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
+            wibox.container.background(wibox.container.margin(wibox.widget { mailicon, theme.mail and theme.mail.widget, layout = wibox.layout.align.horizontal }, 4, 7), "#343434"),
             arrow("#343434", theme.bg_normal),
             wibox.container.background(wibox.container.margin(wibox.widget { mpdicon, theme.mpd.widget, layout = wibox.layout.align.horizontal }, 3, 6), theme.bg_focus),
             arrow(theme.bg_normal, "#343434"),
@@ -368,7 +370,7 @@ function theme.at_screen_connect(s)
             arrow("#4B696D", "#4B3B51"),
             wibox.container.background(wibox.container.margin(wibox.widget { tempicon, temp.widget, layout = wibox.layout.align.horizontal }, 4, 4), "#4B3B51"),
             arrow("#4B3B51", "#CB755B"),
-            wibox.container.background(wibox.container.margin(wibox.widget { fsicon, theme.fs.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#CB755B"),
+            wibox.container.background(wibox.container.margin(wibox.widget { fsicon, fs and fs.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#CB755B"),
             arrow("#CB755B", "#8DAA9A"),
             wibox.container.background(wibox.container.margin(wibox.widget { baticon, bat.widget, layout = wibox.layout.align.horizontal }, 3, 3), "#8DAA9A"),
             arrow("#8DAA9A", "#C0C0A2"),
