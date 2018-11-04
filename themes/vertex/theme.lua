@@ -407,10 +407,11 @@ function theme.at_screen_connect(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
-                           awful.button({ }, 1, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 3, function () awful.layout.inc(-1) end),
-                           awful.button({ }, 4, function () awful.layout.inc( 1) end),
-                           awful.button({ }, 5, function () awful.layout.inc(-1) end)))
+                           awful.button({}, 1, function () awful.layout.inc( 1) end),
+                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
+                           awful.button({}, 3, function () awful.layout.inc(-1) end),
+                           awful.button({}, 4, function () awful.layout.inc( 1) end),
+                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
     s.layoutb = wibox.container.margin(s.mylayoutbox, 8, 11, 3, 3)
 
     -- Create a taglist widget
