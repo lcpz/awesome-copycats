@@ -163,7 +163,7 @@ Additional default software used: ::
 .. _swordfischer: https://github.com/lcpz/awesome-copycats/issues/53
 .. _foozer: http://dotshare.it/dots/499
 .. _lain: https://github.com/lcpz/lain
-.. _freedesktop: https://github.com/lcpz/freedesktop
+.. _freedesktop: https://github.com/lcpz/awesome-freedesktop
 .. _Terminus: http://terminus-font.sourceforge.net
 .. _Tamzen: https://github.com/sunaku/tamzen-font
 .. _Roboto: https://fonts.google.com/specimen/Roboto
