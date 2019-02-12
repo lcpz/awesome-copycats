@@ -57,6 +57,7 @@ theme.widget_ac                                 = theme.dir .. "/icons/ac.png"
 theme.widget_battery                            = theme.dir .. "/icons/battery.png"
 theme.widget_battery_low                        = theme.dir .. "/icons/battery_low.png"
 theme.widget_battery_empty                      = theme.dir .. "/icons/battery_empty.png"
+theme.widget_brightness                         = theme.dir .. "/icons/brightness.png"
 theme.widget_mem                                = theme.dir .. "/icons/mem.png"
 theme.widget_cpu                                = theme.dir .. "/icons/cpu.png"
 theme.widget_temp                               = theme.dir .. "/icons/temp.png"
@@ -269,6 +270,16 @@ local net = lain.widget.net({
         widget:set_markup(markup.fontfg(theme.font, "#FEFEFE", " " .. net_now.received .. " ↓↑ " .. net_now.sent .. " "))
     end
 })
+
+-- Brigtness
+local brighticon = wibox.widget.imagebox(theme.widget_brightness)
+-- If you use xbacklight, comment the line with "light -G" and uncomment the line bellow
+-- local brightwidget = awful.widget.watch('xbacklight -get', 0,
+local brightwidget = awful.widget.watch('light -G', 0,
+    function(widget, stdout, stderr, exitreason, exitcode)
+        local brightness_level = tonumber(string.format("%.0f", stdout))
+        widget:set_markup(markup.font(theme.font, " " .. brightness_level .. "%"))
+end)
 
 -- Separators
 local arrow = separators.arrow_left
