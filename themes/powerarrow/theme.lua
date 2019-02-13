@@ -274,8 +274,8 @@ local net = lain.widget.net({
 -- Brigtness
 local brighticon = wibox.widget.imagebox(theme.widget_brightness)
 -- If you use xbacklight, comment the line with "light -G" and uncomment the line bellow
--- local brightwidget = awful.widget.watch('xbacklight -get', 0,
-local brightwidget = awful.widget.watch('light -G', 0,
+-- local brightwidget = awful.widget.watch('xbacklight -get', 0.1,
+local brightwidget = awful.widget.watch('light -G', 0.1,
     function(widget, stdout, stderr, exitreason, exitcode)
         local brightness_level = tonumber(string.format("%.0f", stdout))
         widget:set_markup(markup.font(theme.font, " " .. brightness_level .. "%"))
