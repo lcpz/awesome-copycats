@@ -9,6 +9,7 @@ local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
+local dpi   = require("beautiful.xresources").apply_dpi
 
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -24,13 +25,13 @@ theme.bg_normal                                 = "#242424"
 theme.bg_focus                                  = "#242424"
 theme.fg_urgent                                 = "#000000"
 theme.bg_urgent                                 = "#FFFFFF"
-theme.border_width                              = 1
+theme.border_width                              = dpi(1)
 theme.border_normal                             = "#242424"
 theme.border_focus                              = "#EBEBFF"
 theme.taglist_fg_focus                          = "#EDEFFF"
 theme.taglist_bg_focus                          = "#242424"
-theme.menu_height                               = 16
-theme.menu_width                                = 140
+theme.menu_height                               = dpi(16)
+theme.menu_width                                = dpi(140)
 theme.ocol                                      = "<span color='" .. theme.fg_normal .. "'>"
 theme.tasklist_sticky                           = theme.ocol .. "[S]</span>"
 theme.tasklist_ontop                            = theme.ocol .. "[T]</span>"
@@ -42,7 +43,7 @@ theme.awesome_icon                              = theme.dir .."/icons/awesome.pn
 theme.menu_submenu_icon                         = theme.dir .."/icons/submenu.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
 theme.taglist_squares_unsel                     = theme.dir .. "/icons/square_unsel.png"
-theme.useless_gap                               = 8
+theme.useless_gap                               = dpi(8)
 theme.layout_txt_tile                           = "[t]"
 theme.layout_txt_tileleft                       = "[l]"
 theme.layout_txt_tilebottom                     = "[b]"
@@ -163,7 +164,7 @@ theme.fs = lain.widget.fs({
 
 -- ALSA volume bar
 theme.volume = lain.widget.alsabar({
-    ticks = true, width = 67,
+    ticks = true, width = dpi(67),
     notification_preset = { font = theme.font }
 })
 theme.volume.tooltip.wibox.fg = theme.fg_focus
@@ -190,7 +191,7 @@ theme.volume.bar:buttons(my_table.join (
           end)
 ))
 local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.shape.rectangle)
-local volumewidget = wibox.container.margin(volumebg, 7, 7, 5, 5)
+local volumewidget = wibox.container.margin(volumebg, dpi(7), dpi(7), dpi(5), dpi(5))
 
 -- Weather
 theme.weather = lain.widget.weather({
@@ -243,7 +244,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons)
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18, bg = theme.bg_normal, fg = theme.fg_normal })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
 
     -- Add widgets to the wibox
     s.mywibox:setup {

@@ -9,6 +9,7 @@ local gears = require("gears")
 local lain  = require("lain")
 local awful = require("awful")
 local wibox = require("wibox")
+local dpi   = require("beautiful.xresources").apply_dpi
 
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
@@ -24,15 +25,15 @@ theme.bg_normal                                 = "#060606"
 theme.bg_focus                                  = "#060606"
 theme.fg_urgent                                 = "#CC9393"
 theme.bg_urgent                                 = "#2A1F1E"
-theme.border_width                              = 1
+theme.border_width                              = dpi(1)
 theme.border_normal                             = "#0E0E0E"
 theme.border_focus                              = "#F79372"
 theme.taglist_fg_focus                          = "#F6784F"
 theme.taglist_bg_focus                          = "#060606"
 theme.tasklist_fg_focus                         = "#F6784F"
 theme.tasklist_bg_focus                         = "#060606"
-theme.menu_height                               = 16
-theme.menu_width                                = 130
+theme.menu_height                               = dpi(16)
+theme.menu_width                                = dpi(130)
 theme.menu_submenu_icon                         = theme.dir .. "/icons/submenu.png"
 theme.awesome_icon                              = theme.dir .."/icons/awesome.png"
 theme.taglist_squares_sel                       = theme.dir .. "/icons/square_sel.png"
@@ -190,7 +191,7 @@ local first     = wibox.widget.textbox('<span font="Misc Tamsyn 4"> </span>')
 local arrl_pre  = separators.arrow_right("alpha", "#1A1A1A")
 local arrl_post = separators.arrow_right("#1A1A1A", "alpha")
 
-local barheight = 18
+local barheight = dpi(18)
 local barcolor  = gears.color({
     type  = "linear",
     from  = { barheight, 0 },
@@ -239,7 +240,7 @@ function theme.at_screen_connect(s)
     s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, awful.util.tasklist_buttons, { bg_normal = barcolor, bg_focus = barcolor })
 
     -- Create the wibox
-    s.mywibox = awful.wibar({ position = "top", screen = s, height = 18, bg = barcolor })
+    s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = barcolor })
 
     -- Add widgets to the wibox
     s.mywibox:setup {
