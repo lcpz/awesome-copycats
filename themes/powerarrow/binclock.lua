@@ -8,6 +8,7 @@
 
 local gears  = require("gears")
 local wibox  = require("wibox")
+local dpi    = require("beautiful.xresources").apply_dpi
 local date   = os.date
 local ipairs = ipairs
 local math   = math
@@ -42,8 +43,8 @@ end
 local function factory(args)
     local args = args or {}
 
-    binclock.width          = args.width or 42
-    binclock.height         = args.height or 18
+    binclock.width          = args.width or dpi(42)
+    binclock.height         = args.height or dpi(18)
     binclock.show_seconds   = args.show_seconds or false
     binclock.color_active   = args.color_active or "#CCCCCC"
     binclock.color_inactive = args.color_inactive or "#444444"
