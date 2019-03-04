@@ -120,7 +120,7 @@ theme.mail = lain.widget.imap({
     password = "keyring get mail",
     settings = function()
         if mailcount > 0 then
-            widget:set_text(" " .. mailcount .. " ")
+            widget:set_markup(markup.font(theme.font, " " .. mailcount .. " "))
             mailicon:set_image(theme.widget_mail_on)
         else
             widget:set_text("")
