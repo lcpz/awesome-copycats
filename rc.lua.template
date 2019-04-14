@@ -742,11 +742,11 @@ client.connect_signal("mouse::enter", function(c)
     c:emit_signal("request::activate", "mouse_enter", {raise = true})
 end)
 
--- No border for maximized clients
+-- No borders if only 1 non floating or maximised client visible
 function border_adjust(c)
-    if c.maximized then -- no borders if only 1 client visible
+    if c.maximized or c.floating and #c.screen.clients == 1 then
         c.border_width = 0
-    elseif #awful.screen.focused().clients > 1 then
+    elseif #c.screen.clients > 1 then
         c.border_width = beautiful.border_width
         c.border_color = beautiful.border_focus
     end
