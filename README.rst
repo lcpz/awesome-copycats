@@ -127,7 +127,7 @@ Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, d
 
 To customize a theme, head over to ``themes/$chosen_theme/theme.lua``.
 
-Otherwise, if you want to be synced with upstream, modify ``theme_path`` variable in ``rc.lua`` like this:
+Otherwise, if you want to be synced with upstream, modify the theme path in ``rc.lua`` like this:
 
 .. code-block:: diff
 
