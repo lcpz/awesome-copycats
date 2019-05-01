@@ -127,12 +127,12 @@ Then, set the variable ``chosen_theme`` in ``rc.lua`` to your preferred theme, d
 
 To customize a theme, head over to ``themes/$chosen_theme/theme.lua``.
 
-Otherwise, if you want to be synced with upstream, modify ``theme_path`` variable in ``rc.lua`` like this:
+Otherwise, if you want to be synced with upstream, modify the theme path in ``rc.lua`` like this:
 
 .. code-block:: diff
 
-    -local theme_path = string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme)
-    +local theme_path = string.format("%s/.config/awesome/themes/%s/theme-personal.lua", os.getenv("HOME"), chosen_theme)
+    -beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv("HOME"), chosen_theme))
+    +beautiful.init(string.format("%s/.config/awesome/themes/%s/theme-personal.lua", os.getenv("HOME"), chosen_theme))
 
 then, copy ``theme.lua`` to ``theme-personal.lua`` and do your customizations there.
 
@@ -148,6 +148,25 @@ Fonts are Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Ve
 Every theme has a colorscheme_.
 
 Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
+
+You can also configure the ``city_id`` in the following snippet in ``/.config/awesome/themes/<<CHOSEN_THEME>>/theme.lua`` to get the correct weather information (we suggest doing it in your ``theme-personal.lua``):
+
+.. code-block::
+
+     -- Weather
+        local weathericon = wibox.widget.imagebox(theme.widget_weather)
+        theme.weather = lain.widget.weather({
+            city_id = 2643743, -- placeholder (London)
+            notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
+            weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
+            settings = function()
+                descr = weather_now["weather"][1]["description"]:lower()
+                units = math.floor(weather_now["main"]["temp"])
+                widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
+            end
+        })
+
+You can find your ``city_id`` in city.list.json.gz_ after you extract it.
 
 Additional default software used: ::
 
@@ -173,3 +192,4 @@ Additional default software used: ::
 .. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
 .. _FontAwesome: https://github.com/FortAwesome/Font-Awesome
 .. _branches: https://github.com/lcpz/awesome-copycats/branches
+.. _city.list.json.gz: http://bulk.openweathermap.org/sample/city.list.json.gz
