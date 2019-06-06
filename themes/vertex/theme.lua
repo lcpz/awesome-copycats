@@ -430,11 +430,10 @@ function theme.at_screen_connect(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(25), bg = gears.color.create_png_pattern(theme.panelbg) })
 
-    local wiboxlayout = wibox.layout.align.horizontal()
-    wiboxlayout.expand = "none"
     -- Add widgets to the wibox
     s.mywibox:setup {
-        layout = wiboxlayout,
+        layout = wibox.layout.align.horizontal,
+        expand = "none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
             s.mypromptbox,
@@ -442,8 +441,9 @@ function theme.at_screen_connect(s)
             s.mytasklist,
         },
         { -- Middle widgets
-            layout = wibox.layout.fixed.horizontal,
-            mytextclock,
+            layout = wibox.layout.flex.horizontal,
+            max_widget_size = 1500,
+            mytextclock
         },
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
