@@ -147,7 +147,7 @@ Fonts are Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Ve
 
 Every theme has a colorscheme_.
 
-Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
+As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
 You can also configure the ``city_id`` in the following snippet in ``/.config/awesome/themes/<<CHOSEN_THEME>>/theme.lua`` to get the correct weather information (we suggest doing it in your ``theme-personal.lua``):
 
