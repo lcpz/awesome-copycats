@@ -143,11 +143,13 @@ Notes
 
 Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies.
 
-Fonts are Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
-
-Every theme has a colorscheme_.
+The fonts used in the screenshots are: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
 
 As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
+
+Due the removal of support for bitmap fonts in Pango 1.44_, the current main font is Terminus (OTB version). Under Arch Linux, use ``community/terminus-font-otb``.
+
+Every theme has a colorscheme_.
 
 You can also configure the ``city_id`` in the following snippet in ``/.config/awesome/themes/<<CHOSEN_THEME>>/theme.lua`` to get the correct weather information (we suggest doing it in your ``theme-personal.lua``):
 
@@ -157,7 +159,7 @@ You can also configure the ``city_id`` in the following snippet in ``/.config/aw
         local weathericon = wibox.widget.imagebox(theme.widget_weather)
         theme.weather = lain.widget.weather({
             city_id = 2643743, -- placeholder (London)
-            notification_preset = { font = "xos4 Terminus 10", fg = theme.fg_normal },
+            notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
             weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
             settings = function()
                 descr = weather_now["weather"][1]["description"]:lower()
@@ -170,7 +172,7 @@ You can find your ``city_id`` in city.list.json.gz_ after you extract it.
 
 Additional default software used: ::
 
-    unclutter firefox scrot mpd mpc dmenu xsel slock
+    dmenu firefox mpc mpd scrot unclutter xsel slock
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _b0ab0d7: https://github.com/lcpz/awesome-copycats/tree/b0ab0d7837987be81b9195a36631df773113d491
@@ -193,3 +195,4 @@ Additional default software used: ::
 .. _FontAwesome: https://github.com/FortAwesome/Font-Awesome
 .. _branches: https://github.com/lcpz/awesome-copycats/branches
 .. _city.list.json.gz: http://bulk.openweathermap.org/sample/city.list.json.gz
+.. _1.44: https://github.com/lcpz/awesome-copycats/issues/269

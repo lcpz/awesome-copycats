@@ -18,7 +18,7 @@ local theme                                     = {}
 theme.default_dir                               = require("awful.util").get_themes_dir() .. "default"
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/rainbow"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "Misc Tamsyn 10.5"
+theme.font                                      = "Terminus 10.5"
 theme.fg_normal                                 = "#9E9E9E"
 theme.fg_focus                                  = "#EBEBFF"
 theme.bg_normal                                 = "#242424"
@@ -96,7 +96,7 @@ mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-        font = "Misc Tamsyn 11",
+        font = "Terminus 11",
         fg   = white,
         bg   = theme.bg_normal
     }
@@ -148,7 +148,7 @@ theme.mpd = lain.widget.mpd({
 -- /home fs
 --[[ commented because it needs Gio/Glib >= 2.54
 theme.fs = lain.widget.fs({
-    notification_preset = { fg = white, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
+    notification_preset = { fg = white, bg = theme.bg_normal, font = "Terminus 10.5" },
     settings  = function()
         local fs_header, fs_p = "", ""
 
@@ -200,7 +200,7 @@ theme.weather = lain.widget.weather({
 })
 
 -- Separators
-local first = wibox.widget.textbox(markup.font("Misc Tamsyn 4", " "))
+local first = wibox.widget.textbox(markup.font("Terminus 4", " "))
 local spr   = wibox.widget.textbox(' ')
 
 local function update_txt_layoutbox(s)

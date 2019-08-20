@@ -17,7 +17,7 @@ local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 local theme                                     = {}
 theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/copland"
 theme.wallpaper                                 = theme.dir .. "/wall.png"
-theme.font                                      = "Misc Tamsyn 10.5"
+theme.font                                      = "Terminus 10.5"
 theme.fg_normal                                 = "#BBBBBB"
 theme.fg_focus                                  = "#78A4FF"
 theme.bg_normal                                 = "#111111"
@@ -95,14 +95,14 @@ local green  = "#8FEB8F"
 
 -- Textclock
 --os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock("<span font='Misc Tamsyn 5'> </span>%H:%M ")
+local mytextclock = wibox.widget.textclock("<span font='Terminus 5'> </span>%H:%M ")
 mytextclock.font = theme.font
 
 -- Calendar
 theme.cal = lain.widget.cal({
     attach_to = { mytextclock },
     notification_preset = {
-        font = "Misc Tamsyn 11",
+        font = "Terminus 11",
         fg   = theme.fg_normal,
         bg   = theme.bg_normal
     }
@@ -120,7 +120,7 @@ theme.mail = lain.widget.imap({
         count = ""
 
         if mailcount > 0 then
-            mail = "<span font='Misc Tamsyn 5'> </span>Mail "
+            mail = "<span font='Terminus 5'> </span>Mail "
             count = mailcount .. " "
         end
 
@@ -135,11 +135,11 @@ theme.mpd = lain.widget.mpd({
     settings = function()
         if mpd_now.state == "play" then
             title = mpd_now.title
-            artist  = " " .. mpd_now.artist  .. markup("#777777", " <span font='Misc Tamsyn 2'> </span>|<span font='Misc Tamsyn 5'> </span>")
+            artist  = " " .. mpd_now.artist  .. markup("#777777", " <span font='Terminus 2'> </span>|<span font='Terminus 5'> </span>")
             mpdicon:set_image(theme.play)
         elseif mpd_now.state == "pause" then
             title = "mpd "
-            artist  = "paused" .. markup("#777777", " |<span font='Misc Tamsyn 5'> </span>")
+            artist  = "paused" .. markup("#777777", " |<span font='Terminus 5'> </span>")
             mpdicon:set_image(theme.pause)
         else
             title  = ""
@@ -216,7 +216,7 @@ local fsbar = wibox.widget {
     widget           = wibox.widget.progressbar,
 }
 theme.fs = lain.widget.fs {
-    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Misc Tamsyn 10.5" },
+    notification_preset = { fg = theme.fg_normal, bg = theme.bg_normal, font = "Terminus 10.5" },
     settings  = function()
         if fs_now["/home"].percentage < 90 then
             fsbar:set_color(theme.fg_normal)
@@ -284,10 +284,10 @@ theme.weather = lain.widget.weather({
 })
 
 -- Separators
-local first     = wibox.widget.textbox(markup.font("Misc Tamsyn 3", " "))
+local first     = wibox.widget.textbox(markup.font("Terminus 3", " "))
 local spr       = wibox.widget.textbox(' ')
-local small_spr = wibox.widget.textbox(markup.font("Misc Tamsyn 4", " "))
-local bar_spr   = wibox.widget.textbox(markup.font("Misc Tamsyn 3", " ") .. markup.fontfg(theme.font, "#777777", "|") .. markup.font("Misc Tamsyn 5", " "))
+local small_spr = wibox.widget.textbox(markup.font("Terminus 4", " "))
+local bar_spr   = wibox.widget.textbox(markup.font("Terminus 3", " ") .. markup.fontfg(theme.font, "#777777", "|") .. markup.font("Terminus 5", " "))
 
 -- Eminent-like task filtering
 local orig_filter = awful.widget.taglist.filter.all
