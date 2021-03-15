@@ -194,10 +194,13 @@ local volumebg = wibox.container.background(theme.volume.bar, "#585858", gears.s
 local volumewidget = wibox.container.margin(volumebg, dpi(7), dpi(7), dpi(5), dpi(5))
 
 -- Weather
+--[[ to be set before use
 theme.weather = lain.widget.weather({
+    --APPID =
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = theme.font, fg = white }
 })
+--]]
 
 -- Separators
 local first = wibox.widget.textbox(markup.font("Terminus 4", " "))
