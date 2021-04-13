@@ -205,9 +205,6 @@ local mymainmenu = freedesktop.menu.build {
 
 -- }}}
 
--- Keyboard map indicator and switcher
-mykeyboardlayout = awful.widget.keyboardlayout()
-
 -- {{{ Screen
 
 -- Re-set wallpaper when a screen's geometry changes (e.g. different resolution)
