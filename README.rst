@@ -151,7 +151,7 @@ Every theme has a colorscheme_.
 
 Additional default software used: ::
 
-    dmenu firefox mpc mpd scrot unclutter xsel slock
+    amixer dmenu librewolf mpc mpd scrot unclutter xbacklight xsel slock
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _Awesome: http://github.com/awesomeWM/awesome
