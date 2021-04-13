@@ -193,7 +193,7 @@ theme.volume = lain.widget.alsa({
 -- Weather
 --[[ to be set before use
 theme.weather = lain.widget.weather({
-    --APPID = 
+    --APPID =
     city_id = 2643743, -- placeholder (London)
 })
 --]]

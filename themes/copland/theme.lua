@@ -281,7 +281,7 @@ local volumewidget = wibox.container.margin(volumebg, dpi(2), dpi(7), dpi(4), dp
 -- Weather
 --[[ to be set before use
 theme.weather = lain.widget.weather({
-    --APPID = 
+    --APPID =
     city_id = 2643743, -- placeholder (London)
 })
 --]]
