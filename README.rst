@@ -96,7 +96,7 @@ Installation
 
 .. code-block:: shell
 
-    $ git clone --recursive https://github.com/lcpz/awesome-copycats.git
+    $ git clone --depth 1 --recursive https://github.com/lcpz/awesome-copycats.git
     $ mv -bv awesome-copycats/* ~/.config/awesome && rm -rf awesome-copycats
 
 Usage
