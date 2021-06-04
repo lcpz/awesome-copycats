@@ -273,6 +273,7 @@ local mywifisig = awful.widget.watch(
 wificon:connect_signal("button::press", function() awful.spawn(string.format("%s -e wavemon", awful.util.terminal)) end)
 
 -- Weather
+--[[ to be set before use
 theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Monospace 10" },
@@ -281,6 +282,7 @@ theme.weather = lain.widget.weather({
         widget:set_markup(" " .. markup.font(theme.font, units .. "°C") .. " ")
     end
 })
+--]]
 
 -- Launcher
 local mylauncher = awful.widget.button({image = theme.awesome_icon})
@@ -449,8 +451,8 @@ function theme.at_screen_connect(s)
             layout = wibox.layout.fixed.horizontal,
             wibox.widget { nil, nil, theme.mpd.widget, layout = wibox.layout.align.horizontal },
             rspace0,
-            theme.weather.icon,
-            theme.weather.widget,
+            --theme.weather.icon,
+            --theme.weather.widget,
             rspace1,
             wificon,
             rspace0,

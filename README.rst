@@ -96,7 +96,7 @@ Installation
 
 .. code-block:: shell
 
-    $ git clone --recursive https://github.com/lcpz/awesome-copycats.git
+    $ git clone --depth 1 --recursive https://github.com/lcpz/awesome-copycats.git
     $ mv -bv awesome-copycats/* ~/.config/awesome && rm -rf awesome-copycats
 
 Usage
@@ -141,42 +141,21 @@ This way, you can safely ``git pull`` anytime.
 Notes
 =====
 
-Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies.
+Complements are provided by lain_ and freedesktop_. **Be sure** to satisfy their dependencies_. In particular, mail_ and weather_ widgets have **mandatory** arguments.
 
-The fonts used in the screenshots are: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamsyn_ (other ones).
+The fonts used in the screenshots are: Terminus_ (Multicolor, Powerarrow, Powerarrow Dark), Roboto_ (Holo, Vertex) and Tamzen_ (other ones).
 
 As taglist font, Blackburn and Dremora use Icons_, Vertex uses FontAwesome_: be sure to have bitmaps enabled if running under Debian or Ubuntu_.
 
-Due the removal of support for bitmap fonts in Pango 1.44_, the current main font is Terminus (OTB version). Under Arch Linux, use ``community/terminus-font-otb``.
-
 Every theme has a colorscheme_.
-
-You can also configure the ``city_id`` in the following snippet in ``/.config/awesome/themes/<<CHOSEN_THEME>>/theme.lua`` to get the correct weather information (we suggest doing it in your ``theme-personal.lua``):
-
-.. code-block::
-
-     -- Weather
-        local weathericon = wibox.widget.imagebox(theme.widget_weather)
-        theme.weather = lain.widget.weather({
-            city_id = 2643743, -- placeholder (London)
-            notification_preset = { font = "Terminus 10", fg = theme.fg_normal },
-            weather_na_markup = markup.fontfg(theme.font, "#eca4c4", "N/A "),
-            settings = function()
-                descr = weather_now["weather"][1]["description"]:lower()
-                units = math.floor(weather_now["main"]["temp"])
-                widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
-            end
-        })
-
-You can find your ``city_id`` in city.list.json.gz_ after you extract it.
 
 Additional default software used: ::
 
-    dmenu firefox mpc mpd scrot unclutter xsel slock
+    amixer dmenu librewolf mpc mpd scrot unclutter xbacklight xsel slock
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
-.. _b0ab0d7: https://github.com/lcpz/awesome-copycats/tree/b0ab0d7837987be81b9195a36631df773113d491
 .. _Awesome: http://github.com/awesomeWM/awesome
+.. _branches: https://github.com/lcpz/awesome-copycats/branches
 .. _lucamanni: https://github.com/lucamanni/awesome
 .. _romockee: https://github.com/romockee/powerarrow
 .. _ok100: http://ok100.deviantart.com/art/DWM-January-2013-348656846
@@ -186,13 +165,12 @@ Additional default software used: ::
 .. _lain: https://github.com/lcpz/lain
 .. _freedesktop: https://github.com/lcpz/awesome-freedesktop
 .. _Terminus: http://terminus-font.sourceforge.net
-.. _Tamzen: https://github.com/sunaku/tamzen-font
 .. _Roboto: https://fonts.google.com/specimen/Roboto
-.. _Tamsyn: http://www.fial.com/~scott/tamsyn-font
-.. _colorscheme: https://github.com/lcpz/dots/tree/master/.colors
+.. _Tamzen: https://github.com/sunaku/tamzen-font
 .. _Icons: https://github.com/lcpz/dots/tree/master/.fonts
-.. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
 .. _FontAwesome: https://github.com/FortAwesome/Font-Awesome
-.. _branches: https://github.com/lcpz/awesome-copycats/branches
-.. _city.list.json.gz: http://bulk.openweathermap.org/sample/city.list.json.gz
-.. _1.44: https://github.com/lcpz/awesome-copycats/issues/269
+.. _Ubuntu: https://wiki.ubuntu.com/Fonts#Enabling_Bitmapped_Fonts
+.. _colorscheme: https://github.com/lcpz/dots/tree/master/.colors
+.. _dependencies: https://github.com/lcpz/lain/wiki#dependencies
+.. _mail: https://github.com/lcpz/lain/wiki/mail
+.. _weather: https://github.com/lcpz/lain/wiki/weather

@@ -110,6 +110,7 @@ theme.cal = lain.widget.cal({
 })
 
 -- Weather
+--[[ to be set before use
 local weathericon = wibox.widget.imagebox(theme.widget_weather)
 theme.weather = lain.widget.weather({
     city_id = 2643743, -- placeholder (London)
@@ -121,6 +122,7 @@ theme.weather = lain.widget.weather({
         widget:set_markup(markup.fontfg(theme.font, "#eca4c4", descr .. " @ " .. units .. "°C "))
     end
 })
+--]]
 
 -- / fs
 --[[ commented because it needs Gio/Glib >= 2.54
@@ -134,7 +136,7 @@ theme.fs = lain.widget.fs({
 --]]
 
 -- Mail IMAP check
---[[ commented because it needs to be set before use
+--[[ to be set before use
 local mailicon = wibox.widget.imagebox()
 theme.mail = lain.widget.imap({
     timeout  = 180,
@@ -204,11 +206,13 @@ local netdowninfo = wibox.widget.textbox()
 local netupicon = wibox.widget.imagebox(theme.widget_netup)
 local netupinfo = lain.widget.net({
     settings = function()
+        --[[ uncomment if using the weather widget
         if iface ~= "network off" and
            string.match(theme.weather.widget.text, "N/A")
         then
             theme.weather.update()
         end
+        --]]
 
         widget:set_markup(markup.fontfg(theme.font, "#e54c62", net_now.sent .. " "))
         netdowninfo:set_markup(markup.fontfg(theme.font, "#87af5f", net_now.received .. " "))
@@ -315,8 +319,8 @@ function theme.at_screen_connect(s)
             cpu.widget,
             --fsicon,
             --theme.fs.widget,
-            weathericon,
-            theme.weather.widget,
+            --weathericon,
+            --theme.weather.widget,
             tempicon,
             temp.widget,
             baticon,

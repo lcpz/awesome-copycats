@@ -123,7 +123,7 @@ theme.cal = lain.widget.cal({
 })
 
 -- Mail IMAP check
---[[ commented because it needs to be set before use
+--[[ to be set before use
 theme.mail = lain.widget.imap({
     timeout  = 180,
     server   = "server",
@@ -259,10 +259,13 @@ local netbg = wibox.container.background(net.widget, theme.bg_focus, gears.shape
 local networkwidget = wibox.container.margin(netbg, dpi(0), dpi(0), dpi(5), dpi(5))
 
 -- Weather
+--[[ to be set before use
 theme.weather = lain.widget.weather({
+    --APPID =
     city_id = 2643743, -- placeholder (London)
     notification_preset = { font = "Monospace 9", position = "bottom_right" },
 })
+--]]
 
 -- Launcher
 local mylauncher = awful.widget.button({ image = theme.awesome_icon_launcher })
