@@ -1,0 +1,34 @@
+. create zen and valparaiso and pro themes
+  . zen: http://www.holgerschurig.de/en/awesome-4.0-global-titlebar
+  . zen: clock variant: https://reagent-project.github.io/news/binary-clock.html
+  . zen: theming clock? https://www.gnome-look.org/browse/cat/208/ord/latest
+  . zen: replicate this: https://github.com/davidrlunu/dots-and-dashes
+  . zen: fullscreen, no statusbar, but with its functionalities, notifications for tag switch
+  . valparaiso: set circled progressbars, but made them look like textuals
+. create 95 theme with win 7 aerosnap: https://awesomewm.org/doc/api/libraries/awful.placement.html
+  . check elv13 for icons and related stuff
+  . delayed resizing https://github.com/awesomeWM/awesome/blob/c349ff9206fcb2111b089ddf2d250e2eac20b6e0/docs/89-NEWS.md#mouse-move-and-resize-handlers
+. lain, release 1.0:
+  . make the user define widget type in input (defaulted to textbox)
+  . default textbox filled with default settings
+  . read luaOpt and perfTips
+  . curl -> lgi.Gio in {mpd, imap, weather}
+  . close all issues
+  . follow lua perftips
+  . remove calendar?
+  . implement: https://github.com/lcpz/lain/pull/340#issuecomment-299716720
+  . sysload/temp -> watchets
+  . add travis and luacov
+. freedesktop:
+  . awful.placement for moving icons
+  . add this until it's merged upstream: https://github.com/awesomeWM/awesome/pull/1647
+  . check if this will break menu: https://github.com/awesomeWM/awesome/pull/2111
+
+$ lua -e 'print(require("lgi").GLib.find_program_in_path("does_not_exist"))'
+nil
+$ lua -e 'print(require("lgi").GLib.find_program_in_path("urxvt"))'
+/usr/bin/urxvt
+
+https://github.com/awesomeWM/awesome/issues/1496#issuecomment-284734291 for copycats issue
+
+http://www.brendangregg.com/blog/2017-09-05/solaris-to-linux-2017.html

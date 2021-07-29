@@ -134,10 +134,10 @@ theme.mail = lain.widget.imap({
 --]]
 
 -- MPD
-local musicplr = awful.util.terminal .. " -title Music -g 130x34-320+16 -e ncmpcpp"
+local musicplr = awful.util.terminal .. " -title Music -e ncmpcpp"
 local mpdicon = wibox.widget.imagebox(theme.widget_music)
 mpdicon:buttons(my_table.join(
-    awful.button({ modkey }, 1, function () awful.spawn.with_shell(musicplr) end),
+    awful.button({ "Mod4" }, 1, function () awful.spawn(musicplr) end),
     awful.button({ }, 1, function ()
         os.execute("mpc prev")
         theme.mpd.update()
