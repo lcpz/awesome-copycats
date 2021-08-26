@@ -96,14 +96,14 @@ Installation
 
 .. code-block:: shell
 
-    $ git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
-    $ mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
+    git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
+    mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
 
 In case you do not want the Git files, use the following as the second command:
 
 .. code-block:: shell
 
-    $ mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
+    mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
 
 Usage
 =====
