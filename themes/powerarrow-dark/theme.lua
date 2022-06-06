@@ -14,20 +14,20 @@ local dpi   = require("beautiful.xresources").apply_dpi
 local os = os
 local my_table = awful.util.table or gears.table -- 4.{0,1} compatibility
 
-local theme                                     = {}
-theme.dir                                       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
-theme.wallpaper                                 = theme.dir .. "/wall.png"
+local theme     = {}
+theme.dir       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
+theme.wallpaper = theme.dir .. "/wall.png"
 
 
-theme.font                                      = "Terminus 10.5"
-theme.fg_normal                                 = "#BBBBBB"
-theme.fg_focus                                  = "#78A4FF"
-theme.bg_normal                                 = "#111111"
-theme.bg_focus                                  = "#111111"
-theme.fg_urgent                                 = "#000000"
-theme.bg_urgent                                 = "#FFFFFF"
+theme.font      = "Terminus 10.5"
+theme.fg_normal = "#BBBBBB"
+theme.fg_focus  = "#78A4FF"
+theme.bg_normal = "#111111"
+theme.bg_focus  = "#111111"
+theme.fg_urgent = "#000000"
+theme.bg_urgent = "#FFFFFF"
 
-theme.arrows                                    = '#a1a1a1'
+theme.arrows = '#a1a1a1'
 
 -- theme.font                                      = "Terminus 9"
 -- theme.fg_normal                                 = "#DDDDFF"
@@ -36,7 +36,7 @@ theme.arrows                                    = '#a1a1a1'
 -- theme.bg_normal                                 = "#1A1A1A"
 -- theme.bg_focus                                  = "#313131"
 -- theme.bg_urgent                                 = "#1A1A1A"
-theme.border_width                              = dpi(1)
+theme.border_width = dpi(1)
 
 theme.border_normal                             = "#141414"
 theme.border_focus                              = "#93B6FF"
@@ -190,10 +190,20 @@ theme.mail = lain.widget.imap({
 -- })
 
 -- MEM
+function round_one_decimal(num)
+    return math.floor(num * 10) / 10
+end
+
 local memicon = wibox.widget.imagebox(theme.widget_mem)
 local mem = lain.widget.mem({
     settings = function()
-        widget:set_markup(markup.font(theme.font, " " .. mem_now.used .. " MB "))
+        local mem_used = mem_now.used
+        if mem_used >= 1000 then
+            mem_used = round_one_decimal(mem_used / 1000)
+            widget:set_markup(markup.font(theme.font, " " .. mem_used .. " Gb "))
+        else
+            widget:set_markup(markup.font(theme.font, " " .. mem_used .. " MB "))
+        end
     end
 })
 
@@ -264,14 +274,14 @@ theme.volume = lain.widget.alsa({
     end
 })
 theme.volume.widget:buttons(awful.util.table.join(
-                               awful.button({}, 4, function ()
-                                     awful.util.spawn("amixer set Master 1%+")
-                                     theme.volume.update()
-                               end),
-                               awful.button({}, 5, function ()
-                                     awful.util.spawn("amixer set Master 1%-")
-                                     theme.volume.update()
-                               end)
+    awful.button({}, 4, function()
+        awful.util.spawn("amixer set Master 1%+")
+        theme.volume.update()
+    end),
+    awful.button({}, 5, function()
+        awful.util.spawn("amixer set Master 1%-")
+        theme.volume.update()
+    end)
 ))
 
 -- Net
@@ -279,9 +289,9 @@ local neticon = wibox.widget.imagebox(theme.widget_net)
 local net = lain.widget.net({
     settings = function()
         widget:set_markup(markup.font(theme.font,
-                          markup("#7AC82E", " " .. string.format("%06.1f", net_now.received))
-                          .. " " ..
-                          markup("#46A8C3", " " .. string.format("%06.1f", net_now.sent) .. " ")))
+            markup("#7AC82E", " " .. string.format("%06.1f", net_now.received))
+            .. " " ..
+            markup("#46A8C3", " " .. string.format("%06.1f", net_now.sent) .. " ")))
     end
 })
 
@@ -310,11 +320,11 @@ function theme.at_screen_connect(s)
     -- We need one layoutbox per screen.
     s.mylayoutbox = awful.widget.layoutbox(s)
     s.mylayoutbox:buttons(my_table.join(
-                           awful.button({}, 1, function () awful.layout.inc( 1) end),
-                           awful.button({}, 2, function () awful.layout.set( awful.layout.layouts[1] ) end),
-                           awful.button({}, 3, function () awful.layout.inc(-1) end),
-                           awful.button({}, 4, function () awful.layout.inc( 1) end),
-                           awful.button({}, 5, function () awful.layout.inc(-1) end)))
+        awful.button({}, 1, function() awful.layout.inc(1) end),
+        awful.button({}, 2, function() awful.layout.set(awful.layout.layouts[1]) end),
+        awful.button({}, 3, function() awful.layout.inc(-1) end),
+        awful.button({}, 4, function() awful.layout.inc(1) end),
+        awful.button({}, 5, function() awful.layout.inc(-1) end)))
     -- Create a taglist widget
     s.mytaglist = awful.widget.taglist(s, awful.widget.taglist.filter.all, awful.util.taglist_buttons)
 
@@ -337,7 +347,7 @@ function theme.at_screen_connect(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            
+
             arrl_ld,
             arrl_dl,
             wibox.widget.systray(),
@@ -361,7 +371,7 @@ function theme.at_screen_connect(s)
             cpu.widget,
             --wibox.container.background(cpuicon, theme.bg_focus),
             --wibox.container.background(cpu.widget, theme.bg_focus),
-            
+
             --tempicon,
             --temp.widget,
             --arrl_ld,
