@@ -326,6 +326,13 @@ local arrl_ld = separators.arrow_left("alpha", theme.arrows)
 -- LogOut widget
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
 
+-- Weatherwidget
+local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
+
+
+
+
+
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -402,6 +409,20 @@ function theme.at_screen_connect(s)
             arrl_ld,
             arrl_dl,
             logout_menu_widget(),
+            arrl_ld,
+            arrl_dl,
+            weather_widget({
+                api_key='aeec45216dbe6d619167d2e9c9380fd7',
+                coordinates = {45.95, 24.14},
+                time_format_12h = true,
+                units = 'metric',
+                both_units_widget = true,
+                font_name = 'Carter One',
+                icons = 'VitalyGorbachev',
+                icons_extension = '.svg',
+                show_hourly_forecast = true,
+                show_daily_forecast = true,
+            }),
             arrl_ld,
             arrl_dl,
             clock,
