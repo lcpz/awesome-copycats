@@ -5,3 +5,6 @@
 [submodule "freedesktop"]
 	path = freedesktop
 	url = https://github.com/lcpz/awesome-freedesktop.git
+[submodule "awesome-wm-widgets"]
+	path = awesome-wm-widgets
+	url = git@github.com:streetturtle/awesome-wm-widgets.git
