@@ -123,14 +123,37 @@ local clock = awful.widget.watch(
 )
 
 -- Calendar
-theme.cal = lain.widget.cal({
-    attach_to = { clock },
-    notification_preset = {
-        font = "Terminus 10",
-        fg   = theme.fg_normal,
-        bg   = theme.bg_normal
-    }
+-- theme.cal = lain.widget.cal({
+--     attach_to = { clock },
+--     notification_preset = {
+--         font = "Terminus 10",
+--         fg   = theme.fg_normal,
+--         bg   = theme.bg_normal
+--     }
+-- })
+
+-- Custom Calendar
+local calendar_widget = require("awesome-wm-widgets.calendar-widget.calendar")
+-- ...
+-- Create a textclock widget
+--mytextclock = wibox.widget.textclock()
+-- default
+local cw = calendar_widget()
+-- or customized
+local cw = calendar_widget({
+    theme = 'nord',
+    placement = 'top_right',
+    start_sunday = true,
+    radius = 8,
+-- with customized next/previous (see table above)
+    previous_month_button = 1,
+    next_month_button = 3,
 })
+clock:connect_signal("button::press",
+    function(_, _, _, button)
+        if button == 1 then cw.toggle() end
+    end)
+
 
 -- Mail IMAP check
 --local mailicon = wibox.widget.imagebox(theme.widget_mail)
@@ -300,6 +323,9 @@ local spr     = wibox.widget.textbox(' ')
 local arrl_dl = separators.arrow_left(theme.arrows, "alpha")
 local arrl_ld = separators.arrow_left("alpha", theme.arrows)
 
+-- LogOut widget
+local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
+
 function theme.at_screen_connect(s)
     -- Quake application
     s.quake = lain.util.quake({ app = awful.util.terminal })
@@ -354,30 +380,17 @@ function theme.at_screen_connect(s)
             -- keyboardlayout,
             spr,
             arrl_ld,
-            --wibox.container.background(mpdicon, theme.bg_focus),
-            --wibox.container.background(theme.mpd.widget, theme.bg_focus),
             arrl_dl,
             volicon,
             theme.volume.widget,
             arrl_ld,
-            --wibox.container.background(mailicon, theme.bg_focus),
-            --wibox.container.background(theme.mail.widget, theme.bg_focus),
-            arrl_dl,
-            memicon,
-            mem.widget,
-            arrl_ld,
             arrl_dl,
             cpuicon,
             cpu.widget,
-            --wibox.container.background(cpuicon, theme.bg_focus),
-            --wibox.container.background(cpu.widget, theme.bg_focus),
-
-            --tempicon,
-            --temp.widget,
-            --arrl_ld,
-            --wibox.container.background(fsicon, theme.bg_focus),
-            --wibox.container.background(theme.fs.widget, theme.bg_focus),
-            --arrl_dl,
+            arrl_ld,
+            arrl_dl,
+            memicon,
+            mem.widget,
             arrl_ld,
             arrl_dl,
             baticon,
@@ -386,6 +399,9 @@ function theme.at_screen_connect(s)
             arrl_dl,
             wibox.container.background(neticon, theme.bg_focus),
             wibox.container.background(net.widget, theme.bg_focus),
+            arrl_ld,
+            arrl_dl,
+            logout_menu_widget(),
             arrl_ld,
             arrl_dl,
             clock,

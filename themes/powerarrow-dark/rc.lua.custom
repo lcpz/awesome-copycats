@@ -572,10 +572,10 @@ globalkeys = mytable.join(-- Destroy all notifications
     awful.key({ altkey, "Control", "Shift" }, "b", function()
         os.execute("rfkill toggle bluetooth")
         if BLUESTATUS == false then
-            naughty.notify({ title = "Bluetooth", text = "Bluetooth is ON", icon = "/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png" })
+            naughty.notify({ title = "Bluetooth", text = "Bluetooth is ON", icon="/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png"})
             BLUESTATUS = true
         else
-            naughty.notify({ title = "Bluetooth", text = "Bluetooth is OFF", icon = "/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png" })
+            naughty.notify({ title = "Bluetooth", text = "Bluetooth is OFF", icon="/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png"})
             BLUESTATUS = false
         end
     end, {
@@ -983,8 +983,6 @@ end)
 -- Gaps
 beautiful.useless_gap = 6
 
--- Compositor
 awful.spawn.with_shell("picom")
-
--- Wallpapers
 awful.spawn.with_shell("nitrogen --set-zoom-fill --random ~/Pictures/SFW")
+
