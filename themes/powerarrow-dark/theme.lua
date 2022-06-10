@@ -329,6 +329,8 @@ local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout
 -- Weatherwidget
 local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
 
+-- BrightnessWidget
+local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 
 
 
@@ -402,6 +404,14 @@ function theme.at_screen_connect(s)
             arrl_dl,
             baticon,
             bat.widget,
+            arrl_ld,
+            arrl_dl,
+            brightness_widget({
+                type = 'icon_and_text',
+                program = 'light',
+                step = 10,
+                base = 20       
+            }),
             arrl_ld,
             arrl_dl,
             wibox.container.background(neticon, theme.bg_focus),
