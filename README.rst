@@ -157,7 +157,7 @@ Every theme has a colorscheme_.
 
 Additional default software used: ::
 
-    amixer dmenu librewolf mpc mpd scrot unclutter xbacklight xsel slock
+    amixer dmenu librewolf mpc scrot unclutter xsel xlock light picom nitrogen
 
 .. _BY-NC-SA: http://creativecommons.org/licenses/by-nc-sa/4.0
 .. _Awesome: http://github.com/awesomeWM/awesome
