@@ -298,11 +298,11 @@ theme.volume = lain.widget.alsa({
 })
 theme.volume.widget:buttons(awful.util.table.join(
     awful.button({}, 4, function()
-        awful.util.spawn("amixer set Master 1%+")
+        awful.util.spawn("amixer set Master 5%+")
         theme.volume.update()
     end),
     awful.button({}, 5, function()
-        awful.util.spawn("amixer set Master 1%-")
+        awful.util.spawn("amixer set Master 5%-")
         theme.volume.update()
     end)
 ))

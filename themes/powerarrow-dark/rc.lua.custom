@@ -100,7 +100,7 @@ local themes = { "blackburn", -- 1
 local chosen_theme = themes[7]
 local modkey = "Mod4"
 local altkey = "Mod1"
-local terminal = "gnome-terminal"
+local terminal = "terminator"
 local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nano"
@@ -113,13 +113,16 @@ BLUESTATUS = false
 -- IBus
 os.execute("ibus-daemon -d")
 
+
 awful.util.terminal = terminal
 awful.util.tagnames = { "1", "2" }
 awful.layout.layouts = { awful.layout.suit.tile, awful.layout.suit.tile.left, awful.layout.suit.tile.bottom,
-    awful.layout.suit.tile.top, -- awful.layout.suit.fair,
-    -- awful.layout.suit.fair.horizontal,
-    -- awful.layout.suit.spiral,
-    awful.layout.suit.spiral.dwindle -- awful.layout.suit.floating
+    awful.layout.suit.tile.top,
+     awful.layout.suit.fair,
+    awful.layout.suit.fair.horizontal,
+    awful.layout.suit.spiral,
+    awful.layout.suit.spiral.dwindle
+    -- awful.layout.suit.floating
     -- awful.layout.suit.max,
     -- awful.layout.suit.max.fullscreen,
     -- awful.layout.suit.magnifier,
@@ -191,10 +194,10 @@ beautiful.init(string.format("%s/.config/awesome/themes/%s/theme.lua", os.getenv
 local myawesomemenu = { { "Hotkeys", function()
     hotkeys_popup.show_help(nil, awful.screen.focused())
 end }, { "Manual", string.format("%s -e man awesome", terminal) },
-{ "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
-{ "Restart", awesome.restart }, { "Quit", function()
-    awesome.quit()
-end } }
+    { "Edit config", string.format("%s -e %s %s", terminal, editor, awesome.conffile) },
+    { "Restart", awesome.restart }, { "Quit", function()
+        awesome.quit()
+    end } }
 
 awful.util.mymainmenu = freedesktop.menu.build {
     before = { { "Awesome", myawesomemenu, beautiful.awesome_icon } -- other triads can be put here
@@ -205,19 +208,19 @@ awful.util.mymainmenu = freedesktop.menu.build {
 
 -- Hide the menu when the mouse leaves it
 
-awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
-    if not awful.util.mymainmenu.active_child or
-        (awful.util.mymainmenu.wibox ~= mouse.current_wibox and awful.util.mymainmenu.active_child.wibox ~=
-            mouse.current_wibox) then
-        awful.util.mymainmenu:hide()
-    else
-        awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave", function()
-            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
-                awful.util.mymainmenu:hide()
-            end
-        end)
-    end
-end)
+-- awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
+--     if not awful.util.mymainmenu.active_child or
+--         (awful.util.mymainmenu.wibox ~= mouse.current_wibox and awful.util.mymainmenu.active_child.wibox ~=
+--             mouse.current_wibox) then
+--         awful.util.mymainmenu:hide()
+--     else
+--         awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave", function()
+--             if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
+--                 awful.util.mymainmenu:hide()
+--             end
+--         end)
+--     end
+-- end)
 
 -- Set the Menubar terminal for applications that require it
 -- menubar.utils.terminal = terminal
@@ -269,7 +272,7 @@ end), awful.button({}, 4, awful.tag.viewnext), awful.button({}, 5, awful.tag.vie
 -- {{{ Key bindings
 
 globalkeys = mytable.join(-- Destroy all notifications
-    awful.key({ "Control" }, "space", function()
+    awful.key({ "Control", "Shift" }, "Escape", function()
         naughty.destroy_all_notifications()
     end, {
         description = "destroy all notifications",
@@ -281,9 +284,9 @@ globalkeys = mytable.join(-- Destroy all notifications
     end, {
         description = "take a screenshot",
         group = "hotkeys"
-    }), -- X screen locker
+    }), -- xlock screen locker
     awful.key({ altkey, "Control", "Shift" }, "l", function()
-        os.execute("xscreensaver-command -lock")
+        os.execute("xlock")
     end, {
         description = "lock screen",
         group = "hotkeys"
@@ -411,18 +414,20 @@ globalkeys = mytable.join(-- Destroy all notifications
     end, {
         description = "toggle wibox",
         group = "awesome"
-    }), -- On-the-fly useless gaps change
-    awful.key({ altkey, "Control" }, "+", function()
-        lain.util.useless_gaps_resize(1)
-    end, {
-        description = "increment useless gaps",
-        group = "tag"
-    }), awful.key({ altkey, "Control" }, "-", function()
-        lain.util.useless_gaps_resize(-1)
-    end, {
-        description = "decrement useless gaps",
-        group = "tag"
-    }), -- Dynamic tagging
+    }),
+    -- On-the-fly useless gaps change
+    -- awful.key({ altkey, "Control" }, "+", function()
+    --     lain.util.useless_gaps_resize(1)
+    -- end, {
+    --     description = "increment useless gaps",
+    --     group = "tag"
+    -- }), awful.key({ altkey, "Control" }, "-", function()
+    --     lain.util.useless_gaps_resize(-1)
+    -- end, {
+    --     description = "decrement useless gaps",
+    --     group = "tag"
+    -- }),
+    -- Dynamic tagging
     awful.key({ modkey, "Shift" }, "n", function()
         lain.util.add_tag()
     end, {
@@ -518,35 +523,35 @@ globalkeys = mytable.join(-- Destroy all notifications
         description = "dropdown application",
         group = "launcher"
     }), -- Widgets popups
-    awful.key({ altkey }, "c", function()
-        if beautiful.cal then
-            beautiful.cal.show(7)
-        end
-    end, {
-        description = "show calendar",
-        group = "widgets"
-    }), awful.key({ altkey }, "h", function()
-        if beautiful.fs then
-            beautiful.fs.show(7)
-        end
-    end, {
-        description = "show filesystem",
-        group = "widgets"
-    }), awful.key({ altkey }, "w", function()
-        if beautiful.weather then
-            beautiful.weather.show(7)
-        end
-    end, {
-        description = "show weather",
-        group = "widgets"
-    }), -- Screen brightness
+    -- awful.key({ altkey }, "c", function()
+    --     if beautiful.cal then
+    --         beautiful.cal.show(7)
+    --     end
+    -- end, {
+    --     description = "show calendar",
+    --     group = "widgets"
+    -- }), awful.key({ altkey }, "h", function()
+    --     if beautiful.fs then
+    --         beautiful.fs.show(7)
+    --     end
+    -- end, {
+    --     description = "show filesystem",
+    --     group = "widgets"
+    -- }), awful.key({ altkey }, "w", function()
+    --     if beautiful.weather then
+    --         beautiful.weather.show(7)
+    --     end
+    -- end, {
+    --     description = "show weather",
+    --     group = "widgets"
+    -- }), -- Screen brightness
     awful.key({}, "#233", function()
-        os.execute("adjust-brightness.lnk --inc 10")
+        os.execute("light -A 10")
     end, {
         description = "Fn + f6 --- brightness +10%",
         group = "hotkeys"
     }), awful.key({}, "#232", function()
-        os.execute("adjust-brightness.lnk --dec 10")
+        os.execute("light -U 10")
     end, {
         description = "Fn + f5 --- brightness -10%",
         group = "hotkeys"
@@ -572,10 +577,12 @@ globalkeys = mytable.join(-- Destroy all notifications
     awful.key({ altkey, "Control", "Shift" }, "b", function()
         os.execute("rfkill toggle bluetooth")
         if BLUESTATUS == false then
-            naughty.notify({ title = "Bluetooth", text = "Bluetooth is ON", icon="/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png"})
+            naughty.notify({ title = "Bluetooth", text = "Bluetooth is ON",
+                icon = "/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png" })
             BLUESTATUS = true
         else
-            naughty.notify({ title = "Bluetooth", text = "Bluetooth is OFF", icon="/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png"})
+            naughty.notify({ title = "Bluetooth", text = "Bluetooth is OFF",
+                icon = "/home/sirhadrian/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png" })
             BLUESTATUS = false
         end
     end, {
@@ -601,7 +608,7 @@ globalkeys = mytable.join(-- Destroy all notifications
     end, {
         description = "Fn + f1 --- toggle mute",
         group = "hotkeys"
-    }), awful.key({ altkey, "Control" }, "m", function()
+    }), awful.key({ altkey, "Control" }, "9", function()
         os.execute(string.format("amixer -q set %s 100%%", beautiful.volume.channel))
         beautiful.volume.update()
     end, {
@@ -980,9 +987,12 @@ end)
 
 -- }}}
 
+-- Mute volume on startup
+-- os.execute(string.format("amixer set Master 0%%"))
+-- beautiful.volume.update()
+
 -- Gaps
 beautiful.useless_gap = 6
 
 awful.spawn.with_shell("picom")
 awful.spawn.with_shell("nitrogen --set-zoom-fill --random ~/Pictures/SFW")
-
