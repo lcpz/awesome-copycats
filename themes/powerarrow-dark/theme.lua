@@ -323,15 +323,15 @@ local spr     = wibox.widget.textbox(' ')
 local arrl_dl = separators.arrow_left(theme.arrows, "alpha")
 local arrl_ld = separators.arrow_left("alpha", theme.arrows)
 
+-- My Custom Widgets
 -- LogOut widget
 local logout_menu_widget = require("awesome-wm-widgets.logout-menu-widget.logout-menu")
-
--- Weatherwidget
-local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
 
 -- BrightnessWidget
 local brightness_widget = require("awesome-wm-widgets.brightness-widget.brightness")
 
+-- Weatherwidget
+local weather_widget = require("awesome-wm-widgets.weather-widget.weather")
 
 
 
@@ -369,8 +369,8 @@ function theme.at_screen_connect(s)
     -- Create the wibox
     s.mywibox = awful.wibar({ position = "top", screen = s, height = dpi(18), bg = theme.bg_normal, fg = theme.fg_normal })
 
-    -- Add widgets to the wibox
-    s.mywibox:setup {
+     -- Add widgets to the wibox
+     s.mywibox:setup {
         layout = wibox.layout.align.horizontal,
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
@@ -410,7 +410,7 @@ function theme.at_screen_connect(s)
                 type = 'icon_and_text',
                 program = 'light',
                 step = 10,
-                base = 20       
+                base = 20,
             }),
             arrl_ld,
             arrl_dl,
