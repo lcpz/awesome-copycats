@@ -96,14 +96,8 @@ Installation
 
 .. code-block:: shell
 
-    git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/lcpz/awesome-copycats.git
-    mv -bv awesome-copycats/{*,.[^.]*} ~/.config/awesome; rm -rf awesome-copycats
-
-In case you do not want the Git files, use the following as the second command:
-
-.. code-block:: shell
-
-    mv -bv awesome-copycats/* ~/.config/awesome; rm -rf awesome-copycats
+    git clone --recurse-submodules --remote-submodules --depth 1 -j 2 https://github.com/SirHadrian/awesome-themes.git
+    mv -v awesome-themes/* ~/.config/awesome && rm -rf awesome-themes
 
 Usage
 =====
@@ -143,6 +137,16 @@ Otherwise, if you want to be synced with upstream, modify the theme path in ``rc
 then, copy ``theme.lua`` to ``theme-personal.lua`` and do your customizations there.
 
 This way, you can safely ``git pull`` anytime.
+
+Themes details
+==============
+
+Powerarrow-dark
+===============
+
+For the weather widget to work install:
+.. code-block:: shell
+    $ wget -P ~/.config/awesome/ https://raw.githubusercontent.com/rxi/json.lua/master/json.lua
 
 Notes
 =====
