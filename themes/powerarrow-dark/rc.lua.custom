@@ -101,7 +101,7 @@ local themes = {
 local chosen_theme = themes[7]
 local modkey = "Mod4"
 local altkey = "Mod1"
-local terminal = "terminator"
+local terminal = "alacritty"
 local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv("EDITOR") or "nano"
@@ -459,7 +459,8 @@ globalkeys = mytable.join( -- Destroy all notifications
     -- end, {
     --     description = "show weather",
     --     group = "widgets"
-    -- }), -- Screen brightness
+    -- }), 
+    -- Screen brightness
                  awful.key({}, "#233", function() os.execute("light -A 10") end,
                            {
         description = "Fn + f6 --- brightness +10%",
@@ -469,13 +470,13 @@ globalkeys = mytable.join( -- Destroy all notifications
         group = "hotkeys"
     }), -- Max/Min Brightness
     awful.key({altkey, "Control", "Shift"}, "0",
-              function() os.execute("adjust-brightness.lnk --min") end,
+              function() os.execute("light -S 0") end,
               {description = "Min screen brightness", group = "hotkeys"}),
                  awful.key({altkey, "Control", "Shift"}, "9", function()
-        os.execute("adjust-brightness.lnk --max")
+        os.execute("light -S 100")
     end, {description = "Max screen brightness", group = "hotkeys"}),
                  awful.key({altkey, "Control", "Shift"}, "m", function()
-        os.execute("adjust-brightness.lnk --mid")
+        os.execute("light -S 50")
     end, {description = "Mid screen brightness", group = "hotkeys"}),
     -- Bluetooth toggle
                  awful.key({altkey, "Control", "Shift"}, "b", function()
@@ -484,14 +485,12 @@ globalkeys = mytable.join( -- Destroy all notifications
             naughty.notify({
                 title = "Bluetooth",
                 text = "Bluetooth is ON",
-                icon = "~/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png"
             })
             BLUESTATUS = true
         else
             naughty.notify({
                 title = "Bluetooth",
                 text = "Bluetooth is OFF",
-                icon = "~/.config/awesome/themes/powerarrow-dark/icons/bluetooth.png"
             })
             BLUESTATUS = false
         end
@@ -833,5 +832,7 @@ client.connect_signal("unfocus",
 -- Gaps
 beautiful.useless_gap = 6
 
-awful.spawn.with_shell("picom")
---awful.spawn.with_shell("nitrogen --set-zoom-fill --random ~/Pictures/SFW")
+-- awful.spawn.with_shell("picom")
+awful.spawn.with_shell("nitrogen --set-zoom-fill --random ~/Pictures/SFW")
+awful.spawn.with_shell("optimus-manager-qt")
+os.execute("picom --experimental-backends -b")
