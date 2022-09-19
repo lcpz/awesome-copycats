@@ -19,7 +19,7 @@ theme.dir       = os.getenv("HOME") .. "/.config/awesome/themes/powerarrow-dark"
 theme.wallpaper = theme.dir .. "/wall.png"
 
 
-theme.font      = "Terminus 10.5"
+theme.font      = "JetBrainsMono Nerd Font Bold 12"
 theme.fg_normal = "#BBBBBB"
 theme.fg_focus  = "#78A4FF"
 theme.bg_normal = "#111111"
@@ -418,7 +418,9 @@ function theme.at_screen_connect(s)
             wibox.container.background(net.widget, theme.bg_focus),
             arrl_ld,
             arrl_dl,
-            logout_menu_widget(),
+            logout_menu_widget({
+                font = theme.font,
+            }),
             arrl_ld,
             arrl_dl,
             weather_widget({
