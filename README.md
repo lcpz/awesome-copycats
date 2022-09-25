@@ -168,6 +168,10 @@ For the weather widget to work install:
 $ wget -P ~/.config/awesome/ https://raw.githubusercontent.com/rxi/json.lua/master/json.lua
 ```
 
+For custom [dmenu build patches](https://github.com/bakkeby/dmenu-flexipatch)
+
+
+
 # Notes
 
 Complements are provided by [lain](https://github.com/lcpz/lain) and
