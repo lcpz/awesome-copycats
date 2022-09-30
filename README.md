@@ -199,4 +199,4 @@ Every theme has a
 
 Additional default software used: :
 
-    amixer dmenu librewolf firefox alsa-utils mpc scrot unclutter xsel xlock lightmore picom-git alacritty nitrogen
+    amixer dmenu librewolf firefox alsa-utils mpc scrot unclutter xsel xlockmore light picom-git alacritty nitrogen
