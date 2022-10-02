@@ -702,6 +702,11 @@ awful.key({modkey}, "r", function()
 end, {
     description = "run rofi",
     group = "launcher"
+}), awful.key({modkey}, "g", function()
+    awful.util.spawn("rofisearch")
+end, {
+    description = "run rofi",
+    group = "launcher"
 }), awful.key({modkey}, "x", function()
     awful.prompt.run {
         prompt = "Run Lua code: ",
