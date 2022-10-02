@@ -160,12 +160,12 @@ This way, you can safely `git pull` anytime.
 
 # Themes details
 
-# Powerarrow-dark
+# Powerarrow-dark and Vertex
 
-For the weather widget to work install:
+For the weather widget to work:
 
 ``` shell
-$ wget -P ~/.config/awesome/ https://raw.githubusercontent.com/rxi/json.lua/master/json.lua
+wget -P ~/.config/awesome/ https://raw.githubusercontent.com/rxi/json.lua/master/json.lua
 ```
 
 For custom [dmenu build patches](https://github.com/bakkeby/dmenu-flexipatch)
