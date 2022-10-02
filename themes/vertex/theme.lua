@@ -187,6 +187,18 @@ local bat = lain.widget.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox()
+local battooltip = awful.tooltip({
+    objects = {volicon},
+    margin_leftright = dpi(15),
+    margin_topbottom = dpi(12)
+})
+battooltip.wibox.fg = "#fcfbf7"
+battooltip.wibox.widget.bg = "#404040"
+battooltip.textbox.font = theme.font
+battooltip.timeout = 0
+battooltip:set_shape(function(cr, width, height)
+    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, 4)
+end)
 theme.volume = lain.widget.alsabar({
     -- togglechannel = "IEC958,3",
     notification_preset = {
@@ -211,6 +223,7 @@ theme.volume = lain.widget.alsabar({
         end
 
         volicon:set_image(theme[index])
+        battooltip:set_markup(string.format("\n%s%%", perc))
     end
 })
 volicon:buttons(my_table.join(awful.button({}, 1, function()
