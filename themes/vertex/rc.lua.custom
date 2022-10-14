@@ -199,7 +199,8 @@ awful.util.mymainmenu = freedesktop.menu.build {
     before = {{"Awesome", myawesomemenu, beautiful.awesome_icon} -- other triads can be put here
     },
     after = {{"Open terminal", terminal} -- other triads can be put here
-    }
+    },
+    width = 250
 }
 
 -- Hide the menu when the mouse leaves it
@@ -976,9 +977,11 @@ client.connect_signal("request::titlebars", function(c)
 end)
 
 -- Enable sloppy focus, so that focus follows mouse.
--- client.connect_signal("mouse::enter", function(c)
---     c:emit_signal("request::activate", "mouse_enter", {raise = vi_focus})
--- end)
+client.connect_signal("mouse::enter", function(c)
+    c:emit_signal("request::activate", "mouse_enter", {
+        raise = vi_focus
+    })
+end)
 
 client.connect_signal("focus", function(c)
     c.border_color = beautiful.border_focus
