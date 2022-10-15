@@ -16,7 +16,8 @@ local theme = {}
 theme.default_dir = require("awful.util").get_themes_dir() .. "default"
 theme.icon_dir = os.getenv("HOME") .. "/.config/awesome/themes/vertex/icons"
 theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/themes/vertex/wall.png"
-theme.font = "Roboto Bold 10"
+-- theme.font = "Roboto Bold 10"
+theme.font = "JetBrainsMono Nerd Font Bold 12"
 theme.taglist_font = "FontAwesome 17"
 theme.fg_normal = "#FFFFFF"
 theme.fg_focus = "#6A95EB"
@@ -107,7 +108,7 @@ theme.widget_cpu = theme.icon_dir .. "/cpu.png"
 theme.widget_mem = theme.icon_dir .. "/mem.png"
 
 -- http://fontawesome.io/cheatsheet
-awful.util.tagnames = {"", "", "", "", ""}
+awful.util.tagnames = {"", "", "", "", "", ""}
 
 local markup = lain.util.markup
 
@@ -121,7 +122,7 @@ theme.cal = lain.widget.cal({
         fg = "#FFFFFF",
         bg = theme.bg_normal,
         position = "top_middle",
-        font = "Monospace 10"
+        font = "JetBrainsMono Nerd Font Bold 12"
     }
 })
 
@@ -279,17 +280,6 @@ local net = lain.widget.net({
 
 -- Wifi carrier and signal strength
 local wificon = wibox.widget.imagebox(theme.wifidisc)
--- local wifitooltip = awful.tooltip({
---     objects = {wificon},
---     margin_leftright = dpi(15),
---     margin_topbottom = dpi(15)
--- })
--- wifitooltip.wibox.fg = theme.fg_normal
--- wifitooltip.textbox.font = theme.font
--- wifitooltip.timeout = 0
--- wifitooltip:set_shape(function(cr, width, height)
---     gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, width - dpi(120))
--- end)
 local mywifisig = awful.widget.watch({awful.util.shell, "-c",
                                       "awk 'NR==3 {printf(\"%d-%.0f\\n\",$2, $3*10/7)}' /proc/net/wireless; iw dev wlan0 link"},
     2, function(widget, stdout)
@@ -315,21 +305,6 @@ local mywifisig = awful.widget.watch({awful.util.shell, "-c",
             wifitooltip:set_markup(tiptext)
         end
     end)
--- wificon:connect_signal("button::press", function()
---     awful.spawn(string.format("%s -e wavemon", awful.util.terminal))
--- end)
-
--- Weather
---[[ to be set before use
-theme.weather = lain.widget.weather({
-    city_id = 2643743, -- placeholder (London)
-    notification_preset = { font = "Monospace 10" },
-    settings = function()
-        units = math.floor(weather_now["main"]["temp"])
-        widget:set_markup(" " .. markup.font(theme.font, units .. "°C") .. " ")
-    end
-})
---]]
 
 -- Launcher
 -- local mylauncher = awful.widget.button({
@@ -341,23 +316,12 @@ theme.weather = lain.widget.weather({
 
 -- Separators
 local space = wibox.widget.textbox(" ")
-local rspace1 = wibox.widget.textbox()
-local rspace0 = wibox.widget.textbox()
-local rspace2 = wibox.widget.textbox()
-local rspace3 = wibox.widget.textbox()
-local tspace1 = wibox.widget.textbox()
-tspace1.forced_width = dpi(18)
-rspace1.forced_width = dpi(16)
-rspace0.forced_width = dpi(18)
-rspace2.forced_width = dpi(19)
-rspace3.forced_width = dpi(21)
-
-local lspace1 = wibox.widget.textbox()
-local lspace2 = wibox.widget.textbox()
-local lspace3 = wibox.widget.textbox()
-lspace1.forced_height = dpi(18)
-lspace2.forced_height = dpi(10)
-lspace3.forced_height = dpi(16)
+-- horizontal space 
+local hspace = wibox.widget.textbox()
+hspace.forced_width = dpi(18)
+-- vertical space
+local vspace = wibox.widget.textbox()
+vspace.forced_height = dpi(18)
 
 local barcolor = gears.color({
     type = "linear",
@@ -379,7 +343,7 @@ end
 
 function theme.vertical_wibox(s)
     -- Create the vertical wibox
-    s.dockheight = (21.5 * s.workarea.height) / 100
+    s.dockheight = (25.5 * s.workarea.height) / 100
 
     s.myleftwibox = wibox({
         screen = s,
@@ -403,9 +367,8 @@ function theme.vertical_wibox(s)
         layout = wibox.layout.align.vertical,
         {
             layout = wibox.layout.fixed.vertical,
-            lspace1,
-            s.mytaglist,
-            lspace2
+            vspace,
+            s.mytaglist
             -- s.layoutb,
             -- wibox.container.margin(mylauncher, dpi(5), dpi(8), dpi(13), dpi(0)),
         }
@@ -526,12 +489,13 @@ function theme.at_screen_connect(s)
         expand = "none",
         { -- Left widgets
             layout = wibox.layout.fixed.horizontal,
-            rspace0,
+            hspace,
             s.layoutb,
-            rspace1,
+            hspace,
             s.mypromptbox,
-            tspace1,
-            s.mytasklist
+            hspace,
+            s.mytasklist,
+            hspace
         },
         { -- Middle widgets
             layout = wibox.layout.flex.horizontal,
@@ -541,21 +505,18 @@ function theme.at_screen_connect(s)
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
             -- wibox.widget { nil, nil, theme.mpd.widget, layout = wibox.layout.align.horizontal },
-            rspace0,
-            -- theme.weather.icon,
-            -- theme.weather.widget,
+            hspace,
             wibox.widget.systray(),
-            rspace0,
+            hspace,
             wificon,
-            -- rspace0,
             net.widget,
-            rspace0,
+            hspace,
             cpuicon,
             cpu.widget,
-            rspace0,
+            hspace,
             memicon,
             mem.widget,
-            rspace0,
+            hspace,
             weather_widget({
                 api_key = 'aeec45216dbe6d619167d2e9c9380fd7',
                 coordinates = {45.95, 24.14},
@@ -568,22 +529,22 @@ function theme.at_screen_connect(s)
                 show_hourly_forecast = true,
                 show_daily_forecast = true
             }),
-            rspace0,
+            hspace,
             brightness_widget({
                 type = 'icon_and_text',
                 program = 'light',
                 step = 10,
                 base = 20
             }),
-            rspace0,
+            hspace,
             volicon,
-            rspace0,
+            hspace,
             baticon,
-            rspace0,
+            hspace,
             logout_menu_widget({
                 font = theme.font
             }),
-            rspace0
+            hspace
         }
     }
 
