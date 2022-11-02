@@ -642,7 +642,7 @@ end, {
 end, {
     description = "min/max all windows",
     group = "client"
-}), awful.key({altkey, "Control"}, "m", function()
+}), awful.key({altkey, "Control"}, "n", function()
     for _, cl in ipairs(mouse.screen.selected_tag:clients()) do
         local c = cl
         if c then
@@ -652,7 +652,7 @@ end, {
 end, {
     description = "minimize all windows in current tag",
     group = "client"
-}), awful.key({altkey, "Control"}, "n", function()
+}), awful.key({altkey, "Control"}, "m", function()
     for _, cl in ipairs(mouse.screen.selected_tag:clients()) do
         local c = cl
         if c then
