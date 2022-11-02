@@ -108,13 +108,14 @@ theme.widget_cpu = theme.icon_dir .. "/cpu.png"
 theme.widget_mem = theme.icon_dir .. "/mem.png"
 
 -- http://fontawesome.io/cheatsheet
-awful.util.tagnames = {"", "", "", "", "", ""}
+awful.util.tagnames = {"", "", "", "", "", ""}
 
 local markup = lain.util.markup
 
 -- Clock
 -- os.setlocale(os.getenv("LANG")) -- to localize the clock
-local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "| %a %d %b | %H:%M |"))
+-- local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "| %a %d %b | %H:%M |"))
+local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "| %H:%M |"))
 mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = {mytextclock},
@@ -494,8 +495,7 @@ function theme.at_screen_connect(s)
             hspace,
             s.mypromptbox,
             hspace,
-            s.mytasklist,
-            hspace
+            s.mytasklist
         },
         { -- Middle widgets
             layout = wibox.layout.flex.horizontal,
