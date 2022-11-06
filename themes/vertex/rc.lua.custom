@@ -199,25 +199,24 @@ awful.util.mymainmenu = freedesktop.menu.build {
     before = {{"Awesome", myawesomemenu, beautiful.awesome_icon} -- other triads can be put here
     },
     after = {{"Open terminal", terminal} -- other triads can be put here
-    },
-    width = 250
+    }
 }
 
 -- Hide the menu when the mouse leaves it
 
--- awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
---     if not awful.util.mymainmenu.active_child or
---         (awful.util.mymainmenu.wibox ~= mouse.current_wibox and awful.util.mymainmenu.active_child.wibox ~=
---             mouse.current_wibox) then
---         awful.util.mymainmenu:hide()
---     else
---         awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave", function()
---             if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
---                 awful.util.mymainmenu:hide()
---             end
---         end)
---     end
--- end)
+awful.util.mymainmenu.wibox:connect_signal("mouse::leave", function()
+    if not awful.util.mymainmenu.active_child or
+        (awful.util.mymainmenu.wibox ~= mouse.current_wibox and awful.util.mymainmenu.active_child.wibox ~=
+            mouse.current_wibox) then
+        awful.util.mymainmenu:hide()
+    else
+        awful.util.mymainmenu.active_child.wibox:connect_signal("mouse::leave", function()
+            if awful.util.mymainmenu.wibox ~= mouse.current_wibox then
+                awful.util.mymainmenu:hide()
+            end
+        end)
+    end
+end)
 
 -- Set the Menubar terminal for applications that require it
 -- menubar.utils.terminal = terminal
@@ -357,12 +356,12 @@ end, {
     description = "focus right",
     group = "client"
 }), -- Menu
-awful.key({modkey}, "w", function()
-    awful.util.mymainmenu:show()
-end, {
-    description = "show main menu",
-    group = "awesome"
-}), -- Layout manipulation
+-- awful.key({modkey}, "w", function()
+--     awful.util.mymainmenu:show()
+-- end, {
+--     description = "show main menu",
+--     group = "awesome"
+-- }), -- Layout manipulation
 awful.key({modkey, "Shift"}, "j", function()
     awful.client.swap.byidx(1)
 end, {
@@ -539,7 +538,13 @@ end, {
 --     description = "show weather",
 --     group = "widgets"
 -- }), 
--- Screen brightness
+-- User programs
+awful.key({modkey}, "w", function()
+    awful.spawn(browser)
+end, {
+    description = "run browser",
+    group = "launcher"
+}), -- Screen brightness
 awful.key({}, "#233", function()
     os.execute("light -A 10")
 end, {
