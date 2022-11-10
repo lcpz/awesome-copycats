@@ -123,7 +123,7 @@ theme.cal = lain.widget.cal({
         fg = "#FFFFFF",
         bg = theme.bg_normal,
         position = "top_middle",
-        font = "JetBrainsMono Nerd Font Bold 12"
+        font = theme.font
     }
 })
 
@@ -132,14 +132,15 @@ local baticon = wibox.widget.imagebox(theme.bat000)
 local battooltip = awful.tooltip({
     objects = {baticon},
     margin_leftright = dpi(15),
-    margin_topbottom = dpi(12)
+    margin_topbottom = dpi(4)
 })
 battooltip.wibox.fg = "#fcfbf7"
 battooltip.wibox.widget.bg = "#404040"
 battooltip.textbox.font = theme.font
 battooltip.timeout = 0
+
 battooltip:set_shape(function(cr, width, height)
-    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, 8)
+    gears.shape.rounded_bar(cr, width, height)
 end)
 local bat = lain.widget.bat({
     settings = function()
@@ -164,7 +165,7 @@ local bat = lain.widget.bat({
         end
 
         baticon:set_image(theme[index])
-        battooltip:set_markup(string.format("\n%s%%, %s", perc, bat_now.time))
+        battooltip:set_markup(string.format("%s%%, %s", perc, bat_now.time))
     end
 })
 
@@ -192,19 +193,20 @@ local volicon = wibox.widget.imagebox()
 local battooltip = awful.tooltip({
     objects = {volicon},
     margin_leftright = dpi(15),
-    margin_topbottom = dpi(12)
+    margin_topbottom = dpi(4)
 })
 battooltip.wibox.fg = "#fcfbf7"
 battooltip.wibox.widget.bg = "#404040"
 battooltip.textbox.font = theme.font
 battooltip.timeout = 0
+
 battooltip:set_shape(function(cr, width, height)
-    gears.shape.infobubble(cr, width, height, corner_radius, arrow_size, 4)
+    gears.shape.rounded_bar(cr, width, height)
 end)
 theme.volume = lain.widget.alsabar({
     -- togglechannel = "IEC958,3",
     notification_preset = {
-        font = "Monospace 12",
+        font = theme.font,
         fg = theme.fg_normal
     },
     settings = function()
@@ -225,7 +227,7 @@ theme.volume = lain.widget.alsabar({
         end
 
         volicon:set_image(theme[index])
-        battooltip:set_markup(string.format("\n%s%%", perc))
+        battooltip:set_markup(string.format("%s%%", perc))
     end
 })
 volicon:buttons(my_table.join(awful.button({}, 1, function()
