@@ -165,7 +165,7 @@ local bat = lain.widget.bat({
         end
 
         baticon:set_image(theme[index])
-        battooltip:set_markup(string.format("%s%%, %s", perc, bat_now.time))
+        battooltip:set_markup(string.format("%s%% | %s", perc, bat_now.time))
     end
 })
 
@@ -230,7 +230,7 @@ theme.volume = lain.widget.alsabar({
         end
 
         volicon:set_image(theme[index])
-        voltooltip:set_markup(string.format("%s%%|100%%", perc))
+        voltooltip:set_markup(string.format("%s%% | 100%%", perc))
     end
 })
 volicon:buttons(my_table.join(awful.button({}, 1, function()
