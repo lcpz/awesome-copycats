@@ -139,9 +139,9 @@ battooltip.wibox.widget.bg = "#404040"
 battooltip.textbox.font = theme.font
 battooltip.timeout = 0
 
-battooltip:set_shape(function(cr, width, height)
-    gears.shape.rounded_bar(cr, width, height)
-end)
+-- battooltip:set_shape(function(cr, width, height)
+--     gears.shape.rounded_bar(cr, width, height)
+-- end)
 local bat = lain.widget.bat({
     settings = function()
         local index, perc = "bat", tonumber(bat_now.perc) or 0
@@ -190,19 +190,22 @@ local bat = lain.widget.bat({
 
 -- ALSA volume
 local volicon = wibox.widget.imagebox()
-local battooltip = awful.tooltip({
+local voltooltip = awful.tooltip({
     objects = {volicon},
     margin_leftright = dpi(15),
-    margin_topbottom = dpi(4)
-})
-battooltip.wibox.fg = "#fcfbf7"
-battooltip.wibox.widget.bg = "#404040"
-battooltip.textbox.font = theme.font
-battooltip.timeout = 0
+    margin_topbottom = dpi(4),
+    preferred_alignments = {"middle", "front", "back"},
+    preferred_positions = {"bottom", "left", "right", "top"}
 
-battooltip:set_shape(function(cr, width, height)
-    gears.shape.rounded_bar(cr, width, height)
-end)
+})
+voltooltip.wibox.fg = "#fcfbf7"
+voltooltip.wibox.widget.bg = "#404040"
+voltooltip.textbox.font = theme.font
+voltooltip.timeout = 0
+
+-- battooltip:set_shape(function(cr, width, height)
+--     gears.shape.rounded_bar(cr, width, height)
+-- end)
 theme.volume = lain.widget.alsabar({
     -- togglechannel = "IEC958,3",
     notification_preset = {
@@ -227,7 +230,7 @@ theme.volume = lain.widget.alsabar({
         end
 
         volicon:set_image(theme[index])
-        battooltip:set_markup(string.format("%s%%", perc))
+        voltooltip:set_markup(string.format("%s%%|100%%", perc))
     end
 })
 volicon:buttons(my_table.join(awful.button({}, 1, function()
