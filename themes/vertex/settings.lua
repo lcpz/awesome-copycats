@@ -1,0 +1,4 @@
+local settings = {
+}
+
+return settings
