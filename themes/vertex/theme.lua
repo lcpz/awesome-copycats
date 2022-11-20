@@ -250,7 +250,7 @@ end), awful.button({}, 5, function()
 end)))
 
 -- MEM
-function round_one_decimal(num)
+local function round_one_decimal(num)
     return math.floor(num * 10) / 10
 end
 

@@ -25,7 +25,7 @@ local settings = {
     BLUESTATUS = false,
 
     -- Gaps
-    useless_gap = 6,
+    useless_gap = 8,
 }
 
 return settings
