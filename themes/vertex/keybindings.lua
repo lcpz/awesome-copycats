@@ -9,7 +9,7 @@ local keybindings = {
 
 }
 
-function keybindings.get_globalkeys(mytable, modkey, altkey, cycle_prev, browser, terminal, _G)
+function keybindings.get_global_keys(mytable, modkey, altkey, cycle_prev, browser, terminal)
     local globalkeys = mytable.join(-- Destroy all notifications
         awful.key({ "Control", "Shift" }, "Escape", function()
             naughty.destroy_all_notifications()
@@ -459,7 +459,7 @@ function keybindings.get_globalkeys(mytable, modkey, altkey, cycle_prev, browser
     return globalkeys
 end
 
-function keybindings.get_userkeys(mytable, awful, lain, altkey, modkey)
+function keybindings.get_user_keys(mytable, awful, lain, altkey, modkey)
     -- User hey bindings
     local clientkeys = mytable.join(awful.key({ altkey, "Shift" }, "m", lain.util.magnify_client, {
         description = "magnify client",
