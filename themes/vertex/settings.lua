@@ -21,6 +21,9 @@ local settings = {
 
     -- Bluetooth
     BLUESTATUS = false,
+
+    -- Gaps
+    useless_gap = 6,
 }
 
 return settings
