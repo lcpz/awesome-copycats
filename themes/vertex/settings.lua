@@ -4,6 +4,8 @@ local settings = {
         "vertex", -- 2
     },
 
+    chosen_theme = 2,
+
     modkey = "Mod4",
     altkey = "Mod1",
 
