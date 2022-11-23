@@ -18,7 +18,7 @@ theme.icon_dir = os.getenv("HOME") .. "/.config/awesome/themes/vertex/icons"
 theme.wallpaper = os.getenv("HOME") .. "/.config/awesome/themes/vertex/wall.png"
 -- theme.font = "Roboto Bold 10"
 theme.font = "JetBrainsMono Nerd Font Bold 12"
-theme.taglist_font = "FontAwesome 17"
+theme.taglist_font = "JetBrainsMono Nerd Font Bold 17"
 theme.fg_normal = "#FFFFFF"
 theme.fg_focus = "#6A95EB"
 theme.bg_focus = "#303030"
@@ -115,7 +115,7 @@ local markup = lain.util.markup
 -- Clock
 -- os.setlocale(os.getenv("LANG")) -- to localize the clock
 -- local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "| %a %d %b | %H:%M |"))
-local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "| %H:%M |"))
+local mytextclock = wibox.widget.textclock(markup("#FFFFFF", "%H:%M"))
 mytextclock.font = theme.font
 theme.cal = lain.widget.cal({
     attach_to = {mytextclock},
@@ -250,7 +250,7 @@ end), awful.button({}, 5, function()
 end)))
 
 -- MEM
-local function round_one_decimal(num)
+function round_one_decimal(num)
     return math.floor(num * 10) / 10
 end
 
