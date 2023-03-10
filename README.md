@@ -17,4 +17,7 @@
 - Download and install VSCode code editor
 - Go to https://github.com/lcpz/awesome-copycats and fork it
 - Clone the fork repo to local
-- `git clone https://github.com/sajeeth-ahamed/awesome-copycats.git`
+
+```shell
+ git clone https://github.com/sajeeth-ahamed/awesome-copycats.git
+```
