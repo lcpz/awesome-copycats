@@ -1,0 +1,1 @@
+/home/hrli/repos/dotfiles/awesomewm/rc.lua
