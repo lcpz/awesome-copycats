@@ -81,6 +81,20 @@ awful.spawn.with_shell(
 )
 --]]
 
+-- Change keymaps
+-- [
+awful.spawn.with_shell [[ conf=$(
+cat <<EOF
+keycode 66 = Control_R
+keycode 105 = Caps_Lock
+clear lock
+add lock = Caps_Lock
+clear control
+add control = Control_L Control_R
+EOF
+);
+echo "$conf" | xmodmap - ]]
+-- ]]
 -- }}}
 
 -- {{{ Variable definitions
