@@ -225,6 +225,9 @@ function theme.at_screen_connect(s)
         onlock = function()
           awful.spawn.with_shell "slock"
         end,
+        onpoweroff = function()
+          awful.spawn.with_shell "shoutdown -h now"
+        end,
       },
     },
   }
