@@ -16,7 +16,7 @@ local os = os
 
 local theme = {}
 theme.confdir = os.getenv "HOME" .. "/.config/awesome/themes/multicolor"
-theme.wallpaper = string.format("%s/Pictures/1308322.jpeg", os.getenv "HOME")
+theme.wallpaper = os.getenv "MY_WALLPAPER" or theme.confdir .. "/wall.png"
 theme.font = "Monospace 11"
 
 -- Menu
