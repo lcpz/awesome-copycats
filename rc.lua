@@ -101,7 +101,7 @@ echo "$conf" | xmodmap - ]]
 local modkey = "Mod4"
 local altkey = "Mod1"
 -- local terminal = "gnome-terminal"
-local terminal = "/home/hrli/.local/kitty.app/bin/kitty"
+local terminal = "kitty"
 local vi_focus = false -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
 local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
 local editor = os.getenv "EDITOR" or "nvim"
@@ -121,7 +121,7 @@ awful.layout.layouts = {
   -- awful.layout.suit.tile.bottom,
   -- awful.layout.suit.tile.top,
   -- awful.layout.suit.fair,
-  --awful.layout.suit.fair.horizontal,
+  awful.layout.suit.fair.horizontal,
   --awful.layout.suit.max,
   --awful.layout.suit.max.fullscreen,
   --awful.layout.suit.magnifier,
@@ -130,11 +130,11 @@ awful.layout.layouts = {
   --awful.layout.suit.corner.sw,
   --awful.layout.suit.corner.se,
   -- lain.layout.cascade,
-  --lain.layout.cascade.tile,
-  --lain.layout.centerwork,
+  -- lain.layout.cascade.tile,
+  lain.layout.centerwork,
   --lain.layout.centerwork.horizontal,
-  lain.layout.termfair,
-  --lain.layout.termfair.center
+  -- lain.layout.termfair,
+  -- lain.layout.termfair.center
 }
 
 lain.layout.termfair.nmaster = 3
