@@ -1,31 +1,15 @@
-local settings = {
-  themes = {
-    "powerarrow-dark",     -- 1 DEFAULT
-    "vertex",              -- 2
-  },
-
-  chosen_theme = 2,
-
-  modkey = "Mod4",
-  altkey = "Mod1",
-
-  -- Pref browser
-  terminal = "alacritty",
-
-  vi_focus = false,    -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
-  cycle_prev = true,   -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
-
-  -- Pref editor
-  editor = "nvim",
-
-  -- Pref browser
-  browser = "librewolf",
-
-  -- Bluetooth
-  BLUESTATUS = false,
-
-  -- Gaps
-  useless_gap = 8,
+local themes = {
+  "powerarrow-dark", -- 1 DEFAULT
+  "vertex",        -- 2
 }
 
-return settings
+local chosen_theme = 2
+local modkey = "Mod4"
+local altkey = "Mod1"
+local terminal = "alacritty"
+local vi_focus = false  -- vi-like client focus https://github.com/lcpz/awesome-copycats/issues/275
+local cycle_prev = true -- cycle with only the previously focused client or all https://github.com/lcpz/awesome-copycats/issues/274
+local editor = "nvim"
+local browser = "librewolf"
+local BLUESTATUS = false
+local useless_gap = 8
