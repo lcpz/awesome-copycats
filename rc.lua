@@ -62,14 +62,26 @@ end
 
 -- {{{ Autostart windowless processes
 
--- This function will run once every time Awesome is started
-local function run_once(cmd_arr)
-  for _, cmd in ipairs(cmd_arr) do
-    awful.spawn.with_shell(string.format("pgrep -fx '%s' > /dev/null || (%s)", cmd, cmd))
-  end
+-- This function will only be executed once on startup
+local function run_once(cmd)
+  awful.spawn.easy_async_with_shell(string.format("pgrep -fx '%s'", cmd), function(stdout)
+    stdout = string.gsub(stdout, "%s+", "")
+    if stdout == "" then
+      naughty.notify {
+        title = "AwesomeWM Autostart",
+        text = "Starting: " .. cmd,
+      }
+      awful.spawn.with_shell(cmd)
+    else
+      naughty.notify {
+        title = "AwesomeWM Autostart",
+        text = "Already running: " .. cmd,
+      }
+    end
+  end)
 end
 
-run_once { "compton" } -- comma-separated entries
+run_once "compton --vsync opengl-swc --backend glx"
 
 -- This function implements the XDG autostart specification
 --[
@@ -617,7 +629,7 @@ clientkeys = mytable.join(
     awful.client.floating.toggle,
     { description = "toggle floating", group = "client" }
   ),
-  awful.key({ modkey, "Control" }, "Return", function(c)
+  awful.key({ modkey, "Shift" }, "Return", function(c)
     c:swap(awful.client.getmaster())
   end, { description = "move to master", group = "client" }),
   awful.key({ modkey }, "o", function(c)
@@ -757,7 +769,7 @@ awful.rules.rules = {
         "veromix",
         "xtightvncviewer",
         "Clash for Windows",
-        "eudic"
+        "eudic",
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
