@@ -84,29 +84,15 @@ end
 run_once "compton --vsync opengl-swc --backend glx"
 
 -- This function implements the XDG autostart specification
---[
 awful.spawn.with_shell(
   'if (xrdb -query | grep -q "^awesome\\.started:\\s*true$"); then exit; fi;'
     .. 'xrdb -merge <<< "awesome.started:true";'
     -- list each of your autostart commands, followed by ; inside single quotes, followed by ..
     .. 'dex --environment Awesome --autostart --search-paths "$XDG_CONFIG_DIRS/autostart:${XDG_CONFIG_HOME:-$HOME/.config}/autostart"' -- https://github.com/jceb/dex
 )
---]]
 
 -- Change keymaps
--- [
-awful.spawn.with_shell [[ conf=$(
-cat <<EOF
-keycode 66 = Control_R
-keycode 105 = Caps_Lock
-clear lock
-add lock = Caps_Lock
-clear control
-add control = Control_L Control_R
-EOF
-);
-echo "$conf" | xmodmap - ]]
--- ]]
+awful.spawn.with_shell "if [ -f ~/.Xmodmap ]; then xmodmap ~/.Xmodmap; fi"
 -- }}}
 
 -- {{{ Variable definitions
