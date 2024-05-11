@@ -113,7 +113,7 @@ awful.util.tagnames = { "1: ", "2:</>", "3: ", "4: ", "5:󰊠 " }
 awful.layout.layouts = {
   awful.layout.suit.spiral,
   --awful.layout.suit.spiral.dwindle,
-  -- awful.layout.suit.floating,
+  awful.layout.suit.floating,
   -- awful.layout.suit.tile,
   -- awful.layout.suit.tile.left,
   -- awful.layout.suit.tile.bottom,
@@ -476,8 +476,8 @@ globalkeys = mytable.join(
   --   awful.layout.inc(1)
   -- end, { description = "select next", group = "layout" }),
   awful.key({ modkey, "Shift" }, "space", function()
-    awful.layout.inc(-1)
-  end, { description = "select previous", group = "layout" }),
+    awful.layout.inc(1)
+  end, { description = "select next", group = "layout" }),
 
   -- Screen brightness
   awful.key({}, "XF86MonBrightnessUp", function()
@@ -695,7 +695,7 @@ for i = 1, 9 do
   )
 end
 
-clientbuttons = mytable.join(
+local clientbuttons = mytable.join(
   awful.button({}, 1, function(c)
     c:emit_signal("request::activate", "mouse_click", { raise = true })
   end),
@@ -777,7 +777,6 @@ awful.rules.rules = {
     rule_any = { type = { "normal", "dialog" } },
     properties = { titlebars_enabled = true },
   },
-
   -- Set Firefox to always map on the tag named "2" on screen 1.
   -- { rule = { class = "Firefox" },
   --   properties = { screen = 1, tag = "2" } },
@@ -786,6 +785,10 @@ awful.rules.rules = {
 -- }}}
 
 -- {{{ Signals
+local function is_floating_layout()
+  local current_layout = awful.layout.getname(awful.layout.get())
+  return current_layout == "floating"
+end
 
 -- Signal function to execute when a new client appears.
 client.connect_signal("manage", function(c)
@@ -796,6 +799,13 @@ client.connect_signal("manage", function(c)
   if awesome.startup and not c.size_hints.user_position and not c.size_hints.program_position then
     -- Prevent clients from being unreachable after screen count changes.
     awful.placement.no_offscreen(c)
+  end
+  -- set floating to true, when layout is floating
+  if is_floating_layout() then
+    c.floating = true
+  end
+  if c.floating then
+    awful.placement.centered(c)
   end
 end)
 
