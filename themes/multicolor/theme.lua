@@ -19,13 +19,15 @@ theme.confdir = os.getenv "HOME" .. "/.config/awesome/themes/multicolor"
 theme.wallpaper = os.getenv "MY_WALLPAPER" or theme.confdir .. "/wall.png"
 theme.font = "Monospace 11"
 
+local focus_fg = "#59e269"
+
 -- Menu
 theme.menu_bg_normal = "#000000AA"
 theme.menu_bg_focus = "#000000AA"
 theme.menu_border_width = 0
 theme.menu_width = dpi(130)
 theme.menu_fg_normal = "#aaaaaa"
-theme.menu_fg_focus = "#59e269"
+theme.menu_fg_focus = focus_fg
 theme.menu_bg_normal = "#050505dd"
 theme.menu_bg_focus = "#050505dd"
 
@@ -38,7 +40,7 @@ theme.bg_minimize = "#444444"
 
 -- Foreground
 theme.fg_normal = "#ffffff"
-theme.fg_focus = "#59e269"
+theme.fg_focus = focus_fg
 theme.fg_urgent = "#ffffff"
 theme.fg_minimize = "#ffffff"
 
@@ -51,8 +53,8 @@ theme.gap_single_client = true
 -- Window Borders
 theme.border_width = dpi(2)
 theme.border_normal = "#1c2022"
-theme.border_focus = "#59e269"
-theme.border_marked = "#3ca4d8"
+theme.border_focus = focus_fg
+theme.border_marked = "#d166ff"
 
 -- Taglist
 theme.taglist_bg_empty = theme.bg_normal

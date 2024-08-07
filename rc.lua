@@ -805,7 +805,9 @@ client.connect_signal("manage", function(c)
     c.floating = true
   end
   if c.floating then
-    awful.placement.centered(c)
+    -- awful.placement.centered(c)
+    awful.placement.bottom_right(c)
+
   end
 end)
 
