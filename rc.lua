@@ -24,6 +24,11 @@ local mytable = awful.util.table or gears.table -- 4.{0,1} compatibility
 local volume_widget = require "awesome-wm-widgets.volume-widget.volume"
 
 -- }}}
+-- {{{ Notification
+naughty.config.defaults.position = "top_middle"
+naughty.config.defaults.border_width = 2
+naughty.config.defaults.timeout = 10
+-- }}}
 
 -- {{{ Error handling
 
@@ -328,7 +333,7 @@ globalkeys = mytable.join(
   end, { description = "clipboard", group = "hotkeys" }),
 
   -- Show help
-  awful.key({ modkey }, "s", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
+  awful.key({ modkey }, "/", hotkeys_popup.show_help, { description = "show help", group = "awesome" }),
 
   -- Tag browsing
   awful.key({ modkey }, "Left", awful.tag.viewprev, { description = "view previous", group = "tag" }),
@@ -602,19 +607,14 @@ globalkeys = mytable.join(
 
 clientkeys = mytable.join(
   awful.key({ altkey, "Shift" }, "m", lain.util.magnify_client, { description = "magnify client", group = "client" }),
-  awful.key({ modkey }, "f", function(c)
-    c.fullscreen = not c.fullscreen
-    c:raise()
-  end, { description = "toggle fullscreen", group = "client" }),
+  -- awful.key({ modkey }, "f", function(c)
+  --   c.fullscreen = not c.fullscreen
+  --   c:raise()
+  -- end, { description = "toggle fullscreen", group = "client" }),
   awful.key({ modkey }, "q", function(c)
     c:kill()
   end, { description = "close", group = "client" }),
-  awful.key(
-    { modkey, "Control" },
-    "space",
-    awful.client.floating.toggle,
-    { description = "toggle floating", group = "client" }
-  ),
+  awful.key({ modkey }, "f", awful.client.floating.toggle, { description = "toggle floating", group = "client" }),
   awful.key({ modkey, "Shift" }, "Return", function(c)
     c:swap(awful.client.getmaster())
   end, { description = "move to master", group = "client" }),
@@ -623,6 +623,10 @@ clientkeys = mytable.join(
   end, { description = "move to screen", group = "client" }),
   awful.key({ modkey }, "t", function(c)
     c.ontop = not c.ontop
+  end, { description = "toggle keep on top", group = "client" }),
+  awful.key({ modkey }, "s", function(c)
+    -- sticky
+    c.sticky = not c.sticky
   end, { description = "toggle keep on top", group = "client" }),
   awful.key({ modkey }, "n", function(c)
     -- The client currently has the input focus, so it cannot be
@@ -756,6 +760,7 @@ awful.rules.rules = {
         "xtightvncviewer",
         "Clash for Windows",
         "eudic",
+        "flameshot",
       },
 
       -- Note that the name property shown in xprop might be set slightly after creation of the client
@@ -804,11 +809,10 @@ client.connect_signal("manage", function(c)
   if is_floating_layout() then
     c.floating = true
   end
-  if c.floating then
-    -- awful.placement.centered(c)
-    awful.placement.bottom_right(c)
-
-  end
+  -- if c.floating then
+  -- awful.placement.centered(c)
+  -- awful.placement.bottom_right(c)
+  -- end
 end)
 
 -- Add a titlebar if titlebars_enabled is set to true in the rules.

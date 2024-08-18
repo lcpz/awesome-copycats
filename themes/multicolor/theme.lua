@@ -78,7 +78,17 @@ theme.left_panel_width = dpi(55)
 theme.top_panel_height = dpi(26)
 
 -- Notification Sizing
--- theme.notification_max_width = dpi(350)
+theme.notification_width = dpi(500)
+theme.notification_height = dpi(125)
+theme.notification_icon_size = dpi(125)
+-- round corners
+theme.notification_shape = function(cr, width, height)
+  gears.shape.rounded_rect(cr, width, height, dpi(10))
+end
+-- opacity
+theme.notification_opacity = 0.9
+theme.notification_border_color = theme.border_marked
+
 
 -- System Tray
 theme.bg_systray = theme.bg_normal
@@ -126,7 +136,7 @@ local markup = lain.util.markup
 
 -- Textclock
 os.setlocale(os.getenv "LANG") -- to localize the clock
-local mytextclock = wibox.widget.textclock(markup("#a7aaff", "%A %d %B ") .. markup("#de6eae", "%H:%M "))
+local mytextclock = wibox.widget.textclock(markup("#a7aaff", "%Y-%m-%d ") .. markup(focus_fg, "%H:%M "))
 mytextclock.font = theme.font
 
 -- Calendar
@@ -228,7 +238,7 @@ function theme.at_screen_connect(s)
           awful.spawn.with_shell "slock"
         end,
         onsuspend = function()
-          awful.spawn.with_shell "slock systemctl suspend"
+          awful.spawn.with_shell "systemctl suspend"
         end,
       },
     },

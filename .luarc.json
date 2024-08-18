@@ -1,0 +1,7 @@
+{
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "workspace.library": [
+    "./lain",
+    "./awesome-wm-widgets"
+  ]
+}
