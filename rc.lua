@@ -98,6 +98,7 @@ awful.spawn.with_shell(
 
 -- Change keymaps
 awful.spawn.with_shell "if [ -f ~/.Xmodmap ]; then xmodmap ~/.Xmodmap; fi"
+awful.spawn.with_shell "[ -f ~/scripts/auto_change_color_scheme.sh ] && sh ~/scripts/auto_change_color_scheme.sh"
 -- }}}
 
 -- {{{ Variable definitions
@@ -532,33 +533,33 @@ globalkeys = mytable.join(
   --     {description = "volume 0%", group = "hotkeys"}),
 
   -- MPD control
-  awful.key({ altkey, "Control" }, "Up", function()
-    os.execute "mpc toggle"
-    beautiful.mpd.update()
-  end, { description = "mpc toggle", group = "widgets" }),
-  awful.key({ altkey, "Control" }, "Down", function()
-    os.execute "mpc stop"
-    beautiful.mpd.update()
-  end, { description = "mpc stop", group = "widgets" }),
-  awful.key({ altkey, "Control" }, "Left", function()
-    os.execute "mpc prev"
-    beautiful.mpd.update()
-  end, { description = "mpc prev", group = "widgets" }),
-  awful.key({ altkey, "Control" }, "Right", function()
-    os.execute "mpc next"
-    beautiful.mpd.update()
-  end, { description = "mpc next", group = "widgets" }),
-  awful.key({ altkey }, "0", function()
-    local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
-    if beautiful.mpd.timer.started then
-      beautiful.mpd.timer:stop()
-      common.text = common.text .. lain.util.markup.bold "OFF"
-    else
-      beautiful.mpd.timer:start()
-      common.text = common.text .. lain.util.markup.bold "ON"
-    end
-    naughty.notify(common)
-  end, { description = "mpc on/off", group = "widgets" }),
+  -- awful.key({ altkey, "Control" }, "Up", function()
+  --   os.execute "mpc toggle"
+  --   beautiful.mpd.update()
+  -- end, { description = "mpc toggle", group = "widgets" }),
+  -- awful.key({ altkey, "Control" }, "Down", function()
+  --   os.execute "mpc stop"
+  --   beautiful.mpd.update()
+  -- end, { description = "mpc stop", group = "widgets" }),
+  -- awful.key({ altkey, "Control" }, "Left", function()
+  --   os.execute "mpc prev"
+  --   beautiful.mpd.update()
+  -- end, { description = "mpc prev", group = "widgets" }),
+  -- awful.key({ altkey, "Control" }, "Right", function()
+  --   os.execute "mpc next"
+  --   beautiful.mpd.update()
+  -- end, { description = "mpc next", group = "widgets" }),
+  -- awful.key({ altkey }, "0", function()
+  --   local common = { text = "MPD widget ", position = "top_middle", timeout = 2 }
+  --   if beautiful.mpd.timer.started then
+  --     beautiful.mpd.timer:stop()
+  --     common.text = common.text .. lain.util.markup.bold "OFF"
+  --   else
+  --     beautiful.mpd.timer:start()
+  --     common.text = common.text .. lain.util.markup.bold "ON"
+  --   end
+  --   naughty.notify(common)
+  -- end, { description = "mpc on/off", group = "widgets" }),
 
   -- Copy primary to clipboard (terminals to gtk)
   -- awful.key({ modkey }, "c", function()
