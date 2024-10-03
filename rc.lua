@@ -875,6 +875,14 @@ client.connect_signal("property::floating", function(c)
   end
 end)
 
+client.connect_signal("property::maximized", function(c)
+  if c.maximized then
+    awful.titlebar.hide(c)
+  elseif c.floating then
+    awful.titlebar.show(c)
+  end
+end)
+
 -- Enable sloppy focus, so that focus follows mouse.
 client.connect_signal("mouse::enter", function(c)
   c:emit_signal("request::activate", "mouse_enter", { raise = vi_focus })
