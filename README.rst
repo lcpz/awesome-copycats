@@ -53,43 +53,43 @@ Gallery
 
 **Multicolor**, inspired by lucamanni_
 
-.. image:: http://dotshare.it/public/images/uploads/650.png
+.. image:: screenshots/multicolor.png
 
 **Powerarrow**, porting of romockee_'s
 
-.. image:: http://dotshare.it/public/images/uploads/1453.png
+.. image:: screenshots/powerarrow.png
 
 **Powerarrow Dark**
 
-.. image:: http://dotshare.it/public/images/uploads/649.jpg
+.. image:: screenshots/powerarrow_dark.png
 
 **Steamburn**, porting of ok100_'s dwm
 
-.. image:: http://dotshare.it/public/images/uploads/648.png
+.. image:: screenshots/steamburn.png
 
 **Blackburn**
 
-.. image:: http://dotshare.it/public/images/uploads/553.png
+.. image:: screenshots/blackburn.png
 
 **Dremora**
 
-.. image:: http://dotshare.it/public/images/uploads/652.png
+.. image:: screenshots/dremora.png
 
 **Rainbow**
 
-.. image:: http://dotshare.it/public/images/uploads/606.png
+.. image:: screenshots/rainbow.png
 
 **Holo**, requested by amouly_
 
-.. image:: http://dotshare.it/public/images/uploads/651.jpg
+.. image:: screenshots/holo.png
 
 **Copland**, inspired by foozer_
 
-.. image:: http://dotshare.it/public/images/uploads/655.png
+.. image:: screenshots/copland.png
 
 **Vertex**, requested by swordfischer_
 
-.. image:: http://dotshare.it/public/images/uploads/1432.jpg
+.. image:: screenshots/vertex.png
 
 Installation
 ============
